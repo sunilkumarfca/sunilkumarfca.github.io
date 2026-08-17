@@ -89,7 +89,25 @@
 </footer>
 
 <script>
+/* ================================================================
+   TO ADD A NEW POST: add one object to the ENTRIES array below.
+   type: "note" | "article" | "pdf" | "ppt"
+   For pdf/ppt, set fileUrl to the file's link (e.g. upload it
+   alongside this site, or link to a Gumroad/Drive file) and the
+   card will show a "Download" link instead of inline text.
+   Newest entries should go at the TOP of the array.
+   ================================================================ */
 const ENTRIES = [
+  {
+    date: "2026-08-17",
+    type: "note",
+    title: "Free Live Webinar — IGMA™ Global Governance Executive Briefing",
+    body: "20 Questions Every Board Should Ask Before the Next Crisis. A 40-minute Executive Briefing on governance, accountability, risk oversight, compliance and institutional resilience for Boards and leadership teams. Sat, 22 Aug 2026, 11:30 AM IST, on Zoom. Live participation limited to the first 100 attendees; registration mandatory.",
+    tags: ["Governance", "BoardGovernance", "RiskManagement", "Compliance", "Webinar"],
+    fileUrl: null,
+    linkedinUrl: "https://lnkd.in/gbxATP7W",
+    linkLabel: "Register for the Webinar"
+  },
   {
     date: "2026-08-17",
     type: "article",
@@ -100,26 +118,16 @@ const ENTRIES = [
     linkedinUrl: "https://sunilkumarfca.substack.com/p/rich-poor-and-esg",
     linkLabel: "Read on Substack"
   },
-  {
-    date: "2026-08-14",
-    type: "note",
-    title: "Free IGMA™ FCRA Governance Assurance Framework — Sample",
-    body: "A 12-question automated Excel assessment sample for FCRA-registered NGOs — a quick first read on FCRA governance readiness, free to try.",
-    tags: ["IGMA", "FCRA", "Governance", "NGO"],
-    fileUrl: null,
-    linkedinUrl: "https://www.eloquens.com/tool/QX9QcKjk/ca-sunil-kumar-fca/fcra-governance-assurance-framework-igma-sample-edition-12-question-automated-excel-assessment-tool",
-    linkLabel: "Get the Free Sample"
-  },
-  {
-    date: "2026-08-14",
-    type: "note",
-    title: "Free IGMA™ Institutional Governance Maturity Assessment — Sample",
-    body: "A 16-question free sample to help NGOs, foundations and mission-driven organisations get a first read on their governance maturity — no cost, no commitment.",
-    tags: ["IGMA", "Governance", "NGO"],
-    fileUrl: null,
-    linkedinUrl: "http://sunilfca.gumroad.com/l/igma-governance-maturity-assessment-free",
-    linkLabel: "Get the Free Sample"
-  },
+  // Example — delete or edit once you add more posts:
+  // {
+  //   date: "2026-08-20",
+  //   type: "note",
+  //   title: "Why 'FCRA-compliant' and 'FCRA-ready' are not the same thing",
+  //   body: "A short note on the gap between passing a filing check and having governance systems that hold up to scrutiny.",
+  //   tags: ["FCRA", "Governance"],
+  //   fileUrl: null,
+  //   linkedinUrl: "https://www.linkedin.com/in/sunilkumarfca/"
+  // },
 ];
 
 const feed = document.getElementById('feed');
