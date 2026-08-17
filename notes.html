@@ -98,7 +98,17 @@
    Newest entries should go at the TOP of the array.
    ================================================================ */
 const ENTRIES = [
-  // Example — delete or edit once your first real post is added:
+  {
+    date: "2026-08-17",
+    type: "article",
+    title: "Rich, Poor and ESG",
+    body: "A walker kept for two years until another family needed it. A repaired rubber tip. A restrung racket. There is something about scarcity that money cannot easily teach — and it has more to say about ESG than most boardroom frameworks do. Reduce, reuse, repair may not begin in the boardroom at all; it may begin at home.",
+    tags: ["ESG", "Sustainability", "ResponsibleConsumption", "CircularEconomy"],
+    fileUrl: null,
+    linkedinUrl: "https://sunilkumarfca.substack.com/p/rich-poor-and-esg",
+    linkLabel: "Read on Substack"
+  },
+  // Example — delete or edit once you add more posts:
   // {
   //   date: "2026-08-20",
   //   type: "note",
@@ -137,7 +147,7 @@ function render(){
     el.className = 'entry';
     const link = e.fileUrl
       ? `<a class="dl" href="${e.fileUrl}" target="_blank" rel="noopener">Download →</a>`
-      : (e.linkedinUrl ? `<a class="dl" href="${e.linkedinUrl}" target="_blank" rel="noopener">View on LinkedIn →</a>` : '');
+      : (e.linkedinUrl ? `<a class="dl" href="${e.linkedinUrl}" target="_blank" rel="noopener">${e.linkLabel || 'View on LinkedIn'} →</a>` : '');
     el.innerHTML = `
       <div class="meta">
         <span class="date">${formatDate(e.date)}</span><br>
