@@ -89,14 +89,6 @@
 </footer>
 
 <script>
-/* ================================================================
-   TO ADD A NEW POST: add one object to the ENTRIES array below.
-   type: "note" | "article" | "pdf" | "ppt"
-   For pdf/ppt, set fileUrl to the file's link (e.g. upload it
-   alongside this site, or link to a Gumroad/Drive file) and the
-   card will show a "Download" link instead of inline text.
-   Newest entries should go at the TOP of the array.
-   ================================================================ */
 const ENTRIES = [
   {
     date: "2026-08-17",
@@ -108,16 +100,16 @@ const ENTRIES = [
     linkedinUrl: "https://sunilkumarfca.substack.com/p/rich-poor-and-esg",
     linkLabel: "Read on Substack"
   },
-  // Example — delete or edit once you add more posts:
-  // {
-  //   date: "2026-08-20",
-  //   type: "note",
-  //   title: "Why 'FCRA-compliant' and 'FCRA-ready' are not the same thing",
-  //   body: "A short note on the gap between passing a filing check and having governance systems that hold up to scrutiny.",
-  //   tags: ["FCRA", "Governance"],
-  //   fileUrl: null,
-  //   linkedinUrl: "https://www.linkedin.com/in/sunilkumarfca/"
-  // },
+  {
+    date: "2026-08-14",
+    type: "note",
+    title: "Free IGMA™ Institutional Governance Maturity Assessment — Sample",
+    body: "A 16-question free sample to help NGOs, foundations and mission-driven organisations get a first read on their governance maturity — no cost, no commitment.",
+    tags: ["IGMA", "Governance", "NGO"],
+    fileUrl: null,
+    linkedinUrl: "http://sunilfca.gumroad.com/l/igma-governance-maturity-assessment-free",
+    linkLabel: "Get the Free Sample"
+  },
 ];
 
 const feed = document.getElementById('feed');
