@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notes from the Field — Sunil Kumar, FCA</title>
+<meta name="description" content="LinkedIn notes, articles, PDFs and slide decks on NGO governance, FCRA compliance and institutional resilience — all in one place.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <div class="brand">
+      <span class="mark">FCA · Governance Advisory</span>
+      <span class="name">Sunil Kumar</span>
+    </div>
+    <button class="nav-toggle" onclick="document.querySelector('nav.primary').classList.toggle('open')">Menu</button>
+    <nav class="primary">
+      <a href="index.html">Home</a>
+      <a href="library.html">Free Library</a>
+      <a href="igma.html">IGMA™</a>
+      <a href="notes.html" class="current">Notes</a>
+      <a href="about.html">About</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero" style="padding-bottom:10px;">
+    <div class="wrap">
+      <div class="eyebrow">Notes from the field</div>
+      <h1 style="max-width:22ch;">LinkedIn notes, articles, PDFs and decks — one running ledger.</h1>
+      <p class="lede">Everything written for LinkedIn, the newsletter, or as a standalone brief lives here too, so it compounds instead of disappearing into a feed. Filter by type below.</p>
+    </div>
+  </section>
+
+  <section style="padding-top:0;">
+    <div class="wrap">
+      <div class="feed-filters" id="filters">
+        <button data-type="all" class="active">All</button>
+        <button data-type="note">Notes</button>
+        <button data-type="article">Articles</button>
+        <button data-type="pdf">PDF</button>
+        <button data-type="ppt">Slides</button>
+      </div>
+
+      <div id="feed"></div>
+      <div id="empty" class="empty-state" style="display:none;">
+        No posts yet — check back soon. New notes, articles and briefs are added here as they're published on LinkedIn and the newsletter.
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h4>Sunil Kumar, FCA</h4>
+        <p>Chartered Accountant and governance advisor to NGOs, Trusts, Foundations and mission-driven organisations. Author of IGMA™.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="library.html">Free Library</a></li>
+          <li><a href="igma.html">IGMA™ Assessments</a></li>
+          <li><a href="notes.html">Notes from the Field</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Elsewhere</h4>
+        <ul>
+          <li><a href="https://sunilfca.gumroad.com" target="_blank" rel="noopener">Gumroad store</a></li>
+          <li><a href="https://www.eloquens.com/" target="_blank" rel="noopener">Eloquens</a></li>
+          <li><a href="https://author.amazon.com/" target="_blank" rel="noopener">Amazon Author page</a></li>
+          <li><a href="https://www.linkedin.com/in/sunilkumarfca/" target="_blank" rel="noopener">LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Sunil Kumar, FCA. All rights reserved.</span>
+      <span><a href="mailto:casunilkumarfca@gmail.com">casunilkumarfca@gmail.com</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ================================================================
+   TO ADD A NEW POST: add one object to the ENTRIES array below.
+   type: "note" | "article" | "pdf" | "ppt"
+   For pdf/ppt, set fileUrl to the file's link (e.g. upload it
+   alongside this site, or link to a Gumroad/Drive file) and the
+   card will show a "Download" link instead of inline text.
+   Newest entries should go at the TOP of the array.
+   ================================================================ */
+const ENTRIES = [
+  // Example — delete or edit once your first real post is added:
+  // {
+  //   date: "2026-08-20",
+  //   type: "note",
+  //   title: "Why 'FCRA-compliant' and 'FCRA-ready' are not the same thing",
+  //   body: "A short note on the gap between passing a filing check and having governance systems that hold up to scrutiny.",
+  //   tags: ["FCRA", "Governance"],
+  //   fileUrl: null,
+  //   linkedinUrl: "https://www.linkedin.com/in/sunilkumarfca/"
+  // },
+];
+
+const feed = document.getElementById('feed');
+const empty = document.getElementById('empty');
+const filters = document.querySelectorAll('#filters button');
+let activeType = 'all';
+
+function typeLabel(t){
+  return { note:"Note", article:"Article", pdf:"PDF", ppt:"Slides" }[t] || t;
+}
+
+function formatDate(d){
+  const dt = new Date(d + "T00:00:00");
+  return dt.toLocaleDateString('en-GB', { day:'2-digit', month:'short', year:'numeric' });
+}
+
+function render(){
+  const items = ENTRIES.filter(e => activeType === 'all' || e.type === activeType);
+  feed.innerHTML = '';
+  if(items.length === 0){
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+  items.forEach(e => {
+    const el = document.createElement('article');
+    el.className = 'entry';
+    const link = e.fileUrl
+      ? `<a class="dl" href="${e.fileUrl}" target="_blank" rel="noopener">Download →</a>`
+      : (e.linkedinUrl ? `<a class="dl" href="${e.linkedinUrl}" target="_blank" rel="noopener">View on LinkedIn →</a>` : '');
+    el.innerHTML = `
+      <div class="meta">
+        <span class="date">${formatDate(e.date)}</span><br>
+        <span class="type ${e.type}">${typeLabel(e.type)}</span>
+      </div>
+      <div class="body">
+        <h3>${e.title}</h3>
+        <p>${e.body}</p>
+        ${e.tags && e.tags.length ? `<div class="tags">${e.tags.map(t=>'#'+t).join('  ')}</div>` : ''}
+        ${link}
+      </div>`;
+    feed.appendChild(el);
+  });
+}
+
+filters.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filters.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeType = btn.dataset.type;
+    render();
+  });
+});
+
+render();
+</script>
+
+</body>
+</html>
