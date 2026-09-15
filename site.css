@@ -70,6 +70,7 @@ section{padding:64px 0;}
 section.alt{background:var(--paper-raised);}
 .section-head{display:flex; gap:40px; margin-bottom:40px; flex-wrap:wrap;}
 .section-head .num{font-family:'Newsreader', serif; font-size:0.95rem; color:var(--brass-dark); min-width:34px; padding-top:6px;}
+.section-head .kicker{display:block; color:var(--brass-dark); font-size:0.95rem; margin-bottom:8px;}
 .section-head h2{font-size:1.85rem; max-width:22ch;}
 .section-head p{color:var(--slate); max-width:52ch; margin-top:10px;}
 
