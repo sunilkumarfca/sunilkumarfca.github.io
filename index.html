@@ -3,32 +3,194 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sunil Kumar, FCA — Governance Frameworks for NGOs & Mission-Driven Organisations</title>
-<meta name="description" content="Practical governance, compliance and financial sustainability frameworks for NGOs, Foundations and mission-driven organisations. Creator of the IGMA™ Governance Toolkits.">
+<title>Sunil Kumar, FCA — Governance Frameworks for NGOs &amp; Foundations</title>
+<meta name="description" content="IGMA™ Governance Maturity toolkits, executive guides and assessments for NGOs, Foundations and mission-driven organisations, by CA Sunil Kumar, FCA.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css">
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z1RR9B34D3"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1C2530;
+    --paper:#FAF8F4;
+    --paper-raised:#F2EEE4;
+    --brass:#8A6A32;
+    --brass-dark:#6E5527;
+    --slate:#5B6472;
+    --line:#D9D3C7;
+    --max:1080px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Newsreader', serif;
+    font-weight:500;
+    line-height:1.15;
+    margin:0;
+    color:var(--ink);
+  }
+  a{color:var(--brass-dark);}
+  a:focus-visible, button:focus-visible{outline:2px solid var(--brass-dark); outline-offset:3px;}
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 28px;}
+  .hairline{border:none; border-top:1px solid var(--line); margin:0;}
 
-  gtag('config', 'G-Z1RR9B34D3');
-</script>
+  /* header */
+  header.site{
+    padding:22px 0;
+    border-bottom:1px solid var(--line);
+  }
+  header.site .wrap{display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap;}
+  .brand{font-family:'Newsreader', serif; font-size:1.15rem; font-weight:600;}
+  .brand span{color:var(--slate); font-family:'IBM Plex Sans', sans-serif; font-weight:400; font-size:0.85rem; display:block; margin-top:2px;}
+  nav.site a{
+    color:var(--ink); text-decoration:none; margin-left:26px; font-size:0.95rem;
+    border-bottom:1px solid transparent; padding-bottom:2px;
+  }
+  nav.site a:hover{border-bottom-color:var(--brass);}
+  nav.site{display:flex; flex-wrap:wrap;}
+
+  /* hero */
+  .hero{padding:76px 0 64px;}
+  .hero .eyebrow{
+    color:var(--brass-dark); font-size:0.95rem; margin-bottom:14px; display:block;
+  }
+  .hero h1{font-size:2.6rem; max-width:15ch;}
+  .hero p.lede{
+    max-width:56ch; color:var(--slate); font-size:1.12rem; margin-top:22px;
+  }
+  .cta-row{margin-top:34px; display:flex; gap:16px; flex-wrap:wrap;}
+  .btn{
+    display:inline-block; padding:13px 26px; text-decoration:none; font-size:0.98rem;
+    border:1px solid var(--ink); color:var(--ink); border-radius:2px;
+  }
+  .btn.primary{background:var(--ink); color:var(--paper);}
+  .btn.primary:hover{background:#000;}
+  .btn:not(.primary):hover{background:var(--paper-raised);}
+
+  .stat-strip{
+    margin-top:56px; padding-top:34px; border-top:1px solid var(--line);
+    display:flex; gap:56px; flex-wrap:wrap;
+  }
+  .stat-strip .stat b{
+    display:block; font-family:'Newsreader', serif; font-size:2rem; color:var(--brass-dark); font-weight:500;
+  }
+  .stat-strip .stat span{color:var(--slate); font-size:0.92rem;}
+
+  /* section shell */
+  section{padding:64px 0;}
+  section.alt{background:var(--paper-raised);}
+  .section-head{display:flex; gap:40px; margin-bottom:40px; flex-wrap:wrap;}
+  .section-head .num{
+    font-family:'Newsreader', serif; font-size:0.95rem; color:var(--brass-dark); min-width:34px; padding-top:6px;
+  }
+  .section-head h2{font-size:1.85rem; max-width:22ch;}
+  .section-head p{color:var(--slate); max-width:52ch; margin-top:10px;}
+
+  /* audience list */
+  .audience{
+    display:grid; grid-template-columns:repeat(4, 1fr); gap:0;
+    border-top:1px solid var(--line);
+  }
+  .audience .role{
+    padding:26px 24px 26px 0; border-right:1px solid var(--line);
+  }
+  .audience .role:last-child{border-right:none;}
+  .audience .role h3{font-size:1.1rem; margin-bottom:12px;}
+  .audience .role ul{margin:0; padding:0; list-style:none; color:var(--slate); font-size:0.94rem;}
+  .audience .role li{padding:5px 0;}
+
+  /* journey */
+  .journey{display:grid; grid-template-columns:repeat(3,1fr); gap:36px;}
+  .journey .step{border-top:2px solid var(--ink); padding-top:16px;}
+  .journey .step .n{font-family:'Newsreader', serif; color:var(--brass-dark); font-size:1.3rem;}
+  .journey .step h3{margin-top:10px; font-size:1.2rem;}
+  .journey .step p{color:var(--slate); margin-top:8px; font-size:0.96rem;}
+
+  /* product listings */
+  .group-label{
+    font-family:'Newsreader', serif; font-size:1.3rem; margin:0 0 6px;
+  }
+  .group-sub{color:var(--slate); font-size:0.93rem; margin-bottom:26px;}
+  .item{
+    display:flex; justify-content:space-between; align-items:flex-start; gap:24px;
+    padding:24px 0; border-top:1px solid var(--line);
+  }
+  .item:last-child{border-bottom:1px solid var(--line);}
+  .item .info h4{font-family:'Newsreader', serif; font-weight:500; font-size:1.12rem; margin:0 0 6px;}
+  .item .info p{margin:0; color:var(--slate); font-size:0.94rem; max-width:60ch;}
+  .item .buy{
+    text-align:right; white-space:nowrap; padding-top:2px;
+  }
+  .item .buy .price{
+    display:block; font-family:'Newsreader', serif; font-size:1.15rem; color:var(--ink); margin-bottom:6px;
+  }
+  .item .buy .price.free{color:var(--brass-dark);}
+  .item .buy a{font-size:0.9rem; text-decoration:none; border-bottom:1px solid var(--brass);}
+  .item .buy a:hover{color:var(--brass-dark);}
+
+  .placeholder-note{
+    color:var(--slate); font-size:0.94rem; font-style:italic; padding:20px 0; border-top:1px solid var(--line);
+  }
+
+  /* bundle */
+  .bundle-box{
+    border:1px solid var(--ink); padding:36px; display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap;
+  }
+  .bundle-box h3{font-size:1.3rem;}
+  .bundle-box p{color:var(--slate); margin-top:8px; max-width:48ch;}
+
+  /* notes / checkout info */
+  .notes-list{margin:0; padding:0; list-style:none; color:var(--slate); font-size:0.94rem; max-width:64ch;}
+  .notes-list li{position:relative; padding:8px 0 8px 20px;}
+  .notes-list li::before{content:"—"; position:absolute; left:0; color:var(--brass-dark);}
+
+  /* about */
+  .about-grid{display:grid; grid-template-columns:1.3fr 1fr; gap:56px; align-items:start;}
+  .about-grid h2{font-size:1.85rem; margin-bottom:18px;}
+  .about-grid p{color:var(--slate);}
+  .contact-card{border:1px solid var(--line); padding:26px;}
+  .contact-card h4{font-family:'Newsreader', serif; font-size:1.05rem; margin-bottom:14px;}
+  .contact-card a{display:block; color:var(--ink); text-decoration:none; font-size:0.95rem; padding:4px 0;}
+  .contact-card a:hover{color:var(--brass-dark);}
+
+  footer{
+    border-top:1px solid var(--line); padding:36px 0; color:var(--slate); font-size:0.88rem;
+  }
+  footer .wrap{display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap;}
+  footer p{margin:6px 0;}
+
+  @media (max-width: 860px){
+    .audience{grid-template-columns:1fr 1fr;}
+    .audience .role{border-right:none; border-bottom:1px solid var(--line); padding:22px 0;}
+    .journey{grid-template-columns:1fr;}
+    .about-grid{grid-template-columns:1fr;}
+    .hero h1{font-size:2.1rem;}
+  }
+  @media (max-width: 560px){
+    .audience{grid-template-columns:1fr;}
+    .item{flex-direction:column;}
+    .item .buy{text-align:left;}
+    .stat-strip{gap:32px;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+  }
+</style>
 </head>
 <body>
 
-<header class="site-header">
+<header class="site">
   <div class="wrap">
-    <div class="brand">
-      <span class="mark">FCA · Governance Advisory</span>
-      <span class="name">Sunil Kumar</span>
-    </div>
-    <button class="nav-toggle" onclick="document.querySelector('nav.primary').classList.toggle('open')">Menu</button>
-    <nav class="primary">
-      <a href="index.html" class="current">Home</a>
+    <div class="brand">Sunil Kumar, FCA<span>Governance advisory for NGOs &amp; Foundations</span></div>
+    <nav class="site">
       <a href="library.html">Books</a>
       <a href="igma.html">IGMA™ Toolkits</a>
       <a href="publications.html">Publications</a>
@@ -38,164 +200,277 @@
   </div>
 </header>
 
-<main>
-  <section class="hero">
-    <div class="wrap">
-      <div class="eyebrow">Executive briefing</div>
-      <h1>Governance frameworks that move NGOs beyond compliance.</h1>
-      <p class="lede">Twenty five years of financial due diligence, board advisory and CFO-level governance for Trusts, Foundations and mission-driven organisations — distilled into the <em>IGMA™ Institutional Governance Maturity Toolkit</em> and <em>IGMA™ FCRA Governance Toolkit</em>, available now on Gumroad and Eloquens.</p>
-      <div class="cta-row">
-        <a href="igma.html" class="btn btn-primary">Explore IGMA™ Toolkits</a>
-        <a href="library.html" class="btn btn-outline">Start with the Books</a>
-      </div>
-
-      <div class="mscale" aria-hidden="true">
-        <div class="lvl"><span class="n">L0</span><span class="label">Ad hoc</span></div>
-        <div class="lvl"><span class="n">L1</span><span class="label">Reactive</span></div>
-        <div class="lvl"><span class="n">L2</span><span class="label">Defined</span></div>
-        <div class="lvl"><span class="n">L3</span><span class="label">Managed</span></div>
-        <div class="lvl"><span class="n">L4</span><span class="label">Optimised</span></div>
-      </div>
-      <div class="mscale-caption">The IGMA™ Governance Maturity Scale — five levels, from ad hoc practices to fully optimised governance.</div>
-    </div>
-  </section>
-
+<section class="hero">
   <div class="wrap">
-    <div class="ledger-row">
-      <div class="cell"><span class="num">09</span><span class="cap">Resources on file</span></div>
-      <div class="cell"><span class="num">06</span><span class="cap">IGMA™ assessments</span></div>
-      <div class="cell"><span class="num">02</span><span class="cap">Free resources</span></div>
+    <span class="eyebrow">Executive briefing</span>
+    <h1>Governance frameworks that move NGOs beyond compliance.</h1>
+    <p class="lede">Twenty-five-plus years of financial due diligence, board advisory and CFO-level governance for Trusts, Foundations and mission-driven organisations — distilled into the IGMA™ Institutional Governance Maturity Toolkit and IGMA™ FCRA Governance Toolkit, available now on Gumroad and Eloquens.</p>
+    <div class="cta-row">
+      <a class="btn primary" href="igma.html">Explore IGMA™ Toolkits</a>
+      <a class="btn" href="library.html">Start with the Books</a>
+    </div>
+    <div class="stat-strip">
+      <div class="stat"><b>25+</b><span>years in governance &amp; finance</span></div>
+      <div class="stat"><b>09</b><span>resources on file</span></div>
+      <div class="stat"><b>06</b><span>IGMA™ assessments</span></div>
+      <div class="stat"><b>02</b><span>free resources</span></div>
     </div>
   </div>
+</section>
 
-  <section class="divider-top">
-    <div class="wrap">
-      <div class="section-head">
-        <div class="eyebrow">§1 Why IGMA™</div>
+<hr class="hairline">
+
+<section id="why">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="num">§1</span>
+      <div>
         <h2>Decision-support, not a policy manual.</h2>
-        <p><strong>IGMA™ (Institutional Governance Maturity Assessment)</strong> helps NGOs, Foundations and mission-driven organisations move beyond compliance through practical governance assessments, executive guides and boardroom tools — built around governance maturity, financial sustainability, donor confidence and institutional resilience.</p>
+        <p>IGMA™ (Institutional Governance Maturity Assessment) helps NGOs, Foundations and mission-driven organisations move beyond compliance through practical governance assessments, executive guides and boardroom tools — built around governance maturity, financial sustainability, donor confidence and institutional resilience.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section>
-    <div class="wrap">
-      <div class="section-head">
-        <div class="eyebrow">§2 Who this is for</div>
+<section class="alt" id="who">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="num">§2</span>
+      <div>
         <h2>Built for the people who carry the risk.</h2>
       </div>
-      <div class="audience-grid">
-        <div class="card">
-          <span class="role">CEO</span>
-          <ul>
-            <li>Board decisions</li>
-            <li>Governance maturity</li>
-            <li>Institutional resilience</li>
-          </ul>
-        </div>
-        <div class="card">
-          <span class="role">CFO</span>
-          <ul>
-            <li>Financial sustainability</li>
-            <li>Executive reporting</li>
-            <li>Risk oversight</li>
-          </ul>
-        </div>
-        <div class="card">
-          <span class="role">Board member</span>
-          <ul>
-            <li>Oversight</li>
-            <li>Governance assurance</li>
-            <li>Audit readiness</li>
-          </ul>
-        </div>
-        <div class="card">
-          <span class="role">Consultant</span>
-          <ul>
-            <li>Ready-to-use frameworks</li>
-            <li>Client-facing assessments</li>
-            <li>Credible methodology</li>
-          </ul>
-        </div>
+    </div>
+    <div class="audience">
+      <div class="role">
+        <h3>CEO</h3>
+        <ul><li>Board decisions</li><li>Governance maturity</li><li>Institutional resilience</li></ul>
+      </div>
+      <div class="role">
+        <h3>CFO</h3>
+        <ul><li>Financial sustainability</li><li>Executive reporting</li><li>Risk oversight</li></ul>
+      </div>
+      <div class="role">
+        <h3>Board Member</h3>
+        <ul><li>Oversight</li><li>Governance assurance</li><li>Audit readiness</li></ul>
+      </div>
+      <div class="role">
+        <h3>Consultant</h3>
+        <ul><li>Ready-to-use frameworks</li><li>Client-facing assessments</li><li>Credible methodology</li></ul>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="divider-top">
-    <div class="wrap">
-      <div class="section-head">
-        <div class="eyebrow">§3 The product journey</div>
+<section id="journey">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="num">§3</span>
+      <div>
         <h2>Explore, assess, implement.</h2>
       </div>
-      <div class="journey">
-        <div class="step">
-          <span class="idx">01 — Explore</span>
-          <h3>Free library</h3>
-          <p>A free library of guides and toolkits — no cost, no commitment.</p>
-        </div>
-        <div class="step">
-          <span class="idx">02 — Assess</span>
-          <h3>IGMA™ assessments</h3>
-          <p>Evidence-based governance maturity scoring with executive dashboards.</p>
-        </div>
-        <div class="step">
-          <span class="idx">03 — Implement</span>
-          <h3>The Governance Suite Bundle</h3>
-          <p>Both assessments together, at a real saving over buying them apart.</p>
-        </div>
+    </div>
+    <div class="journey">
+      <div class="step">
+        <div class="n">01</div>
+        <h3>Explore — Free library</h3>
+        <p>A free library of guides and toolkits — no cost, no commitment.</p>
+      </div>
+      <div class="step">
+        <div class="n">02</div>
+        <h3>Assess — IGMA™ assessments</h3>
+        <p>Evidence-based governance maturity scoring with executive dashboards.</p>
+      </div>
+      <div class="step">
+        <div class="n">03</div>
+        <h3>Implement — The Governance Suite Bundle</h3>
+        <p>Both assessments together, at a real saving over buying them apart.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="divider-top">
-    <div class="wrap">
-      <div class="india-note">
-        <h3>Good to know before you buy</h3>
-        <ul>
-          <li><strong>Currency:</strong> Prices are shown in USD but convert automatically to your local currency at checkout, based on the prevailing exchange rate. <span style="white-space:nowrap;">🇮🇳</span> Indian buyers: this includes INR.</li>
-          <li><strong>Card declining?</strong> Check your banking app to confirm "International Online Transactions" are enabled on your debit or credit card.</li>
-          <li><span style="white-space:nowrap;">🇮🇳</span> <strong>Prefer UPI</strong> (GPay / PhonePe / Paytm)? Skip international card payment entirely — email <a href="mailto:casunilkumarfca@gmail.com">casunilkumarfca@gmail.com</a> or connect on LinkedIn for manual delivery.</li>
-          <li><strong>Downloading a free resource?</strong> Gumroad lets you set your own price — please type <strong>0</strong> in the amount field at checkout to get it for free.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-</main>
+<hr class="hairline">
 
-<footer class="site-footer">
+<section class="alt" id="library">
   <div class="wrap">
-    <div class="footer-grid">
-      <div>
-        <h4>Sunil Kumar, FCA</h4>
-        <p>Chartered Accountant and governance advisor to NGOs, Trusts, Foundations and mission-driven organisations. Author of IGMA™.</p>
+    <h2 class="group-label">Free resource library</h2>
+    <p class="group-sub">Practical governance, finance, compliance and sustainability resources — priced so you can judge the quality before you invest further.</p>
+
+    <h3 class="group-label" style="font-size:1.05rem; margin-top:34px;">Executive Guides</h3>
+    <div class="items">
+      <div class="item">
+        <div class="info">
+          <h4>The Complete Executive Reader (5-Book Core Library)</h4>
+          <p>The definitive executive toolkit for high-impact decision-making, financial leadership and institutional governance.</p>
+        </div>
+        <div class="buy"><span class="price">$89</span><a href="https://sunilfca.gumroad.com/l/wslftd">View on Gumroad</a></div>
       </div>
-      <div>
-        <h4>Explore</h4>
-        <ul>
-          <li><a href="library.html">Books</a></li>
-          <li><a href="igma.html">IGMA™ Toolkits</a></li>
-          <li><a href="publications.html">Publications</a></li>
-          <li><a href="notes.html">Updates</a></li>
-          <li><a href="about.html">About</a></li>
-        </ul>
+      <div class="item">
+        <div class="info">
+          <h4>Personal Efficiency &amp; Career Growth Set</h4>
+          <p>Optimise Your Return on Effort + The Wealthy Life, bundled.</p>
+        </div>
+        <div class="buy"><span class="price">$38</span><a href="https://sunilfca.gumroad.com/l/PersonalEfficiencyCareerGrowthSet">View on Gumroad</a></div>
       </div>
-      <div>
-        <h4>Elsewhere</h4>
-        <ul>
-          <li><a href="https://sunilfca.gumroad.com" target="_blank" rel="noopener">Gumroad store</a></li>
-          <li><a href="https://www.eloquens.com/channel/ca-sunil-kumar-fca" target="_blank" rel="noopener">Eloquens</a></li>
-          <li><a href="https://www.amazon.com/stores/CA-Sunil-Kumar-FCA/author/B0H68584LZ" target="_blank" rel="noopener">Amazon Author page</a></li>
-          <li><a href="https://store.pothi.com/book/ca-sunil-kumar-fca-governance-lessons-field/" target="_blank" rel="noopener">pothi.com</a></li>
-          <li><a href="https://www.linkedin.com/in/sunilkumarfca/" target="_blank" rel="noopener">LinkedIn</a></li>
-          <li><a href="https://www.youtube.com/@casunilkumarfca" target="_blank" rel="noopener">YouTube</a></li>
-        </ul>
+      <div class="item">
+        <div class="info">
+          <h4>The Strategic CFO Essentials</h4>
+          <p>The Strategic CFO + The CFO Nobody Sees — the visible leadership and the invisible judgment required to run world-class financial functions.</p>
+        </div>
+        <div class="buy"><span class="price">$38</span><a href="https://sunilfca.gumroad.com/l/TheStrategicCFOEssentials">View on Gumroad</a></div>
+      </div>
+      <div class="item">
+        <div class="info">
+          <h4>The CFO Nobody Sees</h4>
+          <p>The invisible work, decisions and judgement that keep organisations strong.</p>
+        </div>
+        <div class="buy"><span class="price">$19</span><a href="https://sunilfca.gumroad.com/l/TheCFONobodySees">View on Gumroad</a></div>
+      </div>
+      <div class="item">
+        <div class="info">
+          <h4>The Wealthy Life</h4>
+          <p>How to build a career, money and life that work together.</p>
+        </div>
+        <div class="buy"><span class="price">$29</span><a href="https://sunilfca.gumroad.com/l/pwvuk">View on Gumroad</a></div>
+      </div>
+      <div class="item">
+        <div class="info">
+          <h4>Optimise Your Return on Effort</h4>
+          <p>A practical framework for better decisions, career growth and future readiness.</p>
+        </div>
+        <div class="buy"><span class="price">$19</span><a href="https://sunilfca.gumroad.com/l/optimise-your-return-on-effort">View on Gumroad</a></div>
+      </div>
+      <div class="item">
+        <div class="info">
+          <h4>The Strategic CFO</h4>
+          <p>Building future-ready organisations through governance, strategic finance and institutional resilience.</p>
+        </div>
+        <div class="buy"><span class="price">$29</span><a href="https://sunilfca.gumroad.com/l/thestrategiccfo">View on Gumroad</a></div>
+      </div>
+      <div class="item">
+        <div class="info">
+          <h4>The Resilient Institution</h4>
+          <p>Building trust, governance and sustainable impact in mission-driven organisations.</p>
+        </div>
+        <div class="buy"><span class="price">$29</span><a href="https://sunilfca.gumroad.com/l/theresilientinstitution">View on Gumroad</a></div>
+      </div>
+      <div class="item">
+        <div class="info">
+          <h4>The Governance Health Check</h4>
+          <p>What if your organisation's greatest risk isn't financial, but a governance weakness no one has identified?</p>
+        </div>
+        <div class="buy"><span class="price">$50</span><a href="https://sunilfca.gumroad.com/l/governance-health-check-book">View on Gumroad</a></div>
+      </div>
+      <div class="item">
+        <div class="info">
+          <h4>Governance Lessons from the Field</h4>
+          <p>An executive governance briefing for CEOs, CFOs and Board Members.</p>
+        </div>
+        <div class="buy"><span class="price free">Free</span><a href="https://sunilfca.gumroad.com/l/jptyr">Download</a></div>
       </div>
     </div>
-    <div class="footer-bottom">
-      <span>© 2026 Sunil Kumar, FCA. All rights reserved.</span>
-      <span><a href="mailto:casunilkumarfca@gmail.com">casunilkumarfca@gmail.com</a></span>
+
+    <h3 class="group-label" style="font-size:1.05rem; margin-top:44px;">Governance Toolkits</h3>
+    <p class="placeholder-note">No toolkits on file yet — check back soon.</p>
+  </div>
+</section>
+
+<section id="igma">
+  <div class="wrap">
+    <h2 class="group-label">IGMA™ assessments</h2>
+    <p class="group-sub">Evidence-based governance maturity assessments with automated scoring, executive dashboards and practical recommendations.</p>
+    <div class="items">
+      <div class="item">
+        <div class="info">
+          <h4>IGMA™ FCRA Governance Maturity Framework</h4>
+          <p>A practical guide for boards and senior leaders — building the systems that protect mission-driven organisations from regulatory, financial and reputational risk.</p>
+        </div>
+        <div class="buy"><span class="price">$50</span><a href="https://sunilfca.gumroad.com/l/igma-fcra-governance-framework">View on Gumroad</a></div>
+      </div>
+      <div class="item">
+        <div class="info">
+          <h4>IGMA™ DPDP Compliance Assessment Toolkit</h4>
+          <p>Excel-based, automated. Take control of your India DPDP Act compliance assessment.</p>
+        </div>
+        <div class="buy"><span class="price">$100</span><a href="https://sunilfca.gumroad.com/l/DPDP_Compliance">View on Gumroad</a></div>
+      </div>
+      <div class="item">
+        <div class="info">
+          <h4>IGMA™ FCRA Governance Assessment Toolkit — Professional Edition</h4>
+          <p>A structured, evidence-based FCRA and institutional governance assessment.</p>
+        </div>
+        <div class="buy"><span class="price">$500</span><a href="https://sunilfca.gumroad.com/l/igma-fcra-toolkit">View on Gumroad</a></div>
+      </div>
+      <div class="item">
+        <div class="info">
+          <h4>IGMA™ Professional Edition — Institutional Governance Maturity Assessment Toolkit</h4>
+          <p>A structured, evidence-based governance diagnostic system.</p>
+        </div>
+        <div class="buy"><span class="price">$500</span><a href="https://sunilfca.gumroad.com/l/igma-organisational-toolkit">View on Gumroad</a></div>
+      </div>
     </div>
-    <p class="disclaimer">All publications are educational and informational resources intended to support governance, finance, compliance and institutional strengthening. They are not a substitute for legal, tax, audit, accounting or professional advice.</p>
+  </div>
+</section>
+
+<hr class="hairline">
+
+<section class="alt" id="bundle">
+  <div class="wrap">
+    <h2 class="group-label">Bundle</h2>
+    <p class="group-sub">Both IGMA™ assessments together, at a real saving over buying them separately.</p>
+    <div class="bundle-box">
+      <div>
+        <h3>The Governance Suite Bundle</h3>
+        <p>Not yet published — pricing and checkout link to follow once the bundle is live.</p>
+      </div>
+      <a class="btn" href="mailto:casunilkumarfca@gmail.com">Ask to be notified</a>
+    </div>
+  </div>
+</section>
+
+<section id="checkout-notes">
+  <div class="wrap">
+    <h2 class="group-label" style="font-size:1.2rem;">Good to know before you buy</h2>
+    <ul class="notes-list">
+      <li>Prices are shown in USD but convert automatically to your local currency at checkout, based on the prevailing exchange rate — 🇮🇳 Indian buyers, this includes INR.</li>
+      <li>Card declining? Check your banking app to confirm "International Online Transactions" are enabled on your debit or credit card.</li>
+      <li>🇮🇳 Prefer UPI (GPay / PhonePe / Paytm)? Skip international card payment entirely — email <a href="mailto:casunilkumarfca@gmail.com">casunilkumarfca@gmail.com</a> or connect on LinkedIn for manual delivery.</li>
+      <li>Downloading a free resource? Gumroad lets you set your own amount at checkout — type 0 to get it for free.</li>
+    </ul>
+  </div>
+</section>
+
+<hr class="hairline">
+
+<section class="alt" id="about">
+  <div class="wrap about-grid">
+    <div>
+      <h2>About the author</h2>
+      <p>CA Sunil Kumar, FCA is a Strategic Finance Leader and author who develops practical governance resources for nonprofit organisations, foundations, CSR initiatives and mission-driven institutions.</p>
+      <p>His publications combine 25+ years of practical experience with structured governance frameworks to help organisations move beyond compliance toward stronger governance, improved financial sustainability and long-term institutional resilience.</p>
+      <p><strong>Official store:</strong> <a href="https://sunilfca.gumroad.com/">sunilfca.gumroad.com</a> — books, executive guides, governance toolkits, assessment frameworks and implementation resources.</p>
+    </div>
+    <div class="contact-card">
+      <h4>Connect &amp; collaborate</h4>
+      <a href="mailto:casunilkumarfca@gmail.com">casunilkumarfca@gmail.com</a>
+      <a href="https://www.linkedin.com/in/sunilkumarfca/">linkedin.com/in/sunilkumarfca</a>
+      <a href="https://www.eloquens.com/channel/ca-sunil-kumar-fca">Eloquens channel</a>
+      <a href="https://www.amazon.com/stores/CA-Sunil-Kumar-FCA/author/B0H68584LZ">Amazon author page</a>
+      <a href="https://www.youtube.com/@casunilkumarfca">YouTube</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <p><strong>Sunil Kumar, FCA</strong></p>
+      <p>Chartered Accountant and governance advisor to NGOs, Trusts, Foundations and mission-driven organisations.</p>
+    </div>
+    <div>
+      <p>© 2026 Sunil Kumar, FCA. All rights reserved.</p>
+      <p>All publications are educational and informational resources intended to support governance, finance, compliance and institutional strengthening. They are not a substitute for legal, tax, audit, accounting or professional advice.</p>
+    </div>
   </div>
 </footer>
 
