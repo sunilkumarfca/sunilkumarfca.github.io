@@ -4,30 +4,193 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Updates — Sunil Kumar, FCA</title>
-<meta name="description" content="Articles, notes and resources on NGO governance, FCRA compliance and institutional resilience — originally shared on LinkedIn, Substack and elsewhere, collected here in one place.">
+<meta name="description" content="Notes from the field — governance updates and IGMA™ Governance Insights editions from CA Sunil Kumar, FCA.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css">
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z1RR9B34D3"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1C2530;
+  --paper:#FAF8F4;
+  --paper-raised:#F2EEE4;
+  --brass:#8A6A32;
+  --brass-dark:#6E5527;
+  --slate:#5B6472;
+  --line:#D9D3C7;
+  --max:1080px;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'IBM Plex Sans', Arial, sans-serif;
+  font-size:17px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{
+  font-family:'Newsreader', Georgia, serif;
+  font-weight:500;
+  line-height:1.15;
+  margin:0;
+  color:var(--ink);
+}
+a{color:var(--brass-dark);}
+a:focus-visible, button:focus-visible{outline:2px solid var(--brass-dark); outline-offset:3px;}
+.wrap{max-width:var(--max); margin:0 auto; padding:0 28px;}
+.hairline{border:none; border-top:1px solid var(--line); margin:0;}
 
-  gtag('config', 'G-Z1RR9B34D3');
-</script>
+header.site{padding:22px 0; border-bottom:1px solid var(--line);}
+header.site .wrap{display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap;}
+.brand{font-family:'Newsreader', Georgia, serif; font-size:1.15rem; font-weight:600; text-decoration:none; color:var(--ink);}
+.brand span{color:var(--slate); font-family:'IBM Plex Sans', Arial, sans-serif; font-weight:400; font-size:0.85rem; display:block; margin-top:2px;}
+nav.site{display:flex; flex-wrap:wrap;}
+nav.site a{color:var(--ink); text-decoration:none; margin-left:26px; font-size:0.95rem; border-bottom:1px solid transparent; padding-bottom:2px;}
+nav.site a:first-child{margin-left:0;}
+nav.site a:hover, nav.site a.current{border-bottom-color:var(--brass);}
+
+.hero{padding:72px 0 56px;}
+.hero .eyebrow{color:var(--brass-dark); font-size:0.95rem; margin-bottom:14px; display:block;}
+.hero h1{font-size:2.6rem; max-width:15ch;}
+.hero p.lede{max-width:56ch; color:var(--slate); font-size:1.12rem; margin-top:22px;}
+.cta-row{margin-top:34px; display:flex; gap:16px; flex-wrap:wrap;}
+.btn{display:inline-block; padding:13px 26px; text-decoration:none; font-size:0.98rem; border:1px solid var(--ink); color:var(--ink); border-radius:2px;}
+.btn.primary{background:var(--ink); color:var(--paper);}
+.btn.primary:hover{background:#000;}
+.btn:not(.primary):hover{background:var(--paper-raised);}
+
+.trust-bar{margin-top:40px; display:flex; gap:28px; flex-wrap:wrap; color:var(--slate); font-size:0.9rem;}
+.trust-bar span{border-left:2px solid var(--brass); padding-left:10px;}
+
+.maturity-scale{margin-top:48px; display:flex; border:1px solid var(--line);}
+.maturity-scale .level{flex:1; padding:16px 14px; border-right:1px solid var(--line); text-align:left;}
+.maturity-scale .level:last-child{border-right:none; background:var(--ink);}
+.maturity-scale .level:last-child .code, .maturity-scale .level:last-child .label{color:var(--paper);}
+.maturity-scale .code{display:block; font-family:'Newsreader', Georgia, serif; font-size:1.2rem; color:var(--brass-dark);}
+.maturity-scale .label{display:block; font-size:0.82rem; color:var(--slate); margin-top:4px;}
+.scale-caption{color:var(--slate); font-size:0.85rem; margin-top:12px;}
+
+.stat-strip{margin-top:44px; padding-top:30px; border-top:1px solid var(--line); display:flex; gap:56px; flex-wrap:wrap;}
+.stat-strip .stat b{display:block; font-family:'Newsreader', Georgia, serif; font-size:2rem; color:var(--brass-dark); font-weight:500;}
+.stat-strip .stat span{color:var(--slate); font-size:0.92rem;}
+
+section{padding:60px 0;}
+section.alt{background:var(--paper-raised);}
+.section-head{display:flex; gap:40px; margin-bottom:40px; flex-wrap:wrap;}
+.section-head .num{font-family:'Newsreader', Georgia, serif; font-size:0.95rem; color:var(--brass-dark); min-width:34px; padding-top:6px;}
+.section-head .kicker{display:block; color:var(--brass-dark); font-size:0.95rem; margin-bottom:8px;}
+.section-head h2{font-size:1.85rem; max-width:22ch;}
+.section-head p{color:var(--slate); max-width:52ch; margin-top:10px;}
+
+.audience{display:grid; grid-template-columns:repeat(4, 1fr); gap:0; border-top:1px solid var(--line);}
+.audience .role{padding:26px 24px 26px 0; border-right:1px solid var(--line);}
+.audience .role:last-child{border-right:none;}
+.audience .role h3{font-size:1.1rem; margin-bottom:12px;}
+.audience .role ul{margin:0; padding:0; list-style:none; color:var(--slate); font-size:0.94rem;}
+.audience .role li{padding:5px 0;}
+
+.journey{display:grid; grid-template-columns:repeat(3,1fr); gap:36px;}
+.journey .step{border-top:2px solid var(--ink); padding-top:16px;}
+.journey .step .n{font-family:'Newsreader', Georgia, serif; color:var(--brass-dark); font-size:1.15rem;}
+.journey .step h3{margin-top:10px; font-size:1.2rem;}
+.journey .step p{color:var(--slate); margin-top:8px; font-size:0.96rem;}
+
+.quote-block{border-left:3px solid var(--brass); padding-left:28px; max-width:64ch;}
+.quote-block p{font-family:'Newsreader', Georgia, serif; font-size:1.35rem; font-style:italic; color:var(--ink); margin:0;}
+.quote-block cite{display:block; margin-top:14px; font-style:normal; color:var(--slate); font-size:0.92rem;}
+
+.faq{max-width:72ch;}
+.faq-item{padding:22px 0; border-top:1px solid var(--line);}
+.faq-item:last-child{border-bottom:1px solid var(--line);}
+.faq-item h3{font-size:1.08rem; margin-bottom:8px;}
+.faq-item p{color:var(--slate); margin:0; font-size:0.96rem;}
+
+.cta-banner{background:var(--ink); color:var(--paper); padding:52px 0; text-align:left;}
+.cta-banner h2{color:var(--paper); font-size:1.9rem; max-width:20ch;}
+.cta-banner p{color:#C9C2B4; margin-top:14px; max-width:52ch;}
+.cta-banner .cta-row .btn.primary{background:var(--paper); color:var(--ink); border-color:var(--paper);}
+.cta-banner .cta-row .btn:not(.primary){border-color:#8A8168; color:var(--paper);}
+.cta-banner .cta-row .btn:not(.primary):hover{background:#2A3547;}
+
+.page-head{padding:56px 0 40px; border-bottom:1px solid var(--line);}
+.page-head .eyebrow{color:var(--brass-dark); font-size:0.95rem; margin-bottom:12px; display:block;}
+.page-head h1{font-size:2.2rem; max-width:24ch;}
+.page-head p{color:var(--slate); max-width:60ch; margin-top:16px; font-size:1.05rem;}
+
+.group-label{font-family:'Newsreader', Georgia, serif; font-size:1.3rem; margin:0 0 6px;}
+.group-sub{color:var(--slate); font-size:0.93rem; margin-bottom:26px;}
+.item{display:flex; justify-content:space-between; align-items:flex-start; gap:24px; padding:24px 0; border-top:1px solid var(--line);}
+.items .item:last-child{border-bottom:1px solid var(--line);}
+.item .info h4{font-family:'Newsreader', Georgia, serif; font-weight:500; font-size:1.12rem; margin:0 0 6px;}
+.item .info .flag{display:inline-block; font-size:0.72rem; color:var(--brass-dark); border:1px solid var(--brass); padding:1px 8px; border-radius:12px; margin-left:10px; vertical-align:middle;}
+.item .info p{margin:0; color:var(--slate); font-size:0.94rem; max-width:60ch;}
+.item .buy{text-align:right; white-space:nowrap; padding-top:2px;}
+.item .buy .price{display:block; font-family:'Newsreader', Georgia, serif; font-size:1.15rem; color:var(--ink); margin-bottom:6px;}
+.item .buy .price.free{color:var(--brass-dark);}
+.item .buy a{font-size:0.9rem; text-decoration:none; border-bottom:1px solid var(--brass);}
+.item .buy a:hover{color:var(--brass-dark);}
+.placeholder-note{color:var(--slate); font-size:0.94rem; font-style:italic; padding:20px 0; border-top:1px solid var(--line);}
+
+.notes-list{margin:0; padding:0; list-style:none; color:var(--slate); font-size:0.94rem; max-width:64ch;}
+.notes-list li{position:relative; padding:8px 0 8px 20px;}
+.notes-list li::before{content:"—"; position:absolute; left:0; color:var(--brass-dark);}
+
+.post{padding:26px 0; border-top:1px solid var(--line);}
+.post:last-child{border-bottom:1px solid var(--line);}
+.post .date{color:var(--brass-dark); font-size:0.85rem;}
+.post h3{font-size:1.15rem; margin-top:6px;}
+.post p{color:var(--slate); font-size:0.95rem; margin-top:8px; max-width:64ch;}
+
+.about-grid{display:grid; grid-template-columns:1.3fr 1fr; gap:56px; align-items:start;}
+.about-grid p{color:var(--slate);}
+.contact-card{border:1px solid var(--line); padding:26px;}
+.contact-card h4{font-family:'Newsreader', Georgia, serif; font-size:1.05rem; margin-bottom:14px;}
+.contact-card a{display:block; color:var(--ink); text-decoration:none; font-size:0.95rem; padding:4px 0;}
+.contact-card a:hover{color:var(--brass-dark);}
+
+.timeline{border-left:2px solid var(--line); padding-left:28px; display:flex; flex-direction:column; gap:30px;}
+.timeline .entry .year{font-family:'Newsreader', Georgia, serif; color:var(--brass-dark); font-size:1.05rem;}
+.timeline .entry h3{font-size:1.05rem; margin-top:4px;}
+.timeline .entry p{color:var(--slate); font-size:0.94rem; margin-top:6px; max-width:60ch;}
+
+footer{border-top:1px solid var(--line); padding:44px 0 28px; color:var(--slate); font-size:0.88rem;}
+.footer-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:32px; padding-bottom:28px;}
+.footer-links h4{font-family:'Newsreader', Georgia, serif; color:var(--ink); font-size:1rem; margin-bottom:12px;}
+.footer-links a{display:block; color:var(--slate); text-decoration:none; padding:3px 0; font-size:0.9rem;}
+.footer-links a:hover{color:var(--brass-dark);}
+footer .copyright{border-top:1px solid var(--line); padding-top:20px; margin:0 0 8px;}
+footer .disclaimer{margin:0; max-width:80ch;}
+
+@media (max-width: 860px){
+  .audience{grid-template-columns:1fr 1fr;}
+  .audience .role{border-right:none; border-bottom:1px solid var(--line); padding:22px 0;}
+  .journey{grid-template-columns:1fr;}
+  .hero h1, .page-head h1, .cta-banner h2{font-size:2rem;}
+  .maturity-scale{flex-wrap:wrap;}
+  .maturity-scale .level{flex:1 1 40%; border-bottom:1px solid var(--line);}
+  .footer-grid{grid-template-columns:1fr;}
+  .about-grid{grid-template-columns:1fr;}
+}
+@media (max-width: 560px){
+  .audience{grid-template-columns:1fr;}
+  .item{flex-direction:column;}
+  .item .buy{text-align:left;}
+  .stat-strip{gap:32px;}
+  .trust-bar{gap:16px;}
+}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+}
+</style>
 </head>
 <body>
 
-<header class="site-header">
+<header class="site">
   <div class="wrap">
-    <div class="brand">
-      <span class="mark">FCA · Governance Advisory</span>
-      <span class="name">Sunil Kumar</span>
-    </div>
-    <button class="nav-toggle" onclick="document.querySelector('nav.primary').classList.toggle('open')">Menu</button>
-    <nav class="primary">
+    <a class="brand" href="index.html">Sunil Kumar, FCA<span>FCA · Governance Advisory</span></a>
+    <nav class="site">
       <a href="index.html">Home</a>
       <a href="library.html">Books</a>
       <a href="igma.html">IGMA™ Toolkits</a>
@@ -38,416 +201,79 @@
   </div>
 </header>
 
-<main>
-  <section class="hero" style="padding-bottom:10px;">
-    <div class="wrap">
-      <div class="eyebrow">Updates</div>
-      <h1 style="max-width:22ch;">Articles, notes and resources on governance and institutional resilience.</h1>
-      <p class="lede">A running collection of writing shared on LinkedIn, Substack and elsewhere — governance frameworks, field notes, and free resources for NGO boards, CFOs and leadership teams.</p>
-    </div>
-  </section>
-
-  <section style="padding-top:0;">
-    <div class="wrap">
-      <div class="feed-filters" id="filters">
-        <button data-type="all" class="active">All</button>
-        <button data-type="note">Notes</button>
-        <button data-type="article">Articles</button>
-        <button data-type="pdf">PDF</button>
-        <button data-type="ppt">Slides</button>
-      </div>
-
-      <div id="feed"></div>
-      <div id="empty" class="empty-state" style="display:none;">
-        No updates yet — check back soon.
-      </div>
-    </div>
-  </section>
-</main>
-
-<footer class="site-footer">
+<section class="page-head">
   <div class="wrap">
-    <div class="footer-grid">
-      <div>
-        <h4>Sunil Kumar, FCA</h4>
-        <p>Chartered Accountant and governance advisor to NGOs, Trusts, Foundations and mission-driven organisations. Author of IGMA™.</p>
-      </div>
-      <div>
-        <h4>Explore</h4>
-        <ul>
-          <li><a href="library.html">Books</a></li>
-          <li><a href="igma.html">IGMA™ Toolkits</a></li>
-          <li><a href="publications.html">Publications</a></li>
-          <li><a href="notes.html">Updates</a></li>
-          <li><a href="about.html">About</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Elsewhere</h4>
-        <ul>
-          <li><a href="https://sunilfca.gumroad.com" target="_blank" rel="noopener">Gumroad store</a></li>
-          <li><a href="https://www.eloquens.com/channel/ca-sunil-kumar-fca" target="_blank" rel="noopener">Eloquens</a></li>
-          <li><a href="https://www.amazon.com/stores/CA-Sunil-Kumar-FCA/author/B0H68584LZ" target="_blank" rel="noopener">Amazon Author page</a></li>
-          <li><a href="https://store.pothi.com/book/ca-sunil-kumar-fca-governance-lessons-field/" target="_blank" rel="noopener">pothi.com</a></li>
-          <li><a href="https://www.linkedin.com/in/sunilkumarfca/" target="_blank" rel="noopener">LinkedIn</a></li>
-          <li><a href="https://www.youtube.com/@casunilkumarfca" target="_blank" rel="noopener">YouTube</a></li>
-        </ul>
-      </div>
+    <span class="eyebrow">Notes from the field</span>
+    <h1>Updates.</h1>
+    <p>Short governance notes and IGMA™ Governance Insights editions. For the full write-ups, follow along on LinkedIn.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+
+    <div class="post">
+      <div class="date">Edition 2 · August 2026</div>
+      <h3>Compliance-Ready, but Future-Ready? Six Governance Insights for FCRA Boards</h3>
+      <p>Findings from the IGMA™ FCRA Governance Quick Scan, looking at where FCRA-registered boards are compliant on paper but exposed in practice.</p>
     </div>
-    <div class="footer-bottom">
-      <span>© 2026 Sunil Kumar, FCA. All rights reserved.</span>
-      <span><a href="mailto:casunilkumarfca@gmail.com">casunilkumarfca@gmail.com</a></span>
+
+    <div class="post">
+      <div class="date">Edition 1 · July 2026</div>
+      <h3>The Resilient Institution — Moving Beyond Checklist Compliance</h3>
+      <p>The first IGMA™ Governance Insights edition, on building more resilient, trusted institutions rather than treating governance as a box-ticking exercise.</p>
+    </div>
+
+    <div class="post">
+      <div class="date">Notes from the field</div>
+      <h3>Why Strong Governance Matters More Than Ever for NGOs</h3>
+      <p>Lessons from two decades in governance, finance and institutional strengthening — on why the organisations that survive a crisis are the ones that built governance before they needed it.</p>
+    </div>
+
+    <div class="post">
+      <div class="date">Notes from the field</div>
+      <h3>Payment Outside India by NGOs: A CFO and Governance Perspective</h3>
+      <p>On overseas payments by Indian NGOs — arguing that the real governance question is not the remittance itself, but the oversight behind it.</p>
+    </div>
+
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <p class="placeholder-note">More editions of IGMA™ Governance Insights are published periodically on LinkedIn — this page is updated as new ones go out.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-grid">
+    <div class="footer-about">
+      <p><strong>Sunil Kumar, FCA</strong></p>
+      <p>Chartered Accountant and governance advisor to NGOs, Trusts, Foundations and mission-driven organisations. Author of IGMA™.</p>
+    </div>
+    <div class="footer-links">
+      <h4>Explore</h4>
+      <a href="library.html">Books</a>
+      <a href="igma.html">IGMA™ Toolkits</a>
+      <a href="publications.html">Publications</a>
+      <a href="notes.html">Updates</a>
+      <a href="about.html">About</a>
+    </div>
+    <div class="footer-links">
+      <h4>Elsewhere</h4>
+      <a href="https://sunilfca.gumroad.com/">Gumroad store</a>
+      <a href="https://www.eloquens.com/channel/ca-sunil-kumar-fca">Eloquens</a>
+      <a href="https://www.amazon.com/stores/CA-Sunil-Kumar-FCA/author/B0H68584LZ">Amazon Author page</a>
+      <a href="https://store.pothi.com/book/ca-sunil-kumar-fca-governance-lessons-field/">pothi.com</a>
+      <a href="https://www.linkedin.com/in/sunilkumarfca/">LinkedIn</a>
+      <a href="https://www.youtube.com/@casunilkumarfca">YouTube</a>
     </div>
   </div>
+  <div class="wrap">
+    <p class="copyright">© 2026 Sunil Kumar, FCA. All rights reserved. <a href="mailto:casunilkumarfca@gmail.com">casunilkumarfca@gmail.com</a></p>
+    <p class="disclaimer">All publications are educational and informational resources intended to support governance, finance, compliance and institutional strengthening. They are not a substitute for legal, tax, audit, accounting or professional advice.</p>
+  </div>
 </footer>
-
-<script>
-/* ================================================================
-   TO ADD A NEW UPDATE: add one object to the ENTRIES array below.
-   type: "note" | "article" | "pdf" | "ppt"
-   For pdf/ppt, set fileUrl to the file's link (e.g. upload it
-   alongside this site, or link to a Gumroad/Drive file) and the
-   card will show a "Download" link instead of inline text.
-   Newest entries should go at the TOP of the array.
-   ================================================================ */
-const ENTRIES = [
-  {
-    date: "2026-08-31",
-    type: "note",
-    title: "Follow my Amazon Author Page",
-    body: "I'll continue publishing books and practical insights on governance, strategic finance, CFO leadership and institutional resilience. If these topics are relevant to your work, follow the Author Page for updates on future releases.",
-    tags: ["Books", "AmazonAuthor"],
-    fileUrl: null,
-    linkedinUrl: "https://www.amazon.com/stores/CA-Sunil-Kumar-FCA/author/B0H68584LZ",
-    linkLabel: "Follow on Amazon"
-  },
-  {
-    date: "2026-08-30",
-    type: "note",
-    title: "Welcome to The Resilient Institution — a new LinkedIn community",
-    body: "Institutions don't become resilient by accident — they become resilient when governance, finance, programmes, leadership, people, technology and risk management work together. The Resilient Institution is a professional community for people building financially strong, well-governed and future-ready social-impact institutions. Not a promotional group — a space to share experiences, ask difficult questions and learn from one another.",
-    tags: ["InstitutionalResilience", "Governance", "SocialSector", "Community"],
-    fileUrl: null,
-    linkedinUrl: "https://www.linkedin.com/groups/40323012",
-    linkLabel: "Join the Community"
-  },
-  {
-    date: "2026-08-30",
-    type: "note",
-    title: "Free Webinar — FCRA Governance Maturity Assessment (40 Questions)",
-    body: "The next IGMA™ Global Governance Executive Briefing. FCRA compliance is often treated as a checklist, but sustainable FCRA governance requires far more — Board oversight, risk management, financial stewardship, compliance, leadership and stakeholder transparency. The 40-question assessment examines 200 maturity criteria across six dimensions, translating results into a maturity score, FCRA risk assessment and priority actions, tracking movement from Vulnerable through Reactive, Defined, Managed to Optimized. Sat, 19 Sept 2026, 11:30 AM-12:10 PM IST, free, on Zoom.",
-    tags: ["FCRA", "FCRAGovernance", "GovernanceMaturity", "Compliance", "AuditReadiness"],
-    fileUrl: null,
-    linkedinUrl: "https://lnkd.in/gjydtymB",
-    linkLabel: "Register for the Briefing"
-  },
-  {
-    date: "2026-08-29",
-    type: "note",
-    title: "New book: The Strategic CFO",
-    body: "The role of a CFO is changing — it's no longer enough to report what happened, manage budgets and ensure compliance. A modern CFO must help the organisation anticipate uncertainty, strengthen institutional resilience, build trust, navigate regulatory complexity and make better strategic decisions. Covers the changing CFO role, financial resilience and institutional trust, governance and decision-making, FCRA/GST/FEMA considerations, Board-level financial oversight, and cash-flow stress testing. Written for CFOs, CEOs, Boards and senior finance professionals in mission-driven organisations.",
-    tags: ["StrategicCFO", "CFO", "FinanceLeadership", "Governance", "FinancialResilience"],
-    fileUrl: null,
-    linkedinUrl: "https://lnkd.in/dPkjY4fK",
-    linkLabel: "Explore the Book"
-  },
-  {
-    date: "2026-08-28",
-    type: "note",
-    title: "FCRA Governance Poll — What Did We Learn?",
-    body: "Results from the FCRA governance maturity poll: an even three-way split between Strong & well embedded, Adequate but some gaps exist, and Reactive to issues, with no one selecting Never formally assessed. Even on a small sample, the split highlights something important — FCRA compliance and FCRA governance maturity are not the same thing. An organisation can be compliant today and still run on largely reactive governance systems. The more useful question may not be \"are we FCRA compliant\" but \"how resilient is our FCRA governance system\" — worth assessing before a compliance issue forces the answer.",
-    tags: ["FCRA", "NGOGovernance", "Governance", "FinancialGovernance", "InstitutionalResilience"],
-    fileUrl: null,
-    linkedinUrl: "https://www.linkedin.com/feed/update/urn:li:share:7499678764126322688/",
-    linkLabel: "Read on LinkedIn"
-  },
-  {
-    date: "2026-08-27",
-    type: "note",
-    title: "Poll — How mature is your organisation's FCRA governance?",
-    body: "Many organisations know whether they are FCRA compliant. Fewer know their FCRA governance maturity. Compliance is important, but governance maturity goes further — it asks whether an organisation has the systems, oversight and accountability to remain resilient when circumstances change. FCRA governance includes Board oversight, risk management, financial stewardship, compliance and accountability, leadership responsibility, and stakeholder trust and transparency.",
-    tags: ["FCRA", "FCRAGovernance", "Governance", "GovernanceMaturity"],
-    fileUrl: null,
-    linkedinUrl: "https://www.linkedin.com/posts/sunilkumarfca_poll-how-mature-is-your-organisations-ugcPost-7496792589132554240-93CF/",
-    linkLabel: "Vote on LinkedIn"
-  },
-  {
-    date: "2026-08-27",
-    type: "note",
-    title: "Worth reading: AccountAid on the new FC-3C filing sequence",
-    body: "A useful capsule from AccountAid on a filing snag many NPOs are hitting this renewal season — FC-3C no longer lets you edit programme details, key functionary names, or bank information directly; those changes now need separate filings (FC-6E for key functionaries, FC-6F/FC-6B for programme and nature changes). Their guidance: file FC-3C without delay regardless, and file the correction forms separately as needed. Shared here as a pointer, not reproduced — full capsule on their site.",
-    tags: ["FCRA", "Compliance", "AccountAid"],
-    fileUrl: null,
-    linkedinUrl: "https://accountaid.net/wp-content/uploads/2026/08/679.pdf",
-    linkLabel: "Read on AccountAid"
-  },
-  {
-    date: "2026-08-27",
-    type: "article",
-    title: "The Resilient Institution — Building Trust, Governance and Sustainable Impact",
-    body: "A new book: what makes an institution resilient isn't simply a strong mission or basic compliance. It's the ability to protect trust, manage uncertainty, stay financially disciplined, adapt to change, and keep delivering the mission even as circumstances shift. Explores governance and institutional trust, strategic finance, risk and early warning, leadership, AI and digital readiness, and long-term resilience — with practical CFO Insights, Boardroom Questions and Action Checklists throughout. Written for Boards, CEOs, CFOs and leaders of mission-driven organisations asking how to build an institution that endures.",
-    tags: ["InstitutionalResilience", "Governance", "StrategicFinance", "Leadership", "BoardGovernance"],
-    fileUrl: null,
-    linkedinUrl: "https://sunilfca.gumroad.com/l/theresilientinstitution",
-    linkLabel: "Explore the Book on Gumroad"
-  },
-  {
-    date: "2026-08-26",
-    type: "note",
-    title: "Can Institutional Governance Be Measured? — IGMA™ Founder Edition Webinar",
-    body: "Pillar 1 of 8: Board Governance & Strategic Oversight. Eight questions covering Board skills and competency, independence, composition and diversity, strategic oversight, information quality, committee effectiveness, evaluation, and governance policy framework. The important part isn't assigning a score — it's the evidence behind the score, and once gaps are identified, what needs to improve, who should own it, and by when.",
-    tags: ["InstitutionalGovernance", "BoardGovernance", "GovernanceMaturity", "IGMA"],
-    fileUrl: null,
-    linkedinUrl: "https://youtu.be/88JpWy5b28I",
-    linkLabel: "Watch on YouTube"
-  },
-  {
-    date: "2026-08-25",
-    type: "note",
-    title: "What if you could assess Board strength with just 8 questions?",
-    body: "A reminder ahead of the Board Governance & Strategic Oversight briefing. Eight fundamental questions from the IGMA™ Institutional Governance Maturity Assessment Toolkit — what a strong answer looks like, what a weak one reveals, which weaknesses should concern the Board, and which issues management should escalate. The goal isn't another checklist; it's better governance conversations. Wed, 26 Aug 2026, 8:30-9:15 PM IST.",
-    tags: ["BoardGovernance", "InstitutionalGovernance", "NonprofitLeadership", "NGOLeadership"],
-    fileUrl: null,
-    linkedinUrl: "https://forms.gle/6FZjT8KPJTdcixEA6",
-    linkLabel: "Register for the Briefing"
-  },
-  {
-    date: "2026-08-22",
-    type: "note",
-    title: "Free Global Executive Briefing — Board Governance & Strategic Oversight",
-    body: "Is your Board really providing effective oversight? A Board can meet regularly, approve budgets, review financial statements — and still fail to identify a governance weakness before it becomes a crisis. This session explores 8 questions that reveal a surprising amount about Board governance maturity, drawn from the IGMA™ Institutional Governance Maturity Assessment Toolkit. Wed, 26 Aug 2026, 8:30-9:15 PM IST. Free; registration mandatory.",
-    tags: ["BoardGovernance", "InstitutionalGovernance", "NGO", "INGO", "Governance"],
-    fileUrl: null,
-    linkedinUrl: "https://lnkd.in/dyaAACUn",
-    linkLabel: "Register for the Briefing"
-  },
-  {
-    date: "2026-08-22",
-    type: "article",
-    title: "Beyond Compliance: What Governance Maturity Really Looks Like",
-    body: "Can institutional governance maturity be objectively measured, or are we simply relying on what an organisation believes about itself? Findings from the IGMA™ Global Governance Briefing (22 Aug 2026), comparing subjective management judgement against evidence-based scoring on the same four questions — the two didn't always agree. Overall assessment score: 3.14 / 5.00, Level 3: Defined, against an optimum floor of 4.0. The real question isn't \"what is our governance score\" but \"can we demonstrate the governance maturity we believe we have?\"",
-    tags: ["Governance", "GovernanceMaturity", "InstitutionalGovernance", "IGMA", "BoardGovernance"],
-    fileUrl: null,
-    linkedinUrl: "https://lnkd.in/p/gj99aH57",
-    linkLabel: "Read on LinkedIn"
-  },
-  {
-    date: "2026-08-21",
-    type: "article",
-    title: "FCRA compliance is not the same as FCRA governance",
-    body: "An organisation may file its returns on time, maintain records and meet immediate regulatory obligations — and still have significant weaknesses in its FCRA governance. Seven questions that go beyond compliance: Board oversight of FCRA, whether FCRA risk sits inside the organisation's risk framework, financial controls on foreign contributions, donor due diligence, audit trail, ownership of compliance responsibilities, and readiness for increased regulatory scrutiny. The real question isn't \"are we FCRA compliant\" — it's \"how mature is our FCRA governance?\"",
-    tags: ["FCRA", "FCRAGovernance", "Governance", "Compliance", "AuditReadiness"],
-    fileUrl: null,
-    linkedinUrl: "https://www.linkedin.com/in/sunilkumarfca/",
-    linkLabel: "Read on LinkedIn"
-  },
-  {
-    date: "2026-08-20",
-    type: "article",
-    title: "Can Institutional Governance Be Objectively Measured?",
-    body: "Governance is often judged by perception, reputation and trust — but it can be assessed objectively if done systematically and supported by documentary evidence. An evidence-based governance assessment helps organisations demonstrate institutional maturity to donors, strengthen due diligence, build confidence through transparency, and identify governance gaps before they become risks. The key shift: from perception to evidence, from compliance to governance maturity. Good governance should not simply be claimed — it should be capable of being demonstrated.",
-    tags: ["InstitutionalGovernance", "GovernanceMaturity", "NGOGovernance", "DonorConfidence", "DueDiligence"],
-    fileUrl: null,
-    linkedinUrl: "https://lnkd.in/gkcR4m9A",
-    linkLabel: "Watch the Webinar"
-  },
-  {
-    date: "2026-08-17",
-    type: "note",
-    title: "Free Live Webinar — IGMA™ Global Governance Executive Briefing",
-    body: "20 Questions Every Board Should Ask Before the Next Crisis. A 40-minute Executive Briefing on governance, accountability, risk oversight, compliance and institutional resilience for Boards and leadership teams. Sat, 22 Aug 2026, 11:30 AM IST, on Zoom. Live participation limited to the first 100 attendees; registration mandatory.",
-    tags: ["Governance", "BoardGovernance", "RiskManagement", "Compliance", "Webinar"],
-    fileUrl: null,
-    linkedinUrl: "https://lnkd.in/gbxATP7W",
-    linkLabel: "Register for the Webinar"
-  },
-  {
-    date: "2026-08-17",
-    type: "article",
-    title: "Rich, Poor and ESG",
-    body: "A walker kept for two years until another family needed it. A repaired rubber tip. A restrung racket. There is something about scarcity that money cannot easily teach — and it has more to say about ESG than most boardroom frameworks do. Reduce, reuse, repair may not begin in the boardroom at all; it may begin at home.",
-    tags: ["ESG", "Sustainability", "ResponsibleConsumption", "CircularEconomy"],
-    fileUrl: null,
-    linkedinUrl: "https://sunilkumarfca.substack.com/p/rich-poor-and-esg",
-    linkLabel: "Read on Substack"
-  },
-  {
-    date: "2026-08-14",
-    type: "note",
-    title: "Free IGMA™ FCRA Governance Assurance Framework — Sample",
-    body: "A 12-question automated Excel assessment sample for FCRA-registered NGOs — a quick first read on FCRA governance readiness, free to try.",
-    tags: ["IGMA", "FCRA", "Governance", "NGO"],
-    fileUrl: null,
-    linkedinUrl: "https://www.eloquens.com/tool/QX9QcKjk/ca-sunil-kumar-fca/fcra-governance-assurance-framework-igma-sample-edition-12-question-automated-excel-assessment-tool",
-    linkLabel: "Get the Free Sample"
-  },
-  {
-    date: "2026-08-14",
-    type: "note",
-    title: "Free IGMA™ Institutional Governance Maturity Assessment — Sample",
-    body: "A 16-question free sample to help NGOs, foundations and mission-driven organisations get a first read on their governance maturity — no cost, no commitment.",
-    tags: ["IGMA", "Governance", "NGO"],
-    fileUrl: null,
-    linkedinUrl: "http://sunilfca.gumroad.com/l/igma-governance-maturity-assessment-free",
-    linkLabel: "Get the Free Sample"
-  },
-  {
-    date: "2026-08-07",
-    type: "note",
-    title: "Worth reading: AccountAid on bypassing FCRA via US-based foundations",
-    body: "FCRA 2010 applies to individuals and for-profit businesses too, meaning grants to them for public-programme activity require FCRA registration or prior permission \u2014 almost never granted in practice. AccountAid's capsule flags a US family foundation that appears to have routed roughly USD 1 million to 148 individuals and companies for India-based work between 2019 and 2025, disclosed transparently in its own Form 990 filings, with grantee names now being surfaced by anti-FCRA activists on Twitter. Their conclusion: bypassing FCRA isn't possible, so don't try. Shared here as a pointer, not reproduced \u2014 full capsule on their site.",
-    tags: ["FCRA", "Compliance", "AccountAid"],
-    fileUrl: null,
-    linkedinUrl: "https://accountaid.net/wp-content/uploads/2026/08/677.pdf",
-    linkLabel: "Read on AccountAid"
-  },
-  {
-    date: "2026-08-04",
-    type: "article",
-    title: "Compliance-Ready, but Future-Ready? Six Governance Insights for FCRA Boards",
-    body: "Findings from the IGMA™ FCRA Governance Quick Scan 2026: most organisations are compliance-ready, but not yet future-ready. Includes an executive case study where a CEO and CFO independently completed the same governance assessment — the 90% alignment score, and the one meaningful gap that turned out to reflect role-based perspective rather than a governance weakness. Introduces Leadership Governance Alignment as a new frontier in governance assessment.",
-    tags: ["FCRA", "Governance", "BoardGovernance", "IGMA", "RiskManagement"],
-    fileUrl: null,
-    linkedinUrl: "https://sunilfca.gumroad.com",
-    linkLabel: "Explore the IGMA™ Library"
-  },
-  {
-    date: "2026-07-31",
-    type: "note",
-    title: "Worth reading: AccountAid on using the new FCRA portal",
-    body: "A practical fix for a common login snag on the new FCRA portal. Old login credentials work after entering a CAPTCHA, but offer limited functionality (no view of past annual returns, no saving of forms in progress) until you validate your login with a current email and mobile number via OTP. After that, an OTP is required at every login going forward. Shared here as a pointer, not reproduced — full capsule on their site.",
-    tags: ["FCRA", "Compliance", "AccountAid"],
-    fileUrl: null,
-    linkedinUrl: "https://accountaid.net/wp-content/uploads/2026/07/676.pdf",
-    linkLabel: "Read on AccountAid"
-  },
-  {
-    date: "2026-07-21",
-    type: "note",
-    title: "Worth reading: AccountAid on fraud-proofing FCRA funds",
-    body: "Since 2020, many large donors moved from sub-granting to direct implementation in India — recruiting staff and opening project offices rather than routing funds through local NGOs. That shift concentrated fraud risk inside the donor agency itself, worsened by project offices sitting far from Head Office and rarely visited by auditors. AccountAid's take: reassess exposure, build systems to deter, detect and defend, and back them with regular audits. Shared here as a pointer, not reproduced — full capsule on their site.",
-    tags: ["FCRA", "Compliance", "RiskManagement", "AccountAid"],
-    fileUrl: null,
-    linkedinUrl: "https://accountaid.net/wp-content/uploads/2026/07/675.pdf",
-    linkLabel: "Read on AccountAid"
-  },
-  {
-    date: "2026-07-20",
-    type: "note",
-    title: "Worth reading: AccountAid on FCRA's Prior-Reference Category and Form FC-4",
-    body: "FCRA's Prior-Reference Category (PRC) flags donors whose activities are considered potentially sensitive, routing their remittances through an Intelligence Bureau security check. The Department now suspects some PRC-listed donors may be routing funds through intermediaries such as Donor Advised Funds to bypass this scrutiny. Form FC-4 has been amended accordingly: entities must now disclose the name of any DAF or intermediary donor, plus the name and address of the ultimate donor, effective immediately for all FC-4 filings including FY 25-26. Shared here as a pointer, not reproduced — full capsule on their site.",
-    tags: ["FCRA", "Compliance", "AccountAid"],
-    fileUrl: null,
-    linkedinUrl: "https://accountaid.net/wp-content/uploads/2026/07/674.pdf",
-    linkLabel: "Read on AccountAid"
-  },
-  {
-    date: "2026-07-18",
-    type: "article",
-    title: "Institutional grant cancellations rarely begin with a funding crisis",
-    body: "They begin with governance conversations that never happened. After 25 years in institutional governance, this piece open-sources the IGMA™ framework as a free digital library — executive guides, FCRA/GST/FEMA/ESG toolkits, interactive Excel assessments, and CFO action checklists. The five hidden risks that accumulate quietly beneath day-to-day operations: donor over-dependence, weak board oversight, leadership succession gaps, thin financial resilience, and compliance treated as a year-end scramble instead of an ongoing discipline.",
-    tags: ["Governance", "FCRA", "NGO", "InstitutionalResilience", "IGMA"],
-    fileUrl: null,
-    linkedinUrl: "https://lnkd.in/g5EsP8vk",
-    linkLabel: "Take the Free Quick Scan"
-  },
-  {
-    date: "2026-07-15",
-    type: "article",
-    title: "Why Strong Governance Matters More Than Ever for NGOs",
-    body: "The first edition of The Resilient Institution newsletter. Governance failures rarely arrive without warning — long before a difficult audit or donor concern, there are quieter signals: a single dominant donor, processes living in people's heads instead of documented systems, Board meetings dominated by reports instead of strategy. Three questions worth taking to your next Board meeting: the Funding Resilience Test, the Systems Test, and the Forward-Looking Test.",
-    tags: ["Governance", "NGO", "BoardGovernance", "InstitutionalResilience"],
-    fileUrl: null,
-    linkedinUrl: "https://sunilfca.gumroad.com/",
-    linkLabel: "Explore the IGMA™ Library"
-  },
-  {
-    date: "2026-07-01",
-    type: "note",
-    title: "Worth reading: AccountAid on the new FCRA activity threshold",
-    body: "A new rule sets a minimum spending threshold: foreign contribution spending below Rs. 10 lakh over two financial years may now be treated as insufficient activity, risking denial of FCRA renewal or cancellation of registration. AccountAid's reading of the rule's language (comparing it against an existing provision) suggests both programme and administrative expenses count toward that Rs. 10 lakh threshold, not programme spending alone. Shared here as a pointer, not reproduced — full capsule on their site.",
-    tags: ["FCRA", "Compliance", "AccountAid"],
-    fileUrl: null,
-    linkedinUrl: "https://accountaid.net/wp-content/uploads/2026/06/673.pdf",
-    linkLabel: "Read on AccountAid"
-  },
-  {
-    date: "2026-06-30",
-    type: "note",
-    title: "Worth reading: AccountAid on defining 'Key Functionary' under FCRA",
-    body: "FCRA's undefined use of \"Key Functionary\" has long caused confusion, with organisations inconsistently including only Board officers or, at the other extreme, every society member. A new rule finally defines the term — directors, partners, trustees, the Karta of an HUF, and office bearers or governing-body members of a society or trust — but leaves open whether a hands-on foreign donor could also qualify under its catch-all clause. Shared here as a pointer, not reproduced — full capsule on their site.",
-    tags: ["FCRA", "Compliance", "AccountAid"],
-    fileUrl: null,
-    linkedinUrl: "https://accountaid.net/wp-content/uploads/2026/06/672.pdf",
-    linkLabel: "Read on AccountAid"
-  },
-  {
-    date: "2026-06-29",
-    type: "note",
-    title: "Worth reading: AccountAid on selecting FCRA programmes and states",
-    body: "A significant procedural change: FCRA-registered entities can no longer spend foreign contribution anywhere in India based solely on their registered programmes. They must now specify each state they plan to work in and each programme within each state, filing Form FC-6F before 21-June-2027 with a Rs. 300 fee per state/programme combination. With 105 specified programmes across 36 states and union territories, the fees can add up quickly — AccountAid's example: 10 states x 10 programmes each comes to Rs. 30,000. Shared here as a pointer, not reproduced — full capsule on their site.",
-    tags: ["FCRA", "Compliance", "AccountAid"],
-    fileUrl: null,
-    linkedinUrl: "https://accountaid.net/wp-content/uploads/2026/06/671.pdf",
-    linkLabel: "Read on AccountAid"
-  },
-
-];
-
-const feed = document.getElementById('feed');
-const empty = document.getElementById('empty');
-const filters = document.querySelectorAll('#filters button');
-let activeType = 'all';
-
-function typeLabel(t){
-  return { note:"Note", article:"Article", pdf:"PDF", ppt:"Slides" }[t] || t;
-}
-
-function formatDate(d){
-  const dt = new Date(d + "T00:00:00");
-  return dt.toLocaleDateString('en-GB', { day:'2-digit', month:'short', year:'numeric' });
-}
-
-function render(){
-  const items = ENTRIES.filter(e => activeType === 'all' || e.type === activeType);
-  feed.innerHTML = '';
-  if(items.length === 0){
-    empty.style.display = 'block';
-    return;
-  }
-  empty.style.display = 'none';
-  items.forEach(e => {
-    const el = document.createElement('article');
-    el.className = 'entry';
-    const link = e.fileUrl
-      ? `<a class="dl" href="${e.fileUrl}" target="_blank" rel="noopener">Download →</a>`
-      : (e.linkedinUrl ? `<a class="dl" href="${e.linkedinUrl}" target="_blank" rel="noopener">${e.linkLabel || 'View on LinkedIn'} →</a>` : '');
-    el.innerHTML = `
-      <div class="meta">
-        <span class="date">${formatDate(e.date)}</span><br>
-        <span class="type ${e.type}">${typeLabel(e.type)}</span>
-      </div>
-      <div class="body">
-        <h3>${e.title}</h3>
-        <p>${e.body}</p>
-        ${e.tags && e.tags.length ? `<div class="tags">${e.tags.map(t=>'#'+t).join('  ')}</div>` : ''}
-        ${link}
-      </div>`;
-    feed.appendChild(el);
-  });
-}
-
-filters.forEach(btn => {
-  btn.addEventListener('click', () => {
-    filters.forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    activeType = btn.dataset.type;
-    render();
-  });
-});
-
-render();
-</script>
 
 </body>
 </html>

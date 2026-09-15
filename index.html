@@ -8,15 +8,190 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/site.css">
+<style>
+:root{
+  --ink:#1C2530;
+  --paper:#FAF8F4;
+  --paper-raised:#F2EEE4;
+  --brass:#8A6A32;
+  --brass-dark:#6E5527;
+  --slate:#5B6472;
+  --line:#D9D3C7;
+  --max:1080px;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'IBM Plex Sans', Arial, sans-serif;
+  font-size:17px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{
+  font-family:'Newsreader', Georgia, serif;
+  font-weight:500;
+  line-height:1.15;
+  margin:0;
+  color:var(--ink);
+}
+a{color:var(--brass-dark);}
+a:focus-visible, button:focus-visible{outline:2px solid var(--brass-dark); outline-offset:3px;}
+.wrap{max-width:var(--max); margin:0 auto; padding:0 28px;}
+.hairline{border:none; border-top:1px solid var(--line); margin:0;}
+
+header.site{padding:22px 0; border-bottom:1px solid var(--line);}
+header.site .wrap{display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap;}
+.brand{font-family:'Newsreader', Georgia, serif; font-size:1.15rem; font-weight:600; text-decoration:none; color:var(--ink);}
+.brand span{color:var(--slate); font-family:'IBM Plex Sans', Arial, sans-serif; font-weight:400; font-size:0.85rem; display:block; margin-top:2px;}
+nav.site{display:flex; flex-wrap:wrap;}
+nav.site a{color:var(--ink); text-decoration:none; margin-left:26px; font-size:0.95rem; border-bottom:1px solid transparent; padding-bottom:2px;}
+nav.site a:first-child{margin-left:0;}
+nav.site a:hover, nav.site a.current{border-bottom-color:var(--brass);}
+
+.hero{padding:72px 0 56px;}
+.hero .eyebrow{color:var(--brass-dark); font-size:0.95rem; margin-bottom:14px; display:block;}
+.hero h1{font-size:2.6rem; max-width:15ch;}
+.hero p.lede{max-width:56ch; color:var(--slate); font-size:1.12rem; margin-top:22px;}
+.cta-row{margin-top:34px; display:flex; gap:16px; flex-wrap:wrap;}
+.btn{display:inline-block; padding:13px 26px; text-decoration:none; font-size:0.98rem; border:1px solid var(--ink); color:var(--ink); border-radius:2px;}
+.btn.primary{background:var(--ink); color:var(--paper);}
+.btn.primary:hover{background:#000;}
+.btn:not(.primary):hover{background:var(--paper-raised);}
+
+.trust-bar{margin-top:40px; display:flex; gap:28px; flex-wrap:wrap; color:var(--slate); font-size:0.9rem;}
+.trust-bar span{border-left:2px solid var(--brass); padding-left:10px;}
+
+.maturity-scale{margin-top:48px; display:flex; border:1px solid var(--line);}
+.maturity-scale .level{flex:1; padding:16px 14px; border-right:1px solid var(--line); text-align:left;}
+.maturity-scale .level:last-child{border-right:none; background:var(--ink);}
+.maturity-scale .level:last-child .code, .maturity-scale .level:last-child .label{color:var(--paper);}
+.maturity-scale .code{display:block; font-family:'Newsreader', Georgia, serif; font-size:1.2rem; color:var(--brass-dark);}
+.maturity-scale .label{display:block; font-size:0.82rem; color:var(--slate); margin-top:4px;}
+.scale-caption{color:var(--slate); font-size:0.85rem; margin-top:12px;}
+
+.stat-strip{margin-top:44px; padding-top:30px; border-top:1px solid var(--line); display:flex; gap:56px; flex-wrap:wrap;}
+.stat-strip .stat b{display:block; font-family:'Newsreader', Georgia, serif; font-size:2rem; color:var(--brass-dark); font-weight:500;}
+.stat-strip .stat span{color:var(--slate); font-size:0.92rem;}
+
+section{padding:60px 0;}
+section.alt{background:var(--paper-raised);}
+.section-head{display:flex; gap:40px; margin-bottom:40px; flex-wrap:wrap;}
+.section-head .num{font-family:'Newsreader', Georgia, serif; font-size:0.95rem; color:var(--brass-dark); min-width:34px; padding-top:6px;}
+.section-head .kicker{display:block; color:var(--brass-dark); font-size:0.95rem; margin-bottom:8px;}
+.section-head h2{font-size:1.85rem; max-width:22ch;}
+.section-head p{color:var(--slate); max-width:52ch; margin-top:10px;}
+
+.audience{display:grid; grid-template-columns:repeat(4, 1fr); gap:0; border-top:1px solid var(--line);}
+.audience .role{padding:26px 24px 26px 0; border-right:1px solid var(--line);}
+.audience .role:last-child{border-right:none;}
+.audience .role h3{font-size:1.1rem; margin-bottom:12px;}
+.audience .role ul{margin:0; padding:0; list-style:none; color:var(--slate); font-size:0.94rem;}
+.audience .role li{padding:5px 0;}
+
+.journey{display:grid; grid-template-columns:repeat(3,1fr); gap:36px;}
+.journey .step{border-top:2px solid var(--ink); padding-top:16px;}
+.journey .step .n{font-family:'Newsreader', Georgia, serif; color:var(--brass-dark); font-size:1.15rem;}
+.journey .step h3{margin-top:10px; font-size:1.2rem;}
+.journey .step p{color:var(--slate); margin-top:8px; font-size:0.96rem;}
+
+.quote-block{border-left:3px solid var(--brass); padding-left:28px; max-width:64ch;}
+.quote-block p{font-family:'Newsreader', Georgia, serif; font-size:1.35rem; font-style:italic; color:var(--ink); margin:0;}
+.quote-block cite{display:block; margin-top:14px; font-style:normal; color:var(--slate); font-size:0.92rem;}
+
+.faq{max-width:72ch;}
+.faq-item{padding:22px 0; border-top:1px solid var(--line);}
+.faq-item:last-child{border-bottom:1px solid var(--line);}
+.faq-item h3{font-size:1.08rem; margin-bottom:8px;}
+.faq-item p{color:var(--slate); margin:0; font-size:0.96rem;}
+
+.cta-banner{background:var(--ink); color:var(--paper); padding:52px 0; text-align:left;}
+.cta-banner h2{color:var(--paper); font-size:1.9rem; max-width:20ch;}
+.cta-banner p{color:#C9C2B4; margin-top:14px; max-width:52ch;}
+.cta-banner .cta-row .btn.primary{background:var(--paper); color:var(--ink); border-color:var(--paper);}
+.cta-banner .cta-row .btn:not(.primary){border-color:#8A8168; color:var(--paper);}
+.cta-banner .cta-row .btn:not(.primary):hover{background:#2A3547;}
+
+.page-head{padding:56px 0 40px; border-bottom:1px solid var(--line);}
+.page-head .eyebrow{color:var(--brass-dark); font-size:0.95rem; margin-bottom:12px; display:block;}
+.page-head h1{font-size:2.2rem; max-width:24ch;}
+.page-head p{color:var(--slate); max-width:60ch; margin-top:16px; font-size:1.05rem;}
+
+.group-label{font-family:'Newsreader', Georgia, serif; font-size:1.3rem; margin:0 0 6px;}
+.group-sub{color:var(--slate); font-size:0.93rem; margin-bottom:26px;}
+.item{display:flex; justify-content:space-between; align-items:flex-start; gap:24px; padding:24px 0; border-top:1px solid var(--line);}
+.items .item:last-child{border-bottom:1px solid var(--line);}
+.item .info h4{font-family:'Newsreader', Georgia, serif; font-weight:500; font-size:1.12rem; margin:0 0 6px;}
+.item .info .flag{display:inline-block; font-size:0.72rem; color:var(--brass-dark); border:1px solid var(--brass); padding:1px 8px; border-radius:12px; margin-left:10px; vertical-align:middle;}
+.item .info p{margin:0; color:var(--slate); font-size:0.94rem; max-width:60ch;}
+.item .buy{text-align:right; white-space:nowrap; padding-top:2px;}
+.item .buy .price{display:block; font-family:'Newsreader', Georgia, serif; font-size:1.15rem; color:var(--ink); margin-bottom:6px;}
+.item .buy .price.free{color:var(--brass-dark);}
+.item .buy a{font-size:0.9rem; text-decoration:none; border-bottom:1px solid var(--brass);}
+.item .buy a:hover{color:var(--brass-dark);}
+.placeholder-note{color:var(--slate); font-size:0.94rem; font-style:italic; padding:20px 0; border-top:1px solid var(--line);}
+
+.notes-list{margin:0; padding:0; list-style:none; color:var(--slate); font-size:0.94rem; max-width:64ch;}
+.notes-list li{position:relative; padding:8px 0 8px 20px;}
+.notes-list li::before{content:"—"; position:absolute; left:0; color:var(--brass-dark);}
+
+.post{padding:26px 0; border-top:1px solid var(--line);}
+.post:last-child{border-bottom:1px solid var(--line);}
+.post .date{color:var(--brass-dark); font-size:0.85rem;}
+.post h3{font-size:1.15rem; margin-top:6px;}
+.post p{color:var(--slate); font-size:0.95rem; margin-top:8px; max-width:64ch;}
+
+.about-grid{display:grid; grid-template-columns:1.3fr 1fr; gap:56px; align-items:start;}
+.about-grid p{color:var(--slate);}
+.contact-card{border:1px solid var(--line); padding:26px;}
+.contact-card h4{font-family:'Newsreader', Georgia, serif; font-size:1.05rem; margin-bottom:14px;}
+.contact-card a{display:block; color:var(--ink); text-decoration:none; font-size:0.95rem; padding:4px 0;}
+.contact-card a:hover{color:var(--brass-dark);}
+
+.timeline{border-left:2px solid var(--line); padding-left:28px; display:flex; flex-direction:column; gap:30px;}
+.timeline .entry .year{font-family:'Newsreader', Georgia, serif; color:var(--brass-dark); font-size:1.05rem;}
+.timeline .entry h3{font-size:1.05rem; margin-top:4px;}
+.timeline .entry p{color:var(--slate); font-size:0.94rem; margin-top:6px; max-width:60ch;}
+
+footer{border-top:1px solid var(--line); padding:44px 0 28px; color:var(--slate); font-size:0.88rem;}
+.footer-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:32px; padding-bottom:28px;}
+.footer-links h4{font-family:'Newsreader', Georgia, serif; color:var(--ink); font-size:1rem; margin-bottom:12px;}
+.footer-links a{display:block; color:var(--slate); text-decoration:none; padding:3px 0; font-size:0.9rem;}
+.footer-links a:hover{color:var(--brass-dark);}
+footer .copyright{border-top:1px solid var(--line); padding-top:20px; margin:0 0 8px;}
+footer .disclaimer{margin:0; max-width:80ch;}
+
+@media (max-width: 860px){
+  .audience{grid-template-columns:1fr 1fr;}
+  .audience .role{border-right:none; border-bottom:1px solid var(--line); padding:22px 0;}
+  .journey{grid-template-columns:1fr;}
+  .hero h1, .page-head h1, .cta-banner h2{font-size:2rem;}
+  .maturity-scale{flex-wrap:wrap;}
+  .maturity-scale .level{flex:1 1 40%; border-bottom:1px solid var(--line);}
+  .footer-grid{grid-template-columns:1fr;}
+  .about-grid{grid-template-columns:1fr;}
+}
+@media (max-width: 560px){
+  .audience{grid-template-columns:1fr;}
+  .item{flex-direction:column;}
+  .item .buy{text-align:left;}
+  .stat-strip{gap:32px;}
+  .trust-bar{gap:16px;}
+}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+}
+</style>
 </head>
 <body>
 
 <header class="site">
   <div class="wrap">
-    <div class="brand">Sunil Kumar, FCA<span>FCA · Governance Advisory</span></div>
+    <a class="brand" href="index.html">Sunil Kumar, FCA<span>FCA · Governance Advisory</span></a>
     <nav class="site">
-      <a href="index.html">Home</a>
+      <a href="index.html" class="current">Home</a>
       <a href="library.html">Books</a>
       <a href="igma.html">IGMA™ Toolkits</a>
       <a href="publications.html">Publications</a>
@@ -35,6 +210,11 @@
       <a class="btn primary" href="igma.html">Explore IGMA™ Toolkits</a>
       <a class="btn" href="library.html">Start with the Books</a>
     </div>
+    <div class="trust-bar">
+      <span>Fellow Chartered Accountant (FCA), ICAI</span>
+      <span>Author of The Strategic CFO &amp; The Resilient Institution</span>
+      <span>Resource person, ITEC / Ministry of External Affairs</span>
+    </div>
 
     <div class="maturity-scale" aria-label="The IGMA Governance Maturity Scale, five levels">
       <div class="level"><span class="code">L0</span><span class="label">Ad hoc</span></div>
@@ -43,7 +223,7 @@
       <div class="level"><span class="code">L3</span><span class="label">Managed</span></div>
       <div class="level"><span class="code">L4</span><span class="label">Optimised</span></div>
     </div>
-    <p class="scale-caption">The IGMA™ Governance Maturity Scale — five levels, from ad hoc practices to fully optimised governance.</p>
+    <p class="scale-caption">The IGMA™ Governance Maturity Scale — five levels, from ad hoc practices to fully optimised governance. Most organisations we assess sit at L1 or L2 without realising it.</p>
 
     <div class="stat-strip">
       <div class="stat"><b>09</b><span>resources on file</span></div>
@@ -123,15 +303,41 @@
 
 <hr class="hairline">
 
-<section class="alt" id="checkout-notes">
+<section class="alt">
   <div class="wrap">
-    <h2 class="group-label" style="font-size:1.2rem;">Good to know before you buy</h2>
-    <ul class="notes-list">
-      <li>Currency: prices are shown in USD but convert automatically to your local currency at checkout, based on the prevailing exchange rate. 🇮🇳 Indian buyers: this includes INR.</li>
-      <li>Card declining? Check your banking app to confirm "International Online Transactions" are enabled on your debit or credit card.</li>
-      <li>🇮🇳 Prefer UPI (GPay / PhonePe / Paytm)? Skip international card payment entirely — email <a href="mailto:casunilkumarfca@gmail.com">casunilkumarfca@gmail.com</a> or connect on LinkedIn for manual delivery.</li>
-      <li>Downloading a free resource? Gumroad lets you set your own price — please type 0 in the amount field at checkout to get it for free.</li>
-    </ul>
+    <div class="section-head">
+      <span class="num">§4</span>
+      <div><span class="kicker">Common questions</span><h2>Before you start an assessment.</h2></div>
+    </div>
+    <div class="faq">
+      <div class="faq-item">
+        <h3>How is IGMA™ different from a compliance checklist?</h3>
+        <p>A checklist tells you what's missing. IGMA™ scores where your governance actually stands across five maturity levels, and points to the specific decisions your board or CFO should prioritise next.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Do I need to buy an assessment to get value from this site?</h3>
+        <p>No. Start with the free library — it's the same thinking and methodology, in book form, at no cost or a price you set yourself.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Who typically uses the FCRA toolkit versus the Institutional toolkit?</h3>
+        <p>The FCRA toolkit is built for India-registered NGOs managing foreign contribution compliance. The Institutional Governance Maturity toolkit is broader, for any Trust, Foundation or mission-driven organisation reviewing board and financial oversight.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Can I pay from outside India, or without a card?</h3>
+        <p>Yes — Gumroad checkout converts to your local currency automatically, and UPI payment is available by email for Indian buyers. See "Good to know before you buy" on the Books and IGMA™ pages.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-banner">
+  <div class="wrap">
+    <h2>Not sure where to start?</h2>
+    <p>Begin with "Governance Lessons from the Field" — a free executive briefing distilling 25+ years of governance work into practical lessons for CEOs, CFOs and Board Members.</p>
+    <div class="cta-row">
+      <a class="btn primary" href="https://sunilfca.gumroad.com/l/jptyr">Get the free briefing</a>
+      <a class="btn" href="library.html">See all books</a>
+    </div>
   </div>
 </section>
 
