@@ -274,25 +274,40 @@ footer .disclaimer{margin:0; max-width:80ch;}
 <section class="alt">
   <div class="wrap">
     <h2 class="group-label">IGMA™ Toolkits</h2>
-    <p class="group-sub">Full descriptions and purchase links are on the <a href="igma.html">IGMA™ Toolkits</a> page — this is the bibliography view.</p>
+    <p class="group-sub">Evidence-based governance maturity assessments — the practical, applied companion to the frameworks above. Full details are on the <a href="igma.html">IGMA™ Toolkits</a> page.</p>
     <div class="items">
       <div class="item">
         <div class="info"><h4>IGMA™ FCRA Governance Maturity Framework</h4><p>A practical guide for boards and senior leaders on FCRA-related governance risk.</p></div>
+        <div class="buy"><span class="price">$50</span><a href="https://sunilfca.gumroad.com/l/igma-fcra-governance-framework">Gumroad</a><a class="alt-link" href="https://www.eloquens.com/tool/LAARULL5/ca-sunil-kumar-fca/a-governance-maturity-framework-for-fcra-registered-organisations">Eloquens</a></div>
       </div>
       <div class="item">
         <div class="info"><h4>IGMA™ DPDP Compliance Assessment Toolkit</h4><p>Excel-based, automated India DPDP Act compliance assessment.</p></div>
+        <div class="buy"><span class="price">$100</span><a href="https://sunilfca.gumroad.com/l/DPDP_Compliance">Gumroad</a></div>
       </div>
       <div class="item">
-        <div class="info"><h4>IGMA™ FCRA Governance Assessment Toolkit — Professional Edition</h4><p>A structured, evidence-based FCRA and institutional governance assessment.</p></div>
+        <div class="info"><h4>IGMA™ FCRA Governance Assessment Toolkit — Professional Edition</h4><p>8-pillar, 200-point automated Excel assessment, for audit-ready documentation.</p></div>
+        <div class="buy"><span class="price">$500</span><a href="https://sunilfca.gumroad.com/l/igma-fcra-toolkit">Gumroad</a><a class="alt-link" href="https://www.eloquens.com/tool/kzNkSrXp/ca-sunil-kumar-fca/fcra-governance-assurance-framework-igma-professional-edition-8-pillar-200-point-automated-excel-assessment-tool">Eloquens</a></div>
       </div>
       <div class="item">
         <div class="info"><h4>IGMA™ Professional Edition — Institutional Governance Maturity Assessment Toolkit</h4><p>A structured, evidence-based governance diagnostic system for the full institution.</p></div>
+        <div class="buy"><span class="price">$500</span><a href="https://sunilfca.gumroad.com/l/igma-organisational-toolkit">Gumroad</a><a class="alt-link" href="https://www.eloquens.com/tool/QXPPSKEE/ca-sunil-kumar-fca/igma-institutional-governance-maturity-assessment-toolkit-automated-excel-assessment-tool">Eloquens</a></div>
       </div>
       <div class="item">
         <div class="info"><h4>The Governance Suite Bundle <span class="flag">Coming soon</span></h4><p>Both IGMA™ assessments together, at a real saving over buying them separately.</p></div>
+        <div class="buy"><a href="mailto:casunilkumarfca@gmail.com">Ask to be notified</a></div>
       </div>
     </div>
-    <p class="placeholder-note">Prices for all books, bundles and toolkits are shown on the <a href="library.html">Books</a> and <a href="igma.html">IGMA™ Toolkits</a> pages — please check the current rate on the respective platform (Gumroad, Amazon or Eloquens) before purchase, as prices are subject to change.</p>
+    <p class="placeholder-note">Prices shown are indicative — please check the current rate on the respective platform (Gumroad or Eloquens) before purchase.</p>
+  </div>
+</section>
+
+<section class="cta-banner">
+  <div class="wrap">
+    <h2>Read the thinking. Ready to apply it?</h2>
+    <p>The frameworks above explain the concept. IGMA™ scores where your own organisation actually stands, with a board-ready dashboard.</p>
+    <div class="cta-row">
+      <a class="btn primary" href="igma.html">See IGMA™ Toolkits</a>
+    </div>
   </div>
 </section>
 
@@ -342,5 +357,28 @@ footer .disclaimer{margin:0; max-width:80ch;}
   </div>
 </footer>
 
+<script>
+(function(){
+  function track(name, params){
+    if (typeof gtag === 'function') { gtag('event', name, params || {}); }
+  }
+  document.addEventListener('click', function(e){
+    var a = e.target.closest('a');
+    if (!a) return;
+    var href = a.getAttribute('href') || '';
+    var label = (a.textContent || '').trim().slice(0, 80);
+    if (href.indexOf('gumroad.com') > -1) track('gumroad_click', {link_url: href, link_text: label});
+    else if (href.indexOf('amazon.') > -1) track('amazon_click', {link_url: href, link_text: label});
+    else if (href.indexOf('eloquens.com') > -1) track('eloquens_click', {link_url: href, link_text: label});
+    else if (href.indexOf('flipkart.com') > -1) track('flipkart_click', {link_url: href, link_text: label});
+    else if (href.indexOf('pothi.com') > -1) track('pothi_click', {link_url: href, link_text: label});
+    else if (href.indexOf('mailto:') === 0) track('contact_click', {link_url: href, link_text: label});
+    else if (href.indexOf('linkedin.com') > -1) track('linkedin_click', {link_url: href, link_text: label});
+    if (href.indexOf('igma') > -1 || href.indexOf('fcra') > -1 || href.indexOf('dpdp') > -1 || href.indexOf('DPDP') > -1) {
+      track('igma_click', {link_url: href, link_text: label});
+    }
+  });
+})();
+</script>
 </body>
 </html>

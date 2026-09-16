@@ -249,7 +249,7 @@ footer .disclaimer{margin:0; max-width:80ch;}
           <h4>IGMA™ FCRA Governance Maturity Framework</h4>
           <p>A practical guide for boards and senior leaders — building the systems that protect mission-driven organisations from regulatory, financial and reputational risk.</p>
         </div>
-        <div class="buy"><span class="price">$50</span><a href="https://sunilfca.gumroad.com/l/igma-fcra-governance-framework">View on Gumroad</a><a class="alt-link" href="https://www.amazon.com/dp/B0HFJZPGBB">Kindle $4.99 · Amazon</a><a class="alt-link" href="https://www.amazon.com/dp/B0HFCW236M">Paperback $9.99 · Amazon</a></div>
+        <div class="buy"><span class="price">$50</span><a href="https://sunilfca.gumroad.com/l/igma-fcra-governance-framework">View on Gumroad</a><a class="alt-link" href="https://www.amazon.com/dp/B0HFJZPGBB">Kindle $4.99 · Amazon</a><a class="alt-link" href="https://www.amazon.com/dp/B0HFCW236M">Paperback $9.99 · Amazon</a><a class="alt-link" href="https://www.eloquens.com/tool/LAARULL5/ca-sunil-kumar-fca/a-governance-maturity-framework-for-fcra-registered-organisations">Eloquens</a></div>
       </div>
 
       <div class="item">
@@ -264,19 +264,19 @@ footer .disclaimer{margin:0; max-width:80ch;}
       <div class="item">
         <div class="info">
           <h4>IGMA™ FCRA Governance Assessment Toolkit — Professional Edition</h4>
-          <p>A structured, evidence-based FCRA and institutional governance assessment, for organisations that need audit-ready documentation.</p>
-          <span class="pending">Format: automated governance diagnostic system.</span>
+          <p>The FCRA Governance Assurance Framework — an 8-pillar, 200-point automated Excel assessment, for organisations that need audit-ready documentation.</p>
+          <span class="pending">Format: 8-pillar, 200-point automated Excel assessment tool.</span>
         </div>
-        <div class="buy"><span class="price">$500</span><a href="https://sunilfca.gumroad.com/l/igma-fcra-toolkit">View on Gumroad</a></div>
+        <div class="buy"><span class="price">$500</span><a href="https://sunilfca.gumroad.com/l/igma-fcra-toolkit">View on Gumroad</a><a class="alt-link" href="https://www.eloquens.com/tool/kzNkSrXp/ca-sunil-kumar-fca/fcra-governance-assurance-framework-igma-professional-edition-8-pillar-200-point-automated-excel-assessment-tool">Eloquens</a></div>
       </div>
 
       <div class="item">
         <div class="info">
           <h4>IGMA™ Professional Edition — Institutional Governance Maturity Assessment Toolkit</h4>
           <p>A structured, evidence-based governance diagnostic system covering the full institution, not one compliance area.</p>
-          <span class="pending">Format: automated governance diagnostic system.</span>
+          <span class="pending">Format: automated Excel assessment tool.</span>
         </div>
-        <div class="buy"><span class="price">$500</span><a href="https://sunilfca.gumroad.com/l/igma-organisational-toolkit">View on Gumroad</a></div>
+        <div class="buy"><span class="price">$500</span><a href="https://sunilfca.gumroad.com/l/igma-organisational-toolkit">View on Gumroad</a><a class="alt-link" href="https://www.eloquens.com/tool/QXPPSKEE/ca-sunil-kumar-fca/igma-institutional-governance-maturity-assessment-toolkit-automated-excel-assessment-tool">Eloquens</a></div>
       </div>
 
     </div>
@@ -354,5 +354,28 @@ footer .disclaimer{margin:0; max-width:80ch;}
   </div>
 </footer>
 
+<script>
+(function(){
+  function track(name, params){
+    if (typeof gtag === 'function') { gtag('event', name, params || {}); }
+  }
+  document.addEventListener('click', function(e){
+    var a = e.target.closest('a');
+    if (!a) return;
+    var href = a.getAttribute('href') || '';
+    var label = (a.textContent || '').trim().slice(0, 80);
+    if (href.indexOf('gumroad.com') > -1) track('gumroad_click', {link_url: href, link_text: label});
+    else if (href.indexOf('amazon.') > -1) track('amazon_click', {link_url: href, link_text: label});
+    else if (href.indexOf('eloquens.com') > -1) track('eloquens_click', {link_url: href, link_text: label});
+    else if (href.indexOf('flipkart.com') > -1) track('flipkart_click', {link_url: href, link_text: label});
+    else if (href.indexOf('pothi.com') > -1) track('pothi_click', {link_url: href, link_text: label});
+    else if (href.indexOf('mailto:') === 0) track('contact_click', {link_url: href, link_text: label});
+    else if (href.indexOf('linkedin.com') > -1) track('linkedin_click', {link_url: href, link_text: label});
+    if (href.indexOf('igma') > -1 || href.indexOf('fcra') > -1 || href.indexOf('dpdp') > -1 || href.indexOf('DPDP') > -1) {
+      track('igma_click', {link_url: href, link_text: label});
+    }
+  });
+})();
+</script>
 </body>
 </html>

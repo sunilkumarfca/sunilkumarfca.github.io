@@ -291,5 +291,28 @@ footer .disclaimer{margin:0; max-width:80ch;}
   </div>
 </footer>
 
+<script>
+(function(){
+  function track(name, params){
+    if (typeof gtag === 'function') { gtag('event', name, params || {}); }
+  }
+  document.addEventListener('click', function(e){
+    var a = e.target.closest('a');
+    if (!a) return;
+    var href = a.getAttribute('href') || '';
+    var label = (a.textContent || '').trim().slice(0, 80);
+    if (href.indexOf('gumroad.com') > -1) track('gumroad_click', {link_url: href, link_text: label});
+    else if (href.indexOf('amazon.') > -1) track('amazon_click', {link_url: href, link_text: label});
+    else if (href.indexOf('eloquens.com') > -1) track('eloquens_click', {link_url: href, link_text: label});
+    else if (href.indexOf('flipkart.com') > -1) track('flipkart_click', {link_url: href, link_text: label});
+    else if (href.indexOf('pothi.com') > -1) track('pothi_click', {link_url: href, link_text: label});
+    else if (href.indexOf('mailto:') === 0) track('contact_click', {link_url: href, link_text: label});
+    else if (href.indexOf('linkedin.com') > -1) track('linkedin_click', {link_url: href, link_text: label});
+    if (href.indexOf('igma') > -1 || href.indexOf('fcra') > -1 || href.indexOf('dpdp') > -1 || href.indexOf('DPDP') > -1) {
+      track('igma_click', {link_url: href, link_text: label});
+    }
+  });
+})();
+</script>
 </body>
 </html>

@@ -259,7 +259,7 @@ footer .disclaimer{margin:0; max-width:80ch;}
           <h4>The Governance Health Check</h4>
           <p>What if your organisation's greatest risk isn't financial, but a governance weakness no one has identified?</p>
         </div>
-        <div class="buy"><span class="price">$50</span><a href="https://sunilfca.gumroad.com/l/governance-health-check-book">View on Gumroad</a><a class="alt-link" href="https://www.amazon.com/dp/B0HFCYQT95">Kindle $4.99 · Amazon</a><a class="alt-link" href="https://www.amazon.com/dp/B0HFG6TRBY">Paperback $9.99 · Amazon</a></div>
+        <div class="buy"><span class="price">$50</span><a href="https://sunilfca.gumroad.com/l/governance-health-check-book">View on Gumroad</a><a class="alt-link" href="https://www.amazon.com/dp/B0HFCYQT95">Kindle $4.99 · Amazon</a><a class="alt-link" href="https://www.amazon.com/dp/B0HFG6TRBY">Paperback $9.99 · Amazon</a><a class="alt-link" href="https://www.eloquens.com/tool/j9vpSzXB/ca-sunil-kumar-fca/the-governance-health-check">Eloquens</a></div>
       </div>
 
       <div class="item">
@@ -283,7 +283,7 @@ footer .disclaimer{margin:0; max-width:80ch;}
           <h4>Governance Lessons from the Field <span class="flag" style="border-color:var(--ink); color:var(--ink);">Start here — free</span></h4>
           <p>An executive governance briefing for CEOs, CFOs and Board Members.</p>
         </div>
-        <div class="buy"><span class="price free">Free</span><a href="https://sunilfca.gumroad.com/l/jptyr">Download</a><a class="alt-link" href="https://www.amazon.com/dp/B0H678BLHZ">Kindle $4.99 · Amazon</a><a class="alt-link" href="https://www.amazon.com/dp/B0HFVPV1RD">Paperback $9.99 · Amazon</a></div>
+        <div class="buy"><span class="price free">Free</span><a href="https://sunilfca.gumroad.com/l/jptyr">Download</a><a class="alt-link" href="https://www.amazon.com/dp/B0H678BLHZ">Kindle $4.99 · Amazon</a><a class="alt-link" href="https://www.amazon.com/dp/B0HFVPV1RD">Paperback $9.99 · Amazon</a><a class="alt-link" href="https://www.amazon.in/dp/B0HHFKD3ZB">Amazon.in edition</a><a class="alt-link" href="https://www.flipkart.com/governance-lessons-field-18-case-briefs-5-practical-frameworks-1-diagnostic-mission-driven-organisations/p/itmda0080754babe?pid=9798903306268">Flipkart</a><a class="alt-link" href="https://store.pothi.com/book/ca-sunil-kumar-fca-governance-lessons-field/">Pothi.com</a><a class="alt-link" href="https://www.eloquens.com/tool/GQbnC53K/ca-sunil-kumar-fca/governance-lessons-from-field">Eloquens</a></div>
       </div>
 
       <div class="item">
@@ -395,5 +395,28 @@ footer .disclaimer{margin:0; max-width:80ch;}
   </div>
 </footer>
 
+<script>
+(function(){
+  function track(name, params){
+    if (typeof gtag === 'function') { gtag('event', name, params || {}); }
+  }
+  document.addEventListener('click', function(e){
+    var a = e.target.closest('a');
+    if (!a) return;
+    var href = a.getAttribute('href') || '';
+    var label = (a.textContent || '').trim().slice(0, 80);
+    if (href.indexOf('gumroad.com') > -1) track('gumroad_click', {link_url: href, link_text: label});
+    else if (href.indexOf('amazon.') > -1) track('amazon_click', {link_url: href, link_text: label});
+    else if (href.indexOf('eloquens.com') > -1) track('eloquens_click', {link_url: href, link_text: label});
+    else if (href.indexOf('flipkart.com') > -1) track('flipkart_click', {link_url: href, link_text: label});
+    else if (href.indexOf('pothi.com') > -1) track('pothi_click', {link_url: href, link_text: label});
+    else if (href.indexOf('mailto:') === 0) track('contact_click', {link_url: href, link_text: label});
+    else if (href.indexOf('linkedin.com') > -1) track('linkedin_click', {link_url: href, link_text: label});
+    if (href.indexOf('igma') > -1 || href.indexOf('fcra') > -1 || href.indexOf('dpdp') > -1 || href.indexOf('DPDP') > -1) {
+      track('igma_click', {link_url: href, link_text: label});
+    }
+  });
+})();
+</script>
 </body>
 </html>
