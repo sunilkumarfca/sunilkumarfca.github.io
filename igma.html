@@ -197,6 +197,19 @@ footer .disclaimer{margin:0; max-width:80ch;}
 @media (prefers-reduced-motion: reduce){
   html{scroll-behavior:auto;}
 }
+/* Read-more expandable description */
+.item .more{margin-top:10px;}
+.item .more summary{
+  cursor:pointer; font-size:0.86rem; color:var(--brass-dark);
+  list-style:none; display:inline-block; border-bottom:1px solid var(--brass);
+}
+.item .more summary::-webkit-details-marker{display:none;}
+.item .more summary::after{content:" — read more"; }
+.item .more[open] summary::after{content:" — show less";}
+.item .more .more-body{
+  margin-top:12px; padding:14px 16px; background:var(--paper-raised);
+  border-left:2px solid var(--brass); font-size:0.92rem; color:var(--ink); line-height:1.6;
+}
 </style>
 </head>
 <body>
@@ -254,6 +267,10 @@ footer .disclaimer{margin:0; max-width:80ch;}
           <h4>IGMA™ DPDP Compliance Assessment Toolkit</h4>
           <p>Excel-based, automated. Take control of your India DPDP Act compliance assessment.</p>
           <span class="pending">Format: Excel workbook, automated scoring.</span>
+          <details class="more">
+            <summary>What's inside</summary>
+            <div class="more-body">India's DPDP Act shifts data-protection accountability onto the board and management, not just IT — and most NGOs and small organisations have no structured way to demonstrate compliance if asked. This toolkit walks you through the Act's actual requirements as an automated Excel assessment: answer the questions, and it scores your current compliance position and flags the specific gaps to close, rather than leaving you to interpret the law yourself. At $100, it's the lowest-cost way to get an evidence-based DPDP position on record before a regulator, funder or board asks for one.</div>
+          </details>
         </div>
         <div class="buy"><span class="price">$100</span><a href="https://sunilfca.gumroad.com/l/DPDP_Compliance">View on Gumroad</a></div>
       </div>
@@ -263,8 +280,12 @@ footer .disclaimer{margin:0; max-width:80ch;}
           <h4>IGMA™ FCRA Governance Assessment Toolkit — Professional Edition</h4>
           <p>The FCRA Governance Assurance Framework — an 8-pillar, 200-point automated Excel assessment, for organisations that need audit-ready documentation.</p>
           <span class="pending">Format: 8-pillar, 200-point automated Excel assessment tool.</span>
+          <details class="more">
+            <summary>What's inside</summary>
+            <div class="more-body">FCRA compliance failures are rarely about one missing document — they're usually about governance gaps that only surface under audit: unclear approval trails, informal board oversight, inconsistent utilisation records. This toolkit scores your organisation across 8 governance pillars and 200 specific points, producing the kind of structured, evidence-based documentation an FCRA audit or funder due-diligence review actually looks for. It's built for the moment before that scrutiny happens, not after. A free executive preview is available below if you want to see the structure before committing $500.</div>
+          </details>
         </div>
-        <div class="buy"><span class="price">$500</span><a href="https://sunilfca.gumroad.com/l/igma-fcra-toolkit">View on Gumroad</a><a class="alt-link" href="https://www.eloquens.com/tool/kzNkSrXp/ca-sunil-kumar-fca/fcra-governance-assurance-framework-igma-professional-edition-8-pillar-200-point-automated-excel-assessment-tool">Eloquens</a></div>
+        <div class="buy"><span class="price">$500</span><a href="https://sunilfca.gumroad.com/l/igma-fcra-toolkit">View on Gumroad</a><a class="alt-link" href="https://sunilfca.gumroad.com/l/ghbdhi">Free executive preview</a><a class="alt-link" href="https://www.eloquens.com/tool/kzNkSrXp/ca-sunil-kumar-fca/fcra-governance-assurance-framework-igma-professional-edition-8-pillar-200-point-automated-excel-assessment-tool">Eloquens</a></div>
       </div>
 
       <div class="item">
@@ -272,8 +293,12 @@ footer .disclaimer{margin:0; max-width:80ch;}
           <h4>IGMA™ Professional Edition — Institutional Governance Maturity Assessment Toolkit</h4>
           <p>A structured, evidence-based governance diagnostic system covering the full institution, not one compliance area.</p>
           <span class="pending">Format: automated Excel assessment tool.</span>
+          <details class="more">
+            <summary>What's inside</summary>
+            <div class="more-body">Most governance reviews stop at "do you have a policy?" This toolkit goes further: it scores your entire institution — board oversight, financial sustainability, donor confidence, operational resilience — against the five-level IGMA™ Governance Maturity Scale (L1 Ad hoc to L5 Optimised), and returns an executive dashboard your board can actually act on, with a prioritised list of what to fix first. It's the full-institution counterpart to the narrower FCRA and DPDP assessments, for boards who want one clear, evidence-based read on where they stand rather than a patchwork of compliance checks. A free sample is available below.</div>
+          </details>
         </div>
-        <div class="buy"><span class="price">$500</span><a href="https://sunilfca.gumroad.com/l/igma-organisational-toolkit">View on Gumroad</a><a class="alt-link" href="https://www.eloquens.com/tool/QXPPSKEE/ca-sunil-kumar-fca/igma-institutional-governance-maturity-assessment-toolkit-automated-excel-assessment-tool">Eloquens</a></div>
+        <div class="buy"><span class="price">$500</span><a href="https://sunilfca.gumroad.com/l/igma-organisational-toolkit">View on Gumroad</a><a class="alt-link" href="https://sunilfca.gumroad.com/l/ukyff">Free sample</a><a class="alt-link" href="https://www.eloquens.com/tool/QXPPSKEE/ca-sunil-kumar-fca/igma-institutional-governance-maturity-assessment-toolkit-automated-excel-assessment-tool">Eloquens</a></div>
       </div>
 
     </div>
@@ -287,10 +312,31 @@ footer .disclaimer{margin:0; max-width:80ch;}
     <div class="items">
       <div class="item">
         <div class="info">
-          <h4>The Governance Suite Bundle</h4>
-          <p>Not yet published — pricing and checkout link to follow once the bundle is live.</p>
+          <h4>The IGMA™ Governance Suite — Complete Governance Library</h4>
+          <p>The full IGMA™ library in one purchase.</p>
         </div>
-        <div class="buy"><a href="mailto:casunilkumarfca@gmail.com">Ask to be notified</a></div>
+        <div class="buy"><a href="https://sunilfca.gumroad.com/l/lhzxl">View on Gumroad</a></div>
+      </div>
+    </div>
+    <div class="quote-block" style="margin-top:32px;">
+      <p>"Very useful document and compilation of checklists for Governance. Must buy for each and every NGO Board members and key functionaries. Excellent work by the author Mr. Sunil Kumar."</p>
+      <cite>— Bhushan Mehta, verified Gumroad buyer, India</cite>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <h2 class="group-label" style="font-size:1.2rem;">Try before you buy</h2>
+    <p class="group-sub">Free samples of the two Professional Edition toolkits, so you can see the format before committing.</p>
+    <div class="items">
+      <div class="item">
+        <div class="info"><h4>IGMA™ Institutional Toolkit — Free Sample</h4><p>A sample of the automated Excel assessment tool, before you buy the full version.</p></div>
+        <div class="buy"><span class="price free">Free</span><a href="https://sunilfca.gumroad.com/l/ukyff">Download</a></div>
+      </div>
+      <div class="item">
+        <div class="info"><h4>IGMA™ FCRA Framework — Executive Preview</h4><p>A free preview of the FCRA Governance Assurance Framework, before you buy the full version.</p></div>
+        <div class="buy"><span class="price free">Free</span><a href="https://sunilfca.gumroad.com/l/ghbdhi">Download</a></div>
       </div>
     </div>
   </div>

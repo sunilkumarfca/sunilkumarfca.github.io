@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Read Online: The Resilient Institution — Sunil Kumar, FCA</title>
+<meta name="description" content="Read 'The Architecture of Resilience' — a free story from The Resilient Institution, online, in full. No download, no email required.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1C2530;
+  --paper:#FAF8F4;
+  --paper-raised:#F2EEE4;
+  --brass:#8A6A32;
+  --brass-dark:#6E5527;
+  --slate:#5B6472;
+  --line:#D9D3C7;
+  --max:1080px;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'IBM Plex Sans', Arial, sans-serif;
+  font-size:17px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{
+  font-family:'Newsreader', Georgia, serif;
+  font-weight:500;
+  line-height:1.15;
+  margin:0;
+  color:var(--ink);
+}
+a{color:var(--brass-dark);}
+a:focus-visible, button:focus-visible{outline:2px solid var(--brass-dark); outline-offset:3px;}
+.wrap{max-width:var(--max); margin:0 auto; padding:0 28px;}
+.hairline{border:none; border-top:1px solid var(--line); margin:0;}
+
+header.site{padding:22px 0; border-bottom:1px solid var(--line);}
+header.site .wrap{display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap;}
+.brand{font-family:'Newsreader', Georgia, serif; font-size:1.15rem; font-weight:600; text-decoration:none; color:var(--ink);}
+.brand span{color:var(--slate); font-family:'IBM Plex Sans', Arial, sans-serif; font-weight:400; font-size:0.85rem; display:block; margin-top:2px;}
+nav.site{display:flex; flex-wrap:wrap;}
+nav.site a{color:var(--ink); text-decoration:none; margin-left:26px; font-size:0.95rem; border-bottom:1px solid transparent; padding-bottom:2px;}
+nav.site a:first-child{margin-left:0;}
+nav.site a:hover, nav.site a.current{border-bottom-color:var(--brass);}
+
+.hero{padding:72px 0 56px;}
+.hero .eyebrow{color:var(--brass-dark); font-size:0.95rem; margin-bottom:14px; display:block;}
+.hero h1{font-size:2.6rem; max-width:15ch;}
+.hero p.lede{max-width:56ch; color:var(--slate); font-size:1.12rem; margin-top:22px;}
+.cta-row{margin-top:34px; display:flex; gap:16px; flex-wrap:wrap;}
+.btn{display:inline-block; padding:13px 26px; text-decoration:none; font-size:0.98rem; border:1px solid var(--ink); color:var(--ink); border-radius:2px;}
+.btn.primary{background:var(--ink); color:var(--paper);}
+.btn.primary:hover{background:#000;}
+.btn:not(.primary):hover{background:var(--paper-raised);}
+
+.trust-bar{margin-top:40px; display:flex; gap:28px; flex-wrap:wrap; color:var(--slate); font-size:0.9rem;}
+.trust-bar span{border-left:2px solid var(--brass); padding-left:10px;}
+
+.maturity-scale{margin-top:48px; display:flex; border:1px solid var(--line);}
+.maturity-scale .level{flex:1; padding:16px 14px; border-right:1px solid var(--line); text-align:left;}
+.maturity-scale .level:last-child{border-right:none; background:var(--ink);}
+.maturity-scale .level:last-child .code, .maturity-scale .level:last-child .label{color:var(--paper);}
+.maturity-scale .code{display:block; font-family:'Newsreader', Georgia, serif; font-size:1.2rem; color:var(--brass-dark);}
+.maturity-scale .label{display:block; font-size:0.82rem; color:var(--slate); margin-top:4px;}
+.scale-caption{color:var(--slate); font-size:0.85rem; margin-top:12px;}
+
+.stat-strip{margin-top:44px; padding-top:30px; border-top:1px solid var(--line); display:flex; gap:56px; flex-wrap:wrap;}
+.stat-strip .stat b{display:block; font-family:'Newsreader', Georgia, serif; font-size:2rem; color:var(--brass-dark); font-weight:500;}
+.stat-strip .stat span{color:var(--slate); font-size:0.92rem;}
+
+section{padding:60px 0;}
+section.alt{background:var(--paper-raised);}
+.section-head{display:flex; gap:40px; margin-bottom:40px; flex-wrap:wrap;}
+.section-head .num{font-family:'Newsreader', Georgia, serif; font-size:0.95rem; color:var(--brass-dark); min-width:34px; padding-top:6px;}
+.section-head .kicker{display:block; color:var(--brass-dark); font-size:0.95rem; margin-bottom:8px;}
+.section-head h2{font-size:1.85rem; max-width:22ch;}
+.section-head p{color:var(--slate); max-width:52ch; margin-top:10px;}
+
+.audience{display:grid; grid-template-columns:repeat(4, 1fr); gap:0; border-top:1px solid var(--line);}
+.audience .role{padding:26px 24px 26px 0; border-right:1px solid var(--line);}
+.audience .role:last-child{border-right:none;}
+.audience .role h3{font-size:1.1rem; margin-bottom:12px;}
+.audience .role ul{margin:0; padding:0; list-style:none; color:var(--slate); font-size:0.94rem;}
+.audience .role li{padding:5px 0;}
+
+.journey{display:grid; grid-template-columns:repeat(3,1fr); gap:36px;}
+.journey .step{border-top:2px solid var(--ink); padding-top:16px;}
+.journey .step .n{font-family:'Newsreader', Georgia, serif; color:var(--brass-dark); font-size:1.15rem;}
+.journey .step h3{margin-top:10px; font-size:1.2rem;}
+.journey .step p{color:var(--slate); margin-top:8px; font-size:0.96rem;}
+
+.quote-block{border-left:3px solid var(--brass); padding-left:28px; max-width:64ch;}
+.quote-block p{font-family:'Newsreader', Georgia, serif; font-size:1.35rem; font-style:italic; color:var(--ink); margin:0;}
+.quote-block cite{display:block; margin-top:14px; font-style:normal; color:var(--slate); font-size:0.92rem;}
+
+.faq{max-width:72ch;}
+.faq-item{padding:22px 0; border-top:1px solid var(--line);}
+.faq-item:last-child{border-bottom:1px solid var(--line);}
+.faq-item h3{font-size:1.08rem; margin-bottom:8px;}
+.faq-item p{color:var(--slate); margin:0; font-size:0.96rem;}
+
+.cta-banner{background:var(--ink); color:var(--paper); padding:52px 0; text-align:left;}
+.cta-banner h2{color:var(--paper); font-size:1.9rem; max-width:20ch;}
+.cta-banner p{color:#C9C2B4; margin-top:14px; max-width:52ch;}
+.cta-banner .cta-row .btn.primary{background:var(--paper); color:var(--ink); border-color:var(--paper);}
+.cta-banner .cta-row .btn:not(.primary){border-color:#8A8168; color:var(--paper);}
+.cta-banner .cta-row .btn:not(.primary):hover{background:#2A3547;}
+
+.page-head{padding:56px 0 40px; border-bottom:1px solid var(--line);}
+.page-head .eyebrow{color:var(--brass-dark); font-size:0.95rem; margin-bottom:12px; display:block;}
+.page-head h1{font-size:2.2rem; max-width:24ch;}
+.page-head p{color:var(--slate); max-width:60ch; margin-top:16px; font-size:1.05rem;}
+
+.group-label{font-family:'Newsreader', Georgia, serif; font-size:1.3rem; margin:0 0 6px;}
+.group-sub{color:var(--slate); font-size:0.93rem; margin-bottom:26px;}
+.item{display:flex; justify-content:space-between; align-items:flex-start; gap:24px; padding:24px 0; border-top:1px solid var(--line);}
+.items .item:last-child{border-bottom:1px solid var(--line);}
+.item .info h4{font-family:'Newsreader', Georgia, serif; font-weight:500; font-size:1.12rem; margin:0 0 6px;}
+.item .info .flag{display:inline-block; font-size:0.72rem; color:var(--brass-dark); border:1px solid var(--brass); padding:1px 8px; border-radius:12px; margin-left:10px; vertical-align:middle;}
+.item .info p{margin:0; color:var(--slate); font-size:0.94rem; max-width:60ch;}
+.item .buy{text-align:right; white-space:nowrap; padding-top:2px;}
+.item .buy .price{display:block; font-family:'Newsreader', Georgia, serif; font-size:1.15rem; color:var(--ink); margin-bottom:6px;}
+.item .buy .price.free{color:var(--brass-dark);}
+.item .buy a{font-size:0.9rem; text-decoration:none; border-bottom:1px solid var(--brass);}
+.item .buy a:hover{color:var(--brass-dark);}
+.placeholder-note{color:var(--slate); font-size:0.94rem; font-style:italic; padding:20px 0; border-top:1px solid var(--line);}
+
+.notes-list{margin:0; padding:0; list-style:none; color:var(--slate); font-size:0.94rem; max-width:64ch;}
+.notes-list li{position:relative; padding:8px 0 8px 20px;}
+.notes-list li::before{content:"—"; position:absolute; left:0; color:var(--brass-dark);}
+
+.post{padding:26px 0; border-top:1px solid var(--line);}
+.post:last-child{border-bottom:1px solid var(--line);}
+.post .date{color:var(--brass-dark); font-size:0.85rem;}
+.post h3{font-size:1.15rem; margin-top:6px;}
+.post p{color:var(--slate); font-size:0.95rem; margin-top:8px; max-width:64ch;}
+
+.about-grid{display:grid; grid-template-columns:1.3fr 1fr; gap:56px; align-items:start;}
+.about-grid p{color:var(--slate);}
+.contact-card{border:1px solid var(--line); padding:26px;}
+.contact-card h4{font-family:'Newsreader', Georgia, serif; font-size:1.05rem; margin-bottom:14px;}
+.contact-card a{display:block; color:var(--ink); text-decoration:none; font-size:0.95rem; padding:4px 0;}
+.contact-card a:hover{color:var(--brass-dark);}
+
+.timeline{border-left:2px solid var(--line); padding-left:28px; display:flex; flex-direction:column; gap:30px;}
+.timeline .entry .year{font-family:'Newsreader', Georgia, serif; color:var(--brass-dark); font-size:1.05rem;}
+.timeline .entry h3{font-size:1.05rem; margin-top:4px;}
+.timeline .entry p{color:var(--slate); font-size:0.94rem; margin-top:6px; max-width:60ch;}
+
+footer{border-top:1px solid var(--line); padding:44px 0 28px; color:var(--slate); font-size:0.88rem;}
+.footer-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:32px; padding-bottom:28px;}
+.footer-links h4{font-family:'Newsreader', Georgia, serif; color:var(--ink); font-size:1rem; margin-bottom:12px;}
+.footer-links a{display:block; color:var(--slate); text-decoration:none; padding:3px 0; font-size:0.9rem;}
+.footer-links a:hover{color:var(--brass-dark);}
+footer .copyright{border-top:1px solid var(--line); padding-top:20px; margin:0 0 8px;}
+footer .disclaimer{margin:0; max-width:80ch;}
+
+@media (max-width: 860px){
+  .audience{grid-template-columns:1fr 1fr;}
+  .audience .role{border-right:none; border-bottom:1px solid var(--line); padding:22px 0;}
+  .journey{grid-template-columns:1fr;}
+  .hero h1, .page-head h1, .cta-banner h2{font-size:2rem;}
+  .maturity-scale{flex-wrap:wrap;}
+  .maturity-scale .level{flex:1 1 40%; border-bottom:1px solid var(--line);}
+  .footer-grid{grid-template-columns:1fr;}
+  .about-grid{grid-template-columns:1fr;}
+}
+@media (max-width: 560px){
+  .audience{grid-template-columns:1fr;}
+  .item{flex-direction:column;}
+  .item .buy{text-align:left;}
+  .stat-strip{gap:32px;}
+  .trust-bar{gap:16px;}
+}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+}
+
+/* Read Online engine */
+.read-hero{padding:56px 0 32px; border-bottom:1px solid var(--line);}
+.read-hero .eyebrow{color:var(--brass-dark); font-size:0.9rem; display:block; margin-bottom:10px;}
+.read-hero h1{font-size:2.1rem; max-width:22ch;}
+.read-hero p{color:var(--slate); max-width:60ch; margin-top:14px; font-size:1.02rem;}
+.read-hero .cta-row{margin-top:24px;}
+.read-badge{display:inline-block; font-size:0.78rem; color:var(--brass-dark); border:1px solid var(--brass); padding:3px 10px; border-radius:12px; margin-bottom:14px;}
+
+.progress-rail{position:sticky; top:0; height:3px; background:var(--line); z-index:50;}
+.progress-fill{height:100%; width:0%; background:var(--brass-dark); transition:width 0.1s linear;}
+
+.read-layout{display:grid; grid-template-columns:220px 1fr; gap:48px; max-width:var(--max); margin:0 auto; padding:44px 28px 80px;}
+.chapter-nav{position:sticky; top:24px; align-self:start; border-right:1px solid var(--line); padding-right:24px;}
+.chapter-nav h4{font-family:'Newsreader', Georgia, serif; font-size:0.95rem; color:var(--slate); margin-bottom:14px; font-weight:500;}
+.chapter-nav a{display:block; color:var(--slate); text-decoration:none; font-size:0.92rem; padding:7px 0; border-left:2px solid transparent; padding-left:12px; margin-left:-13px;}
+.chapter-nav a:hover{color:var(--ink);}
+.chapter-nav a.active{color:var(--ink); border-left-color:var(--brass); font-weight:500;}
+
+.read-content{max-width:68ch;}
+.read-content .chapter{padding:36px 0; border-top:1px solid var(--line); scroll-margin-top:24px;}
+.read-content .chapter:first-child{border-top:none; padding-top:0;}
+.read-content .chapter h2{font-size:1.6rem; margin-bottom:20px;}
+.read-content .chapter p{font-family:'Newsreader', Georgia, serif; font-size:1.12rem; line-height:1.75; color:var(--ink); margin:0 0 20px;}
+.read-content .placeholder-block{background:var(--paper-raised); border:1px dashed var(--line); padding:20px 24px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:0.92rem; color:var(--slate); font-style:italic;}
+
+.read-end{margin-top:20px; padding:36px 0 0; border-top:2px solid var(--ink);}
+.read-end p{color:var(--slate); max-width:56ch; margin-bottom:20px;}
+.read-end .cta-row{display:flex; gap:14px; flex-wrap:wrap;}
+
+.related-strip{margin-top:28px; padding:20px; background:var(--paper-raised); border-radius:2px;}
+.related-strip a{color:var(--brass-dark); text-decoration:none; border-bottom:1px solid var(--brass);}
+
+@media (max-width: 860px){
+  .read-layout{grid-template-columns:1fr; padding:32px 20px 60px;}
+  .chapter-nav{position:static; border-right:none; border-bottom:1px solid var(--line); padding-right:0; padding-bottom:20px; margin-bottom:8px;}
+  .chapter-nav .chapter-list{display:flex; flex-wrap:wrap; gap:4px 16px;}
+  .chapter-nav a{padding-left:0; margin-left:0; border-left:none; border-bottom:2px solid transparent;}
+  .chapter-nav a.active{border-left:none; border-bottom-color:var(--brass);}
+}
+
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="index.html">Sunil Kumar, FCA<span>FCA · Governance Advisory</span></a>
+    <nav class="site">
+      <a href="index.html">Home</a>
+      <a href="library.html" class="current">Books</a>
+      <a href="igma.html">IGMA™ Toolkits</a>
+      <a href="publications.html">Publications</a>
+      <a href="notes.html">Updates</a>
+      <a href="about.html">About</a>
+    </nav>
+  </div>
+</header>
+
+<div class="progress-rail"><div class="progress-fill"></div></div>
+
+<section class="read-hero">
+  <div class="wrap">
+    <span class="read-badge">Read online — free</span>
+    <span class="eyebrow">The Resilient Institution · Read Online</span>
+    <h1>The Architecture of Resilience</h1>
+    <p>A story about leadership, finance, governance and the institution we leave behind — free to read online, in full, from <em>The Resilient Institution</em>. No download, no email required.</p>
+    <div class="cta-row">
+      <a class="btn primary" href="https://sunilfca.gumroad.com/l/theresilientinstitution">Buy the complete book — $29</a>
+      <a class="btn" href="https://www.amazon.com/dp/B0HJWVH5DK">Kindle on Amazon — $12.99</a>
+    </div>
+  </div>
+</section>
+
+<div class="read-layout">
+  <nav class="chapter-nav">
+    <h4>On this page</h4>
+    <div class="chapter-list">
+      <a href="#ch1">The Architecture of Resilience</a>
+    </div>
+  </nav>
+
+  <article class="read-content">
+
+    <section class="chapter" id="ch1">
+      <h2>The Architecture of Resilience</h2>
+
+      <p>The first sign that something was wrong was not a financial loss. It was a question. At the end of an otherwise routine Board meeting, one of the directors asked the CEO, "If our largest donor decided tomorrow that this was no longer a priority, how long could we continue without changing what we do?" There was a brief silence. The organisation had been operating for more than a decade, its programmes were growing, its reputation was strong and its financial statements showed no obvious cause for concern. Yet nobody could answer the question with confidence. The CEO turned to the CFO. "Can we work that out?" The CFO nodded. "Yes. But I think we should ask a few other questions at the same time."</p>
+
+      <p>The exercise began as a financial analysis and quickly became something else. They looked at cash, reserves, restricted and unrestricted funding, fixed commitments and the timing of grants. Then they looked beyond the numbers. How dependent was the organisation on a handful of donors? How many processes depended on one experienced employee knowing what to do? Which systems were reliable because they were well designed, and which worked because certain people were exceptionally conscientious? Which risks were discussed by management but never reached the Board? Which decisions were being made because they were strategically right, and which because the organisation had become accustomed to making them? None of the answers suggested that the organisation was in trouble. That was what made the exercise useful.</p>
+
+      <p>For years, success had been measured largely through growth. More programmes meant more impact. More funding meant more opportunity. More people meant greater reach. These were reasonable measures, but they told only one side of the story. Growth also created commitments, dependencies and complexity. A new programme required systems, people, procurement, reporting and management attention. A new donor brought resources but sometimes brought restrictions. A successful organisation could therefore become more vulnerable while appearing more successful. The CFO began using a phrase that initially irritated some colleagues: "We should understand the cost of becoming more successful."</p>
+
+      <p>The phrase was not meant to discourage ambition. It was meant to make ambition more complete. Financial leadership, the CFO explained, was not simply about recording what the organisation had done or checking whether expenditure was within budget. Much of the important work happened before a number appeared in the accounts. It was in asking whether a commitment was sustainable, whether a grant strengthened or weakened the institution, whether a new initiative created capability or merely created activity, and whether today's decision would leave tomorrow's leadership with enough choices. Finance was beginning to look less like a control function and more like a way of thinking about the future.</p>
+
+      <p>The Board gradually changed its own behaviour. Instead of asking only whether targets had been achieved, directors began asking what assumptions sat behind those targets. They wanted to know how much funding was concentrated in a few sources, how much expenditure could actually be changed, what would happen if an important person left, and whether the organisation could respond to a major funding delay without making decisions in panic. They discovered that governance was not primarily about having policies, committees and approvals. Those things mattered, but their real value depended on whether they helped people make better decisions. A Board could receive hundreds of pages and still fail to see what mattered.</p>
+
+      <p>This led to some uncomfortable discoveries. Several policies were perfectly adequate on paper but depended heavily on individual knowledge. A process that appeared robust during an internal review became less convincing when someone asked whether the organisation could demonstrate, quickly and consistently, why each important decision had been made. A compliance requirement that had once been treated as an administrative responsibility was reconsidered as a question of institutional discipline. The organisation began to understand that compliance was not simply about avoiding a breach. It was about creating habits, evidence and accountability strong enough to withstand scrutiny when circumstances were difficult.</p>
+
+      <p>Then the circumstances did become difficult. A major donor announced a change in strategy and the expected funding did not materialise. There was disappointment, but not panic. The organisation had already considered several scenarios. It knew which commitments were difficult to change, which programmes could be redesigned, how long its reserves could support operations and which decisions required Board involvement. The numbers did not make the problem disappear. They gave the organisation time to think. That distinction mattered. Reserves were no longer viewed simply as money that had not yet been spent. They were understood as strategic time—the time required to respond without sacrificing the organisation's purpose.</p>
+
+      <p>The experience changed the way the leadership team thought about resilience. They had once imagined resilience as the ability to survive a crisis. Now they saw it differently. A resilient organisation was not one that avoided disruption; disruption was inevitable. Nor was it one that accumulated the largest possible reserve or produced the most sophisticated risk register. Resilience was the ability to absorb change, understand its implications and continue making sensible decisions without losing direction. Finance contributed to that ability, but so did governance, leadership, people, systems, compliance, organisational culture and the quality of information available when decisions had to be made.</p>
+
+      <p>One of the most revealing tests came unexpectedly when a long-serving member of the finance team left. Her departure exposed how much institutional knowledge had been carried in people's heads. The organisation had procedures, but procedures were not always the same as institutional capability. Some processes had to be redesigned. Some responsibilities had to be clarified. Some information had to become accessible to more than one person. Technology was introduced where automation genuinely reduced dependence on manual intervention, but technology was not treated as the answer to everything. The objective was simpler: make the organisation less dependent on memory, heroics and individual goodwill.</p>
+
+      <p>Over time, management reporting changed as well. Reports became shorter, but conversations became better. The Board did not need every transaction or every operational detail. It needed to understand what had changed, why it mattered and where a decision was required. Financial information was considered alongside programme performance, funding exposure, compliance, people and operational risks. The organisation slowly stopped treating these as separate subjects. A financial problem could originate in programme design. A governance problem could emerge from poor information. A compliance weakness could expose a financial or reputational risk. A people dependency could become a systems risk. The institution began to see itself as a connected system rather than a collection of departments.</p>
+
+      <p>Perhaps the biggest change was less visible. People stopped asking whether something was technically permitted and started asking whether it was institutionally wise. They stopped asking only whether there was enough money and started asking what the money allowed them to do. They stopped asking only whether a policy existed and started asking whether the behaviour behind the policy was reliable. They stopped asking whether a risk had been recorded and started asking whether anyone was actually prepared to respond to it. These were small changes in language, but they changed the quality of decisions.</p>
+
+      <p>Years later, the organisation faced another difficult funding decision. The circumstances were different, but the response was calmer. The leadership team knew what information it needed. The Board understood the choices. The finance function could model the consequences. The organisation had stronger systems and less dependence on individual memory. Most importantly, nobody believed that resilience meant knowing exactly what the future would bring. They had learned that the future could not be predicted with sufficient certainty. What could be built was the capacity to respond when it arrived.</p>
+
+      <p>Looking back, the organisation realised that none of the individual improvements had been revolutionary. Better financial planning. More thoughtful reserves. Clearer governance. Stronger compliance. Better systems. More useful reporting. Greater clarity about responsibilities. Better questions from the Board. None of these, by itself, created a resilient institution. Their value came from how they reinforced one another. The institution had gradually developed an architecture in which weaknesses were more likely to be seen early, decisions were more likely to be informed by evidence, and leadership had more room to respond when circumstances changed.</p>
+
+      <p>That may be one of the less obvious responsibilities of institutional leadership. It is easy to focus on what an organisation produces today: programmes delivered, people reached, money raised, targets achieved. Those things matter. But institutions also leave something less visible behind—the quality of the systems, decisions, relationships and capabilities that determine what happens when the environment changes. An organisation can be successful because of the extraordinary effort of the people currently leading it. A stronger institution is one in which that success becomes less dependent on extraordinary effort.</p>
+
+      <p>The question that had started the journey therefore acquired a different meaning. "How long could we continue if our largest donor disappeared?" was never really only a question about money. It was a question about the institution's ability to adapt. Could it see reality early enough? Could its leaders make difficult decisions? Could its Board ask the right questions? Could its systems produce trustworthy information? Could its people continue to function when circumstances changed? Could it protect its purpose while changing the way it worked? There was no single measure that could answer all of these questions. But asking them changed the institution. Perhaps that is where resilience begins—not with certainty about tomorrow, but with the willingness to understand honestly how prepared we are for it.</p>
+
+    </section>
+
+    <div class="read-end">
+      <p>This story is one part of <em>The Resilient Institution</em>. If it resonated, the complete book goes further — or explore the IGMA™ toolkits that turn these questions into a scored, board-ready assessment for your own organisation.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="https://sunilfca.gumroad.com/l/theresilientinstitution">Buy the Complete Book</a>
+        <a class="btn" href="igma.html">Explore IGMA™ Toolkits</a>
+      </div>
+      <div class="related-strip">
+        Also free to read online: <a href="read-the-strategic-cfo.html">The Strategic CFO</a> and <a href="read-the-wealthy-life.html">The Wealthy Life</a>.
+      </div>
+    </div>
+
+  </article>
+</div>
+
+<footer>
+  <div class="wrap footer-grid">
+    <div class="footer-about">
+      <p><strong>Sunil Kumar, FCA</strong></p>
+      <p>Chartered Accountant and governance advisor to NGOs, Trusts, Foundations and mission-driven organisations. Author of IGMA™.</p>
+    </div>
+    <div class="footer-links">
+      <h4>Explore</h4>
+      <a href="index.html">Home</a>
+      <a href="library.html">Books</a>
+      <a href="igma.html">IGMA™ Toolkits</a>
+      <a href="publications.html">Publications</a>
+      <a href="notes.html">Updates</a>
+      <a href="about.html">About</a>
+    </div>
+    <div class="footer-links">
+      <h4>Elsewhere</h4>
+      <a href="https://sunilfca.gumroad.com/">Gumroad store</a>
+      <a href="https://www.eloquens.com/channel/ca-sunil-kumar-fca">Eloquens</a>
+      <a href="https://www.amazon.com/stores/CA-Sunil-Kumar-FCA/author/B0H68584LZ">Amazon Author page</a>
+      <a href="https://store.pothi.com/book/ca-sunil-kumar-fca-governance-lessons-field/">pothi.com</a>
+      <a href="https://www.linkedin.com/in/sunilkumarfca/">LinkedIn</a>
+      <a href="https://www.youtube.com/@casunilkumarfca">YouTube</a>
+      <a href="https://sunilkumarfca.substack.com/">Substack</a>
+      <a href="https://medium.com/@sunilkumar.fca">Medium</a>
+    </div>
+  </div>
+  <div class="wrap">
+    <p class="copyright">© 2026 Sunil Kumar, FCA. All rights reserved. <a href="mailto:casunilkumarfca@gmail.com">casunilkumarfca@gmail.com</a></p>
+    <p class="disclaimer">All publications are educational and informational resources intended to support governance, finance, compliance and institutional strengthening. They are not a substitute for legal, tax, audit, accounting or professional advice.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var BOOK = "the-resilient-institution";
+  function track(name, params){
+    if (typeof gtag === 'function') { gtag('event', name, Object.assign({book: BOOK}, params || {})); }
+  }
+  var fired = {start:false, p25:false, p50:false, p75:false, complete:false};
+  track('book_read_start', {});
+
+  var article = document.querySelector('.read-content');
+  var fill = document.querySelector('.progress-fill');
+  var chapters = Array.prototype.slice.call(document.querySelectorAll('.chapter'));
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('.chapter-nav a'));
+
+  function onScroll(){
+    if (!article) return;
+    var rect = article.getBoundingClientRect();
+    var total = article.offsetHeight - window.innerHeight;
+    var scrolled = Math.min(Math.max(-rect.top, 0), total);
+    var pct = total > 0 ? Math.round((scrolled / total) * 100) : 0;
+    if (fill) fill.style.width = pct + '%';
+
+    if (pct >= 25 && !fired.p25) { fired.p25 = true; track('book_25_percent', {}); }
+    if (pct >= 50 && !fired.p50) { fired.p50 = true; track('book_50_percent', {}); }
+    if (pct >= 75 && !fired.p75) { fired.p75 = true; track('book_75_percent', {}); }
+    if (pct >= 96 && !fired.complete) { fired.complete = true; track('book_read_complete', {}); }
+
+    // active chapter highlight
+    var current = null;
+    chapters.forEach(function(ch){
+      var r = ch.getBoundingClientRect();
+      if (r.top <= 120) current = ch.id;
+    });
+    navLinks.forEach(function(a){
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  }
+
+  chapters.forEach(function(ch){
+    ch.addEventListener('click', function(){}); // no-op, placeholder for future per-chapter clicks
+  });
+
+  var seen = {};
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting && !seen[entry.target.id]) {
+          seen[entry.target.id] = true;
+          track('book_chapter_view', {chapter: entry.target.id});
+        }
+      });
+    }, {threshold: 0.4});
+    chapters.forEach(function(ch){ io.observe(ch); });
+  }
+
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+})();
+</script>
+
+</body>
+</html>
