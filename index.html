@@ -175,7 +175,8 @@ section.alt{background:var(--paper-raised);}
 .timeline .entry p{color:var(--slate); font-size:0.94rem; margin-top:6px; max-width:60ch;}
 
 footer{border-top:1px solid var(--line); padding:44px 0 28px; color:var(--slate); font-size:0.88rem;}
-.footer-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:32px; padding-bottom:28px;}
+.footer-grid{display:grid; grid-template-columns:1.3fr 1fr 1fr 1fr 1fr; gap:28px; padding-bottom:28px;}
+.footer-links a + h4{margin-top:20px;}
 .footer-links h4{font-family:'Newsreader', Georgia, serif; color:var(--ink); font-size:1rem; margin-bottom:12px;}
 .footer-links a{display:block; color:var(--slate); text-decoration:none; padding:3px 0; font-size:0.9rem;}
 .footer-links a:hover{color:var(--brass-dark);}
@@ -189,7 +190,8 @@ footer .disclaimer{margin:0; max-width:80ch;}
   .hero h1, .page-head h1, .cta-banner h2{font-size:2rem;}
   .maturity-scale{flex-wrap:wrap;}
   .maturity-scale .level{flex:1 1 40%; border-bottom:1px solid var(--line);}
-  .footer-grid{grid-template-columns:1fr;}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+  .footer-about{grid-column:1 / -1;}
   .about-grid{grid-template-columns:1fr;}
 }
 @media (max-width: 560px){
@@ -249,8 +251,8 @@ footer .disclaimer{margin:0; max-width:80ch;}
     <h1>Governance frameworks that move NGOs beyond compliance.</h1>
     <p class="lede">Practical frameworks, books and assessment tools to help mission-driven organisations build stronger governance, accountability, sustainability and institutional resilience — built around IGMA™ and The Resilient Institution.</p>
     <div class="cta-row">
-      <a class="btn primary" href="igma.html">Explore IGMA™ Toolkits</a>
-      <a class="btn" href="library.html">Start with the Books</a>
+      <a class="btn primary" href="igma.html#assessments">Assess your NGO’s governance</a>
+      <a class="btn" href="library.html">Browse the books</a>
     </div>
     <div class="trust-bar">
       <span>Fellow Chartered Accountant (FCA), ICAI</span>
@@ -285,7 +287,7 @@ footer .disclaimer{margin:0; max-width:80ch;}
           <li style="padding:5px 0;">Scored, evidence-based, board-ready</li>
         </ul>
         <div class="cta-row" style="margin-top:18px;">
-          <a class="btn primary" href="igma.html">Explore the assessment</a>
+          <a class="btn primary" href="igma.html#assessments">See what the assessment measures</a>
         </div>
       </div>
     </div>
@@ -446,7 +448,7 @@ footer .disclaimer{margin:0; max-width:80ch;}
   <div class="wrap footer-grid">
     <div class="footer-about">
       <p><strong>Sunil Kumar, FCA</strong></p>
-      <p>Chartered Accountant, social-sector CFO and author of governance books and toolkits for NGOs, Trusts, Foundations and mission-driven organisations. Author of IGMA™.</p>
+      <p>Chartered Accountant, social-sector CFO and author of governance books and toolkits for NGOs, Trusts, Foundations and mission-driven organisations. Creator of IGMA™.</p>
     </div>
     <div class="footer-links">
       <h4>Explore</h4>
@@ -459,18 +461,26 @@ footer .disclaimer{margin:0; max-width:80ch;}
       <a href="endorsements.html">Endorsements</a>
     </div>
     <div class="footer-links">
-      <h4>Elsewhere</h4>
-      <a href="https://sunilfca.gumroad.com/">Gumroad store</a>
-      <a href="https://www.eloquens.com/channel/ca-sunil-kumar-fca">Eloquens</a>
-      <a href="https://www.amazon.com/stores/author/B0H68584LZ/allbooks">Amazon Author page</a>
-      <a href="https://store.pothi.com/book/ca-sunil-kumar-fca-governance-lessons-field/">pothi.com</a>
-      <a href="https://play.google.com/store/books/details?id=A17yEQAAQBAJ">Google Play Books</a>
+      <h4>Read &amp; Follow</h4>
       <a href="https://www.linkedin.com/in/sunilkumarfca/">LinkedIn</a>
-      <a href="https://www.linkedin.com/groups/40323012/">LinkedIn Group: The Resilient Institution</a>
-      <a href="https://www.linkedin.com/newsletters/the-resilient-institution-7477401652132491265/">LinkedIn Newsletter: The Resilient Institution</a>
-      <a href="https://www.youtube.com/@casunilkumarfca">YouTube</a>
+      <a href="https://www.linkedin.com/groups/40323012/">LinkedIn Group</a>
+      <a href="https://www.linkedin.com/newsletters/the-resilient-institution-7477401652132491265/">LinkedIn Newsletter</a>
       <a href="https://sunilkumarfca.substack.com/">Substack</a>
       <a href="https://medium.com/@sunilkumar.fca">Medium</a>
+      <h4>Watch</h4>
+      <a href="https://www.youtube.com/@casunilkumarfca">YouTube</a>
+    </div>
+    <div class="footer-links">
+      <h4>Buy Books</h4>
+      <a href="https://www.amazon.com/stores/author/B0H68584LZ/allbooks">Amazon</a>
+      <a href="https://play.google.com/store/books/details?id=A17yEQAAQBAJ">Google Play Books</a>
+      <a href="https://store.pothi.com/book/ca-sunil-kumar-fca-governance-lessons-field/">pothi.com</a>
+      <a href="https://sunilfca.gumroad.com/">Gumroad</a>
+    </div>
+    <div class="footer-links">
+      <h4>Buy Toolkits</h4>
+      <a href="https://sunilfca.gumroad.com/">Gumroad</a>
+      <a href="https://www.eloquens.com/channel/ca-sunil-kumar-fca">Eloquens</a>
     </div>
   </div>
   <div class="wrap">
