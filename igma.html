@@ -219,7 +219,311 @@ footer .disclaimer{margin:0; max-width:80ch;}
   margin-top:12px; padding:14px 16px; background:var(--paper-raised);
   border-left:2px solid var(--brass); font-size:0.92rem; color:var(--ink); line-height:1.6;
 }
+/* IGMA FAQ */
+.faq-group{font-family:'Newsreader', Georgia, serif; font-weight:500; font-size:1.12rem; color:var(--brass-dark); margin:34px 0 8px;}
+.faq-list{border-top:1px solid var(--line); max-width:78ch;}
+.faq-q{border-bottom:1px solid var(--line);}
+.faq-q summary{cursor:pointer; list-style:none; padding:15px 32px 15px 0; position:relative; font-size:1rem; color:var(--ink);}
+.faq-q summary::-webkit-details-marker{display:none;}
+.faq-q summary::after{content:"+"; position:absolute; right:4px; top:12px; font-size:1.25rem; color:var(--brass-dark);}
+.faq-q[open] summary::after{content:"\2212";}
+.faq-q summary:hover{color:var(--brass-dark);}
+.faq-a{padding:0 0 18px; color:var(--slate); font-size:0.95rem;}
+.faq-a p{margin:0 0 10px;}
+.faq-a ul{margin:0 0 10px; padding-left:20px;}
+.faq-a li{padding:2px 0;}
+.faq-table{border-collapse:collapse; width:100%; margin:4px 0 12px; font-size:0.88rem; display:block; overflow-x:auto;}
+.faq-table th, .faq-table td{text-align:left; padding:7px 10px; border-bottom:1px solid var(--line); vertical-align:top;}
+.faq-table th{color:var(--ink); font-weight:600; background:var(--paper-raised);}
 </style>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "What is the IGMA™ Institutional Governance Maturity Assessment Toolkit?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "An automated Excel workbook that measures how mature your organisation's governance is, on a 1.0–5.0 scale. You answer evidence-based Yes/No criteria. The workbook scores them and produces a dashboard, a Board-ready summary, gap recommendations and an action plan."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Who is it for?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "NGOs, foundations, trusts and other mission-driven organisations. It is built for Boards, CEOs, CFOs, governance and compliance leads, and internal audit — anyone who needs to show funders, regulators or their own Board where governance stands."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Who created it?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "CA Sunil Kumar, FCA — a Chartered Accountant and social-sector CFO with 30+ years in NGO and development-sector finance, audit and governance. He has led finance and grants for large donor-funded programmes, including a USD 60 million donor-funded portfolio, and supported the closure of a USD 60 million donor-funded programme with zero disallowance. More about the author."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How is this different from a free governance checklist?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "A checklist tells you what to have. IGMA™ tells you how mature each practice is, weights the results by pillar, and lists your specific gaps from your own \"No\" answers. It then turns those gaps into a 30-60-90 day plan and a Board pack. Scoring is deliberately conservative: anything below 4.0 is flagged as meaningful exposure, not \"room to improve\"."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Is it only for Indian organisations?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "No. 58 of the 60 questions apply to any mission-driven organisation. Two refer to Indian law. Outside India: Answer Q28 (Legal, including FCRA) against your country's rules on foreign funding and charities. Answer Q47 (DPDP / Data Privacy) against your local data-protection law, such as GDPR. The criteria for these two questions are worded for India, so a local expert should review your answers."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What does the assessment cover?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "60 questions across 8 governance pillars, assessed through 646 Yes/No criteria: Pillar | Questions | Board Governance & Strategic Oversight | 8 | Risk, Resilience & Continuity | 8 | Financial Stewardship & Sustainability | 10 | Compliance, Ethics & Legal Protection | 8 | Leadership, Talent & Succession | 6 | Operational Excellence & Delivery | 6 | Digital Governance & Data Protection | 6 | Stakeholder Trust & Institutional Credibility | 8 | Topics include Board independence; enterprise risk and donor dependency; reserves and internal financial controls; conflict of interest, whistleblowing and safeguarding; CEO succession; cybersecurity; and donor confidence."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Are all pillars weighted equally?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "No. Financial Stewardship carries the highest weight. Leadership, Operations and Digital Governance carry the least. The overall score is a weighted average of the pillars you have answered."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What do I actually receive?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "One Excel workbook (.xlsx) with 14 tabs: Guidance: Cover & README, About the Author, Instructions, Question Index Input: Criteria Input (646 criteria) and Scores View Results: Pillar Summary, Results Dashboard, Board Summary (with chart), Print View Follow-up: Assurance Report, Action Tracker, Year-on-Year Trend, Audit Log"
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Do I need any other software or add-ins?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "No. Microsoft Excel 2016 or later, or a fully compatible spreadsheet application, is all you need. There are no macros to enable."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How do I complete the assessment?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "There are two routes: Route | What you do | Responses | What it measures | Best for | Detailed (recommended) | Answer Yes/No criteria per question | 646 | Demonstrated maturity — what the evidence supports | Board, funder or external audit use | Concise | Enter one 1–5 score per question | 60 | Perceived maturity — what leadership believes | A quick scan, workshop or Board discussion | For each question, the workbook scores whichever route you actually filled in and records which one it used."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Why might the two routes give different scores?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Leadership may rate a practice at Level 4 because a process exists, while the criteria show it is not applied consistently. IGMA™ calls this difference the Governance Perception Gap™. The gap is a finding in itself, so investigate it rather than forcing the scores to agree."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How long does it take?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "As a guide: self-assessment 2–3 hours; facilitated workshop 4–6 hours; independent review 1–2 days. You can also complete it in stages."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Who should take part?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "One governance, compliance or finance lead usually prepares it. For a full assessment, we recommend involving the Board Chair, CEO, CFO, COO and the risk, compliance and HR leads. Disagreements between them are useful. If the CEO says Level 4 and the CFO says Level 2, you have found a governance gap that a clean audit will not show."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Do I have to answer every question?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "No. Unanswered questions are excluded from scoring, not penalised. You can produce results from a partial assessment and complete the rest later."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What does \"Yes\" mean for a criterion?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes means the statement is clearly and consistently true right now, with evidence. Partly true or uncertain counts as No. Each criterion has a Notes/Evidence column to record what supports the answer."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What counts as good evidence?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Formal documents are strongest: approved policies, Board minutes, registers and audit reports. Operational reports are moderate evidence. Verbal confirmation alone is weak. Where evidence is weak or conflicting, choose the lower level you can support."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Can I break the formulas by accident?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "No. Only the yellow cells are for input; every other cell is locked. No password is needed for normal use. For structural changes, such as relabelling a pillar or adding rows, contact support for unlock guidance."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Will it catch inconsistent answers?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes. A built-in consistency check flags questions where a basic weakness is confirmed alongside a higher-maturity practice, so you can review before finalising."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Can I override a score?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes. Enter a 1–5 score in Scores View to apply professional judgment where context changes the picture. The override then takes priority in all calculations."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How is maturity scored?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Every question starts at 1.0 and gains up to 1 point for each of Levels 2–5, in proportion to how many of that level's criteria you meet. Scores map to five maturity levels: Score | Maturity level | Risk rating | 4.50–5.00 | Level 5 – Optimised | Very low | 3.50–4.49 | Level 4 – Managed | Low | 2.50–3.49 | Level 3 – Defined | Moderate | 1.50–2.49 | Level 2 – Reactive | High | 1.00–1.49 | Level 1 – Vulnerable | Critical |"
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What reports does it produce?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "All outputs update automatically from your answers: Results Dashboard — overall score, maturity level, pillar breakdown and 12 key governance risk indicators rated Green/Amber/Red Board Summary — an executive one-pager with a pillar chart, 30-60-90 day plan and narrative Print View — a print-ready Board and CEO pack, from executive summary down to question-level actions Assurance Report — a question-level tracker for CFO, management and internal audit follow-up"
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Are the recommendations generic?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "No. Recommendations are built from your own \"No\" answers above your current level. Each gap also shows the governance risk if it persists."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How do I turn results into action?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Gaps are phased into a roadmap: Score | Timeframe | 1–2 | Within 0–30 days | Around 2–3 | Within 31–90 days | Around 3–4 | Over 3–12 months | The Action Tracker assigns an owner, target date and status to every question."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Can I compare against other organisations?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Optionally. The main benchmark is your own trend over time, measured against a fixed floor of 4.0. If you have real peer data, you can enter it per question and the gap is calculated automatically. There is no live external data feed."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Can I track progress year on year?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes. The Year-on-Year Trend tab logs each assessment's scores. The Audit Log records who prepared, reviewed and approved it."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How often should we reassess?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "We recommend reassessing every 12 months for the leadership team and annually for the Board, with independent validation every 2–3 years."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How is it delivered?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Digitally, by download or email link straight after purchase. Nothing physical is shipped. Please keep your own backup copy."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What does the licence allow?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "A single-organisation, perpetual licence. Your organisation can install and use the workbook on any number of its own devices for internal governance use, with no expiry."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Can I share it with another organisation, or use it for clients?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "No. Redistribution, resale, sub-licensing or sharing outside the purchasing organisation requires prior written consent from the publisher. Consultants who want to use it with clients should email casunilkumarfca@gmail.com about a separate consultant licence before buying."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Do I own the methodology?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "No. The licence covers use of the workbook. Copyright in the methodology, criteria and workbook design stays with the publisher."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Is it a one-time payment or a subscription?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "A one-time purchase with a perpetual licence, with no renewal fees."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Will I get future updates?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Updates within version 1 (v1.x) are free for existing buyers and are delivered through your Gumroad library. A future major version (v2.0) would be a separate product. Any discount for existing buyers will be announced at release."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Is there a bundle?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "The Institutional toolkit is sold on its own. The IGMA™ Compliance Toolkits Bundle ($700) combines the three compliance toolkits — FCRA Compliance, FCRA Governance (Professional Edition) and DPDP Compliance — for less than buying them separately. The IGMA™ FCRA Governance Maturity Framework book explains the thinking behind the FCRA toolkits."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Is the assessment professional advice?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "No. IGMA™ is a structured self-assessment tool, not legal, accounting or other professional advice. Where you need expert assistance, consult a qualified professional."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How do I get support?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Email CA Sunil Kumar, FCA at casunilkumarfca@gmail.com. We aim to reply within 2 business days (India time). Support covers using the workbook, fixing errors and unlock guidance. It does not include governance advice on your answers or results."
+   }
+  }
+ ]
+}
+</script>
 </head>
 <body>
 
@@ -252,7 +556,7 @@ footer .disclaimer{margin:0; max-width:80ch;}
 <section>
   <div class="wrap">
     <div class="maturity-scale" aria-label="The IGMA Governance Maturity Scale, five levels" style="margin-top:0;">
-      <div class="level"><span class="code">L1</span><span class="label">Ad hoc</span></div>
+      <div class="level"><span class="code">L1</span><span class="label">Vulnerable</span></div>
       <div class="level"><span class="code">L2</span><span class="label">Reactive</span></div>
       <div class="level"><span class="code">L3</span><span class="label">Defined</span></div>
       <div class="level"><span class="code">L4</span><span class="label">Managed</span></div>
@@ -322,11 +626,11 @@ footer .disclaimer{margin:0; max-width:80ch;}
       <div class="item">
         <div class="info">
           <h4>IGMA™ Professional Edition — Institutional Governance Maturity Assessment Toolkit</h4>
-          <p>A structured, evidence-based governance diagnostic system covering the full institution, not one compliance area.</p>
-          <span class="pending">Format: automated Excel assessment tool.</span>
+          <p>A structured, evidence-based governance diagnostic covering the full institution: 60 questions across 8 pillars, 646 evidence-based criteria, Board-ready outputs.</p>
+          <span class="pending">Format: 14-tab Excel workbook (Excel 2016+, no macros). <a href="#faq">Read the FAQ</a>.</span>
           <details class="more">
             <summary>What's inside</summary>
-            <div class="more-body">Most governance reviews stop at "do you have a policy?" This toolkit goes further: it scores your entire institution — board oversight, financial sustainability, donor confidence, operational resilience — against the five-level IGMA™ Governance Maturity Scale (L1 Ad hoc to L5 Optimised), and returns an executive dashboard your board can actually act on, with a prioritised list of what to fix first. It's the full-institution counterpart to the narrower FCRA and DPDP assessments, for boards who want one clear, evidence-based read on where they stand rather than a patchwork of compliance checks.</div>
+            <div class="more-body">Most governance reviews stop at "do you have a policy?" This toolkit goes further: it scores your entire institution — board oversight, financial sustainability, donor confidence, operational resilience — against the five-level IGMA™ Governance Maturity Scale (L1 Vulnerable to L5 Optimised), and returns an executive dashboard your board can actually act on, with a prioritised list of what to fix first. It's the full-institution counterpart to the narrower FCRA and DPDP assessments, for boards who want one clear, evidence-based read on where they stand rather than a patchwork of compliance checks.</div>
           </details>
         </div>
         <div class="buy"><span class="price">$500</span><a href="https://sunilfca.gumroad.com/l/igma-organisational-toolkit">Buy on Gumroad</a><a class="alt-link" href="https://www.eloquens.com/tool/QXPPSKEE/ca-sunil-kumar-fca/igma-institutional-governance-maturity-assessment-toolkit-automated-excel-assessment-tool">Eloquens</a></div>
@@ -336,7 +640,7 @@ footer .disclaimer{margin:0; max-width:80ch;}
   </div>
 </section>
 
-<section>
+<section id="bundle">
   <div class="wrap">
     <h2 class="group-label">Bundle</h2>
     <p class="group-sub">The three compliance toolkits together — FCRA compliance, FCRA governance and DPDP — for $700 instead of $900 bought separately.</p>
@@ -356,6 +660,65 @@ footer .disclaimer{margin:0; max-width:80ch;}
     <div class="quote-block" style="margin-top:32px;">
       <p>"Very useful document and compilation of checklists for Governance. Must buy for each and every NGO Board members and key functionaries. Excellent work by the author Mr. Sunil Kumar."</p>
       <cite>— Bhushan Mehta, verified Gumroad buyer, India, on the IGMA™ toolkits</cite>
+    </div>
+  </div>
+</section>
+
+<hr class="hairline">
+
+<section id="faq">
+  <div class="wrap">
+    <h2 class="group-label">Frequently asked questions</h2>
+    <p class="group-sub">Mainly about the Institutional Governance Maturity toolkit. The licence and support answers apply to every IGMA™ toolkit.</p>
+    <h3 class="faq-group">About the Institutional toolkit</h3>
+    <div class="faq-list">
+      <details class="faq-q"><summary>What is the IGMA™ Institutional Governance Maturity Assessment Toolkit?</summary><div class="faq-a"><p>An automated Excel workbook that measures how mature your organisation's governance is, on a 1.0–5.0 scale. You answer evidence-based Yes/No criteria. The workbook scores them and produces a dashboard, a Board-ready summary, gap recommendations and an action plan.</p></div></details>
+      <details class="faq-q"><summary>Who is it for?</summary><div class="faq-a"><p>NGOs, foundations, trusts and other mission-driven organisations. It is built for Boards, CEOs, CFOs, governance and compliance leads, and internal audit — anyone who needs to show funders, regulators or their own Board where governance stands.</p></div></details>
+      <details class="faq-q"><summary>Who created it?</summary><div class="faq-a"><p>CA Sunil Kumar, FCA — a Chartered Accountant and social-sector CFO with 30+ years in NGO and development-sector finance, audit and governance. He has led finance and grants for large donor-funded programmes, including a USD 60 million donor-funded portfolio, and supported the closure of a USD 60 million donor-funded programme with zero disallowance. <a href="about.html">More about the author</a>.</p></div></details>
+      <details class="faq-q"><summary>How is this different from a free governance checklist?</summary><div class="faq-a"><p>A checklist tells you what to have. IGMA™ tells you how mature each practice is, weights the results by pillar, and lists your specific gaps from your own "No" answers. It then turns those gaps into a 30-60-90 day plan and a Board pack. Scoring is deliberately conservative: anything below 4.0 is flagged as meaningful exposure, not "room to improve".</p></div></details>
+      <details class="faq-q"><summary>Is it only for Indian organisations?</summary><div class="faq-a"><p>No. 58 of the 60 questions apply to any mission-driven organisation. Two refer to Indian law. Outside India:</p><ul><li>Answer Q28 (Legal, including FCRA) against your country's rules on foreign funding and charities.</li><li>Answer Q47 (DPDP / Data Privacy) against your local data-protection law, such as GDPR.</li></ul><p>The criteria for these two questions are worded for India, so a local expert should review your answers.</p></div></details>
+    </div>
+    <h3 class="faq-group">What's inside</h3>
+    <div class="faq-list">
+      <details class="faq-q"><summary>What does the assessment cover?</summary><div class="faq-a"><p>60 questions across 8 governance pillars, assessed through 646 Yes/No criteria:</p><table class="faq-table"><thead><tr><th>Pillar</th><th>Questions</th></tr></thead><tbody><tr><td>Board Governance &amp; Strategic Oversight</td><td>8</td></tr><tr><td>Risk, Resilience &amp; Continuity</td><td>8</td></tr><tr><td>Financial Stewardship &amp; Sustainability</td><td>10</td></tr><tr><td>Compliance, Ethics &amp; Legal Protection</td><td>8</td></tr><tr><td>Leadership, Talent &amp; Succession</td><td>6</td></tr><tr><td>Operational Excellence &amp; Delivery</td><td>6</td></tr><tr><td>Digital Governance &amp; Data Protection</td><td>6</td></tr><tr><td>Stakeholder Trust &amp; Institutional Credibility</td><td>8</td></tr></tbody></table><p>Topics include Board independence; enterprise risk and donor dependency; reserves and internal financial controls; conflict of interest, whistleblowing and safeguarding; CEO succession; cybersecurity; and donor confidence.</p></div></details>
+      <details class="faq-q"><summary>Are all pillars weighted equally?</summary><div class="faq-a"><p>No. Financial Stewardship carries the highest weight. Leadership, Operations and Digital Governance carry the least. The overall score is a weighted average of the pillars you have answered.</p></div></details>
+      <details class="faq-q"><summary>What do I actually receive?</summary><div class="faq-a"><p>One Excel workbook (.xlsx) with 14 tabs:</p><ul><li><strong>Guidance:</strong> Cover &amp; README, About the Author, Instructions, Question Index</li><li><strong>Input:</strong> Criteria Input (646 criteria) and Scores View</li><li><strong>Results:</strong> Pillar Summary, Results Dashboard, Board Summary (with chart), Print View</li><li><strong>Follow-up:</strong> Assurance Report, Action Tracker, Year-on-Year Trend, Audit Log</li></ul></div></details>
+      <details class="faq-q"><summary>Do I need any other software or add-ins?</summary><div class="faq-a"><p>No. Microsoft Excel 2016 or later, or a fully compatible spreadsheet application, is all you need. There are no macros to enable.</p></div></details>
+    </div>
+    <h3 class="faq-group">Using it</h3>
+    <div class="faq-list">
+      <details class="faq-q"><summary>How do I complete the assessment?</summary><div class="faq-a"><p>There are two routes:</p><table class="faq-table"><thead><tr><th>Route</th><th>What you do</th><th>Responses</th><th>What it measures</th><th>Best for</th></tr></thead><tbody><tr><td>Detailed (recommended)</td><td>Answer Yes/No criteria per question</td><td>646</td><td>Demonstrated maturity — what the evidence supports</td><td>Board, funder or external audit use</td></tr><tr><td>Concise</td><td>Enter one 1–5 score per question</td><td>60</td><td>Perceived maturity — what leadership believes</td><td>A quick scan, workshop or Board discussion</td></tr></tbody></table><p>For each question, the workbook scores whichever route you actually filled in and records which one it used.</p></div></details>
+      <details class="faq-q"><summary>Why might the two routes give different scores?</summary><div class="faq-a"><p>Leadership may rate a practice at Level 4 because a process exists, while the criteria show it is not applied consistently. IGMA™ calls this difference the Governance Perception Gap™. The gap is a finding in itself, so investigate it rather than forcing the scores to agree.</p></div></details>
+      <details class="faq-q"><summary>How long does it take?</summary><div class="faq-a"><p>As a guide: self-assessment 2–3 hours; facilitated workshop 4–6 hours; independent review 1–2 days. You can also complete it in stages.</p></div></details>
+      <details class="faq-q"><summary>Who should take part?</summary><div class="faq-a"><p>One governance, compliance or finance lead usually prepares it. For a full assessment, we recommend involving the Board Chair, CEO, CFO, COO and the risk, compliance and HR leads. Disagreements between them are useful. If the CEO says Level 4 and the CFO says Level 2, you have found a governance gap that a clean audit will not show.</p></div></details>
+      <details class="faq-q"><summary>Do I have to answer every question?</summary><div class="faq-a"><p>No. Unanswered questions are excluded from scoring, not penalised. You can produce results from a partial assessment and complete the rest later.</p></div></details>
+      <details class="faq-q"><summary>What does "Yes" mean for a criterion?</summary><div class="faq-a"><p>Yes means the statement is clearly and consistently true right now, with evidence. Partly true or uncertain counts as No. Each criterion has a Notes/Evidence column to record what supports the answer.</p></div></details>
+      <details class="faq-q"><summary>What counts as good evidence?</summary><div class="faq-a"><p>Formal documents are strongest: approved policies, Board minutes, registers and audit reports. Operational reports are moderate evidence. Verbal confirmation alone is weak. Where evidence is weak or conflicting, choose the lower level you can support.</p></div></details>
+      <details class="faq-q"><summary>Can I break the formulas by accident?</summary><div class="faq-a"><p>No. Only the yellow cells are for input; every other cell is locked. No password is needed for normal use. For structural changes, such as relabelling a pillar or adding rows, contact support for unlock guidance.</p></div></details>
+      <details class="faq-q"><summary>Will it catch inconsistent answers?</summary><div class="faq-a"><p>Yes. A built-in consistency check flags questions where a basic weakness is confirmed alongside a higher-maturity practice, so you can review before finalising.</p></div></details>
+      <details class="faq-q"><summary>Can I override a score?</summary><div class="faq-a"><p>Yes. Enter a 1–5 score in Scores View to apply professional judgment where context changes the picture. The override then takes priority in all calculations.</p></div></details>
+    </div>
+    <h3 class="faq-group">Results</h3>
+    <div class="faq-list">
+      <details class="faq-q"><summary>How is maturity scored?</summary><div class="faq-a"><p>Every question starts at 1.0 and gains up to 1 point for each of Levels 2–5, in proportion to how many of that level's criteria you meet. Scores map to five maturity levels:</p><table class="faq-table"><thead><tr><th>Score</th><th>Maturity level</th><th>Risk rating</th></tr></thead><tbody><tr><td>4.50–5.00</td><td>Level 5 – Optimised</td><td>Very low</td></tr><tr><td>3.50–4.49</td><td>Level 4 – Managed</td><td>Low</td></tr><tr><td>2.50–3.49</td><td>Level 3 – Defined</td><td>Moderate</td></tr><tr><td>1.50–2.49</td><td>Level 2 – Reactive</td><td>High</td></tr><tr><td>1.00–1.49</td><td>Level 1 – Vulnerable</td><td>Critical</td></tr></tbody></table></div></details>
+      <details class="faq-q"><summary>What reports does it produce?</summary><div class="faq-a"><p>All outputs update automatically from your answers:</p><ul><li><strong>Results Dashboard</strong> — overall score, maturity level, pillar breakdown and 12 key governance risk indicators rated Green/Amber/Red</li><li><strong>Board Summary</strong> — an executive one-pager with a pillar chart, 30-60-90 day plan and narrative</li><li><strong>Print View</strong> — a print-ready Board and CEO pack, from executive summary down to question-level actions</li><li><strong>Assurance Report</strong> — a question-level tracker for CFO, management and internal audit follow-up</li></ul></div></details>
+      <details class="faq-q"><summary>Are the recommendations generic?</summary><div class="faq-a"><p>No. Recommendations are built from your own "No" answers above your current level. Each gap also shows the governance risk if it persists.</p></div></details>
+      <details class="faq-q"><summary>How do I turn results into action?</summary><div class="faq-a"><p>Gaps are phased into a roadmap:</p><table class="faq-table"><thead><tr><th>Score</th><th>Timeframe</th></tr></thead><tbody><tr><td>1–2</td><td>Within 0–30 days</td></tr><tr><td>Around 2–3</td><td>Within 31–90 days</td></tr><tr><td>Around 3–4</td><td>Over 3–12 months</td></tr></tbody></table><p>The Action Tracker assigns an owner, target date and status to every question.</p></div></details>
+      <details class="faq-q"><summary>Can I compare against other organisations?</summary><div class="faq-a"><p>Optionally. The main benchmark is your own trend over time, measured against a fixed floor of 4.0. If you have real peer data, you can enter it per question and the gap is calculated automatically. There is no live external data feed.</p></div></details>
+      <details class="faq-q"><summary>Can I track progress year on year?</summary><div class="faq-a"><p>Yes. The Year-on-Year Trend tab logs each assessment's scores. The Audit Log records who prepared, reviewed and approved it.</p></div></details>
+      <details class="faq-q"><summary>How often should we reassess?</summary><div class="faq-a"><p>We recommend reassessing every 12 months for the leadership team and annually for the Board, with independent validation every 2–3 years.</p></div></details>
+    </div>
+    <h3 class="faq-group">Buying any IGMA™ toolkit: licence and support</h3>
+    <div class="faq-list">
+      <details class="faq-q"><summary>How is it delivered?</summary><div class="faq-a"><p>Digitally, by download or email link straight after purchase. Nothing physical is shipped. Please keep your own backup copy.</p></div></details>
+      <details class="faq-q"><summary>What does the licence allow?</summary><div class="faq-a"><p>A single-organisation, perpetual licence. Your organisation can install and use the workbook on any number of its own devices for internal governance use, with no expiry.</p></div></details>
+      <details class="faq-q"><summary>Can I share it with another organisation, or use it for clients?</summary><div class="faq-a"><p>No. Redistribution, resale, sub-licensing or sharing outside the purchasing organisation requires prior written consent from the publisher. Consultants who want to use it with clients should email <a href="mailto:casunilkumarfca@gmail.com">casunilkumarfca@gmail.com</a> about a separate consultant licence before buying.</p></div></details>
+      <details class="faq-q"><summary>Do I own the methodology?</summary><div class="faq-a"><p>No. The licence covers use of the workbook. Copyright in the methodology, criteria and workbook design stays with the publisher.</p></div></details>
+      <details class="faq-q"><summary>Is it a one-time payment or a subscription?</summary><div class="faq-a"><p>A one-time purchase with a perpetual licence, with no renewal fees.</p></div></details>
+      <details class="faq-q"><summary>Will I get future updates?</summary><div class="faq-a"><p>Updates within version 1 (v1.x) are free for existing buyers and are delivered through your Gumroad library. A future major version (v2.0) would be a separate product. Any discount for existing buyers will be announced at release.</p></div></details>
+      <details class="faq-q"><summary>Is there a bundle?</summary><div class="faq-a"><p>The Institutional toolkit is sold on its own. The <a href="#bundle">IGMA™ Compliance Toolkits Bundle</a> ($700) combines the three compliance toolkits — FCRA Compliance, FCRA Governance (Professional Edition) and DPDP Compliance — for less than buying them separately. The <a href="library.html">IGMA™ FCRA Governance Maturity Framework</a> book explains the thinking behind the FCRA toolkits.</p></div></details>
+      <details class="faq-q"><summary>Is the assessment professional advice?</summary><div class="faq-a"><p>No. IGMA™ is a structured self-assessment tool, not legal, accounting or other professional advice. Where you need expert assistance, consult a qualified professional.</p></div></details>
+      <details class="faq-q"><summary>How do I get support?</summary><div class="faq-a"><p>Email CA Sunil Kumar, FCA at <a href="mailto:casunilkumarfca@gmail.com">casunilkumarfca@gmail.com</a>. We aim to reply within 2 business days (India time). Support covers using the workbook, fixing errors and unlock guidance. It does not include governance advice on your answers or results.</p></div></details>
     </div>
   </div>
 </section>
@@ -414,7 +777,11 @@ footer .disclaimer{margin:0; max-width:80ch;}
     <div class="footer-links">
       <h4>Buy Books</h4>
       <a href="https://www.amazon.com/stores/author/B0H68584LZ/allbooks">Amazon</a>
+      <a href="https://www.amazon.in/dp/B0HHFKD3ZB">Amazon India</a>
+      <a href="https://books.apple.com/us/book/the-resilient-institution/id6815744961">Apple Books</a>
       <a href="https://play.google.com/store/books/details?id=A17yEQAAQBAJ">Google Play Books</a>
+      <a href="https://play.google.com/store/audiobooks/details?id=AQAAAECGFmtW_M">Audiobooks · Google Play</a>
+      <a href="https://www.flipkart.com/governance-lessons-field-18-case-briefs-5-practical-frameworks-1-diagnostic-mission-driven-organisations/p/itmda0080754babe?pid=9798903306268">Flipkart</a>
       <a href="https://store.pothi.com/book/ca-sunil-kumar-fca-governance-lessons-field/">pothi.com</a>
       <a href="https://sunilfca.gumroad.com/">Gumroad</a>
     </div>
@@ -444,6 +811,8 @@ footer .disclaimer{margin:0; max-width:80ch;}
     if (href.indexOf('gumroad.com') > -1) track('gumroad_click', {link_url: href, link_text: label});
     else if (href.indexOf('amazon.') > -1) track('amazon_click', {link_url: href, link_text: label});
     else if (href.indexOf('eloquens.com') > -1) track('eloquens_click', {link_url: href, link_text: label});
+    else if (href.indexOf('books.apple.com') > -1) track('apple_books_click', {link_url: href, link_text: label});
+    else if (href.indexOf('play.google.com') > -1) track('google_play_click', {link_url: href, link_text: label});
     else if (href.indexOf('flipkart.com') > -1) track('flipkart_click', {link_url: href, link_text: label});
     else if (href.indexOf('pothi.com') > -1) track('pothi_click', {link_url: href, link_text: label});
     else if (href.indexOf('mailto:') === 0) track('contact_click', {link_url: href, link_text: label});

@@ -347,6 +347,7 @@ footer .disclaimer{margin:0; max-width:80ch;}
     <div class="cta-row">
       <a class="btn primary" href="https://sunilfca.gumroad.com/l/pwvuk">Buy the complete edition — $29</a>
       <a class="btn" href="https://www.amazon.com/dp/B0HJV94697">Kindle on Amazon — $12.99</a>
+      <a class="btn" href="https://books.apple.com/us/book/the-wealthy-life/id6815617834">Apple Books</a>
     </div>
     <div class="quote-block" style="margin-top:32px;">
       <p>"What stood out to me in The Wealthy Life is its central proposition that wealth should be viewed as a portfolio, rather than simply a financial measure. By bringing together financial, physical, mental, emotional, social and spiritual dimensions, the book challenges readers to think more holistically about how wealth is created, protected and sustained."</p>
@@ -1906,6 +1907,7 @@ chance that today's work becomes tomorrow's raw material.</p>
       <div class="cta-row">
         <a class="btn primary" href="https://sunilfca.gumroad.com/l/pwvuk">Buy the complete edition — $29</a>
       <a class="btn" href="https://www.amazon.com/dp/B0HJV94697">Kindle on Amazon — $12.99</a>
+      <a class="btn" href="https://books.apple.com/us/book/the-wealthy-life/id6815617834">Apple Books</a>
       </div>
       <div class="related-strip">
         Also free to read online: <a href="read-the-strategic-cfo.html">The Strategic CFO</a> and <a href="read-the-resilient-institution.html">The Resilient Institution</a>.
@@ -1944,7 +1946,11 @@ chance that today's work becomes tomorrow's raw material.</p>
     <div class="footer-links">
       <h4>Buy Books</h4>
       <a href="https://www.amazon.com/stores/author/B0H68584LZ/allbooks">Amazon</a>
+      <a href="https://www.amazon.in/dp/B0HHFKD3ZB">Amazon India</a>
+      <a href="https://books.apple.com/us/book/the-resilient-institution/id6815744961">Apple Books</a>
       <a href="https://play.google.com/store/books/details?id=A17yEQAAQBAJ">Google Play Books</a>
+      <a href="https://play.google.com/store/audiobooks/details?id=AQAAAECGFmtW_M">Audiobooks · Google Play</a>
+      <a href="https://www.flipkart.com/governance-lessons-field-18-case-briefs-5-practical-frameworks-1-diagnostic-mission-driven-organisations/p/itmda0080754babe?pid=9798903306268">Flipkart</a>
       <a href="https://store.pothi.com/book/ca-sunil-kumar-fca-governance-lessons-field/">pothi.com</a>
       <a href="https://sunilfca.gumroad.com/">Gumroad</a>
     </div>
@@ -2020,5 +2026,28 @@ chance that today's work becomes tomorrow's raw material.</p>
 })();
 </script>
 
+<script>
+/* Outbound click tracking */
+(function(){
+  var BOOK = document.title.split(' — ')[0];
+  document.addEventListener('click', function(e){
+    var a = e.target.closest('a'); if (!a || typeof gtag !== 'function') return;
+    var href = a.getAttribute('href') || ''; var label = (a.textContent || '').trim().slice(0, 80);
+    var p = {link_url: href, link_text: label, book: BOOK}, n = null;
+    if (href.indexOf('gumroad.com') > -1) n = 'gumroad_click';
+    else if (href.indexOf('amazon.') > -1) n = 'amazon_click';
+    else if (href.indexOf('books.apple.com') > -1) n = 'apple_books_click';
+    else if (href.indexOf('play.google.com') > -1) n = 'google_play_click';
+    else if (href.indexOf('eloquens.com') > -1) n = 'eloquens_click';
+    else if (href.indexOf('flipkart.com') > -1) n = 'flipkart_click';
+    else if (href.indexOf('pothi.com') > -1) n = 'pothi_click';
+    else if (href.indexOf('mailto:') === 0) n = 'contact_click';
+    else if (href.indexOf('linkedin.com') > -1) n = 'linkedin_click';
+    if (n) gtag('event', n, p);
+    var h = href.toLowerCase();
+    if (h.indexOf('igma') > -1 || h.indexOf('fcra') > -1 || h.indexOf('dpdp') > -1) gtag('event', 'igma_click', p);
+  });
+})();
+</script>
 </body>
 </html>
