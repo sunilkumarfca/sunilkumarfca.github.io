@@ -11,19 +11,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="alternate" type="application/rss+xml" title="Articles — Sunil Kumar, FCA" href="https://sunilkumarfca.com/feed.xml">
-<link rel="canonical" href="https://sunilkumarfca.com/notes.html">
-<title>NGO Governance Knowledge Hub — Sunil Kumar, FCA</title>
-<meta name="description" content="Articles, videos and frameworks on NGO governance, FCRA compliance, strategic finance, institutional resilience and governance maturity.">
+<link rel="canonical" href="https://sunilkumarfca.com/fcra-governance.html">
+<title>FCRA Governance &amp; Compliance for NGOs — Sunil Kumar, FCA</title>
+<meta name="description" content="FCRA governance and compliance for Indian NGOs: Board oversight, internal controls, cost allocation and audit readiness, with free videos and assessment toolkits.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2210%22%20fill%3D%22%231C2530%22/%3E%3Ctext%20x%3D%2232%22%20y%3D%2243%22%20font-family%3D%22Georgia%2C%20serif%22%20font-size%3D%2230%22%20fill%3D%22%23C9A35A%22%20text-anchor%3D%22middle%22%3ESK%3C/text%3E%3C/svg%3E">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Sunil Kumar, FCA">
-<meta property="og:title" content="NGO Governance Knowledge Hub — Sunil Kumar, FCA">
-<meta property="og:description" content="Articles, videos and frameworks on NGO governance, FCRA compliance, strategic finance, institutional resilience and governance maturity.">
+<meta property="og:title" content="FCRA Governance &amp; Compliance for NGOs — Sunil Kumar, FCA">
+<meta property="og:description" content="FCRA governance and compliance for Indian NGOs: Board oversight, internal controls, cost allocation and audit readiness, with free videos and assessment toolkits.">
 <meta property="og:image" content="https://sunilkumarfca.com/og-image.png">
-<meta property="og:url" content="https://sunilkumarfca.com/notes.html">
+<meta property="og:url" content="https://sunilkumarfca.com/fcra-governance.html">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="NGO Governance Knowledge Hub — Sunil Kumar, FCA">
-<meta name="twitter:description" content="Articles, videos and frameworks on NGO governance, FCRA compliance, strategic finance, institutional resilience and governance maturity.">
+<meta name="twitter:title" content="FCRA Governance &amp; Compliance for NGOs — Sunil Kumar, FCA">
+<meta name="twitter:description" content="FCRA governance and compliance for Indian NGOs: Board oversight, internal controls, cost allocation and audit readiness, with free videos and assessment toolkits.">
 <meta name="twitter:image" content="https://sunilkumarfca.com/og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -205,10 +205,6 @@ footer .disclaimer{margin:0; max-width:80ch;}
 @media (prefers-reduced-motion: reduce){
   html{scroll-behavior:auto;}
 }
-.event-banner{background:var(--ink); border:1px solid var(--brass); padding:26px 28px; display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap;}
-.event-banner .tag{color:var(--brass); font-size:0.85rem; display:block; margin-bottom:6px;}
-.event-banner h3{color:var(--paper); font-size:1.25rem; margin:0;}
-.event-banner p{color:#C9C2B4; margin-top:8px; font-size:0.92rem; max-width:52ch;}
 /* Knowledge hub */
 .crumbs{font-size:.85rem; color:var(--slate); margin-bottom:14px;} .crumbs a{color:var(--slate);}
 .hub-intro p{max-width:66ch; color:var(--slate); margin:0 0 14px; font-size:1.02rem;}
@@ -223,7 +219,173 @@ footer .disclaimer{margin:0; max-width:80ch;}
 .post h3{font-size:1.15rem; margin-top:6px;}
 .post p{color:var(--slate); font-size:0.95rem; margin-top:8px; max-width:64ch;}
 .post{padding:22px 0; border-top:1px solid var(--line);}
+/* Video cards (click-to-load YouTube) */
+.vgrid{display:grid; grid-template-columns:repeat(auto-fill, minmax(290px, 1fr)); gap:28px;}
+.vcard{margin:0;}
+.vcard.vbig{max-width:720px;}
+.yt{position:relative; aspect-ratio:16/9; background:#0f141a; overflow:hidden; border:1px solid var(--line);}
+.yt iframe{position:absolute; inset:0; width:100%; height:100%; border:0;}
+.yt-btn{all:unset; cursor:pointer; position:absolute; inset:0; display:block;}
+.yt-btn img{width:100%; height:100%; object-fit:cover; display:block; opacity:.92;}
+.yt-btn:hover img{opacity:1;}
+.yt-btn:focus-visible{outline:2px solid var(--brass-dark); outline-offset:3px;}
+.yt-play{position:absolute; left:50%; top:50%; width:64px; height:44px; margin:-22px 0 0 -32px; background:rgba(28,37,48,.88); border-radius:10px;}
+.yt-play::after{content:""; position:absolute; left:26px; top:13px; border-style:solid; border-width:9px 0 9px 15px; border-color:transparent transparent transparent #FAF8F4;}
+.yt-btn:hover .yt-play{background:var(--brass-dark);}
+.yt-dur{position:absolute; right:8px; bottom:8px; background:rgba(0,0,0,.78); color:#fff; font-size:.75rem; padding:1px 6px; border-radius:3px;}
+.vcard figcaption{padding-top:12px;}
+.vcard figcaption strong{display:block; font-family:'Newsreader', Georgia, serif; font-weight:500; font-size:1.05rem; line-height:1.3; color:var(--ink);}
+.vcard figcaption span{display:block; color:var(--slate); font-size:.9rem; margin-top:6px;}
+.vcard .yt-link{display:inline-block; margin-top:8px; font-size:.85rem; text-decoration:none; border-bottom:1px solid var(--brass);}
+.art-cta{margin-top:10px; padding:26px 28px; background:var(--paper-raised); border-left:3px solid var(--brass);}
 </style>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "CollectionPage",
+ "name": "FCRA Governance & Compliance for NGOs",
+ "description": "FCRA governance and compliance for Indian NGOs: Board oversight, internal controls, cost allocation and audit readiness, with free videos and assessment toolkits.",
+ "url": "https://sunilkumarfca.com/fcra-governance.html",
+ "author": {
+  "@type": "Person",
+  "name": "Sunil Kumar",
+  "honorificSuffix": "FCA",
+  "url": "https://sunilkumarfca.com/about.html"
+ },
+ "about": "FCRA Governance",
+ "inLanguage": "en",
+ "hasPart": [
+  {
+   "@type": "VideoObject",
+   "name": "FCRA Governance Assurance: A Practical Approach to Strengthening NGO Governance",
+   "description": "Explains FCRA Governance Assurance and demonstrates how a structured governance assessment helps an NGO identify gaps and strengthen oversight of foreign contribution.",
+   "thumbnailUrl": "https://i.ytimg.com/vi/RvOQXgfhtFY/hqdefault.jpg",
+   "uploadDate": "2026-09-20T00:00:00+05:30",
+   "duration": "PT32M40S",
+   "embedUrl": "https://www.youtube-nocookie.com/embed/RvOQXgfhtFY",
+   "contentUrl": "https://www.youtube.com/watch?v=RvOQXgfhtFY",
+   "author": {
+    "@type": "Person",
+    "name": "Sunil Kumar",
+    "honorificSuffix": "FCA",
+    "url": "https://sunilkumarfca.com/about.html"
+   }
+  },
+  {
+   "@type": "VideoObject",
+   "name": "FCRA Governance Beyond Compliance — Is FCRA an Institutional Governance Responsibility?",
+   "description": "How strong FCRA governance connects the Board, leadership, Finance, Programme, Compliance and Internal Audit to protect donor intent and institutional credibility.",
+   "thumbnailUrl": "https://i.ytimg.com/vi/BY26SdWQsds/hqdefault.jpg",
+   "uploadDate": "2026-09-26T00:00:00+05:30",
+   "duration": "PT15M36S",
+   "embedUrl": "https://www.youtube-nocookie.com/embed/BY26SdWQsds",
+   "contentUrl": "https://www.youtube.com/watch?v=BY26SdWQsds",
+   "author": {
+    "@type": "Person",
+    "name": "Sunil Kumar",
+    "honorificSuffix": "FCA",
+    "url": "https://sunilkumarfca.com/about.html"
+   }
+  },
+  {
+   "@type": "VideoObject",
+   "name": "FCRA Common Cost Allocation Explained — Salary, Rent and Shared Costs for NGOs",
+   "description": "Whether and how shared costs such as salary and rent can be allocated between FCRA and non-FCRA grants, and how to document it for donor and FCRA audits.",
+   "thumbnailUrl": "https://i.ytimg.com/vi/jhn2g-3S3Mo/hqdefault.jpg",
+   "uploadDate": "2026-07-20T00:00:00+05:30",
+   "duration": "PT3M8S",
+   "embedUrl": "https://www.youtube-nocookie.com/embed/jhn2g-3S3Mo",
+   "contentUrl": "https://www.youtube.com/watch?v=jhn2g-3S3Mo",
+   "author": {
+    "@type": "Person",
+    "name": "Sunil Kumar",
+    "honorificSuffix": "FCA",
+    "url": "https://sunilkumarfca.com/about.html"
+   }
+  },
+  {
+   "@type": "VideoObject",
+   "name": "FCRA Governance 10: Why Good NGOs Lose Their FCRA Registration",
+   "description": "How governance weaknesses can put FCRA registration at risk long before a compliance violation becomes visible.",
+   "thumbnailUrl": "https://i.ytimg.com/vi/UjN8vemrJwA/hqdefault.jpg",
+   "uploadDate": "2026-07-20T00:00:00+05:30",
+   "duration": "PT3M38S",
+   "embedUrl": "https://www.youtube-nocookie.com/embed/UjN8vemrJwA",
+   "contentUrl": "https://www.youtube.com/watch?v=UjN8vemrJwA",
+   "author": {
+    "@type": "Person",
+    "name": "Sunil Kumar",
+    "honorificSuffix": "FCA",
+    "url": "https://sunilkumarfca.com/about.html"
+   }
+  },
+  {
+   "@type": "VideoObject",
+   "name": "FCRA Governance 9: FCRA Compliance Is Not Only Finance's Responsibility",
+   "description": "Why FCRA compliance is a shared responsibility across the Board, CEO, CFO, Programme, HR, Procurement and Administration.",
+   "thumbnailUrl": "https://i.ytimg.com/vi/X3JYzhVV7Hs/hqdefault.jpg",
+   "uploadDate": "2026-07-20T00:00:00+05:30",
+   "duration": "PT4M53S",
+   "embedUrl": "https://www.youtube-nocookie.com/embed/X3JYzhVV7Hs",
+   "contentUrl": "https://www.youtube.com/watch?v=X3JYzhVV7Hs",
+   "author": {
+    "@type": "Person",
+    "name": "Sunil Kumar",
+    "honorificSuffix": "FCA",
+    "url": "https://sunilkumarfca.com/about.html"
+   }
+  },
+  {
+   "@type": "VideoObject",
+   "name": "FCRA Governance 7: Recent FCRA Changes Are Good Governance in Action",
+   "description": "What recent FCRA changes mean for leadership responsibilities, administrative cost limits and financial compliance.",
+   "thumbnailUrl": "https://i.ytimg.com/vi/QurasWm0QhQ/hqdefault.jpg",
+   "uploadDate": "2026-07-20T00:00:00+05:30",
+   "duration": "PT4M23S",
+   "embedUrl": "https://www.youtube-nocookie.com/embed/QurasWm0QhQ",
+   "contentUrl": "https://www.youtube.com/watch?v=QurasWm0QhQ",
+   "author": {
+    "@type": "Person",
+    "name": "Sunil Kumar",
+    "honorificSuffix": "FCA",
+    "url": "https://sunilkumarfca.com/about.html"
+   }
+  },
+  {
+   "@type": "VideoObject",
+   "name": "FCRA Governance 2: Cash Management Challenges in Q1",
+   "description": "Why first-quarter cash-flow pressure recurs in NGOs, and how planning and FCRA discipline prevent compliance issues.",
+   "thumbnailUrl": "https://i.ytimg.com/vi/1BW7j1mRPb0/hqdefault.jpg",
+   "uploadDate": "2026-07-20T00:00:00+05:30",
+   "duration": "PT4M23S",
+   "embedUrl": "https://www.youtube-nocookie.com/embed/1BW7j1mRPb0",
+   "contentUrl": "https://www.youtube.com/watch?v=1BW7j1mRPb0",
+   "author": {
+    "@type": "Person",
+    "name": "Sunil Kumar",
+    "honorificSuffix": "FCA",
+    "url": "https://sunilkumarfca.com/about.html"
+   }
+  },
+  {
+   "@type": "VideoObject",
+   "name": "FCRA Governance — Full Webinar (18 July 2026)",
+   "description": "Why NGOs face recurring compliance failures, and why these are usually symptoms of deeper governance and management issues rather than isolated mistakes.",
+   "thumbnailUrl": "https://i.ytimg.com/vi/u_6RFnZiIYc/hqdefault.jpg",
+   "uploadDate": "2026-07-19T00:00:00+05:30",
+   "duration": "PT37M27S",
+   "embedUrl": "https://www.youtube-nocookie.com/embed/u_6RFnZiIYc",
+   "contentUrl": "https://www.youtube.com/watch?v=u_6RFnZiIYc",
+   "author": {
+    "@type": "Person",
+    "name": "Sunil Kumar",
+    "honorificSuffix": "FCA",
+    "url": "https://sunilkumarfca.com/about.html"
+   }
+  }
+ ]
+}
+</script>
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -240,6 +402,12 @@ footer .disclaimer{margin:0; max-width:80ch;}
    "position": 2,
    "name": "Knowledge Hub",
    "item": "https://sunilkumarfca.com/notes.html"
+  },
+  {
+   "@type": "ListItem",
+   "position": 3,
+   "name": "FCRA Governance",
+   "item": "https://sunilkumarfca.com/fcra-governance.html"
   }
  ]
 }
@@ -263,61 +431,16 @@ footer .disclaimer{margin:0; max-width:80ch;}
 
 <section class="page-head">
   <div class="wrap">
-    <span class="eyebrow">Knowledge Hub</span>
-    <h1>NGO governance and finance knowledge hub.</h1>
-    <p>Practical writing on NGO governance, FCRA compliance and finance for mission-driven organisations — articles, newsletter editions and webinars in one place.</p>
-    <p style="margin-top:16px; font-size:0.95rem;">Get new articles by email: <a href="https://sunilkumarfca.substack.com/">subscribe free on Substack</a>. Also on <a href="https://medium.com/@sunilkumar.fca">Medium</a> and <a href="https://www.youtube.com/@casunilkumarfca">YouTube</a>.</p>
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a> › <a href="notes.html">Knowledge Hub</a> › FCRA Governance</nav>
+    <h1>FCRA governance and compliance for NGOs.</h1>
+    <div class="hub-intro" style="margin-top:18px;"><p>FCRA compliance is often treated as a filing and documentation exercise. In practice, the organisations that stay compliant year after year are the ones where the Board, leadership, Finance, Programme and Compliance teams share responsibility for how foreign contribution is received, used, evidenced and reported.</p><p>This section covers FCRA as an institutional governance responsibility: Board oversight, internal controls, common cost allocation, cash management, recent regulatory changes and audit readiness.</p></div>
+    <p style="font-size:.9rem; color:var(--slate);">Curated by <a href="about.html">CA Sunil Kumar, FCA</a> — Chartered Accountant and social-sector CFO with 30+ years in NGO finance, audit and governance.</p>
   </div>
 </section>
 
 <section>
   <div class="wrap">
-    <div class="event-banner">
-      <div>
-        <span class="tag">🎥 Watch the recording</span>
-        <h3>FCRA Governance Assurance — A Practical Approach to Strengthening NGO Governance</h3>
-        <p>The live executive briefing on the IGMA™ FCRA Governance Maturity Assessment has taken place. Watch the full session, including the live demonstration, on YouTube.</p>
-      </div>
-      <a class="btn primary" href="https://www.youtube.com/watch?v=RvOQXgfhtFY">Watch on YouTube</a>
-    </div>
-  </div>
-</section>
-
-<section class="alt">
-  <div class="wrap">
-    <h2 class="group-label">Explore by topic</h2>
-    <div class="hub-grid" style="margin-top:14px;"><a class="hub-card" href="ngo-governance.html"><strong>NGO Governance</strong><span>Board oversight, risk, internal controls and accountability</span></a><a class="hub-card" href="fcra-governance.html"><strong>FCRA Governance</strong><span>FCRA compliance as an institutional governance responsibility</span></a><a class="hub-card" href="strategic-finance-ngos.html"><strong>Strategic Finance</strong><span>The CFO role, budgeting, cash flow and financial resilience</span></a><a class="hub-card" href="institutional-resilience.html"><strong>Institutional Resilience</strong><span>Funding diversity, reserves, leadership depth and systems</span></a><a class="hub-card" href="governance-maturity.html"><strong>Governance Maturity</strong><span>Measuring governance with evidence — the thinking behind IGMA™</span></a><a class="hub-card" href="#ideas-and-life"><strong>Ideas &amp; Life</strong><span>Wealth, effort and personal effectiveness</span></a></div>
-  </div>
-</section>
-
-<section id="ngo-governance" class="alt">
-  <div class="wrap">
-    <h2 class="group-label"><a href="ngo-governance.html" style="color:inherit; text-decoration:none;">NGO Governance</a></h2>
-    <p class="group-sub">Practical guidance on NGO governance: Board oversight, risk management, internal controls and accountability, with free books, videos and assessment tools. <a href="ngo-governance.html">Open the NGO Governance hub →</a></p>
-    <div class="post">
-      <div class="date">Notes from the field</div>
-      <h3>Why Strong Governance Matters More Than Ever for NGOs</h3>
-      <p>Lessons from two decades in governance, finance and institutional strengthening — on why the organisations that survive a crisis are the ones that built governance before they needed it.</p>
-      <p><a href="library.html">Related: Governance Lessons from the Field (free) →</a></p>
-    </div>
-    <div class="post">
-      <div class="date">September 2026</div>
-      <h3>AI, Technology and Institutional Governance: Are We Moving Fast Enough?</h3>
-      <p>On whether social-impact organisations are adopting AI and digital tools faster than they're developing the governance to manage them — accountability, data protection and Board oversight of technology risk.</p>
-    </div>
-    <div class="post">
-      <div class="date">September 2026</div>
-      <h3>IGMA™ Pillar 1: Board Governance &amp; Strategic Oversight</h3>
-      <p>A look at the eight areas under Pillar 1 — board skills, independence, composition, diversity, evaluation — and why "we have the skills" is different from "we have assessed whether we have the skills, and can demonstrate it."</p>
-      <p><a href="https://www.youtube.com/watch?v=88JpWy5b28I">Watch the Founder Edition webinar →</a></p>
-    </div>
-  </div>
-</section>
-
-<section id="fcra-governance">
-  <div class="wrap">
-    <h2 class="group-label"><a href="fcra-governance.html" style="color:inherit; text-decoration:none;">FCRA Governance</a></h2>
-    <p class="group-sub">FCRA governance and compliance for Indian NGOs: Board oversight, internal controls, cost allocation and audit readiness, with free videos and assessment toolkits. <a href="fcra-governance.html">Open the FCRA Governance hub →</a></p>
+    <h2 class="group-label">Articles and insights</h2>
     <div class="post">
       <div class="date">September 2026</div>
       <h3>FCRA Compliance Beyond Checklists: Why Governance Assurance Matters</h3>
@@ -350,155 +473,43 @@ footer .disclaimer{margin:0; max-width:80ch;}
   </div>
 </section>
 
-<section id="strategic-finance-ngos" class="alt">
+<section class="alt">
   <div class="wrap">
-    <h2 class="group-label"><a href="strategic-finance-ngos.html" style="color:inherit; text-decoration:none;">Strategic Finance</a></h2>
-    <p class="group-sub">Strategic finance for NGOs and mission-driven organisations: the CFO role, budgeting, cash flow, restricted funds, financial resilience and Board reporting. <a href="strategic-finance-ngos.html">Open the Strategic Finance hub →</a></p>
-    <div class="post">
-      <div class="date">Free guide · September 2026</div>
-      <h3>50 Questions Leaders Ask — The Strategic CFO Reference Guide</h3>
-      <p>50 practical questions across Strategic Finance, Governance &amp; Trust, Institutional Resilience, Compliance &amp; Risk, Technology &amp; AI, and CFO Leadership — designed as a working reference for challenging existing practice, not a one-time read.</p>
-      <p><a href="read-the-strategic-cfo.html">Read the full 50-question reference in the book →</a></p>
-    </div>
-    <div class="post">
-      <div class="date">Notes from the field</div>
-      <h3>Payment Outside India by NGOs: A CFO and Governance Perspective</h3>
-      <p>On overseas payments by Indian NGOs — arguing that the real governance question is not the remittance itself, but the oversight behind it.</p>
-      <p><a href="igma.html">Related: IGMA™ FCRA Governance Assessment Toolkit →</a></p>
+    <h2 class="group-label">Watch and listen</h2>
+    <p class="group-sub">Free videos and audiobook chapters. They load only when you press play.</p>
+    <div class="vgrid">
+      <figure class="vcard"><div class="yt" data-id="RvOQXgfhtFY"><button type="button" class="yt-btn" aria-label="Play: FCRA Governance Assurance: A Practical Approach to Strengthening NGO Governance"><img src="https://i.ytimg.com/vi/RvOQXgfhtFY/hqdefault.jpg" alt="" loading="lazy" width="480" height="360"><span class="yt-play" aria-hidden="true"></span><span class="yt-dur">32:40</span></button></div><figcaption><strong>FCRA Governance Assurance: A Practical Approach to Strengthening NGO Governance</strong><span>Explains FCRA Governance Assurance and demonstrates how a structured governance assessment helps an NGO identify gaps and strengthen oversight of foreign contribution.</span><a class="yt-link" href="https://www.youtube.com/watch?v=RvOQXgfhtFY">Watch on YouTube</a></figcaption></figure>
+      <figure class="vcard"><div class="yt" data-id="BY26SdWQsds"><button type="button" class="yt-btn" aria-label="Play: FCRA Governance Beyond Compliance — Is FCRA an Institutional Governance Responsibility?"><img src="https://i.ytimg.com/vi/BY26SdWQsds/hqdefault.jpg" alt="" loading="lazy" width="480" height="360"><span class="yt-play" aria-hidden="true"></span><span class="yt-dur">15:36</span></button></div><figcaption><strong>FCRA Governance Beyond Compliance — Is FCRA an Institutional Governance Responsibility?</strong><span>How strong FCRA governance connects the Board, leadership, Finance, Programme, Compliance and Internal Audit to protect donor intent and institutional credibility.</span><a class="yt-link" href="https://www.youtube.com/watch?v=BY26SdWQsds">Watch on YouTube</a></figcaption></figure>
+      <figure class="vcard"><div class="yt" data-id="jhn2g-3S3Mo"><button type="button" class="yt-btn" aria-label="Play: FCRA Common Cost Allocation Explained — Salary, Rent and Shared Costs for NGOs"><img src="https://i.ytimg.com/vi/jhn2g-3S3Mo/hqdefault.jpg" alt="" loading="lazy" width="480" height="360"><span class="yt-play" aria-hidden="true"></span><span class="yt-dur">3:08</span></button></div><figcaption><strong>FCRA Common Cost Allocation Explained — Salary, Rent and Shared Costs for NGOs</strong><span>Whether and how shared costs such as salary and rent can be allocated between FCRA and non-FCRA grants, and how to document it for donor and FCRA audits.</span><a class="yt-link" href="https://www.youtube.com/watch?v=jhn2g-3S3Mo">Watch on YouTube</a></figcaption></figure>
+      <figure class="vcard"><div class="yt" data-id="UjN8vemrJwA"><button type="button" class="yt-btn" aria-label="Play: FCRA Governance 10: Why Good NGOs Lose Their FCRA Registration"><img src="https://i.ytimg.com/vi/UjN8vemrJwA/hqdefault.jpg" alt="" loading="lazy" width="480" height="360"><span class="yt-play" aria-hidden="true"></span><span class="yt-dur">3:38</span></button></div><figcaption><strong>FCRA Governance 10: Why Good NGOs Lose Their FCRA Registration</strong><span>How governance weaknesses can put FCRA registration at risk long before a compliance violation becomes visible.</span><a class="yt-link" href="https://www.youtube.com/watch?v=UjN8vemrJwA">Watch on YouTube</a></figcaption></figure>
+      <figure class="vcard"><div class="yt" data-id="X3JYzhVV7Hs"><button type="button" class="yt-btn" aria-label="Play: FCRA Governance 9: FCRA Compliance Is Not Only Finance&#x27;s Responsibility"><img src="https://i.ytimg.com/vi/X3JYzhVV7Hs/hqdefault.jpg" alt="" loading="lazy" width="480" height="360"><span class="yt-play" aria-hidden="true"></span><span class="yt-dur">4:53</span></button></div><figcaption><strong>FCRA Governance 9: FCRA Compliance Is Not Only Finance&#x27;s Responsibility</strong><span>Why FCRA compliance is a shared responsibility across the Board, CEO, CFO, Programme, HR, Procurement and Administration.</span><a class="yt-link" href="https://www.youtube.com/watch?v=X3JYzhVV7Hs">Watch on YouTube</a></figcaption></figure>
+      <figure class="vcard"><div class="yt" data-id="QurasWm0QhQ"><button type="button" class="yt-btn" aria-label="Play: FCRA Governance 7: Recent FCRA Changes Are Good Governance in Action"><img src="https://i.ytimg.com/vi/QurasWm0QhQ/hqdefault.jpg" alt="" loading="lazy" width="480" height="360"><span class="yt-play" aria-hidden="true"></span><span class="yt-dur">4:23</span></button></div><figcaption><strong>FCRA Governance 7: Recent FCRA Changes Are Good Governance in Action</strong><span>What recent FCRA changes mean for leadership responsibilities, administrative cost limits and financial compliance.</span><a class="yt-link" href="https://www.youtube.com/watch?v=QurasWm0QhQ">Watch on YouTube</a></figcaption></figure>
+      <figure class="vcard"><div class="yt" data-id="1BW7j1mRPb0"><button type="button" class="yt-btn" aria-label="Play: FCRA Governance 2: Cash Management Challenges in Q1"><img src="https://i.ytimg.com/vi/1BW7j1mRPb0/hqdefault.jpg" alt="" loading="lazy" width="480" height="360"><span class="yt-play" aria-hidden="true"></span><span class="yt-dur">4:23</span></button></div><figcaption><strong>FCRA Governance 2: Cash Management Challenges in Q1</strong><span>Why first-quarter cash-flow pressure recurs in NGOs, and how planning and FCRA discipline prevent compliance issues.</span><a class="yt-link" href="https://www.youtube.com/watch?v=1BW7j1mRPb0">Watch on YouTube</a></figcaption></figure>
+      <figure class="vcard"><div class="yt" data-id="u_6RFnZiIYc"><button type="button" class="yt-btn" aria-label="Play: FCRA Governance — Full Webinar (18 July 2026)"><img src="https://i.ytimg.com/vi/u_6RFnZiIYc/hqdefault.jpg" alt="" loading="lazy" width="480" height="360"><span class="yt-play" aria-hidden="true"></span><span class="yt-dur">37:27</span></button></div><figcaption><strong>FCRA Governance — Full Webinar (18 July 2026)</strong><span>Why NGOs face recurring compliance failures, and why these are usually symptoms of deeper governance and management issues rather than isolated mistakes.</span><a class="yt-link" href="https://www.youtube.com/watch?v=u_6RFnZiIYc">Watch on YouTube</a></figcaption></figure>
     </div>
   </div>
 </section>
-
-<section id="institutional-resilience">
-  <div class="wrap">
-    <h2 class="group-label"><a href="institutional-resilience.html" style="color:inherit; text-decoration:none;">Institutional Resilience</a></h2>
-    <p class="group-sub">How NGOs and mission-driven organisations build institutional resilience: funding diversity, reserves, leadership depth, systems and governance that last. <a href="institutional-resilience.html">Open the Institutional Resilience hub →</a></p>
-    <div class="post">
-      <div class="date">June 2026</div>
-      <h3>The Single-Donor Trap: Why Revenue Concentration Is a Boardroom Failure</h3>
-      <p>On why funding concentration is a resilience risk that Boards should formally monitor — and when donor diversification should become a strategic priority.</p>
-      <p><a href="https://medium.com/@sunilkumar.fca">Read on Medium →</a></p>
-    </div>
-    <div class="post">
-      <div class="date">September 2026</div>
-      <h3>Compliance Is Not the Same as Institutional Assurance</h3>
-      <p>A companion piece on why resilient institutions aren't simply the ones compliant today — they're the ones that have built the capability to remain compliant as circumstances change: assign responsibility → establish controls → monitor compliance → maintain evidence → escalate exceptions → provide oversight.</p>
-    </div>
-    <div class="post">
-      <div class="date">Edition 1 · July 2026</div>
-      <h3>The Resilient Institution — Moving Beyond Checklist Compliance</h3>
-      <p>The first IGMA™ Governance Insights edition, on building more resilient, trusted institutions rather than treating governance as a box-ticking exercise.</p>
-      <p><a href="read-the-resilient-institution.html">Read The Resilient Institution free online →</a></p>
-    </div>
-    <div class="post">
-      <div class="date">New book · September 2026</div>
-      <h3>The Resilient Institution: Building Trust, Governance, and Sustainable Impact</h3>
-      <p>"Mission without systems becomes fragile. Systems without mission become irrelevant. Sustainable institutions require both." Includes a practical Leadership Q&amp;A section on institutional fragility, financial resilience and balancing mission ambition with financial reality.</p>
-      <p><a href="read-the-resilient-institution.html">Read online, free →</a> · <a href="library.html">Related: The Resilient Institution →</a></p>
-    </div>
-    <div class="post">
-      <div class="date">Free to read</div>
-      <h3>The Architecture of Resilience</h3>
-      <p>A short story about leadership, finance, governance and the institution we leave behind — free to read online in full, from The Resilient Institution.</p>
-      <p><a href="read-the-resilient-institution.html#ch0-bonus-architecture-of-resilience">Read online free: The Architecture of Resilience →</a> · also on <a href="https://sunilkumarfca.substack.com/">Substack</a> and <a href="https://medium.com/@sunilkumar.fca">Medium</a></p>
-    </div>
-    <div class="post">
-      <div class="date">July 2026</div>
-      <h3>Introducing My First Two Books: The Beginning of The Resilient Institution™ Series</h3>
-      <p>The story behind starting the book series — the first two titles under a shared thesis on trust, governance and sustainable impact.</p>
-      <p><a href="https://medium.com/@sunilkumar.fca">Read on Medium →</a></p>
-    </div>
-  </div>
-</section>
-
-<section id="governance-maturity" class="alt">
-  <div class="wrap">
-    <h2 class="group-label"><a href="governance-maturity.html" style="color:inherit; text-decoration:none;">Governance Maturity</a></h2>
-    <p class="group-sub">What governance maturity means, how it differs from a compliance checklist, and how NGOs can assess it with evidence — the thinking behind IGMA™. <a href="governance-maturity.html">Open the Governance Maturity hub →</a></p>
-    <div class="post">
-      <div class="date">September 2026</div>
-      <h3>Governance Checklist vs Governance Maturity Assessment: What's the Difference?</h3>
-      <p>A checklist asks "do you have a policy?" A maturity assessment asks whether it's current, implemented, embedded in decision-making — and what evidence demonstrates that.</p>
-      <p><a href="igma.html">Related: IGMA™ Toolkits →</a></p>
-    </div>
-    <div class="post">
-      <div class="date">Edition 3 · September 2026</div>
-      <h3>Governance Begins Where Self-Assessment Ends</h3>
-      <p>Five observations from implementing an evidence-based Governance Maturity Assessment — on why governance frameworks define governance, but governance behaviour determines maturity.</p>
-      <p><a href="https://www.linkedin.com/in/sunilkumarfca/">Read on LinkedIn →</a></p>
-    </div>
-    <div class="post">
-      <div class="date">September 2026</div>
-      <h3>What 14 Governance Assessments Reveal About How Governance Pillars Move Together</h3>
-      <p>Peer benchmark data (directional, not representative — based on 14 NGO assessments) showing strong correlations between Financial Stewardship and both Stakeholder Trust (0.92) and Operational Excellence (0.91) — and why a weakness in one pillar can weaken the others.</p>
-      <p><a href="igma.html">Related: IGMA™ Institutional Governance Maturity Toolkit →</a></p>
-    </div>
-    <div class="post">
-      <div class="date">September 2026</div>
-      <h3>IGMA™ Pillar 1: Board Governance &amp; Strategic Oversight</h3>
-      <p>A look at the eight areas under Pillar 1 — board skills, independence, composition, diversity, evaluation — and why "we have the skills" is different from "we have assessed whether we have the skills, and can demonstrate it."</p>
-      <p><a href="https://www.youtube.com/watch?v=88JpWy5b28I">Watch the Founder Edition webinar →</a></p>
-    </div>
-  </div>
-</section>
-
-<section id="ideas-and-life">
-  <div class="wrap">
-    <h2 class="group-label">Ideas &amp; life</h2>
-    <p class="group-sub">Personal effectiveness, wealth and return on effort — from The Strategic Life series.</p>
-    <div class="post">
-      <div class="date">September 2026</div>
-      <h3><a href="wealthy-life-wealth-beyond-money.html" style="color:inherit; text-decoration:none;">The Wealthy Life: Building Wealth That Lasts Beyond Success</a></h3>
-      <p>Why high income and success do not guarantee a wealthy life: income vs wealth, the six dimensions of wealth, return on effort, and turning success into lifelong resilience.</p>
-      <p><a href="wealthy-life-wealth-beyond-money.html">Read the article →</a></p>
-    </div>
-    <div class="post">
-      <div class="date">New book · September 2026</div>
-      <h3>The Wealthy Life</h3>
-      <p>Presents wealth as a six-dimensional portfolio — financial, physical, mental, emotional, social and spiritual — built around a simple operating cycle: Define → Measure → Prioritise → Act → Review → Rebalance.</p>
-      <p><a href="read-the-wealthy-life.html">Read The Wealthy Life free online →</a></p>
-    </div>
-    <div class="post">
-      <div class="date">New book · September 2026</div>
-      <h3>Optimise Your Return on Effort</h3>
-      <p>Introduces SROE — Strategic Return on Effort — a framework for allocating limited time and energy deliberately: Decide → Allocate → Execute → Review → Adapt.</p>
-      <p><a href="library.html">Related: Optimise Your Return on Effort →</a></p>
-    </div>
-    <div class="post">
-      <div class="date">August 2026</div>
-      <h3>After 50, Your Greatest Financial Asset May Not Be Your Money</h3>
-      <p>On monetising decades of professional judgment as intellectual capital — frameworks, training toolkits, advisory models — rather than relying only on market returns in the second half of a career.</p>
-      <p><a href="https://medium.com/@sunilkumar.fca">Read on Medium →</a></p>
-    </div>
-  </div>
-</section>
-
-<section id="news">
-  <div class="wrap">
-    <h2 class="group-label" style="font-size:1.1rem;">News</h2>
-    <div class="post">
-      <div class="date">September 2026</div>
-      <h3>Amazon Author Page</h3>
-      <p>Now live on Amazon — future books and practical insights on governance, strategic finance, CFO leadership and institutional resilience will be published there.</p>
-      <p><a href="https://www.amazon.com/stores/author/B0H68584LZ/allbooks">Follow on Amazon →</a></p>
-    </div>
-    <div class="post">
-      <div class="date">July 2026</div>
-      <h3>Welcome to The Resilient Institution</h3>
-      <p>Launched a professional LinkedIn community for people building financially strong, well-governed, future-ready social-impact institutions — a space for practical questions, not promotion.</p>
-      <p><a href="https://www.linkedin.com/in/sunilkumarfca/">Join on LinkedIn →</a></p>
-    </div>
-  </div>
-</section>
-
 
 <section>
   <div class="wrap">
-    <p class="placeholder-note">New articles are added here first, then shared on Substack and Medium.</p>
-    <p style="margin-top:6px;"><a href="https://sunilkumarfca.substack.com/">Subscribe free on Substack</a> to get each one by email, or <a href="watch.html">watch the free videos</a>.</p>
+    <h2 class="group-label">Books</h2>
+    <ul class="hub-list">
+      <li><a href="library.html">A Governance Maturity Framework for FCRA-Registered Organisations</a> — <span>practical guide for Boards and senior leaders, $50</span></li>
+    </ul>
+    <div style="margin-top:32px;"><aside class="art-cta" style="max-width:none;">
+      <h2 style="font-size:1.25rem;">Assess your organisation: IGMA™ FCRA Compliance and FCRA Governance toolkits</h2>
+      <p style="color:var(--slate); margin:10px 0 0;">Scored, evidence-based FCRA assessments — from $300, or $700 for the compliance bundle.</p>
+      <div class="cta-row"><a class="btn primary" href="igma.html#choose">Find the right toolkit</a><a class="btn" href="https://sunilkumarfca.substack.com/">Get new articles by email</a></div>
+    </aside></div>
   </div>
 </section>
 
+<section class="alt">
+  <div class="wrap">
+    <h2 class="group-label">Related topics</h2>
+    <div class="hub-grid"><a class="hub-card" href="ngo-governance.html"><strong>NGO Governance</strong><span>Board oversight, risk, internal controls and accountability</span></a><a class="hub-card" href="governance-maturity.html"><strong>Governance Maturity</strong><span>Measuring governance with evidence — the thinking behind IGMA™</span></a><a class="hub-card" href="strategic-finance-ngos.html"><strong>Strategic Finance</strong><span>The CFO role, budgeting, cash flow and financial resilience</span></a><a class="hub-card" href="notes.html"><strong>Knowledge Hub</strong><span>All topics in one place</span></a></div>
+  </div>
+</section>
 <footer>
   <div class="wrap footer-grid">
     <div class="footer-about">
@@ -572,6 +583,22 @@ footer .disclaimer{margin:0; max-width:80ch;}
     if (href.indexOf('igma') > -1 || href.indexOf('fcra') > -1 || href.indexOf('dpdp') > -1 || href.indexOf('DPDP') > -1) {
       track('igma_click', {link_url: href, link_text: label});
     }
+  });
+})();
+</script>
+<script>
+/* Click-to-load YouTube: no YouTube code or cookies until the visitor presses play */
+(function(){
+  document.addEventListener('click', function(e){
+    var b = e.target.closest('.yt-btn'); if (!b) return;
+    var box = b.parentNode, id = box.getAttribute('data-id');
+    var f = document.createElement('iframe');
+    f.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0';
+    f.title = b.getAttribute('aria-label') || 'Video';
+    f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+    f.allowFullscreen = true;
+    box.innerHTML = ''; box.appendChild(f);
+    if (typeof gtag === 'function') gtag('event', 'video_play', {video_id: id, video_title: (b.getAttribute('aria-label') || '').replace('Play: ', ''), page: location.pathname});
   });
 })();
 </script>
