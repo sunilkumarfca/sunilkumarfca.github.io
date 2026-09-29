@@ -98,8 +98,8 @@ header.site{padding:22px 0; border-bottom:1px solid var(--line);}
 header.site .wrap{display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap;}
 .brand{font-family:'Newsreader', Georgia, serif; font-size:1.15rem; font-weight:600; text-decoration:none; color:var(--ink);}
 .brand span{color:var(--slate); font-family:'IBM Plex Sans', Arial, sans-serif; font-weight:400; font-size:0.85rem; display:block; margin-top:2px;}
-nav.site{display:flex; flex-wrap:wrap;}
-nav.site a{color:var(--ink); text-decoration:none; margin-left:26px; font-size:0.95rem; border-bottom:1px solid transparent; padding-bottom:2px;}
+nav.site{display:flex; flex-wrap:wrap; gap:6px 24px;}
+nav.site a{color:var(--ink); text-decoration:none; margin-left:0; font-size:0.95rem; border-bottom:1px solid transparent; padding-bottom:2px;}
 nav.site a:first-child{margin-left:0;}
 nav.site a:hover, nav.site a.current{border-bottom-color:var(--brass);}
 
@@ -319,7 +319,48 @@ footer .disclaimer{margin:0; max-width:80ch;}
 .book-faq .faq-answer{margin-top:12px; color:var(--slate); font-size:0.95rem; line-height:1.65;}
 .book-faq .faq-answer a{color:var(--brass-dark); border-bottom:1px solid var(--brass); text-decoration:none; white-space:nowrap;}
 
+/* Video cards (click-to-load YouTube) */
+.vgrid{display:grid; grid-template-columns:repeat(auto-fill, minmax(290px, 1fr)); gap:28px;}
+.vcard{margin:0;}
+.vcard.vbig{max-width:640px;}
+.yt{position:relative; aspect-ratio:16/9; background:#0f141a; overflow:hidden; border:1px solid var(--line);}
+.yt iframe{position:absolute; inset:0; width:100%; height:100%; border:0;}
+.yt-btn{all:unset; cursor:pointer; position:absolute; inset:0; display:block;}
+.yt-btn img{width:100%; height:100%; object-fit:cover; display:block; opacity:.92;}
+.yt-btn:hover img{opacity:1;}
+.yt-btn:focus-visible{outline:2px solid var(--brass-dark); outline-offset:3px;}
+.yt-play{position:absolute; left:50%; top:50%; width:64px; height:44px; margin:-22px 0 0 -32px; background:rgba(28,37,48,.88); border-radius:10px;}
+.yt-play::after{content:""; position:absolute; left:26px; top:13px; border-style:solid; border-width:9px 0 9px 15px; border-color:transparent transparent transparent #FAF8F4;}
+.yt-btn:hover .yt-play{background:var(--brass-dark);}
+.yt-dur{position:absolute; right:8px; bottom:8px; background:rgba(0,0,0,.78); color:#fff; font-size:.75rem; padding:1px 6px; border-radius:3px;}
+.vcard figcaption{padding-top:12px;}
+.vcard figcaption strong{display:block; font-family:'Newsreader', Georgia, serif; font-weight:500; font-size:1.05rem; line-height:1.3; color:var(--ink);}
+.vcard figcaption span{display:block; color:var(--slate); font-size:.9rem; margin-top:6px;}
+.vcard .yt-link{display:inline-block; margin-top:8px; font-size:.85rem; text-decoration:none; border-bottom:1px solid var(--brass);}
 </style>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "VideoObject",
+   "name": "The Strategic CFO — Full Audiobook",
+   "description": "The complete audiobook of The Strategic CFO: how finance leaders move beyond control to contribute to governance, trust, resilience and sustainable impact.",
+   "thumbnailUrl": "https://i.ytimg.com/vi/b30wkeu--UU/hqdefault.jpg",
+   "uploadDate": "2026-09-22T00:00:00+05:30",
+   "duration": "PT3H44M44S",
+   "embedUrl": "https://www.youtube-nocookie.com/embed/b30wkeu--UU",
+   "contentUrl": "https://www.youtube.com/watch?v=b30wkeu--UU",
+   "author": {
+    "@type": "Person",
+    "name": "Sunil Kumar",
+    "honorificSuffix": "FCA",
+    "url": "https://sunilkumarfca.com/about.html"
+   }
+  }
+ ]
+}
+</script>
 </head>
 <body>
 
@@ -330,6 +371,7 @@ footer .disclaimer{margin:0; max-width:80ch;}
       <a href="index.html">Home</a>
       <a href="library.html" class="current">Books</a>
       <a href="igma.html">IGMA™ Toolkits</a>
+      <a href="watch.html">Watch</a>
       <a href="publications.html">Publications</a>
       <a href="notes.html">Updates</a>
       <a href="about.html">About</a>
@@ -354,6 +396,14 @@ footer .disclaimer{margin:0; max-width:80ch;}
       <p>"Perhaps the most compelling idea is the 'CFO holiday test': can the organisation and finance function operate effectively without the CFO being constantly present? This captures an important truth about the CFO's role — the CFO should build the system, governance and capability, rather than become the system. A valuable read that I expect to refer to often."</p>
       <cite>— Andrew Harmer, FCA, senior executive, for-profit &amp; regulated sector</cite>
     </div>
+  </div>
+</section>
+
+<section style="padding:36px 0 44px;">
+  <div class="wrap">
+    <h2 class="group-label">Prefer to listen?</h2>
+    <p class="group-sub">The full audiobook is free on YouTube (3 h 45 min). <a href="watch.html#strategic-cfo">Short chapter extracts</a> are also available.</p>
+    <figure class="vcard vbig"><div class="yt" data-id="b30wkeu--UU"><button type="button" class="yt-btn" aria-label="Play: The Strategic CFO — Full Audiobook"><img src="https://i.ytimg.com/vi/b30wkeu--UU/hqdefault.jpg" alt="" loading="lazy" width="480" height="360"><span class="yt-play" aria-hidden="true"></span><span class="yt-dur">3:44:44</span></button></div><figcaption><strong>The Strategic CFO — Full Audiobook</strong><span>The complete audiobook of The Strategic CFO: how finance leaders move beyond control to contribute to governance, trust, resilience and sustainable impact.</span><a class="yt-link" href="https://www.youtube.com/watch?v=b30wkeu--UU">Watch on YouTube</a></figcaption></figure>
   </div>
 </section>
 
@@ -7250,6 +7300,7 @@ Prevention: Include a standing FCRA Compliance Update on the Board/Audit Committ
       <a href="index.html">Home</a>
       <a href="library.html">Books</a>
       <a href="igma.html">IGMA™ Toolkits</a>
+      <a href="watch.html">Watch &amp; Listen</a>
       <a href="publications.html">Publications</a>
       <a href="notes.html">Updates</a>
       <a href="about.html">About</a>
@@ -7257,13 +7308,14 @@ Prevention: Include a standing FCRA Compliance Update on the Board/Audit Committ
     </div>
     <div class="footer-links">
       <h4>Read &amp; Follow</h4>
-      <a href="https://www.linkedin.com/in/sunilkumarfca/">LinkedIn</a>
-      <a href="https://www.linkedin.com/groups/40323012/">LinkedIn Group</a>
-      <a href="https://www.linkedin.com/newsletters/the-resilient-institution-7477401652132491265/">LinkedIn Newsletter</a>
       <a href="https://sunilkumarfca.substack.com/">Substack</a>
       <a href="https://medium.com/@sunilkumar.fca">Medium</a>
-      <h4>Watch</h4>
-      <a href="https://www.youtube.com/@casunilkumarfca">YouTube</a>
+      <a href="https://www.linkedin.com/newsletters/the-resilient-institution-7477401652132491265/">LinkedIn Newsletter</a>
+      <a href="https://www.linkedin.com/groups/40323012/">LinkedIn Group</a>
+      <a href="https://www.linkedin.com/in/sunilkumarfca/">LinkedIn</a>
+      <h4>Watch &amp; Listen</h4>
+      <a href="https://www.youtube.com/@casunilkumarfca">YouTube channel</a>
+      <a href="watch.html">Videos &amp; audiobooks</a>
     </div>
     <div class="footer-links">
       <h4>Buy Books</h4>
@@ -7368,6 +7420,22 @@ Prevention: Include a standing FCRA Compliance Update on the Board/Audit Committ
     if (n) gtag('event', n, p);
     var h = href.toLowerCase();
     if (h.indexOf('igma') > -1 || h.indexOf('fcra') > -1 || h.indexOf('dpdp') > -1) gtag('event', 'igma_click', p);
+  });
+})();
+</script>
+<script>
+/* Click-to-load YouTube: no YouTube code or cookies until the visitor presses play */
+(function(){
+  document.addEventListener('click', function(e){
+    var b = e.target.closest('.yt-btn'); if (!b) return;
+    var box = b.parentNode, id = box.getAttribute('data-id');
+    var f = document.createElement('iframe');
+    f.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0';
+    f.title = b.getAttribute('aria-label') || 'Video';
+    f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+    f.allowFullscreen = true;
+    box.innerHTML = ''; box.appendChild(f);
+    if (typeof gtag === 'function') gtag('event', 'video_play', {video_id: id, video_title: (b.getAttribute('aria-label') || '').replace('Play: ', ''), page: location.pathname});
   });
 })();
 </script>

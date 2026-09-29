@@ -10,18 +10,19 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IGMA™ Toolkits — Sunil Kumar, FCA</title>
-<meta name="description" content="IGMA™ governance maturity assessments — evidence-based scoring, executive dashboards and practical recommendations for NGOs and Foundations.">
+<link rel="canonical" href="https://sunilkumarfca.com/igma.html">
+<title>NGO Governance &amp; FCRA Compliance Assessment Toolkits (IGMA™) — Sunil Kumar, FCA</title>
+<meta name="description" content="Excel-based IGMA™ self-assessment toolkits for NGOs: institutional governance maturity, FCRA compliance, FCRA governance and DPDP data protection. Board-ready scores, gap lists and action plans. From $100.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2210%22%20fill%3D%22%231C2530%22/%3E%3Ctext%20x%3D%2232%22%20y%3D%2243%22%20font-family%3D%22Georgia%2C%20serif%22%20font-size%3D%2230%22%20fill%3D%22%23C9A35A%22%20text-anchor%3D%22middle%22%3ESK%3C/text%3E%3C/svg%3E">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Sunil Kumar, FCA">
-<meta property="og:title" content="IGMA™ Toolkits — Sunil Kumar, FCA">
-<meta property="og:description" content="IGMA™ governance maturity assessments — evidence-based scoring, executive dashboards and practical recommendations for NGOs and Foundations.">
+<meta property="og:title" content="NGO Governance &amp; FCRA Compliance Assessment Toolkits (IGMA™) — Sunil Kumar, FCA">
+<meta property="og:description" content="Excel-based IGMA™ self-assessment toolkits for NGOs: institutional governance maturity, FCRA compliance, FCRA governance and DPDP data protection. Board-ready scores, gap lists and action plans. From $100.">
 <meta property="og:image" content="https://sunilkumarfca.com/og-image.png">
 <meta property="og:url" content="https://sunilkumarfca.com/igma.html">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="IGMA™ Toolkits — Sunil Kumar, FCA">
-<meta name="twitter:description" content="IGMA™ governance maturity assessments — evidence-based scoring, executive dashboards and practical recommendations for NGOs and Foundations.">
+<meta name="twitter:title" content="NGO Governance &amp; FCRA Compliance Assessment Toolkits (IGMA™) — Sunil Kumar, FCA">
+<meta name="twitter:description" content="Excel-based IGMA™ self-assessment toolkits for NGOs: institutional governance maturity, FCRA compliance, FCRA governance and DPDP data protection. Board-ready scores, gap lists and action plans. From $100.">
 <meta name="twitter:image" content="https://sunilkumarfca.com/og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -64,8 +65,8 @@ header.site{padding:22px 0; border-bottom:1px solid var(--line);}
 header.site .wrap{display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap;}
 .brand{font-family:'Newsreader', Georgia, serif; font-size:1.15rem; font-weight:600; text-decoration:none; color:var(--ink);}
 .brand span{color:var(--slate); font-family:'IBM Plex Sans', Arial, sans-serif; font-weight:400; font-size:0.85rem; display:block; margin-top:2px;}
-nav.site{display:flex; flex-wrap:wrap;}
-nav.site a{color:var(--ink); text-decoration:none; margin-left:26px; font-size:0.95rem; border-bottom:1px solid transparent; padding-bottom:2px;}
+nav.site{display:flex; flex-wrap:wrap; gap:6px 24px;}
+nav.site a{color:var(--ink); text-decoration:none; margin-left:0; font-size:0.95rem; border-bottom:1px solid transparent; padding-bottom:2px;}
 nav.site a:first-child{margin-left:0;}
 nav.site a:hover, nav.site a.current{border-bottom-color:var(--brass);}
 
@@ -235,6 +236,24 @@ footer .disclaimer{margin:0; max-width:80ch;}
 .faq-table{border-collapse:collapse; width:100%; margin:4px 0 12px; font-size:0.88rem; display:block; overflow-x:auto;}
 .faq-table th, .faq-table td{text-align:left; padding:7px 10px; border-bottom:1px solid var(--line); vertical-align:top;}
 .faq-table th{color:var(--ink); font-weight:600; background:var(--paper-raised);}
+/* Video cards (click-to-load YouTube) */
+.vgrid{display:grid; grid-template-columns:repeat(auto-fill, minmax(290px, 1fr)); gap:28px;}
+.vcard{margin:0;}
+.vcard.vbig{max-width:640px;}
+.yt{position:relative; aspect-ratio:16/9; background:#0f141a; overflow:hidden; border:1px solid var(--line);}
+.yt iframe{position:absolute; inset:0; width:100%; height:100%; border:0;}
+.yt-btn{all:unset; cursor:pointer; position:absolute; inset:0; display:block;}
+.yt-btn img{width:100%; height:100%; object-fit:cover; display:block; opacity:.92;}
+.yt-btn:hover img{opacity:1;}
+.yt-btn:focus-visible{outline:2px solid var(--brass-dark); outline-offset:3px;}
+.yt-play{position:absolute; left:50%; top:50%; width:64px; height:44px; margin:-22px 0 0 -32px; background:rgba(28,37,48,.88); border-radius:10px;}
+.yt-play::after{content:""; position:absolute; left:26px; top:13px; border-style:solid; border-width:9px 0 9px 15px; border-color:transparent transparent transparent #FAF8F4;}
+.yt-btn:hover .yt-play{background:var(--brass-dark);}
+.yt-dur{position:absolute; right:8px; bottom:8px; background:rgba(0,0,0,.78); color:#fff; font-size:.75rem; padding:1px 6px; border-radius:3px;}
+.vcard figcaption{padding-top:12px;}
+.vcard figcaption strong{display:block; font-family:'Newsreader', Georgia, serif; font-weight:500; font-size:1.05rem; line-height:1.3; color:var(--ink);}
+.vcard figcaption span{display:block; color:var(--slate); font-size:.9rem; margin-top:6px;}
+.vcard .yt-link{display:inline-block; margin-top:8px; font-size:.85rem; text-decoration:none; border-bottom:1px solid var(--brass);}
 </style>
 <script type="application/ld+json">
 {
@@ -524,6 +543,185 @@ footer .disclaimer{margin:0; max-width:80ch;}
  ]
 }
 </script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "ItemList",
+ "name": "IGMA™ governance assessment toolkits",
+ "itemListElement": [
+  {
+   "@type": "ListItem",
+   "position": 1,
+   "item": {
+    "@type": "Product",
+    "name": "IGMA™ Institutional Governance Maturity Assessment Toolkit — Professional Edition",
+    "description": "Automated Excel workbook: 60 questions, 8 governance pillars, 646 evidence-based criteria, Board summary, dashboard and action plan.",
+    "category": "Governance assessment software (Excel workbook)",
+    "brand": {
+     "@type": "Brand",
+     "name": "IGMA™"
+    },
+    "url": "https://sunilfca.gumroad.com/l/igma-organisational-toolkit",
+    "image": "https://sunilkumarfca.com/og-image.png",
+    "offers": {
+     "@type": "Offer",
+     "price": "500",
+     "priceCurrency": "USD",
+     "availability": "https://schema.org/InStock",
+     "url": "https://sunilfca.gumroad.com/l/igma-organisational-toolkit"
+    }
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 2,
+   "item": {
+    "@type": "Product",
+    "name": "IGMA™ FCRA Governance Maturity Assessment Toolkit — Professional Edition",
+    "description": "8-pillar, 200-point automated Excel assessment of FCRA governance for Indian NGOs.",
+    "category": "Governance assessment software (Excel workbook)",
+    "brand": {
+     "@type": "Brand",
+     "name": "IGMA™"
+    },
+    "url": "https://sunilfca.gumroad.com/l/igma-fcra-toolkit",
+    "image": "https://sunilkumarfca.com/og-image.png",
+    "offers": {
+     "@type": "Offer",
+     "price": "500",
+     "priceCurrency": "USD",
+     "availability": "https://schema.org/InStock",
+     "url": "https://sunilfca.gumroad.com/l/igma-fcra-toolkit"
+    }
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 3,
+   "item": {
+    "@type": "Product",
+    "name": "IGMA™ FCRA Compliance Assessment Toolkit",
+    "description": "Organisation-wide FCRA compliance assessment across four modules and six governance pillars, automated in Excel.",
+    "category": "Governance assessment software (Excel workbook)",
+    "brand": {
+     "@type": "Brand",
+     "name": "IGMA™"
+    },
+    "url": "https://sunilfca.gumroad.com/l/IGMAFCRAComplianceAssessmentToolkit",
+    "image": "https://sunilkumarfca.com/og-image.png",
+    "offers": {
+     "@type": "Offer",
+     "price": "300",
+     "priceCurrency": "USD",
+     "availability": "https://schema.org/InStock",
+     "url": "https://sunilfca.gumroad.com/l/IGMAFCRAComplianceAssessmentToolkit"
+    }
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 4,
+   "item": {
+    "@type": "Product",
+    "name": "IGMA™ DPDP Compliance Assessment Toolkit",
+    "description": "Automated Excel assessment of readiness under India's Digital Personal Data Protection (DPDP) Act.",
+    "category": "Governance assessment software (Excel workbook)",
+    "brand": {
+     "@type": "Brand",
+     "name": "IGMA™"
+    },
+    "url": "https://sunilfca.gumroad.com/l/DPDPCompliance",
+    "image": "https://sunilkumarfca.com/og-image.png",
+    "offers": {
+     "@type": "Offer",
+     "price": "100",
+     "priceCurrency": "USD",
+     "availability": "https://schema.org/InStock",
+     "url": "https://sunilfca.gumroad.com/l/DPDPCompliance"
+    }
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 5,
+   "item": {
+    "@type": "Product",
+    "name": "IGMA™ Compliance Toolkits Bundle",
+    "description": "FCRA Compliance, FCRA Governance (Professional Edition) and DPDP Compliance toolkits together.",
+    "category": "Governance assessment software (Excel workbook)",
+    "brand": {
+     "@type": "Brand",
+     "name": "IGMA™"
+    },
+    "url": "https://sunilfca.gumroad.com/l/IGMAComplianceToolkitsBundle",
+    "image": "https://sunilkumarfca.com/og-image.png",
+    "offers": {
+     "@type": "Offer",
+     "price": "700",
+     "priceCurrency": "USD",
+     "availability": "https://schema.org/InStock",
+     "url": "https://sunilfca.gumroad.com/l/IGMAComplianceToolkitsBundle"
+    }
+   }
+  }
+ ]
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "VideoObject",
+   "name": "Can Institutional Governance Be Objectively Measured? — Evidence-Based Governance Assessment",
+   "description": "A short demonstration of evidence-based governance assessment: the question is not whether an organisation says it has good governance, but what evidence supports it.",
+   "thumbnailUrl": "https://i.ytimg.com/vi/Hdgc2k-0c14/hqdefault.jpg",
+   "uploadDate": "2026-08-22T00:00:00+05:30",
+   "duration": "PT7M18S",
+   "embedUrl": "https://www.youtube-nocookie.com/embed/Hdgc2k-0c14",
+   "contentUrl": "https://www.youtube.com/watch?v=Hdgc2k-0c14",
+   "author": {
+    "@type": "Person",
+    "name": "Sunil Kumar",
+    "honorificSuffix": "FCA",
+    "url": "https://sunilkumarfca.com/about.html"
+   }
+  },
+  {
+   "@type": "VideoObject",
+   "name": "Can Institutional Governance Be Measured? — IGMA™ Founder Edition Webinar",
+   "description": "Introduces the Institutional Governance Maturity Assessment and shows how governance can be assessed systematically across Board governance, strategy, financial stewardship and risk, rather than by opinion alone.",
+   "thumbnailUrl": "https://i.ytimg.com/vi/88JpWy5b28I/hqdefault.jpg",
+   "uploadDate": "2026-08-26T00:00:00+05:30",
+   "duration": "PT35M14S",
+   "embedUrl": "https://www.youtube-nocookie.com/embed/88JpWy5b28I",
+   "contentUrl": "https://www.youtube.com/watch?v=88JpWy5b28I",
+   "author": {
+    "@type": "Person",
+    "name": "Sunil Kumar",
+    "honorificSuffix": "FCA",
+    "url": "https://sunilkumarfca.com/about.html"
+   }
+  },
+  {
+   "@type": "VideoObject",
+   "name": "FCRA Governance Assurance: A Practical Approach to Strengthening NGO Governance",
+   "description": "Explains FCRA Governance Assurance and demonstrates how a structured governance assessment helps an NGO identify gaps and strengthen oversight of foreign contribution.",
+   "thumbnailUrl": "https://i.ytimg.com/vi/RvOQXgfhtFY/hqdefault.jpg",
+   "uploadDate": "2026-09-20T00:00:00+05:30",
+   "duration": "PT32M40S",
+   "embedUrl": "https://www.youtube-nocookie.com/embed/RvOQXgfhtFY",
+   "contentUrl": "https://www.youtube.com/watch?v=RvOQXgfhtFY",
+   "author": {
+    "@type": "Person",
+    "name": "Sunil Kumar",
+    "honorificSuffix": "FCA",
+    "url": "https://sunilkumarfca.com/about.html"
+   }
+  }
+ ]
+}
+</script>
 </head>
 <body>
 
@@ -534,6 +732,7 @@ footer .disclaimer{margin:0; max-width:80ch;}
       <a href="index.html">Home</a>
       <a href="library.html">Books</a>
       <a href="igma.html" class="current">IGMA™ Toolkits</a>
+      <a href="watch.html">Watch</a>
       <a href="publications.html">Publications</a>
       <a href="notes.html">Updates</a>
       <a href="about.html">About</a>
@@ -577,7 +776,21 @@ footer .disclaimer{margin:0; max-width:80ch;}
 
 <hr class="hairline">
 
-<section class="alt" id="assessments">
+<section class="alt" id="see-it">
+  <div class="wrap">
+    <h2 class="group-label">See how it works</h2>
+    <p class="group-sub">Watch the method explained and demonstrated before you buy. <a href="watch.html">More free videos</a>.</p>
+    <div class="vgrid">
+      <figure class="vcard"><div class="yt" data-id="Hdgc2k-0c14"><button type="button" class="yt-btn" aria-label="Play: Can Institutional Governance Be Objectively Measured? — Evidence-Based Governance Assessment"><img src="https://i.ytimg.com/vi/Hdgc2k-0c14/hqdefault.jpg" alt="" loading="lazy" width="480" height="360"><span class="yt-play" aria-hidden="true"></span><span class="yt-dur">7:18</span></button></div><figcaption><strong>Can Institutional Governance Be Objectively Measured? — Evidence-Based Governance Assessment</strong><span>A short demonstration of evidence-based governance assessment: the question is not whether an organisation says it has good governance, but what evidence supports it.</span><a class="yt-link" href="https://www.youtube.com/watch?v=Hdgc2k-0c14">Watch on YouTube</a></figcaption></figure>
+      <figure class="vcard"><div class="yt" data-id="88JpWy5b28I"><button type="button" class="yt-btn" aria-label="Play: Can Institutional Governance Be Measured? — IGMA™ Founder Edition Webinar"><img src="https://i.ytimg.com/vi/88JpWy5b28I/hqdefault.jpg" alt="" loading="lazy" width="480" height="360"><span class="yt-play" aria-hidden="true"></span><span class="yt-dur">35:14</span></button></div><figcaption><strong>Can Institutional Governance Be Measured? — IGMA™ Founder Edition Webinar</strong><span>Introduces the Institutional Governance Maturity Assessment and shows how governance can be assessed systematically across Board governance, strategy, financial stewardship and risk, rather than by opinion alone.</span><a class="yt-link" href="https://www.youtube.com/watch?v=88JpWy5b28I">Watch on YouTube</a></figcaption></figure>
+      <figure class="vcard"><div class="yt" data-id="RvOQXgfhtFY"><button type="button" class="yt-btn" aria-label="Play: FCRA Governance Assurance: A Practical Approach to Strengthening NGO Governance"><img src="https://i.ytimg.com/vi/RvOQXgfhtFY/hqdefault.jpg" alt="" loading="lazy" width="480" height="360"><span class="yt-play" aria-hidden="true"></span><span class="yt-dur">32:40</span></button></div><figcaption><strong>FCRA Governance Assurance: A Practical Approach to Strengthening NGO Governance</strong><span>Explains FCRA Governance Assurance and demonstrates how a structured governance assessment helps an NGO identify gaps and strengthen oversight of foreign contribution.</span><a class="yt-link" href="https://www.youtube.com/watch?v=RvOQXgfhtFY">Watch on YouTube</a></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<hr class="hairline">
+
+<section id="assessments">
   <div class="wrap">
     <h2 class="group-label">The assessments</h2>
     <p class="group-sub">Choose the scope that matches your immediate risk — FCRA compliance, data protection, or full institutional governance.</p>
@@ -741,7 +954,7 @@ footer .disclaimer{margin:0; max-width:80ch;}
     <ul class="notes-list">
       <li>Currency: prices are shown in USD but convert automatically to your local currency at checkout, based on the prevailing exchange rate. 🇮🇳 Indian buyers: this includes INR, with a significant purchasing-power discount automatically applied on Gumroad.</li>
       <li>Card declining? Check your banking app to confirm "International Online Transactions" are enabled on your debit or credit card.</li>
-      <li>🇮🇳 Prefer UPI (GPay / PhonePe / Paytm)? Skip international card payment entirely — email <a href="mailto:casunilkumarfca@gmail.com">casunilkumarfca@gmail.com</a> or connect on LinkedIn for manual delivery.</li>
+      <li>🇮🇳 Prefer UPI (GPay / PhonePe / Paytm)? Skip international card payment entirely — email <a href="mailto:casunilkumarfca@gmail.com">casunilkumarfca@gmail.com</a> for manual delivery.</li>
       <li>Downloading a free resource? Gumroad lets you set your own price — please type 0 in the amount field at checkout to get it for free.</li>
       <li>Prices listed here are indicative — please check the current rate on the respective platform (Gumroad or Eloquens) before purchase, as they are subject to change.</li>
     </ul>
@@ -759,6 +972,7 @@ footer .disclaimer{margin:0; max-width:80ch;}
       <a href="index.html">Home</a>
       <a href="library.html">Books</a>
       <a href="igma.html">IGMA™ Toolkits</a>
+      <a href="watch.html">Watch &amp; Listen</a>
       <a href="publications.html">Publications</a>
       <a href="notes.html">Updates</a>
       <a href="about.html">About</a>
@@ -766,13 +980,14 @@ footer .disclaimer{margin:0; max-width:80ch;}
     </div>
     <div class="footer-links">
       <h4>Read &amp; Follow</h4>
-      <a href="https://www.linkedin.com/in/sunilkumarfca/">LinkedIn</a>
-      <a href="https://www.linkedin.com/groups/40323012/">LinkedIn Group</a>
-      <a href="https://www.linkedin.com/newsletters/the-resilient-institution-7477401652132491265/">LinkedIn Newsletter</a>
       <a href="https://sunilkumarfca.substack.com/">Substack</a>
       <a href="https://medium.com/@sunilkumar.fca">Medium</a>
-      <h4>Watch</h4>
-      <a href="https://www.youtube.com/@casunilkumarfca">YouTube</a>
+      <a href="https://www.linkedin.com/newsletters/the-resilient-institution-7477401652132491265/">LinkedIn Newsletter</a>
+      <a href="https://www.linkedin.com/groups/40323012/">LinkedIn Group</a>
+      <a href="https://www.linkedin.com/in/sunilkumarfca/">LinkedIn</a>
+      <h4>Watch &amp; Listen</h4>
+      <a href="https://www.youtube.com/@casunilkumarfca">YouTube channel</a>
+      <a href="watch.html">Videos &amp; audiobooks</a>
     </div>
     <div class="footer-links">
       <h4>Buy Books</h4>
@@ -820,6 +1035,22 @@ footer .disclaimer{margin:0; max-width:80ch;}
     if (h.indexOf('igma') > -1 || h.indexOf('fcra') > -1 || h.indexOf('dpdp') > -1) {
       track('igma_click', {link_url: href, link_text: label});
     }
+  });
+})();
+</script>
+<script>
+/* Click-to-load YouTube: no YouTube code or cookies until the visitor presses play */
+(function(){
+  document.addEventListener('click', function(e){
+    var b = e.target.closest('.yt-btn'); if (!b) return;
+    var box = b.parentNode, id = box.getAttribute('data-id');
+    var f = document.createElement('iframe');
+    f.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0';
+    f.title = b.getAttribute('aria-label') || 'Video';
+    f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+    f.allowFullscreen = true;
+    box.innerHTML = ''; box.appendChild(f);
+    if (typeof gtag === 'function') gtag('event', 'video_play', {video_id: id, video_title: (b.getAttribute('aria-label') || '').replace('Play: ', ''), page: location.pathname});
   });
 })();
 </script>
