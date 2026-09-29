@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>Articles — CA Sunil Kumar, FCA</title>
+  <link>https://sunilkumarfca.com/notes.html</link>
+  <atom:link href="https://sunilkumarfca.com/feed.xml" rel="self" type="application/rss+xml"/>
+  <description>Articles on NGO governance, FCRA compliance, strategic finance and building a wealthy, resilient life.</description>
+  <language>en</language>
+  <item>
+    <title>The Wealthy Life: Building Wealth That Lasts Beyond Success</title>
+    <link>https://sunilkumarfca.com/wealthy-life-wealth-beyond-money.html</link>
+    <guid isPermaLink="true">https://sunilkumarfca.com/wealthy-life-wealth-beyond-money.html</guid>
+    <pubDate>Tue, 29 Sep 2026 09:00:00 +0530</pubDate>
+    <description>Why high income and success do not guarantee a wealthy life: income vs wealth, the six dimensions of wealth, return on effort, and turning success into lifelong resilience.</description>
+  </item>
+</channel>
+</rss>
