@@ -343,7 +343,11 @@ footer .disclaimer{margin:0; max-width:80ch;}
     <div class="items">
       <div class="item">
         <div class="info"><h4>IGMA™ DPDP Compliance Assessment Toolkit</h4><p>Excel-based, automated India DPDP Act compliance assessment.</p></div>
-        <div class="buy"><span class="price">$100</span><a href="https://sunilfca.gumroad.com/l/DPDP_Compliance">View on Gumroad</a></div>
+        <div class="buy"><span class="price">$100</span><a href="https://sunilfca.gumroad.com/l/DPDPCompliance">View on Gumroad</a></div>
+      </div>
+      <div class="item">
+        <div class="info"><h4>IGMA™ FCRA Compliance Assessment Toolkit</h4><p>Organisation-wide FCRA compliance assessment — four modules, six governance pillars, automated Excel.</p></div>
+        <div class="buy"><span class="price">$300</span><a href="https://sunilfca.gumroad.com/l/IGMAFCRAComplianceAssessmentToolkit">View on Gumroad</a></div>
       </div>
       <div class="item">
         <div class="info"><h4>IGMA™ FCRA Governance Assessment Toolkit — Professional Edition</h4><p>8-pillar, 200-point automated Excel assessment, for audit-ready documentation.</p></div>
@@ -354,8 +358,8 @@ footer .disclaimer{margin:0; max-width:80ch;}
         <div class="buy"><span class="price">$500</span><a href="https://sunilfca.gumroad.com/l/igma-organisational-toolkit">View on Gumroad</a><a class="alt-link" href="https://www.eloquens.com/tool/QXPPSKEE/ca-sunil-kumar-fca/igma-institutional-governance-maturity-assessment-toolkit-automated-excel-assessment-tool">View on Eloquens</a></div>
       </div>
       <div class="item">
-        <div class="info"><h4>The Governance Suite Bundle <span class="flag">Coming soon</span></h4><p>Both IGMA™ assessments together, at a real saving over buying them separately.</p></div>
-        <div class="buy"><a href="mailto:casunilkumarfca@gmail.com">Ask to be notified</a></div>
+        <div class="info"><h4>IGMA™ Compliance Toolkits Bundle <span class="flag">Best value</span></h4><p>FCRA Compliance + FCRA Governance + DPDP Compliance toolkits together — $700 instead of $900 separately.</p></div>
+        <div class="buy"><span class="price">$700</span><a href="https://sunilfca.gumroad.com/l/IGMAComplianceToolkitsBundle">View on Gumroad</a></div>
       </div>
     </div>
     <p class="placeholder-note">Prices shown are indicative — please check the current rate on the respective platform (Gumroad or Eloquens) before purchase.</p>
@@ -440,6 +444,7 @@ footer .disclaimer{margin:0; max-width:80ch;}
     var a = e.target.closest('a');
     if (!a) return;
     var href = a.getAttribute('href') || '';
+    var h = href.toLowerCase();
     var label = (a.textContent || '').trim().slice(0, 80);
     if (href.indexOf('gumroad.com') > -1) track('gumroad_click', {link_url: href, link_text: label});
     else if (href.indexOf('amazon.') > -1) track('amazon_click', {link_url: href, link_text: label});
@@ -448,7 +453,7 @@ footer .disclaimer{margin:0; max-width:80ch;}
     else if (href.indexOf('pothi.com') > -1) track('pothi_click', {link_url: href, link_text: label});
     else if (href.indexOf('mailto:') === 0) track('contact_click', {link_url: href, link_text: label});
     else if (href.indexOf('linkedin.com') > -1) track('linkedin_click', {link_url: href, link_text: label});
-    if (href.indexOf('igma') > -1 || href.indexOf('fcra') > -1 || href.indexOf('dpdp') > -1 || href.indexOf('DPDP') > -1) {
+    if (h.indexOf('igma') > -1 || h.indexOf('fcra') > -1 || h.indexOf('dpdp') > -1) {
       track('igma_click', {link_url: href, link_text: label});
     }
   });
