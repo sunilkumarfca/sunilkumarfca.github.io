@@ -13,11 +13,10 @@
 
 ## Knowledge Hub
 - [Knowledge Hub](https://sunilkumarfca.com/notes.html): all topics.
-- [NGO Governance](https://sunilkumarfca.com/ngo-governance.html): Board oversight, risk, internal controls and accountability.
+- [Institutional Governance & Resilience](https://sunilkumarfca.com/ngo-governance.html): NGO governance, Board oversight, resilience and governance maturity.
 - [FCRA Governance](https://sunilkumarfca.com/fcra-governance.html): FCRA compliance as an institutional governance responsibility.
-- [Strategic Finance](https://sunilkumarfca.com/strategic-finance-ngos.html): The CFO role, budgeting, cash flow and financial resilience.
-- [Institutional Resilience](https://sunilkumarfca.com/institutional-resilience.html): Funding diversity, reserves, leadership depth and systems.
-- [Governance Maturity](https://sunilkumarfca.com/governance-maturity.html): Measuring governance with evidence — the thinking behind IGMA™.
+- [The Strategic CFO](https://sunilkumarfca.com/strategic-finance-ngos.html): Strategic finance, the CFO role, budgeting and cash flow in NGOs.
+- [Governance maturity: key concepts](https://sunilkumarfca.com/governance-maturity.html): the IGMA™ scale, evidence-based criteria and the Governance Perception Gap™.
 
 ## Videos
 - [Free videos and audiobooks](https://sunilkumarfca.com/watch.html): IGMA™ webinars, FCRA governance series, Strategic CFO audiobook.
