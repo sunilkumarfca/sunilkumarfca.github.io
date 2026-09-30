@@ -230,6 +230,20 @@ footer .disclaimer{margin:0; max-width:80ch;}
 .hub-card:hover{background:var(--paper-raised);}
 .hub-card strong{display:block; font-family:'Newsreader', Georgia, serif; font-weight:500; font-size:1.12rem; color:var(--ink);}
 .hub-card span{display:block; color:var(--slate); font-size:.9rem; margin-top:6px;}
+.tk-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px;}
+.tk{border:1px solid var(--line); background:#fff; padding:22px 22px 20px; display:flex; flex-direction:column;}
+.tk.best{border-color:var(--brass); box-shadow:inset 0 3px 0 var(--brass);}
+.tk .tk-for{font-size:.8rem; letter-spacing:.06em; text-transform:uppercase; color:var(--brass-dark); margin-bottom:8px;}
+.tk h3{font-size:1.12rem; line-height:1.3; margin-bottom:8px;}
+.tk p{color:var(--slate); font-size:.93rem; margin:0 0 16px; flex:1;}
+.tk .tk-price{font-family:'Newsreader', Georgia, serif; font-size:1.7rem; color:var(--ink); margin-bottom:12px;}
+.tk .tk-price small{font-size:.85rem; color:var(--slate); font-family:inherit;}
+.tk .tk-row{display:flex; gap:14px; align-items:center; flex-wrap:wrap;}
+.tk .btn{padding:10px 18px; font-size:.92rem;}
+.tk .tk-more{font-size:.9rem;}
+.tk-note{margin-top:20px; font-size:.9rem; color:var(--slate);}
+@media (max-width:900px){ .tk-grid{grid-template-columns:1fr 1fr;} }
+@media (max-width:600px){ .tk-grid{grid-template-columns:1fr;} }
 </style>
 <script type="application/ld+json">
 {
@@ -453,6 +467,64 @@ footer .disclaimer{margin:0; max-width:80ch;}
     <p style="margin-top:18px; font-size:.93rem;"><a href="watch.html">More free videos and audiobooks →</a></p>
   </div>
 </section>
+<section id="toolkits">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="num"></span>
+      <div>
+        <span class="kicker">IGMA™ toolkits</span>
+        <h2>Assess your organisation this week.</h2>
+        <p>Automated Excel self-assessments your own team can run. One-time payment, single-organisation licence, free v1.x updates, instant download.</p>
+      </div>
+    </div>
+    <div class="tk-grid">
+      <div class="tk">
+        <span class="tk-for">Any NGO, foundation or trust</span>
+        <h3>Institutional Governance Maturity Toolkit</h3>
+        <p>60 questions, 8 pillars, 646 evidence criteria. A Board-ready maturity score (L1–L5), heat map and 30/60/90-day action plan.</p>
+        <div class="tk-price">$500</div>
+        <div class="tk-row"><a class="btn primary" href="https://sunilfca.gumroad.com/l/igma-organisational-toolkit">Buy on Gumroad</a><a class="tk-more" href="ngo-governance-assessment-tool.html">Details →</a></div>
+      </div>
+      <div class="tk">
+        <span class="tk-for">Indian NGOs with FCRA registration</span>
+        <h3>FCRA Compliance Assessment Toolkit</h3>
+        <p>Organisation-wide FCRA check across registration, current compliance, governance integration and future readiness.</p>
+        <div class="tk-price">$300</div>
+        <div class="tk-row"><a class="btn primary" href="https://sunilfca.gumroad.com/l/IGMAFCRAComplianceAssessmentToolkit">Buy on Gumroad</a><a class="tk-more" href="fcra-compliance-toolkit.html">Details →</a></div>
+      </div>
+      <div class="tk">
+        <span class="tk-for">Boards overseeing foreign contribution</span>
+        <h3>FCRA Governance Toolkit — Professional Edition</h3>
+        <p>8 pillars, 200 points. Dashboard, Board summary, assurance report, action tracker and year-on-year trend.</p>
+        <div class="tk-price">$500</div>
+        <div class="tk-row"><a class="btn primary" href="https://sunilfca.gumroad.com/l/igma-fcra-toolkit">Buy on Gumroad</a><a class="tk-more" href="fcra-compliance-toolkit.html#governance">Details →</a></div>
+      </div>
+      <div class="tk">
+        <span class="tk-for">Organisations handling personal data in India</span>
+        <h3>DPDP Compliance Assessment Toolkit</h3>
+        <p>An automated self-assessment against India’s DPDP Act that scores your position and flags the gaps to close.</p>
+        <div class="tk-price">$100</div>
+        <div class="tk-row"><a class="btn primary" href="https://sunilfca.gumroad.com/l/DPDPCompliance">Buy on Gumroad</a><a class="tk-more" href="dpdp-compliance-ngos.html">Details →</a></div>
+      </div>
+      <div class="tk best">
+        <span class="tk-for">Best value for Indian NGOs</span>
+        <h3>Compliance Toolkits Bundle</h3>
+        <p>FCRA Compliance + FCRA Governance + DPDP in one purchase — the same method across all three.</p>
+        <div class="tk-price">$700 <small>instead of $900</small></div>
+        <div class="tk-row"><a class="btn primary" href="https://sunilfca.gumroad.com/l/IGMAComplianceToolkitsBundle">Buy on Gumroad</a><a class="tk-more" href="igma.html#bundle">Details →</a></div>
+      </div>
+      <div class="tk">
+        <span class="tk-for">Not ready to buy?</span>
+        <h3>Governance Lessons from the Field</h3>
+        <p>18 case briefs, 5 practical frameworks and a diagnostic — the thinking behind IGMA™.</p>
+        <div class="tk-price">Free</div>
+        <div class="tk-row"><a class="btn" href="https://sunilfca.gumroad.com/l/jptyr">Get the free book</a></div>
+      </div>
+    </div>
+    <p class="tk-note">Not sure which one fits? <a href="igma.html#choose">Compare all toolkits side by side</a> or read the <a href="igma.html#faq">FAQ</a>.</p>
+  </div>
+</section>
+
 <section id="who">
   <div class="wrap">
     <div class="section-head">

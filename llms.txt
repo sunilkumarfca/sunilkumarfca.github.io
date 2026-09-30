@@ -4,6 +4,9 @@
 
 ## Toolkits
 - [IGMA™ toolkits and prices](https://sunilkumarfca.com/igma.html): Excel self-assessments for NGOs — institutional governance maturity ($500), FCRA compliance ($300), FCRA governance ($500), DPDP data protection ($100), compliance bundle ($700). Includes a 35-question FAQ.
+- [FCRA compliance checklist and assessment toolkits](https://sunilkumarfca.com/fcra-compliance-toolkit.html): FCRA Compliance ($300) and FCRA Governance Professional Edition ($500, 8 pillars, 200 points) for Indian NGOs.
+- [NGO governance assessment tool](https://sunilkumarfca.com/ngo-governance-assessment-tool.html): IGMA™ Institutional Governance Maturity Toolkit ($500): 60 questions, 8 pillars, 646 criteria, L1–L5 maturity scale.
+- [DPDP Act compliance for NGOs](https://sunilkumarfca.com/dpdp-compliance-ngos.html): DPDP Compliance Assessment Toolkit ($100).
 
 ## Books (several free to read online)
 - [The Strategic CFO — read free](https://sunilkumarfca.com/read-the-strategic-cfo.html): strategic finance leadership for mission-driven organisations.
@@ -17,6 +20,7 @@
 - [FCRA Governance](https://sunilkumarfca.com/fcra-governance.html): FCRA compliance as an institutional governance responsibility.
 - [The Strategic CFO](https://sunilkumarfca.com/strategic-finance-ngos.html): Strategic finance, the CFO role, budgeting and cash flow in NGOs.
 - [Governance maturity: key concepts](https://sunilkumarfca.com/governance-maturity.html): the IGMA™ scale, evidence-based criteria and the Governance Perception Gap™.
+- [FCRA Amendment Rules 2026: What NGOs Need to Know](https://sunilkumarfca.com/fcra-amendment-rules-2026.html): purpose- and State-specific registration, FC-6F by 21 June 2027, key functionaries, ultimate donors, FC-4 changes.
 
 ## Videos
 - [Free videos and audiobooks](https://sunilkumarfca.com/watch.html): IGMA™ webinars, FCRA governance series, Strategic CFO audiobook.
