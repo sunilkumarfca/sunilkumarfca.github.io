@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z1RR9B34D3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-Z1RR9B34D3');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="alternate" type="application/rss+xml" title="Articles — CA Sunil Kumar, FCA" href="https://sunilkumarfca.com/feed.xml">
+<title>IGMA™ Quick Assessment — FCRA Compliance</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2210%22%20fill%3D%22%231C2530%22/%3E%3Ctext%20x%3D%2232%22%20y%3D%2243%22%20font-family%3D%22Georgia%2C%20serif%22%20font-size%3D%2230%22%20fill%3D%22%23C9A35A%22%20text-anchor%3D%22middle%22%3ESK%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1C2530;
+  --paper:#FAF8F4;
+  --paper-raised:#F2EEE4;
+  --brass:#8A6A32;
+  --brass-dark:#6E5527;
+  --slate:#5B6472;
+  --line:#D9D3C7;
+  --max:1080px;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'IBM Plex Sans', Arial, sans-serif;
+  font-size:17px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{
+  font-family:'Newsreader', Georgia, serif;
+  font-weight:500;
+  line-height:1.15;
+  margin:0;
+  color:var(--ink);
+}
+a{color:var(--brass-dark);}
+a:focus-visible, button:focus-visible{outline:2px solid var(--brass-dark); outline-offset:3px;}
+.wrap{max-width:var(--max); margin:0 auto; padding:0 28px;}
+.hairline{border:none; border-top:1px solid var(--line); margin:0;}
+
+header.site{padding:22px 0; border-bottom:1px solid var(--line);}
+header.site .wrap{display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap;}
+.brand{font-family:'Newsreader', Georgia, serif; font-size:1.15rem; font-weight:600; text-decoration:none; color:var(--ink);}
+.brand span{color:var(--slate); font-family:'IBM Plex Sans', Arial, sans-serif; font-weight:400; font-size:0.85rem; display:block; margin-top:2px;}
+nav.site{display:flex; flex-wrap:wrap; gap:6px 24px;}
+nav.site a{color:var(--ink); text-decoration:none; margin-left:0; font-size:0.95rem; border-bottom:1px solid transparent; padding-bottom:2px;}
+nav.site a:first-child{margin-left:0;}
+nav.site a:hover, nav.site a.current{border-bottom-color:var(--brass);}
+
+.hero{padding:72px 0 56px;}
+.hero .eyebrow{color:var(--brass-dark); font-size:0.95rem; margin-bottom:14px; display:block;}
+.hero h1{font-size:2.6rem; max-width:15ch;}
+.hero p.lede{max-width:56ch; color:var(--slate); font-size:1.12rem; margin-top:22px;}
+.cta-row{margin-top:34px; display:flex; gap:16px; flex-wrap:wrap;}
+.btn{display:inline-block; padding:13px 26px; text-decoration:none; font-size:0.98rem; border:1px solid var(--ink); color:var(--ink); border-radius:2px;}
+.btn.primary{background:var(--ink); color:var(--paper);}
+.btn.primary:hover{background:#000;}
+.btn:not(.primary):hover{background:var(--paper-raised);}
+
+.trust-bar{margin-top:40px; display:flex; gap:28px; flex-wrap:wrap; color:var(--slate); font-size:0.9rem;}
+.trust-bar span{border-left:2px solid var(--brass); padding-left:10px;}
+
+.maturity-scale{margin-top:48px; display:flex; border:1px solid var(--line);}
+.maturity-scale .level{flex:1; padding:16px 14px; border-right:1px solid var(--line); text-align:left;}
+.maturity-scale .level:last-child{border-right:none; background:var(--ink);}
+.maturity-scale .level:last-child .code, .maturity-scale .level:last-child .label{color:var(--paper);}
+.maturity-scale .code{display:block; font-family:'Newsreader', Georgia, serif; font-size:1.2rem; color:var(--brass-dark);}
+.maturity-scale .label{display:block; font-size:0.82rem; color:var(--slate); margin-top:4px;}
+.scale-caption{color:var(--slate); font-size:0.85rem; margin-top:12px;}
+
+.stat-strip{margin-top:44px; padding-top:30px; border-top:1px solid var(--line); display:flex; gap:56px; flex-wrap:wrap;}
+.stat-strip .stat b{display:block; font-family:'Newsreader', Georgia, serif; font-size:2rem; color:var(--brass-dark); font-weight:500;}
+.stat-strip .stat span{color:var(--slate); font-size:0.92rem;}
+
+section{padding:60px 0;}
+section.alt{background:var(--paper-raised);}
+.section-head{display:flex; gap:40px; margin-bottom:40px; flex-wrap:wrap;}
+.section-head .num{font-family:'Newsreader', Georgia, serif; font-size:0.95rem; color:var(--brass-dark); min-width:34px; padding-top:6px;}
+.section-head .kicker{display:block; color:var(--brass-dark); font-size:0.95rem; margin-bottom:8px;}
+.section-head h2{font-size:1.85rem; max-width:22ch;}
+.section-head p{color:var(--slate); max-width:52ch; margin-top:10px;}
+
+.audience{display:grid; grid-template-columns:repeat(4, 1fr); gap:0; border-top:1px solid var(--line);}
+.audience .role{padding:26px 24px 26px 0; border-right:1px solid var(--line);}
+.audience .role:last-child{border-right:none;}
+.audience .role h3{font-size:1.1rem; margin-bottom:12px;}
+.audience .role ul{margin:0; padding:0; list-style:none; color:var(--slate); font-size:0.94rem;}
+.audience .role li{padding:5px 0;}
+
+.journey{display:grid; grid-template-columns:repeat(4,1fr); gap:28px;}
+.journey .step{border-top:2px solid var(--ink); padding-top:16px;}
+.journey .step .n{font-family:'Newsreader', Georgia, serif; color:var(--brass-dark); font-size:1.15rem;}
+.journey .step h3{margin-top:10px; font-size:1.2rem;}
+.journey .step p{color:var(--slate); margin-top:8px; font-size:0.96rem;}
+
+.quote-block{border-left:3px solid var(--brass); padding-left:28px; max-width:64ch;}
+.quote-block p{font-family:'Newsreader', Georgia, serif; font-size:1.35rem; font-style:italic; color:var(--ink); margin:0;}
+.quote-block cite{display:block; margin-top:14px; font-style:normal; color:var(--slate); font-size:0.92rem;}
+
+.faq{max-width:72ch;}
+.faq-item{padding:22px 0; border-top:1px solid var(--line);}
+.faq-item:last-child{border-bottom:1px solid var(--line);}
+.faq-item h3{font-size:1.08rem; margin-bottom:8px;}
+.faq-item p{color:var(--slate); margin:0; font-size:0.96rem;}
+
+.cta-banner{background:var(--ink); color:var(--paper); padding:52px 0; text-align:left;}
+.cta-banner h2{color:var(--paper); font-size:1.9rem; max-width:20ch;}
+.cta-banner p{color:#C9C2B4; margin-top:14px; max-width:52ch;}
+.cta-banner .cta-row .btn.primary{background:var(--paper); color:var(--ink); border-color:var(--paper);}
+.cta-banner .cta-row .btn:not(.primary){border-color:#8A8168; color:var(--paper);}
+.cta-banner .cta-row .btn:not(.primary):hover{background:#2A3547;}
+
+.page-head{padding:56px 0 40px; border-bottom:1px solid var(--line);}
+.page-head .eyebrow{color:var(--brass-dark); font-size:0.95rem; margin-bottom:12px; display:block;}
+.page-head h1{font-size:2.2rem; max-width:24ch;}
+.page-head p{color:var(--slate); max-width:60ch; margin-top:16px; font-size:1.05rem;}
+
+.group-label{font-family:'Newsreader', Georgia, serif; font-size:1.3rem; margin:0 0 6px;}
+.group-sub{color:var(--slate); font-size:0.93rem; margin-bottom:26px;}
+.item{display:flex; justify-content:space-between; align-items:flex-start; gap:24px; padding:24px 0; border-top:1px solid var(--line);}
+.items .item:last-child{border-bottom:1px solid var(--line);}
+.item .info h4{font-family:'Newsreader', Georgia, serif; font-weight:500; font-size:1.12rem; margin:0 0 6px;}
+.item .info .flag{display:inline-block; font-size:0.72rem; color:var(--brass-dark); border:1px solid var(--brass); padding:1px 8px; border-radius:12px; margin-left:10px; vertical-align:middle;}
+.item .info p{margin:0; color:var(--slate); font-size:0.94rem; max-width:60ch;}
+.item .buy{display:flex; flex-direction:column; align-items:flex-end; gap:7px; text-align:right; white-space:nowrap; padding-top:2px;}
+.item .buy .price{display:block; font-family:'Newsreader', Georgia, serif; font-size:1.15rem; color:var(--ink); margin-bottom:6px;}
+.item .buy .price.free{color:var(--brass-dark);}
+.item .buy a{font-size:0.9rem; text-decoration:none; border-bottom:1px solid var(--brass);}
+.item .buy a:hover{color:var(--brass-dark);}
+.placeholder-note{color:var(--slate); font-size:0.94rem; font-style:italic; padding:20px 0; border-top:1px solid var(--line);}
+
+.notes-list{margin:0; padding:0; list-style:none; color:var(--slate); font-size:0.94rem; max-width:64ch;}
+.notes-list li{position:relative; padding:8px 0 8px 20px;}
+.notes-list li::before{content:"—"; position:absolute; left:0; color:var(--brass-dark);}
+
+.post{padding:26px 0; border-top:1px solid var(--line);}
+.post:last-child{border-bottom:1px solid var(--line);}
+.post .date{color:var(--brass-dark); font-size:0.85rem;}
+.post h3{font-size:1.15rem; margin-top:6px;}
+.post p{color:var(--slate); font-size:0.95rem; margin-top:8px; max-width:64ch;}
+
+.about-grid{display:grid; grid-template-columns:1.3fr 1fr; gap:56px; align-items:start;}
+.about-grid p{color:var(--slate);}
+.contact-card{border:1px solid var(--line); padding:26px;}
+.contact-card h4{font-family:'Newsreader', Georgia, serif; font-size:1.05rem; margin-bottom:14px;}
+.contact-card a{display:block; color:var(--ink); text-decoration:none; font-size:0.95rem; padding:4px 0;}
+.contact-card a:hover{color:var(--brass-dark);}
+
+.timeline{border-left:2px solid var(--line); padding-left:28px; display:flex; flex-direction:column; gap:30px;}
+.timeline .entry .year{font-family:'Newsreader', Georgia, serif; color:var(--brass-dark); font-size:1.05rem;}
+.timeline .entry h3{font-size:1.05rem; margin-top:4px;}
+.timeline .entry p{color:var(--slate); font-size:0.94rem; margin-top:6px; max-width:60ch;}
+
+footer{border-top:1px solid var(--line); padding:44px 0 28px; color:var(--slate); font-size:0.88rem;}
+.footer-grid{display:grid; grid-template-columns:1.3fr 1fr 1fr 1fr 1fr; gap:28px; padding-bottom:28px;}
+.footer-links a + h4{margin-top:20px;}
+.footer-links h4{font-family:'Newsreader', Georgia, serif; color:var(--ink); font-size:1rem; margin-bottom:12px;}
+.footer-links a{display:block; color:var(--slate); text-decoration:none; padding:3px 0; font-size:0.9rem;}
+.footer-links a:hover{color:var(--brass-dark);}
+footer .copyright{border-top:1px solid var(--line); padding-top:20px; margin:0 0 8px;}
+footer .disclaimer{margin:0; max-width:80ch;}
+
+@media (max-width: 860px){
+  .audience{grid-template-columns:1fr 1fr;}
+  .audience .role{border-right:none; border-bottom:1px solid var(--line); padding:22px 0;}
+  .journey{grid-template-columns:1fr;}
+  .hero h1, .page-head h1, .cta-banner h2{font-size:2rem;}
+  .maturity-scale{flex-wrap:wrap;}
+  .maturity-scale .level{flex:1 1 40%; border-bottom:1px solid var(--line);}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+  .footer-about{grid-column:1 / -1;}
+  .about-grid{grid-template-columns:1fr;}
+}
+@media (max-width: 560px){
+  .audience{grid-template-columns:1fr;}
+  .item{flex-direction:column;}
+  .item .buy{text-align:left;}
+  .stat-strip{gap:32px;}
+  .trust-bar{gap:16px;}
+}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+}
+/* Landing page */
+.crumbs{font-size:.85rem; color:var(--slate); margin-bottom:14px;} .crumbs a{color:var(--slate);}
+.lp-lead{font-size:1.1rem; color:#2c3642; max-width:62ch; margin-top:14px;}
+.lp-buy{display:flex; gap:12px; flex-wrap:wrap; margin-top:26px;}
+.lp-buy .btn small{opacity:.8; margin-left:6px;}
+.lp-trust{margin-top:16px; font-size:.9rem; color:var(--slate);}
+.lp-fig{margin:0; border:1px solid var(--line); background:#fff;}
+.lp-fig img{display:block; width:100%; height:auto;}
+.lp-fig figcaption{font-size:.88rem; color:var(--slate); padding:12px 16px; border-top:1px solid var(--line);}
+.lp-sec h2{font-size:1.6rem; margin-bottom:14px;}
+.lp-sec p{max-width:68ch; color:#2c3642;}
+.lp-sec p + p{margin-top:12px;}
+.lp-list{padding-left:20px; max-width:68ch; color:#2c3642;} .lp-list li{padding:4px 0;}
+.lp-prod{border:1px solid var(--line); background:#fff; padding:26px 28px; margin-top:22px;}
+.lp-prod h3{font-size:1.25rem; margin-bottom:6px;}
+.lp-prod .q{font-style:italic; color:var(--brass-dark); margin-bottom:12px; display:block;}
+.lp-prod .row{display:flex; gap:16px; align-items:center; flex-wrap:wrap; margin-top:18px;}
+.lp-prod .price{font-family:'Newsreader', Georgia, serif; font-size:1.8rem;}
+.lp-steps{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:8px;}
+.lp-steps div{border-top:2px solid var(--brass); padding-top:12px;}
+.lp-steps b{display:block; font-size:1.05rem; margin-bottom:6px;}
+.lp-steps span{color:var(--slate); font-size:.95rem;}
+.lp-faq details{border-bottom:1px solid var(--line); padding:14px 0; max-width:74ch;}
+.lp-faq summary{cursor:pointer; font-weight:600;}
+.lp-faq details p{margin-top:10px; color:#2c3642;}
+.lp-rel{padding-left:20px;} .lp-rel li{padding:4px 0;}
+.lp-final{background:var(--ink); color:var(--paper); padding:34px 32px;}
+.lp-final h2{color:var(--paper); font-size:1.5rem;}
+.lp-final p{color:#C9CED6; margin-top:8px;}
+.lp-final .btn{border-color:var(--paper); color:var(--paper);} .lp-final .btn.primary{background:var(--paper); color:var(--ink);}
+@media (max-width:700px){ .lp-steps{grid-template-columns:1fr;} .lp-prod{padding:22px 20px;} }
+.qa,.qa-result,.qa-fine{max-width:860px;margin-left:auto;margin-right:auto;}
+.qa-meta{font-size:.9rem;color:var(--slate);margin-top:10px;}
+.qa-scale{font-size:.95rem;color:var(--slate);margin-bottom:12px;}
+.qa-area{margin:30px 0 6px;font-size:1.1rem;}
+.qa-item{border:1px solid rgba(28,37,48,.14);border-radius:8px;padding:12px 14px;margin:8px 0;}
+.qa-item legend{position:absolute;left:-9999px;}
+.qa-item p{margin:0 0 9px;}
+.qa-opts{display:flex;gap:6px;flex-wrap:wrap;}
+.qa-opts label{flex:1 1 0;min-width:52px;border:1px solid rgba(28,37,48,.22);border-radius:6px;padding:7px 4px;font-size:.88rem;cursor:pointer;text-align:center;position:relative;}
+.qa-opts input{position:absolute;opacity:0;pointer-events:none;}
+.qa-opts label:has(input:checked){background:#1C2530;color:#fff;border-color:#1C2530;}
+.qa-opts label:has(input:focus-visible){outline:2px solid #C9A35A;outline-offset:2px;}
+.qa-bar-sticky{position:sticky;bottom:0;background:var(--paper,#fff);border-top:1px solid rgba(28,37,48,.15);padding:10px 0;display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:18px;}
+.qa-bar-sticky span{font-size:.92rem;color:var(--slate);}
+.qa-result{margin-top:26px;border-top:3px solid #C9A35A;padding-top:18px;}
+.qa-printhead{display:none;}
+.qa-score{display:flex;gap:18px;align-items:center;margin:8px 0 6px;}
+.qa-score b{font-family:Newsreader,Georgia,serif;font-size:3rem;line-height:1;color:#1C2530;}
+.qa-score h2{margin:0 0 4px;}
+.qa-score p{margin:0;}
+.qa-result h3{margin:24px 0 8px;font-size:1.05rem;}
+.qa-row{display:grid;grid-template-columns:minmax(150px,280px) 1fr 70px;gap:10px;align-items:center;margin:7px 0;font-size:.92rem;}
+.qa-track{background:rgba(28,37,48,.1);border-radius:4px;height:12px;overflow:hidden;}
+.qa-fill{height:100%;}
+.r{background:#B4432F;}.a{background:#D49A2A;}.g{background:#3E7C4F;}
+.qa-row b{text-align:right;}
+.qa-key{font-size:.85rem;color:var(--slate);}
+.qa-key .k{display:inline-block;width:10px;height:10px;border-radius:2px;vertical-align:middle;}
+.qa-prio li{margin:6px 0;}
+.qa-prio small{display:block;color:var(--slate);}
+.qa-note{background:rgba(201,163,90,.12);border-radius:8px;padding:14px 16px;margin:18px 0;}
+.qa-note p{margin:0;}
+.qa-extra,.qa-fine{font-size:.88rem;color:var(--slate);}
+.qa-fine{margin-top:26px;}
+@media (max-width:600px){.qa-row{grid-template-columns:1fr 64px;}.qa-row .qa-track{grid-column:1 / -1;grid-row:2;}.qa-score b{font-size:2.4rem;}}
+@media print{header.site,footer,form.qa,.qa-actions,.lp-buy,.page-head,.qa-fine{display:none!important;}#qa-result{display:block!important;border:0;}.qa-printhead{display:block;font-weight:600;}.qa-fill{-webkit-print-color-adjust:exact;print-color-adjust:exact;}.qa-key .k{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
+.qa-q{border-top:1px solid rgba(28,37,48,.15);padding-top:14px;margin-top:18px;}
+.qa-qt{margin:0 0 6px;}
+.qa-lv{font-size:.82rem;font-weight:600;letter-spacing:.02em;text-transform:uppercase;color:#1C2530;margin:14px 0 2px;}
+.qa-lv span{text-transform:none;font-weight:400;color:var(--slate);letter-spacing:0;}
+.qa-item{padding:9px 12px;margin:6px 0;}
+.qa-item p{margin:0 0 7px;font-size:.95rem;}
+.qa-opts label{max-width:110px;}
+.qa-row small{color:var(--slate);}
+.qa-prio ul{margin:6px 0 4px 18px;font-size:.9rem;}
+.qa-warn{color:#B4432F!important;}
+
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="/index.html">CA Sunil Kumar, FCA<span>FCA · Governance Frameworks &amp; Books</span></a>
+    <nav class="site">
+      <a href="/index.html">Home</a>
+      <a href="/library.html">Books</a>
+      <a href="/igma.html">IGMA™ Toolkits</a>
+      <a href="/watch.html">Watch</a>
+      <a href="/notes.html">Knowledge</a>
+      <a href="/about.html">About</a>
+    </nav>
+  </div>
+</header>
+<section class="page-head">
+  <div class="wrap">
+    <span class="eyebrow">IGMA™ Quick Assessment · FCRA Compliance (India)</span>
+    <h1>FCRA Compliance</h1>
+    <p class="lp-lead">16 questions and 160 evidence-based Yes/No criteria from the IGMA™ FCRA Compliance Assessment Toolkit v3.0, updated for the FC(R) Amendment Rules 2026: banking, utilisation, the 20% administrative ceiling, FC-6F, key functionaries, ultimate donors, FC-4 and board oversight. Answer each criterion as it is true today and see an indicative score, a red/amber/green view of each pillar and your five priority areas, with the specific gaps behind them.</p>
+    <p class="qa-meta">About 25–30 minutes · you can stop and come back: your answers stay in this browser and are never sent anywhere · <a href="#" id="qa-clear">clear my answers</a></p>
+  </div>
+</section>
+<section style="padding-top:0;">
+  <div class="wrap">
+    <form id="qa" class="qa" onsubmit="return false;">
+      <p class="qa-scale"><b>How to answer:</b> YES only if the statement as written is true today and you could show the evidence. NO if it is not true, only partly true or uncertain. N/A if it genuinely does not apply (excluded from the score). Level 1 statements describe a weakness: answer YES if the weakness exists.</p>
+      <div id="qa-items"></div>
+      <div class="qa-bar-sticky"><span id="qa-progress"></span><button type="button" class="btn primary" id="qa-go" disabled>See my results</button></div>
+    </form>
+    <div id="qa-result" class="qa-result" hidden>
+      <p class="qa-printhead">IGMA™ Quick Assessment — FCRA Compliance · <span id="qa-date"></span></p>
+      <span class="eyebrow">Your indicative result</span>
+      <div class="qa-score"><b id="qa-num"></b><div><h2 id="qa-level"></h2><p id="qa-level-text"></p></div></div>
+      <h3>By pillar (weight)</h3>
+      <div id="qa-bars" class="qa-bars"></div>
+      <p class="qa-key"><span class="k r"></span> Red: below 2.5 · <span class="k a"></span> Amber: 2.5–3.49 · <span class="k g"></span> Green: 3.5 and above (scale 1–5; a confirmed Level 1 weakness caps that question at 3.49)</p>
+      <h3>Your five priority areas</h3>
+      <ol id="qa-prio" class="qa-prio"></ol>
+      <div class="qa-note"><p><b>What this Quick Assessment cannot tell you.</b> This Quick Assessment covers 16 of the 180 questions (160 of 1,800 criteria). The full toolkit covers registration readiness, current compliance, governance integration and future regulatory readiness, with working registers (key functionaries, ultimate donors, purposes and States/UTs, FC-6F readiness), a CFO control calendar, a Board summary and an action tracker. Scores here are indicative because they rest on a sample of questions.</p></div>
+      <div class="lp-buy"><a class="btn primary" href="/fcra-compliance-toolkit.html">See the IGMA™ FCRA Compliance Assessment Toolkit<small>$300</small></a></div>
+      <p class="qa-extra"></p>
+      <p class="qa-actions"><button type="button" class="btn" onclick="window.print()">Print or save as PDF</button> <button type="button" class="btn" id="qa-edit">Change my answers</button></p>
+    </div>
+    <p class="qa-fine">Educational self-assessment only. It is not an audit, a legal opinion or professional advice, and it does not certify compliance. Laws and rules change; check current requirements before acting. © 2026 CA Sunil Kumar, FCA. IGMA™ Quick Assessment, single-organisation licence; please do not share this link.</p>
+  </div>
+</section>
+<footer>
+  <div class="wrap footer-grid">
+    <div class="footer-about">
+      <p><strong>CA Sunil Kumar, FCA</strong></p>
+      <p>Chartered Accountant, social-sector CFO and author of governance books and toolkits for NGOs, Trusts, Foundations and mission-driven organisations. Creator of IGMA™.</p>
+    </div>
+    <div class="footer-links">
+      <h4>Explore</h4>
+      <a href="/index.html">Home</a>
+      <a href="/library.html">Books</a>
+      <a href="/igma.html">IGMA™ Toolkits</a>
+      <a href="/watch.html">Watch &amp; Listen</a>
+      <a href="/notes.html">Knowledge Hub</a>
+      <a href="/publications.html">Complete bibliography</a>
+      <a href="/about.html">About</a>
+      <a href="/endorsements.html">Endorsements</a>
+    </div>
+    <div class="footer-links">
+      <h4>Read &amp; Follow</h4>
+      <a href="https://sunilkumarfca.substack.com/">Substack</a>
+      <a href="https://medium.com/@sunilkumar.fca">Medium</a>
+      <a href="https://www.linkedin.com/newsletters/the-resilient-institution-7477401652132491265/">LinkedIn Newsletter</a>
+      <a href="https://www.linkedin.com/groups/40323012/">LinkedIn Group</a>
+      <a href="https://www.linkedin.com/in/sunilkumarfca/">LinkedIn</a>
+      <h4>Watch &amp; Listen</h4>
+      <a href="https://www.youtube.com/@casunilkumarfca">YouTube channel</a>
+      <a href="/watch.html">Videos &amp; audiobooks</a>
+    </div>
+    <div class="footer-links">
+      <h4>Buy Books</h4>
+      <a href="https://www.amazon.com/stores/author/B0H68584LZ/allbooks">Amazon</a>
+      <a href="https://www.amazon.in/dp/B0HHFKD3ZB">Amazon India</a>
+      <a href="/library.html">Apple Books (all titles)</a>
+      <a href="https://play.google.com/store/books/author?id=CA+Sunil+Kumar+FCA">Google Play Books</a>
+      <a href="https://play.google.com/store/audiobooks/details?id=AQAAAECGFmtW_M">Audiobooks · Google Play</a>
+      <a href="https://www.flipkart.com/governance-lessons-field-18-case-briefs-5-practical-frameworks-1-diagnostic-mission-driven-organisations/p/itmda0080754babe?pid=9798903306268">Flipkart</a>
+      <a href="https://store.pothi.com/book/ca-sunil-kumar-fca-governance-lessons-field/">pothi.com</a>
+      <a href="https://sunilfca.gumroad.com/">Gumroad</a>
+    </div>
+    <div class="footer-links">
+      <h4>Buy Toolkits</h4>
+      <a href="https://sunilfca.gumroad.com/">Gumroad</a>
+      <a href="https://www.eloquens.com/channel/ca-sunil-kumar-fca">Eloquens</a>
+    </div>
+  </div>
+  <div class="wrap">
+    <p class="copyright">© 2026 CA Sunil Kumar, FCA. All rights reserved. <a href="mailto:sunil@sunilkumarfca.com">sunil@sunilkumarfca.com</a></p>
+    <p class="disclaimer">All publications are educational and informational resources intended to support governance, finance, compliance and institutional strengthening. They are not a substitute for legal, tax, audit, accounting or professional advice.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  function track(name, params){
+    if (typeof gtag === 'function') { gtag('event', name, params || {}); }
+  }
+  document.addEventListener('click', function(e){
+    var a = e.target.closest('a');
+    if (!a) return;
+    var href = a.getAttribute('href') || '';
+    var label = (a.textContent || '').trim().slice(0, 80);
+    if (href.indexOf('gumroad.com') > -1) track('gumroad_click', {link_url: href, link_text: label});
+    else if (href.indexOf('amazon.') > -1) track('amazon_click', {link_url: href, link_text: label});
+    else if (href.indexOf('eloquens.com') > -1) track('eloquens_click', {link_url: href, link_text: label});
+    else if (href.indexOf('books.apple.com') > -1) track('apple_books_click', {link_url: href, link_text: label});
+    else if (href.indexOf('play.google.com') > -1) track('google_play_click', {link_url: href, link_text: label});
+    else if (href.indexOf('flipkart.com') > -1) track('flipkart_click', {link_url: href, link_text: label});
+    else if (href.indexOf('pothi.com') > -1) track('pothi_click', {link_url: href, link_text: label});
+    else if (href.indexOf('mailto:') === 0) track('contact_click', {link_url: href, link_text: label});
+    else if (href.indexOf('linkedin.com') > -1) track('linkedin_click', {link_url: href, link_text: label});
+    if (href.indexOf('igma') > -1 || href.indexOf('fcra') > -1 || href.indexOf('dpdp') > -1 || href.indexOf('DPDP') > -1) {
+      track('igma_click', {link_url: href, link_text: label});
+    }
+  });
+})();
+</script>
+<script>var QA={"bank": [{"id": "C58", "title": "Board Oversight", "q": "Does the Board/Audit Committee receive periodic FCRA compliance and risk reporting?", "pillar": "Board Governance & Strategic Oversight", "crit": [["The Board receives no FCRA reporting.", "FCRA risks are not discussed at Board level."], ["FCRA is mentioned in annual reports to the Board.", "Ad hoc updates are provided."], ["The Board/Audit Committee receives periodic FCRA compliance and risk reports.", "Reports include key metrics and exceptions."], ["Board actions are tracked.", "Reporting covers 2026 Rules changes."], ["Reporting is integrated with the Board calendar.", "Board feedback improves reporting."]], "cons": "Weak Board oversight here limits the ability to detect and correct FCRA failures before they reach the regulator.", "time": "0–30 days"}, {"id": "C53", "title": "Reasonable Activity", "q": "Does management track, purpose by purpose, foreign-contribution utilisation against the Rule 14A threshold (≥ ₹10 lakh over the last two financial years)?", "pillar": "Risk, Resilience & Continuity", "crit": [["Utilisation is not tracked against the Rule 14A threshold.", "Fields with low utilisation are unknown."], ["Total FC utilisation is known.", "Utilisation by field is estimated."], ["Utilisation per purpose for the last two FYs is computed against ₹10 lakh.", "Results are reviewed by Finance and Legal."], ["At-risk purposes are escalated to the Board.", "Programme plans address shortfalls."], ["Threshold monitoring is part of the monthly dashboard.", "Trend analysis informs scope decisions."]], "cons": "Unmanaged, this exposes the organisation to FCRA-related disruption — suspension, non-renewal or funding interruption — it may not recover from quickly.", "time": "0–30 days"}, {"id": "C61", "title": "Business Continuity", "q": "Is there a contingency plan for suspension, delayed receipt, donor disruption or other FCRA funding interruptions?", "pillar": "Risk, Resilience & Continuity", "crit": [["There is no contingency plan for FCRA funding interruption.", "Programme continuity depends entirely on FCRA funds."], ["Interruption risk is recognised.", "Some fallback ideas exist."], ["A documented contingency plan covers suspension, delayed receipt and donor disruption.", "Plan owners are assigned."], ["The plan is tested or reviewed annually.", "Funding gaps are quantified."], ["The plan is integrated with business continuity.", "The plan is approved by the Board."]], "cons": "Unmanaged, this exposes the organisation to FCRA-related disruption — suspension, non-renewal or funding interruption — it may not recover from quickly.", "time": "0–30 days"}, {"id": "C11", "title": "Banking", "q": "Are foreign contributions received only in the designated FCRA account at SBI, New Delhi Main Branch (Section 17), with no other credits?", "pillar": "Financial Stewardship & Sustainability", "crit": [["Foreign contributions have been received outside the designated SBI NDMB account.", "Domestic receipts are credited to the designated account."], ["The designated account is known to donors.", "Donor remittance instructions are issued."], ["All FC is received only in the designated account; donor instructions are standardised.", "Credits are reviewed monthly for non-FC items."], ["Misdirected receipts are corrected promptly with documentation.", "Bank alerts are monitored."], ["Controls prevent alternate receipt channels.", "Compliance is tested by audit."]], "cons": "Left unaddressed, this weakens control over foreign contribution, raising the risk of misutilisation findings, penalties or loss of donor confidence.", "time": "0–30 days"}, {"id": "C24", "title": "Administrative Expenses", "q": "Is the 20% administrative-expense ceiling (Section 8(1)(b); definition in Rule 4) monitored monthly, not only at year-end?", "pillar": "Financial Stewardship & Sustainability", "crit": [["Administrative expenses are not monitored against the 20% ceiling.", "The ceiling is checked only at year-end."], ["Staff know the 20% ceiling.", "Admin costs are computed annually."], ["Admin expenses are tracked monthly against 20% of FC utilised.", "Forecasts flag risk of breach."], ["Monitoring is reviewed by the CFO.", "Corrective action is taken before year-end."], ["Ceiling monitoring is system-supported.", "Results are reported to the Board."]], "cons": "Left unaddressed, this weakens control over foreign contribution, raising the risk of misutilisation findings, penalties or loss of donor confidence.", "time": "0–30 days"}, {"id": "C28", "title": "Accounting", "q": "Are separate FCRA books/ledgers maintained for receipts, utilisation, assets and balances?", "pillar": "Financial Stewardship & Sustainability", "crit": [["There are no separate FCRA books.", "FCRA and domestic records are mixed."], ["FCRA ledgers exist for receipts.", "Utilisation is partly separated."], ["Separate FCRA books cover receipts, utilisation, assets and balances.", "Books reconcile to bank."], ["Books are reviewed monthly.", "Errors are corrected promptly."], ["Segregation is system-enforced.", "Audit confirms segregation."]], "cons": "Left unaddressed, this weakens control over foreign contribution, raising the risk of misutilisation findings, penalties or loss of donor confidence.", "time": "0–30 days"}, {"id": "C34", "title": "Assets", "q": "Is a separate FCRA fixed-asset register maintained?", "pillar": "Financial Stewardship & Sustainability", "crit": [["There is no FCRA fixed-asset register.", "FCRA assets are mixed with others."], ["Assets are listed.", "Some FCRA assets are tagged."], ["A separate FCRA asset register records all FC-funded assets.", "Assets are physically tagged."], ["Register is reconciled to books annually.", "Physical verification is performed."], ["The register is system-maintained.", "Audit tests the register."]], "cons": "Left unaddressed, this weakens control over foreign contribution, raising the risk of misutilisation findings, penalties or loss of donor confidence.", "time": "0–30 days"}, {"id": "C74", "title": "Restricted Expenditure", "q": "Do pre-payment controls prevent use of FCRA funds for foreign travel (incl. visa fees, airport transfers), overseas payments, or activities outside India (Explanation 2 to Rule 9)?", "pillar": "Financial Stewardship & Sustainability", "crit": [["FCRA funds have been used for foreign travel or overseas payments.", "No pre-payment check exists for restricted expenditure."], ["Staff know these payments are restricted.", "Large overseas payments are reviewed."], ["Pre-payment controls block foreign travel (incl. visas, airport transfers) and overseas payments from FCRA funds.", "Expense codes flag restricted items."], ["Restricted-expenditure review is monthly.", "Breaches are reversed and escalated."], ["Controls are system-enforced.", "Audit tests restricted expenditure."]], "cons": "Left unaddressed, this weakens control over foreign contribution, raising the risk of misutilisation findings, penalties or loss of donor confidence.", "time": "0–30 days"}, {"id": "C01", "title": "Registration & Validity", "q": "Is the FCRA registration certificate/prior permission currently valid and details reconciled to the FCRA portal?", "pillar": "Compliance, Ethics & Legal Protection", "crit": [["The validity of the FCRA registration/prior permission has not been checked recently.", "Certificate details differ from the FCRA portal."], ["The certificate is on file and its expiry date is known.", "Portal status has been checked at least once in the year."], ["Certificate validity and particulars are reconciled to the portal at least quarterly.", "Certificate conditions (bank, nature, purposes/States) are documented in the compliance file."], ["Discrepancies are corrected through the appropriate form.", "Validity status is reported to management."], ["Portal status checks are part of the monthly compliance routine.", "Validity is reported to the Board each quarter."]], "cons": "This gap increases legal exposure under FCRA and weakens the ability to demonstrate compliance during inspection, renewal or enquiry.", "time": "0–30 days"}, {"id": "C67", "title": "Registration Scope (FC-6F)", "q": "For an association registered before 22-Jun-2026, is the FC-6F intimation of purposes and States/UTs to be retained planned, Board-approved and tracked to filing before 21-Jun-2027?", "pillar": "Compliance, Ethics & Legal Protection", "crit": [["The organisation is unaware of the FC-6F intimation requirement.", "No plan exists for filing by 21-Jun-2027."], ["Management knows existing registrants must file FC-6F within one year.", "A responsible person has been named."], ["A dated FC-6F plan (activity review, purpose mapping, State/UT selection, Board resolution, fee) is approved.", "Progress is tracked against the deadline."], ["The governing-body resolution approving purposes and States/UTs is passed.", "Filing is targeted well before the deadline."], ["The FC-6F outcome is reflected in controls and the certificate record.", "Lessons are captured for future scope changes."]], "cons": "This gap increases legal exposure under FCRA and weakens the ability to demonstrate compliance during inspection, renewal or enquiry.", "time": "0–30 days"}, {"id": "C73", "title": "Key Functionaries", "q": "Is a Key Functionary Register maintained under the Rule 2(1)(ca) definition and reviewed at least quarterly for appointments, role changes, eligibility, conflicts and disclosures?", "pillar": "Compliance, Ethics & Legal Protection", "crit": [["There is no Key Functionary Register.", "The register omits persons in control."], ["A list of office bearers exists.", "Some declarations are filed."], ["A register covers all Rule 2(1)(ca) categories with role, dates, identity, declarations and filings.", "It is reviewed at least quarterly."], ["Changes trigger FC-6 intimations.", "Eligibility and conflicts are reviewed."], ["The register is integrated with Board and HR records.", "Internal audit tests the register."]], "cons": "This gap increases legal exposure under FCRA and weakens the ability to demonstrate compliance during inspection, renewal or enquiry.", "time": "0–30 days"}, {"id": "C39", "title": "Transfers", "q": "Are transfers of foreign contribution to any other person prevented (Section 7, as amended in 2020) and independently reviewed?", "pillar": "Compliance, Ethics & Legal Protection", "crit": [["Transfers of FC to other persons have occurred.", "There is no check to prevent sub-granting."], ["Staff know transfers are prohibited.", "Large payments are reviewed."], ["Controls prevent any transfer of FC to other persons under Section 7.", "Payments to partners are reviewed for disguised transfers."], ["Reviews are documented.", "Breaches are escalated."], ["Controls are system-enforced.", "Independent review confirms compliance."]], "cons": "This gap increases legal exposure under FCRA and weakens the ability to demonstrate compliance during inspection, renewal or enquiry.", "time": "0–30 days"}, {"id": "C42", "title": "People & Vendors", "q": "Are vendors/consultants receiving FCRA funds subject to appropriate due diligence and procurement controls?", "pillar": "Leadership & Operations", "crit": [["Vendors and consultants paid from FCRA receive no due diligence.", "Procurement rules are not applied to FCRA purchases."], ["Vendor details are collected.", "Large purchases use quotations."], ["Vendor due diligence and procurement controls apply to all FCRA payments.", "Vendor files are complete."], ["Procurement compliance is reviewed.", "Exceptions are escalated."], ["Procurement is system-controlled.", "Audit tests procurement."]], "cons": "Operational weakness here allows FCRA non-compliance to arise in day-to-day decisions without management noticing.", "time": "0–30 days"}, {"id": "C08", "title": "Donor Due Diligence", "q": "Is every foreign donor identified and documented before acceptance of contribution?", "pillar": "Stakeholder Trust & Transparency", "crit": [["Foreign donors are not identified before acceptance.", "Donor identity information is incomplete."], ["Donor name and country are recorded.", "Agreements identify the donor organisation."], ["Full donor KYC (identity, address, nature, source) is documented before acceptance.", "Intermediary and ultimate-donor details are captured where applicable."], ["Donor files are reviewed annually.", "High-risk donors are escalated to Legal."], ["Donor KYC is system-recorded.", "KYC procedures are periodically audited."]], "cons": "This gap undermines the accuracy of public and regulatory disclosures, damaging credibility with MHA, donors and the public.", "time": "0–30 days"}, {"id": "C47", "title": "Statutory Reporting", "q": "Is FC-4 prepared from reconciled books and supporting schedules rather than reconstructed at year-end?", "pillar": "Stakeholder Trust & Transparency", "crit": [["FC-4 is reconstructed at year-end.", "Supporting schedules are missing."], ["Books are closed before FC-4 preparation.", "Some schedules are prepared."], ["FC-4 is prepared from reconciled books with full supporting schedules.", "Schedules reconcile to audited FC statements."], ["Preparation follows a timeline.", "Issues are resolved before filing."], ["FC-4 data is maintained year-round.", "The process is reviewed annually."]], "cons": "This gap undermines the accuracy of public and regulatory disclosures, damaging credibility with MHA, donors and the public.", "time": "0–30 days"}, {"id": "C70", "title": "Ultimate Donors", "q": "Is ultimate-donor information (name, address, email, amount) captured at receipt for funds routed through Donor Advised Funds, online giving platforms or other intermediaries, and reconciled for FC-4?", "pillar": "Stakeholder Trust & Transparency", "crit": [["Ultimate donors behind intermediaries are not identified.", "Receipts via DAFs or online platforms lack donor details."], ["Intermediary receipts are identified.", "Some ultimate-donor details are requested."], ["Ultimate-donor name, address, email and amount are captured at receipt for all intermediary and DAF funds.", "Data reconciles to FC-4 item 2(ii)(aa)."], ["Fundraising and Finance review data quality monthly.", "Missing data is chased before year-end."], ["Capture is built into donor agreements and systems.", "Audit tests completeness."]], "cons": "This gap undermines the accuracy of public and regulatory disclosures, damaging credibility with MHA, donors and the public.", "time": "0–30 days"}], "weights": {"Board Governance & Strategic Oversight": 0.2, "Risk, Resilience & Continuity": 0.15, "Financial Stewardship & Sustainability": 0.25, "Compliance, Ethics & Legal Protection": 0.25, "Leadership & Operations": 0.05, "Stakeholder Trust & Transparency": 0.1}, "ga": "fcra", "key": "igma-qa2-fcra"};</script>
+<script>
+(function(){
+  var B=QA.bank, LVN=["Level 1 – Vulnerable","Level 2 – Reactive","Level 3 – Defined","Level 4 – Managed","Level 5 – Optimized"];
+  var INT=[[4.5,4,"Your answers point to strong, embedded and evidenced practice. The value now is in keeping it current as rules and people change, and in testing the areas this sample does not cover."],
+           [3.5,3,"Practices appear embedded and largely monitored. Focus on the red and amber areas, and make sure you could show the evidence to a funder, auditor or regulator at short notice."],
+           [2.5,2,"The basics appear to be in place but are not yet consistently evidenced or monitored. The gap between 'we do it' and 'we can prove it' is usually where the risk sits."],
+           [1.5,1,"Practices exist in places but depend on individuals and are applied when problems arise. Gaps at this level tend to surface in an audit, an inspection or a funder review."],
+           [0,0,"Core practices appear largely missing in the areas tested. This calls for prompt board attention, starting with the priority areas below."]];
+  var box=document.getElementById('qa-items'),h='',k=0,lastP=null,total=0;
+  B.forEach(function(q,qi){
+    if(q.pillar!==lastP){h+='<h3 class="qa-area">'+q.pillar+'</h3>';lastP=q.pillar;}
+    h+='<div class="qa-q"><p class="qa-qt"><b>'+(qi+1)+'. '+q.title+'</b><br>'+q.q+'</p>';
+    q.crit.forEach(function(cs,l){
+      if(!cs.length)return;
+      h+='<p class="qa-lv">'+LVN[l]+(l===0?' <span>(these describe a weakness: answer YES only if it is true today)</span>':'')+'</p>';
+      cs.forEach(function(c){k++;total++;
+        h+='<fieldset class="qa-item"><legend>'+c+'</legend><p>'+c+'</p><div class="qa-opts">';
+        [["y","Yes"],["n","No"],["na","N/A"]].forEach(function(o){h+='<label><input type="radio" name="c'+qi+'_'+l+'_'+k+'" data-q="'+qi+'" data-l="'+l+'" value="'+o[0]+'"><span>'+o[1]+'</span></label>';});
+        h+='</div></fieldset>';});
+    });
+    h+='</div>';
+  });
+  box.innerHTML=h;
+  var form=document.getElementById('qa'),go=document.getElementById('qa-go'),prog=document.getElementById('qa-progress');
+  function store(){try{var o={};form.querySelectorAll('input:checked').forEach(function(i){o[i.name]=i.value;});localStorage.setItem(QA.key,JSON.stringify(o));}catch(e){}}
+  function restore(){try{var o=JSON.parse(localStorage.getItem(QA.key)||'{}');Object.keys(o).forEach(function(n){var i=form.querySelector('input[name="'+n+'"][value="'+o[n]+'"]');if(i)i.checked=true;});}catch(e){}}
+  function upd(){var a=form.querySelectorAll('input:checked').length;prog.textContent=a+' of '+total+' criteria answered';go.disabled=a<total;}
+  restore();upd();
+  form.addEventListener('change',function(){store();upd();});
+  function lvl(s){for(var i=0;i<INT.length;i++){if(s>=INT[i][0])return INT[i];}}
+  function rag(s){return s<2.5?'r':s<3.5?'a':'g';}
+  go.addEventListener('click',function(){
+    var res=B.map(function(q,qi){
+      var y=[0,0,0,0,0],n=[0,0,0,0,0],gaps=[];
+      form.querySelectorAll('input[data-q="'+qi+'"]:checked').forEach(function(i){var l=+i.dataset.l,t=i.closest('fieldset').querySelector('p').textContent;
+        if(i.value==='y'){y[l]++;if(l===0)gaps.push([0,'Weakness confirmed: '+t]);}
+        else if(i.value==='n'){n[l]++;if(l>0)gaps.push([l,'Not yet in place: '+t]);}});
+      var sum=0,cnt=0;
+      for(var l=0;l<5;l++){var a=y[l]+n[l];if(!a)continue;cnt++;sum+=(l===0?n[l]:y[l])/a;}
+      if(!cnt)return null;
+      var s=1+4*sum/cnt; if(y[0]>0)s=Math.min(s,3.49); s=Math.round(s*100)/100;
+      var inc=(y[0]>0&&(y[2]+y[3]+y[4])>0);
+      gaps.sort(function(a,b){return a[0]-b[0];});
+      return {q:q,s:s,gaps:gaps,inc:inc};
+    });
+    var P={},order=[];
+    res.forEach(function(r){if(!r)return;if(!P[r.q.pillar]){P[r.q.pillar]=[];order.push(r.q.pillar);}P[r.q.pillar].push(r.s);});
+    var ws=0,wt=0,bars='';
+    Object.keys(QA.weights).forEach(function(p){
+      if(!P[p]){bars+='<div class="qa-row"><span>'+p+'</span><div class="qa-track"></div><b>N/A</b></div>';return;}
+      var s=P[p].reduce(function(a,b){return a+b;},0)/P[p].length;ws+=s*QA.weights[p];wt+=QA.weights[p];
+      bars+='<div class="qa-row"><span>'+p+' <small>('+Math.round(QA.weights[p]*100)+'%)</small></span><div class="qa-track"><div class="qa-fill '+rag(s)+'" style="width:'+Math.round(s/5*100)+'%"></div></div><b>'+s.toFixed(2)+'</b></div>';});
+    if(!wt){alert('Please answer at least one criterion Yes or No.');return;}
+    var score=ws/wt,L=lvl(score);
+    document.getElementById('qa-num').textContent=score.toFixed(2);
+    document.getElementById('qa-level').textContent=LVN[L[1]];
+    document.getElementById('qa-level-text').textContent=L[2];
+    document.getElementById('qa-bars').innerHTML=bars;
+    var pr=res.filter(Boolean).sort(function(a,b){return a.s-b.s;}).slice(0,5),p='';
+    pr.forEach(function(r){
+      p+='<li><b>'+r.q.title+'</b> · '+r.s.toFixed(2)+' ('+LVN[lvl(r.s)[1]]+')';
+      if(r.q.cons)p+='<small>'+r.q.cons+(r.q.time?' Suggested timeline: '+r.q.time+'.':'')+'</small>';
+      if(r.gaps.length){p+='<ul>';r.gaps.slice(0,3).forEach(function(g){p+='<li>'+g[1]+'</li>';});p+='</ul>';}
+      if(r.inc)p+='<small class="qa-warn">⚠ Your answers here look inconsistent (a weakness confirmed alongside higher-level practice). Please review.</small>';
+      p+='</li>';});
+    document.getElementById('qa-prio').innerHTML=p;
+    document.getElementById('qa-date').textContent=new Date().toLocaleDateString(undefined,{day:'numeric',month:'long',year:'numeric'});
+    var r=document.getElementById('qa-result');form.hidden=true;r.hidden=false;window.scrollTo(0,r.offsetTop-20);
+    if(typeof gtag==='function'){gtag('event','quick_assessment_complete',{assessment:QA.ga,maturity_level:LVN[L[1]]});}
+  });
+  document.getElementById('qa-edit').addEventListener('click',function(){document.getElementById('qa-result').hidden=true;form.hidden=false;window.scrollTo(0,0);});
+  document.getElementById('qa-clear').addEventListener('click',function(e){e.preventDefault();if(!confirm('Clear all your answers?'))return;try{localStorage.removeItem(QA.key);}catch(x){}form.reset();upd();document.getElementById('qa-result').hidden=true;form.hidden=false;});
+})();
+</script>
+
+</body>
+</html>
