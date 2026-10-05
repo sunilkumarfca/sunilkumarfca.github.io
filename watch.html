@@ -828,7 +828,7 @@ footer .disclaimer{margin:0; max-width:80ch;}
     <span class="eyebrow">Watch &amp; Listen</span>
     <h1>Free videos and audiobooks on NGO governance and finance.</h1>
     <p>Webinars, short explainers and audiobook editions on FCRA governance, the IGMA™ governance maturity method and strategic finance for mission-driven organisations. Free to watch — videos load only when you press play.</p>
-    <p class="vjump"><a href="#igma">IGMA™ governance maturity</a> · <a href="#fcra">FCRA governance</a> · <a href="#strategic-cfo">The Strategic CFO — audiobook</a> · <a href="#governance">Governance audiobooks</a> · <a href="#life">Personal effectiveness &amp; wealth</a> · <a href="#budgeting">Project budgeting for NGOs</a></p>
+    <p class="vjump"><a href="#igma">IGMA™ governance maturity</a> · <a href="#fcra">FCRA governance</a> · <a href="#strategic-cfo">The Strategic CFO — audiobook</a> · <a href="#resilient-institution">The Resilient Institution — audiobook</a> · <a href="#governance">Governance audiobooks</a> · <a href="#life">Personal effectiveness &amp; wealth</a> · <a href="#budgeting">Project budgeting for NGOs</a></p>
   </div>
 </section>
 
@@ -884,7 +884,18 @@ footer .disclaimer{margin:0; max-width:80ch;}
   </div>
 </section>
 
-<section id="governance" class="alt">
+<section id="resilient-institution" class="alt">
+  <div class="wrap">
+    <h2 class="group-label">The Resilient Institution — audiobook</h2>
+    <p class="group-sub">Free listening: the full audiobook (3 hours 50 minutes) and selected chapters from The Resilient Institution, on governance, finance, risk, leadership and the capabilities institutions need to endure change.</p>
+    <div class="vgrid">
+      <figure class="vcard vbig"><div class="yt" data-list="PLFaSvlFEJtZU"><button type="button" class="yt-btn" aria-label="Play: The Resilient Institution — Full Audiobook and Selected Chapters"><img src="cover-resilient-institution.jpg" alt="" loading="lazy" width="300" height="450" style="object-fit:contain"><span class="yt-play" aria-hidden="true"></span><span class="yt-dur">Playlist</span></button></div><figcaption><strong>The Resilient Institution — Full Audiobook and Selected Chapters</strong><span>The complete audiobook, followed by short chapter videos: Board Oversight and Institutional Resilience · Enterprise Risk Management Beyond Compliance · Blended Finance and Innovative Capital Structures · Outcome Financing and Social Return on Investment · Social Stock Exchange and the Future of Transparency · AI, Digitisation and the Future of Finance · Cyber Governance, Data Protection and Digital Trust · Leadership, Talent and Institutional Capability.</span><a class="yt-link" href="https://www.youtube.com/playlist?list=PLFaSvlFEJtZU">Open the playlist on YouTube</a></figcaption></figure>
+    </div>
+    <p class="vrel">Prefer to read? <a href="read-the-resilient-institution.html">Read The Resilient Institution free online</a></p>
+  </div>
+</section>
+
+<section id="governance">
   <div class="wrap">
     <h2 class="group-label">Governance audiobooks</h2>
     <p class="group-sub">Audiobook editions on governance for Boards, CEOs and CFOs.</p>
@@ -896,7 +907,7 @@ footer .disclaimer{margin:0; max-width:80ch;}
   </div>
 </section>
 
-<section id="life">
+<section id="life" class="alt">
   <div class="wrap">
     <h2 class="group-label">Personal effectiveness &amp; wealth — audiobooks</h2>
     <p class="group-sub">Free listening: full audiobooks on building a wealthy life and getting more return from your effort.</p>
@@ -908,7 +919,7 @@ footer .disclaimer{margin:0; max-width:80ch;}
   </div>
 </section>
 
-<section id="budgeting" class="alt">
+<section id="budgeting">
   <div class="wrap">
     <h2 class="group-label">Project budgeting for NGOs</h2>
     <p class="group-sub">Building donor-ready project budgets with LogFrames and problem trees.</p>
@@ -1012,9 +1023,11 @@ footer .disclaimer{margin:0; max-width:80ch;}
 (function(){
   document.addEventListener('click', function(e){
     var b = e.target.closest('.yt-btn'); if (!b) return;
-    var box = b.parentNode, id = box.getAttribute('data-id');
+    var box = b.parentNode, id = box.getAttribute('data-id'), list = box.getAttribute('data-list');
     var f = document.createElement('iframe');
-    f.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0';
+    f.src = list ? 'https://www.youtube-nocookie.com/embed/videoseries?list=' + list + '&autoplay=1&rel=0'
+                 : 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0';
+    id = id || list;
     f.title = b.getAttribute('aria-label') || 'Video';
     f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
     f.allowFullscreen = true;
