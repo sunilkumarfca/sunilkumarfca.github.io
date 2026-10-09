@@ -4,7 +4,8 @@
 
 ## Toolkits
 - [IGMA™ toolkits and prices](https://sunilkumarfca.com/igma.html): Excel self-assessments for NGOs — institutional governance maturity ($500), FCRA compliance ($300), FCRA governance ($500), DPDP data protection ($100), compliance bundle ($700). Includes a 35-question FAQ.
-- [FCRA compliance checklist and assessment toolkits](https://sunilkumarfca.com/fcra-compliance-toolkit.html): FCRA Compliance ($300) and FCRA Governance Professional Edition ($500, 8 pillars, 200 points) for Indian NGOs.
+- [FCRA compliance checklist and assessment toolkits](https://sunilkumarfca.com/fcra-compliance-toolkit.html): FCRA Compliance ($300) and FCRA Governance Professional Edition ($500, 6 pillars, 40 questions, 411 criteria) for Indian NGOs.
+- [FCRA governance assessment toolkit for NGO Boards](https://sunilkumarfca.com/fcra-governance-assessment-toolkit.html): FCRA Governance Professional Edition ($500): tests whether the Board and management govern foreign contribution; 6 pillars, 40 questions, 411 criteria; sample Board & CEO report for a fictional NGO.
 - [NGO governance assessment tool](https://sunilkumarfca.com/ngo-governance-assessment-tool.html): IGMA™ Institutional Governance Maturity Toolkit ($500): 60 questions, 8 pillars, 646 criteria, L1–L5 maturity scale.
 - [DPDP Act compliance for NGOs](https://sunilkumarfca.com/dpdp-compliance-ngos.html): DPDP Compliance Assessment Toolkit ($100).
 
