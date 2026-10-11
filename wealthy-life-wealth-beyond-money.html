@@ -686,7 +686,6 @@ life healthier, wealthier and more resilient?”</em></p>
     else if (href.indexOf('flipkart.com') > -1) track('flipkart_click', {link_url: href, link_text: label});
     else if (href.indexOf('pothi.com') > -1) track('pothi_click', {link_url: href, link_text: label});
     else if (href.indexOf('mailto:') === 0) track('contact_click', {link_url: href, link_text: label});
-    else if (href.indexOf('linkedin.com') > -1) track('linkedin_click', {link_url: href, link_text: label});
     if ((href.indexOf('igma') > -1 || href.indexOf('toolkits') > -1 || href.indexOf('quick-assessment') > -1) || href.indexOf('fcra') > -1 || href.indexOf('dpdp') > -1 || href.indexOf('DPDP') > -1) {
       track('igma_click', {link_url: href, link_text: label});
     }
