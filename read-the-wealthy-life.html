@@ -2092,7 +2092,6 @@ chance that today's work becomes tomorrow's raw material.</p>
     else if (href.indexOf('flipkart.com') > -1) n = 'flipkart_click';
     else if (href.indexOf('pothi.com') > -1) n = 'pothi_click';
     else if (href.indexOf('mailto:') === 0) n = 'contact_click';
-    else if (href.indexOf('linkedin.com') > -1) n = 'linkedin_click';
     if (n) gtag('event', n, p);
     var h = href.toLowerCase();
     if (h.indexOf('igma') > -1 || h.indexOf('fcra') > -1 || h.indexOf('dpdp') > -1) gtag('event', 'igma_click', p);
