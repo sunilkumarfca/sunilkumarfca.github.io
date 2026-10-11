@@ -1,12 +1,12 @@
-# CA Sunil Kumar, FCA — NGO governance frameworks, books and IGMA™ toolkits
+# CA Sunil Kumar, FCA — NGO governance frameworks, books and governance toolkits
 
-> Chartered Accountant and social-sector CFO with 30+ years in NGO and development-sector finance, audit and governance. Author of books on NGO governance, strategic finance and personal effectiveness, and creator of the IGMA™ (Institutional Governance Maturity Assessment) self-assessment toolkits, in public use since June 2026. This site sells books and self-assessment toolkits; it does not offer consulting or advisory services.
+> Chartered Accountant and social-sector CFO with 30+ years in NGO and development-sector finance, audit and governance. Author of books on NGO governance, strategic finance and personal effectiveness, and creator of the Institutional Governance Maturity Assessment self-assessment toolkits, in public use since June 2026. This site sells books and self-assessment toolkits; it does not offer consulting or advisory services.
 
 ## Toolkits
-- [IGMA™ toolkits and prices](https://sunilkumarfca.com/igma.html): Excel self-assessments for NGOs — institutional governance maturity ($500), FCRA compliance ($300), FCRA governance ($500), DPDP data protection ($100), compliance bundle ($700). Includes a 35-question FAQ.
+- [Toolkits and prices](https://sunilkumarfca.com/toolkits.html): Excel self-assessments for NGOs — institutional governance maturity ($500), FCRA compliance ($300), FCRA governance ($500), DPDP data protection ($100), compliance bundle ($700). Includes a 35-question FAQ.
 - [FCRA compliance checklist and assessment toolkits](https://sunilkumarfca.com/fcra-compliance-toolkit.html): FCRA Compliance ($300) and FCRA Governance Professional Edition ($500, 6 pillars, 40 questions, 411 criteria) for Indian NGOs.
 - [FCRA governance assessment toolkit for NGO Boards](https://sunilkumarfca.com/fcra-governance-assessment-toolkit.html): FCRA Governance Professional Edition ($500): tests whether the Board and management govern foreign contribution; 6 pillars, 40 questions, 411 criteria; sample Board & CEO report for a fictional NGO.
-- [NGO governance assessment tool](https://sunilkumarfca.com/ngo-governance-assessment-tool.html): IGMA™ Institutional Governance Maturity Toolkit ($500): 60 questions, 8 pillars, 646 criteria, L1–L5 maturity scale.
+- [NGO governance assessment tool](https://sunilkumarfca.com/ngo-governance-assessment-tool.html): Institutional Governance Maturity Toolkit ($500): 60 questions, 8 pillars, 646 criteria, L1–L5 maturity scale.
 - [DPDP Act compliance for NGOs](https://sunilkumarfca.com/dpdp-compliance-ngos.html): DPDP Compliance Assessment Toolkit ($100).
 
 ## Books (several free to read online)
@@ -20,14 +20,14 @@
 - [Institutional Governance & Resilience](https://sunilkumarfca.com/ngo-governance.html): NGO governance, Board oversight, resilience and governance maturity.
 - [FCRA Governance](https://sunilkumarfca.com/fcra-governance.html): FCRA compliance as an institutional governance responsibility.
 - [The Strategic CFO](https://sunilkumarfca.com/strategic-finance-ngos.html): Strategic finance, the CFO role, budgeting and cash flow in NGOs.
-- [Governance maturity: key concepts](https://sunilkumarfca.com/governance-maturity.html): the IGMA™ scale, evidence-based criteria and the Governance Perception Gap™.
+- [Governance maturity: key concepts](https://sunilkumarfca.com/governance-maturity.html): the maturity scale, evidence-based criteria and the Governance Perception Gap™.
 - [FC-4 Annual Return 2025–26: 10 Checks Before 31 December](https://sunilkumarfca.com/fc-4-annual-return-checklist.html): FC-4 due 31 December 2026; ten checks (FCRA account, 20% admin limit, activity report, ultimate donors, social media, key functionaries) and a timeline.
 - [Is Your FCRA Problem Really a Compliance Problem? What Three Governance Assessments Showed](https://sunilkumarfca.com/fcra-compliance-or-governance.html): three FCRA governance assessments; compliance scored highest, risk, resilience and continuity lowest; questions and actions for boards.
 - [FCRA Governance हिंदी में (The Strategic CFO, Chapter 10)](https://sunilkumarfca.com/fcra-governance-hindi.html): Hinglish audio and full Hindi text of Chapter 10: compliance-by-design, FCRA Amendment Rules 2026, ten common FCRA compliance failures with root causes and prevention, and seven Board questions.
 - [FCRA Amendment Rules 2026: What NGOs Need to Know](https://sunilkumarfca.com/fcra-amendment-rules-2026.html): purpose- and State-specific registration, FC-6F by 21 June 2027, key functionaries, ultimate donors, FC-4 changes.
 
 ## Videos
-- [Free videos and audiobooks](https://sunilkumarfca.com/watch.html): IGMA™ webinars, FCRA governance series, Strategic CFO audiobook.
+- [Free videos and audiobooks](https://sunilkumarfca.com/watch.html): governance maturity webinars, FCRA governance series, Strategic CFO audiobook.
 
 ## About
 - [About the author](https://sunilkumarfca.com/about.html): career summary, qualifications and areas of expertise.
