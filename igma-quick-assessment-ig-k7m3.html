@@ -288,7 +288,7 @@ footer .disclaimer{margin:0; max-width:80ch;}
     <nav class="site">
       <a href="/index.html">Home</a>
       <a href="/library.html">Books</a>
-      <a href="/igma.html">Toolkits</a>
+      <a href="/toolkits.html">Toolkits</a>
       <a href="/watch.html">Watch</a>
       <a href="/notes.html">Knowledge</a>
       <a href="/about.html">About</a>
@@ -338,7 +338,7 @@ footer .disclaimer{margin:0; max-width:80ch;}
       <h4>Explore</h4>
       <a href="/index.html">Home</a>
       <a href="/library.html">Books</a>
-      <a href="/igma.html">Toolkits</a>
+      <a href="/toolkits.html">Toolkits</a>
       <a href="/watch.html">Watch &amp; Listen</a>
       <a href="/notes.html">Knowledge Hub</a>
       <a href="/publications.html">Complete bibliography</a>
@@ -349,9 +349,6 @@ footer .disclaimer{margin:0; max-width:80ch;}
       <h4>Read &amp; Follow</h4>
       <a href="https://sunilkumarfca.substack.com/">Substack</a>
       <a href="https://medium.com/@sunilkumar.fca">Medium</a>
-      <a href="https://www.linkedin.com/newsletters/the-resilient-institution-7477401652132491265/">LinkedIn Newsletter</a>
-      <a href="https://www.linkedin.com/groups/40323012/">LinkedIn Group</a>
-      <a href="https://www.linkedin.com/in/sunilkumarfca/">LinkedIn</a>
       <h4>Watch &amp; Listen</h4>
       <a href="https://www.youtube.com/@casunilkumarfca">YouTube channel</a>
       <a href="/watch.html">Videos &amp; audiobooks</a>
@@ -398,7 +395,7 @@ footer .disclaimer{margin:0; max-width:80ch;}
     else if (href.indexOf('pothi.com') > -1) track('pothi_click', {link_url: href, link_text: label});
     else if (href.indexOf('mailto:') === 0) track('contact_click', {link_url: href, link_text: label});
     else if (href.indexOf('linkedin.com') > -1) track('linkedin_click', {link_url: href, link_text: label});
-    if (href.indexOf('igma') > -1 || href.indexOf('fcra') > -1 || href.indexOf('dpdp') > -1 || href.indexOf('DPDP') > -1) {
+    if ((href.indexOf('igma') > -1 || href.indexOf('toolkits') > -1 || href.indexOf('quick-assessment') > -1) || href.indexOf('fcra') > -1 || href.indexOf('dpdp') > -1 || href.indexOf('DPDP') > -1) {
       track('igma_click', {link_url: href, link_text: label});
     }
   });
