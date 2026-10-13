@@ -454,7 +454,7 @@ function renderCrit(q){
   box.innerHTML = `
     <p class="small muted">Yes = the statement as written is true today, with evidence. No = not met, partly met or uncertain. Leave blank to skip; blanks never lower the score.
     <b>Level 1</b> statements describe weaknesses: answer Yes if your organisation has that weakness (it caps the question at 3.49). <b>Level 2</b> statements are stepping stones: answer Yes if you have reached or moved beyond that stage.</p>
-    ${a.quick ? `<div class="warnbox">Your quick score (${a.quick}) is being used for this question. <button class="linkbtn" data-act="clearq">Clear it to use the criteria score</button>.</div>` : ''}
+    ${a.quick ? `<div class="warnbox">Your quick score (${a.quick}) is used for this question until you answer a criterion below. Answering any criterion switches this question to the criteria score.</div>` : ''}
     ${q.c.map((list, li) => `<h4>Level ${li+1} – ${LEVELS[li]}</h4>` + list.map((t, ci) => {
       const v = a.crit[li+'.'+ci] || '';
       return `<div class="row"><span>${esc(t)}</span><span class="yn" data-k="${li}.${ci}"><button class="y" aria-pressed="${v==='Y'}">Yes</button><button class="n" aria-pressed="${v==='N'}">No</button></span></div>`;
@@ -462,11 +462,11 @@ function renderCrit(q){
     ${warn ? `<div class="warnbox">${esc(warn)}</div>` : ''}`;
   box.querySelectorAll('.yn').forEach(g => g.querySelectorAll('button').forEach(b => b.onclick = () => {
     const k = g.dataset.k; const v = b.classList.contains('y') ? 'Y' : 'N';
-    a.crit[k] = (a.crit[k]===v) ? null : v; if (!a.crit[k]) delete a.crit[k]; save();
+    a.crit[k] = (a.crit[k]===v) ? null : v; if (!a.crit[k]) delete a.crit[k];
+    if (a.quick && Object.keys(a.crit).length){ a.quick = null; el.querySelectorAll('.lv').forEach(x => x.setAttribute('aria-pressed','false')); }
+    save();
     renderCrit(q); refreshQ(q); refreshNav();
   }));
-  const cq = box.querySelector('[data-act=clearq]');
-  if (cq) cq.onclick = () => { a.quick = null; save(); el.querySelectorAll('.lv').forEach(x => x.setAttribute('aria-pressed','false')); renderCrit(q); refreshQ(q); refreshNav(); };
 }
 
 function barChart(ps){
@@ -478,7 +478,7 @@ function barChart(ps){
     const y = top + i*rowH;
     const short = p.p.name.length > 36 ? p.p.name.slice(0,35)+'…' : p.p.name;
     s += `<text x="${left-8}" y="${y+15}" text-anchor="end" fill="#1C2530">${esc(short)}</text>`;
-    if (p.avg!==null) s += `<rect x="${x(1)}" y="${y+4}" width="${Math.max(0,x(p.avg)-x(1))}" height="14" rx="2" fill="#8A6A32"/><text x="${x(p.avg)+4}" y="${y+15}" fill="#1C2530">${p.avg.toFixed(2)}</text>`;
+    if (p.avg!==null) s += `<rect x="${x(1)}" y="${y+4}" width="${Math.max(0,x(p.avg)-x(1))}" height="14" rx="2" fill="#8A6A32"/><text x="${Math.max(x(p.avg),x(p.peer))+6}" y="${y+15}" fill="#1C2530">${p.avg.toFixed(2)}</text>`;
     s += `<rect x="${x(p.peer)-1.5}" y="${y+1}" width="3" height="20" fill="#7C8796"/>`;
   });
   return s + `</svg><div class="legend"><span><i style="background:#8A6A32"></i>Your score</span><span><i style="background:#7C8796"></i>Peer average</span><span><i style="background:none;border-top:2px dashed #9B3B2E;height:0;vertical-align:3px"></i>Governance floor (4.0)</span></div>`;
@@ -512,9 +512,11 @@ function vResults(){
 
 function plan(ps){
   const scored = ps.filter(x => x.avg!==null); if (!scored.length) return null;
+  const crit = C.questions.filter(q => finalScore(q)!==null && finalScore(q)<1.5);
   const min = scored.reduce((a,b) => b.avg<a.avg?b:a), max = scored.reduce((a,b) => b.avg>a.avg?b:a);
   return {
-    p30: min.avg<1.5 ? `URGENT: ${min.p.name} (score ${min.avg.toFixed(2)}) needs immediate Board escalation. See the question list for specific gaps.` : 'No critical (Level 1) pillars. Focus on the Reactive-level gaps below.',
+    p30: crit.length ? `URGENT: ${crit.length} question${crit.length===1?' is':'s are'} at Level 1 (Vulnerable) and need Board attention now: ${crit.map(q=>q.name).join('; ')}. Assign an owner to each and agree first steps within 30 days.`
+      : min.avg<1.5 ? `URGENT: ${min.p.name} (score ${min.avg.toFixed(2)}) needs immediate Board escalation. See the question list for specific gaps.` : 'No questions or pillars at Level 1. Focus on the Reactive-level gaps below.',
     p90: min.avg<2.5 ? `Address ${min.p.name} and adjacent weak pillars. Assign named owners and aim for 3.0 or higher.` : 'No high-risk (Level 2) pillars. Maintain progress and address Level 3 gaps.',
     p12: `Lift Defined (Level 3) pillars to Managed (Level 4): documentation, monitoring and Board oversight. Pillar needing most attention: ${min.p.name}. Aim for an overall score of at least 4.0 within 12 months, working towards 5.0.`,
     min, max, below3: scored.filter(x => x.avg<3).length
@@ -541,7 +543,7 @@ function vReport(){
       <tr><th>31–90 days</th><td>${esc(pl.p90)}</td></tr>
       <tr><th>3–12 months</th><td>${esc(pl.p12)}</td></tr>
     </tbody></table>` : ''}
-    ${top.length ? `<h2 class="pagebreak">Priority questions (below the 4.0 floor)</h2>
+    ${top.length ? `<h2>Priority questions (below the 4.0 floor)</h2>
     <table><thead><tr><th>Question</th><th class="num">Score</th><th>Governance risk</th></tr></thead>
     <tbody>${top.map(q => `<tr><td><b>${q.id}</b> ${esc(q.name)}</td><td class="num">${fmt(finalScore(q))}</td><td>${esc(riskText(q))}</td></tr>`).join('')}</tbody></table>` : ''}
     <p class="disclaimer" style="margin-top:18px;">Peer benchmark: anonymised governance assessments of ${BENCH_BAND} Indian NGOs completed using this framework, updated ${BENCH_DATE}; a guide for comparison, not a statistically representative survey. This report was produced with the Institutional Governance Maturity Assessment, a management self-assessment tool. It reflects only the responses entered, is not legal, regulatory or other professional advice, and does not certify compliance or governance standing.</p>
