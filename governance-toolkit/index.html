@@ -83,6 +83,9 @@ label.f{display:block;font-size:14px;color:var(--slate);margin:10px 0 4px;}
 .yn button[aria-pressed="true"].n{background:var(--bad);color:#fff;border-color:var(--bad);}
 .warnbox{background:#FBF1DE;border:1px solid #E5CF9F;color:#6B4A0C;border-radius:8px;padding:8px 10px;font-size:14px;margin-top:8px;}
 .note{margin-top:10px;}
+.qcover{margin:-6px 0 12px;font-size:14px;color:var(--slate);border-left:3px solid var(--brass);padding:2px 0 2px 10px;}
+.crit .ev{grid-column:1 / -1;font-size:13.5px;padding:4px 8px;}
+table.lvdef td:first-child{white-space:nowrap;font-weight:600;}
 /* results */
 .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px;}
 @media(max-width:720px){.kpis{grid-template-columns:1fr 1fr;}}
@@ -156,7 +159,7 @@ const LICENCE_URL = '';
 const BUY_URL = 'https://sunilkumarfca.gumroad.com/';
 const RENEW_URL = 'https://sunilkumarfca.gumroad.com/';
 const BENCH_BAND = '10–25';
-const BENCH_DATE = '13 October 2026';
+const BENCH_DATE = '16 October 2026';
 
 /* ---------- Storage (always optional) ---------- */
 const store = {
@@ -173,6 +176,30 @@ const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt
 const fmt = v => (typeof v === 'number' && isFinite(v)) ? v.toFixed(2) : '—';
 const b64d = s => Uint8Array.from(atob(s.replace(/-/g,'+').replace(/_/g,'/')), c => c.charCodeAt(0));
 const LEVELS = ['Vulnerable','Reactive','Defined','Managed','Optimized'];
+const LEVEL_DEFS = [
+  ['1.0–1.49','Practices are missing or weak, with serious gaps that expose the organisation to risk.'],
+  ['1.5–2.49','Some practices exist, but they are informal and mostly used after a problem arises.'],
+  ['2.5–3.49','Practices are written down and have owners, but are applied unevenly.'],
+  ['3.5–4.49','Practices are followed consistently, monitored and reviewed by management and the Board.'],
+  ['4.5–5.0','Practices are embedded, independently reviewed and continuously improved.']];
+/* Reviewer clarifications (Oct 2026). Wording only: scoring is unchanged. */
+const QFIX = {
+  Q1:{c:{'Significant expertise gaps exist.':'Significant expertise gaps exist: two or more key areas (finance, legal, risk, strategy, technology, programmes) have no Board member with relevant expertise.',
+         'Some relevant expertise exists.':'Relevant expertise exists in some key areas, but not all of them are covered.'}},
+  Q28:{cover:'Covers: registrations and statutory filings under FCRA and the laws your entity is set up under (Trusts, Societies or Companies Act), labour and other laws. Tax-exemption registrations are in Q29; contracts, disputes and other legal risks are in Q33.'},
+  Q29:{cover:'Covers: income-tax registrations and approvals (12A/12AB, 80G), their renewals, and the conditions that protect them (application of income, Form 10B/10BD, donor receipts). Other statutory filings are in Q28; disputes and wider legal risks are in Q33.'},
+  Q33:{cover:'Covers: legal risks beyond routine filings, such as contracts, litigation and disputes, intellectual property, data protection, and how external counsel is used. Statutory filings are in Q28; tax-exemption status is in Q29.'},
+  Q42:{cover:'Covers: how goods and services are bought: procurement policy, quotes or tenders, approval thresholds and documenting the purchase decision. Managing suppliers after the contract is signed is in Q43.'},
+  Q43:{cover:'Covers: suppliers after they are selected: contracts, performance reviews, and dependence on a few key vendors. The buying process itself (quotes, tenders, approvals) is in Q42.'},
+  Q45:{cover:'Example: a health programme uses treatment protocols, periodic clinical audits and patient feedback; an education programme uses classroom observation and learning assessments; a grant-maker checks the quality of grantee reports and site visits.'}
+};
+function applyFixes(){
+  C.questions.forEach(q => { const f = QFIX[q.id]; if (!f) return;
+    if (f.cover) q.cover = f.cover;
+    if (f.c){ const norm = t => String(t).trim().replace(/\.$/,'').toLowerCase(); const m = {};
+      Object.keys(f.c).forEach(k => m[norm(k)] = f.c[k]);
+      q.c = q.c.map(list => list.map(t => m[norm(t)] || t)); } });
+}
 function levelOf(s){ if (typeof s !== 'number') return 'Not assessed'; const n = s>=4.5?5:s>=3.5?4:s>=2.5?3:s>=1.5?2:1; return 'Level '+n+' – '+LEVELS[n-1]; }
 function riskOf(s){ if (typeof s !== 'number') return 'Not assessed';
   return s>=5?'No residual risk — fully addressed':s>=4?'Residual risk — below ideal (target 5.0)':s>=3?'Elevated risk — below floor (4.0)':s>=2?'High risk — significant gaps':'Critical risk — immediate Board action required'; }
@@ -338,7 +365,7 @@ async function boot(){
     }catch(e){ /* offline or checker unreachable: keep working with the stored licence */ }
   }
   if (LIC.exp && Date.now() > Date.parse(LIC.exp)){ const old = LIC; store.del(LIC_KEY); LIC = null; return showGate('Your 12-month licence ended on '+new Date(old.exp).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})+'. Renew to keep using the toolkit; your saved answers are still here.'); }
-  try{ C = await decryptContent(LIC.k); }
+  try{ C = await decryptContent(LIC.k); applyFixes(); }
   catch(e){ store.del(LIC_KEY); LIC = null; return showGate('This access link or key is no longer valid. Please contact sunil@sunilkumarfca.com.'); }
   store.set(LIC_KEY, LIC);
   $('#tabs').classList.remove('hidden');
@@ -416,6 +443,13 @@ function vStart(){
     </div>
   </div>
   <div class="card small">
+    <h3>What the five maturity levels mean</h3>
+    <p>Each question, pillar and the overall result is scored from 1 to 5 and placed in one of five levels.</p>
+    <div class="tablewrap"><table class="lvdef"><thead><tr><th>Level</th><th class="num">Score</th><th>What it means</th></tr></thead><tbody>
+    ${LEVEL_DEFS.map((d,i) => `<tr><td>${i+1} · ${LEVELS[i]}</td><td class="num">${d[0]}</td><td>${d[1]}</td></tr>`).join('')}
+    </tbody></table></div>
+  </div>
+  <div class="card small">
     <h3>Good to know</h3>
     <ul>
       <li>Your answers are saved in this browser only. Nothing is sent to us. To move to another computer, use <b>Your data → Download a backup</b> and load it there.</li>
@@ -463,6 +497,7 @@ function qHtml(q){
   return `<div class="q" id="q-${q.id}">
     <div class="qhead"><span class="qid">${q.id}</span><span class="qname">${esc(q.name)}</span><span class="pill ${q.tier==='Core'?'core':''}">${q.tier==='Core'?'Core':'Deep-dive'}</span>${q.isNew?'<span class="pill">New in v1.2</span>':''}</div>
     <div class="qtext">${esc(q.text)}</div>
+    ${q.cover ? `<div class="qcover">${esc(q.cover)}</div>` : ''}
     <div class="levels" role="group" aria-label="Quick score for ${esc(q.name)}">
       ${[1,2,3,4,5].map(l => `<button class="lv" data-l="${l}" aria-pressed="${a.quick===l}"><b>${l} · ${LEVELS[l-1]}</b><ul>${q.c[l-1].map(t=>`<li>${esc(t)}</li>`).join('')}</ul></button>`).join('')}
     </div>
@@ -492,7 +527,7 @@ function refreshQ(q){
     <span class="score">${s===null ? 'Not answered' : 'Score '+fmt(s)+' · '+levelOf(s)}</span>
     <span class="muted">${basis(q)}${nCrit?` · ${nCrit}/${total} criteria answered`:''}</span>
     <button class="linkbtn" data-act="crit">${open?'Hide':'Answer'} the detailed criteria</button>
-    <button class="linkbtn" data-act="note">${a.note?'Edit note':'Add a note'}</button>`;
+    <button class="linkbtn" data-act="note">${a.note?'Edit notes and documents':'Add notes and documents'}</button>`;
   el.querySelector('[data-act=crit]').onclick = () => toggleCrit(q);
   el.querySelector('[data-act=note]').onclick = () => toggleNote(q);
 }
@@ -500,7 +535,7 @@ function toggleNote(q){
   const el = $('#q-'+q.id); let n = el.querySelector('.note');
   if (n){ n.remove(); return; }
   n = document.createElement('div'); n.className = 'note';
-  n.innerHTML = `<label class="f">Notes and evidence</label><textarea>${esc(ans(q.id).note)}</textarea>`;
+  n.innerHTML = `<label class="f">Notes and supporting documents for this question</label><textarea>${esc(ans(q.id).note)}</textarea>`;
   el.appendChild(n); const ta = n.querySelector('textarea'); ta.focus();
   ta.oninput = () => { ans(q.id).note = ta.value; save(); };
 }
@@ -514,13 +549,15 @@ function renderCrit(q){
   const warn = consistency(q);
   box.innerHTML = `
     <p class="small muted">Yes = the statement as written is true today, with evidence. No = not met, partly met or uncertain. Leave blank to skip; blanks never lower the score.
-    <b>Level 1</b> statements describe weaknesses: answer Yes if your organisation has that weakness (it caps the question at 3.49). <b>Level 2</b> statements are stepping stones: answer Yes if you have reached or moved beyond that stage.</p>
+    <b>Level 1</b> statements describe weaknesses: answer Yes if your organisation has that weakness (it caps the question at 3.49). <b>Level 2</b> statements are stepping stones: answer Yes if you have reached or moved beyond that stage. Once you answer, you can name the supporting document (for example "Board skills matrix, March 2026").</p>
     ${a.quick ? `<div class="warnbox">Your quick score (${a.quick}) is used for this question until you answer a criterion below. Answering any criterion switches this question to the criteria score.</div>` : ''}
     ${q.c.map((list, li) => `<h4>Level ${li+1} – ${LEVELS[li]}</h4>` + list.map((t, ci) => {
       const v = a.crit[li+'.'+ci] || '';
-      return `<div class="row"><span>${esc(t)}</span><span class="yn" data-k="${li}.${ci}"><button class="y" aria-pressed="${v==='Y'}">Yes</button><button class="n" aria-pressed="${v==='N'}">No</button></span></div>`;
+      const k = li+'.'+ci; const ev = (a.ev||{})[k] || '';
+      return `<div class="row"><span>${esc(t)}</span><span class="yn" data-k="${k}"><button class="y" aria-pressed="${v==='Y'}">Yes</button><button class="n" aria-pressed="${v==='N'}">No</button></span>${v ? `<input type="text" class="ev" data-k="${k}" placeholder="Supporting document (optional)" aria-label="Supporting document for this answer" value="${esc(ev)}">` : ''}</div>`;
     }).join('')).join('')}
     ${warn ? `<div class="warnbox">${esc(warn)}</div>` : ''}`;
+  box.querySelectorAll('input.ev').forEach(i => i.oninput = () => { a.ev = a.ev || {}; if (i.value) a.ev[i.dataset.k] = i.value; else delete a.ev[i.dataset.k]; save(); });
   box.querySelectorAll('.yn').forEach(g => g.querySelectorAll('button').forEach(b => b.onclick = () => {
     const k = g.dataset.k; const v = b.classList.contains('y') ? 'Y' : 'N';
     a.crit[k] = (a.crit[k]===v) ? null : v; if (!a.crit[k]) delete a.crit[k];
