@@ -99,6 +99,10 @@ td.num,th.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-n
 .legend i{display:inline-block;width:12px;height:12px;border-radius:2px;margin-right:5px;vertical-align:-1px;}
 .banner{background:var(--raised);border:1px solid var(--line);border-radius:8px;padding:10px 14px;font-size:14.5px;margin-bottom:16px;}
 .disclaimer{font-size:13px;color:var(--slate);}
+.bq td{padding:10px 8px;}
+.bq .ans{white-space:nowrap;font-weight:600;text-align:right;}
+.bq table td,.bq table th{padding:6px 6px;font-size:13.5px;}
+@media(max-width:640px){.bq .ans{white-space:normal;}.bq tr.bqrow td{display:block;text-align:left;padding:4px 0;}.bq tr.bqrow{display:block;padding:8px 0;border-bottom:1px solid var(--line);}.bq tr.bqrow td{border:0;}}
 footer{border-top:1px solid var(--line);padding:18px 0 40px;font-size:13px;color:var(--slate);}
 .hidden{display:none !important;}
 /* report */
@@ -139,7 +143,7 @@ footer{border-top:1px solid var(--line);padding:18px 0 40px;font-size:13px;color
 
 <footer>
   <div class="wrap">
-    Version 1.1 (web) · © 2026 CA Sunil Kumar, FCA · <a href="https://sunilkumarfca.com">sunilkumarfca.com</a> · <a href="mailto:sunil@sunilkumarfca.com">sunil@sunilkumarfca.com</a><br>
+    Version 1.2 (web) · © 2026 CA Sunil Kumar, FCA · <a href="https://sunilkumarfca.com">sunilkumarfca.com</a> · <a href="mailto:sunil@sunilkumarfca.com">sunil@sunilkumarfca.com</a><br>
     A management self-assessment tool. It is not legal, regulatory, tax or other professional advice, does not certify compliance or governance standing, and creates no advisory relationship. Your answers stay in this browser and are not sent to anyone unless you choose to share anonymous scores.
   </div>
 </footer>
@@ -246,6 +250,62 @@ function pillarAdvice(x){
   return base + (low.length ? ' Top priorities: '+low.join('; ')+'.' : '');
 }
 function answeredCount(){ return C.questions.filter(q=>finalScore(q)!==null).length; }
+const TOTAL = () => C.questions.length;
+const qById = id => C.questions.find(q => q.id===id);
+
+/* ---------- The four Board questions ---------- */
+// Questions bearing on legal compliance or the use of funds (Board questions 1 and 2) rank higher at equal gaps.
+const OWNERS = {1:'Board Chair with the governance committee',2:'CEO with the risk lead',3:'Finance head',4:'Compliance lead or company secretary',5:'CEO with the HR head',6:'Head of programmes or operations',7:'IT and data protection lead',8:'CEO with the communications head'};
+function lawAndFunds(){ const s = new Set(); C.boardQs.filter(b => b.n<=2).forEach(b => b.qs.forEach(id => s.add(id))); return s; }
+function priorities(){
+  const lf = lawAndFunds();
+  const key = q => { const s = finalScore(q); return (s<1.5 ? 100 : 0) + (4-s)*C.pillars[q.p-1].w*(lf.has(q.id) ? 1.5 : 1); };
+  return C.questions.filter(q => { const s = finalScore(q); return s!==null && s<4; }).sort((a,b) => key(b)-key(a) || finalScore(a)-finalScore(b));
+}
+function nextStep(q){
+  const a = D.answers[q.id] || {}; const cr = a.crit || {};
+  if (!a.quick){
+    const w = q.c[0].findIndex((_,ci) => cr['0.'+ci]==='Y'); if (w>=0) return 'Remove the weakness: '+q.c[0][w];
+    for (let li=1; li<5; li++){ const ci = q.c[li].findIndex((_,ci) => cr[li+'.'+ci]==='N'); if (ci>=0) return q.c[li][ci]; }
+  }
+  const lv = finalScore(q) < 3 ? 3 : 4;
+  return 'Reach Level '+lv+': '+q.c[lv-1][0];
+}
+function boardAnswer(b){
+  const qs = b.qs.map(qById); const done = qs.filter(q => finalScore(q)!==null);
+  const out = {qs, n: done.length, ev: qs.filter(q => basis(q)==='Detailed criteria').length};
+  if (done.length < Math.ceil(qs.length/2)) return Object.assign(out, {label:'Not yet assessed', cls:''});
+  out.avg = r2(done.reduce((t,q) => t+finalScore(q), 0)/done.length);
+  out.weak = done.slice().sort((x,y) => finalScore(x)-finalScore(y))[0];
+  out.l1 = done.filter(q => finalScore(q)<1.5);
+  out.label = out.avg>=4 ? 'Yes, largely in place' : out.avg>=3 ? 'Mostly, with gaps' : out.avg>=2 ? 'Partly' : 'Not yet demonstrated';
+  if (out.l1.length) out.label = 'Not yet demonstrated';
+  out.cls = out.label==='Yes, largely in place' ? 'pos' : out.label==='Mostly, with gaps' ? '' : 'neg';
+  return out;
+}
+function reviewBy(q){
+  const d = (D.actions[q.id]||{}).date;
+  if (d) return new Date(d).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});
+  return finalScore(q)<1.5 ? 'Next Board meeting' : 'Within 90 days';
+}
+function boardQuestionsHtml(){
+  const rows = C.boardQs.filter(b => b.qs.length).map(b => {
+    const a = boardAnswer(b);
+    const direct = b.qs[0]==='Q61' && finalScore(qById('Q61'))===null ? ' Answer Q61 Use of Funds for Intended Purposes, which addresses this directly.' : '';
+    const why = a.avg===undefined ? `${a.n} of ${a.qs.length} related questions answered so far.${direct}`
+      : `Based on ${a.n} of ${a.qs.length} questions (${b.qs.join(', ')}), average ${a.avg.toFixed(2)}. ${a.l1.length ? 'At Level 1: '+a.l1.map(q=>q.id+' '+q.name).join('; ')+'.' : 'Weakest: '+a.weak.id+' '+a.weak.name+' ('+fmt(finalScore(a.weak))+').'} ${a.ev ? a.ev+' answered with detailed criteria.' : 'Quick scores only; answering the detailed criteria gives the Board stronger evidence.'}${direct}`;
+    return `<tr class="bqrow"><td><b>${b.n}. ${esc(b.q)}</b><br><span class="small muted">${esc(why)}</span></td><td class="ans ${a.cls}">${esc(a.label)}</td></tr>`;
+  }).join('');
+  const b4 = C.boardQs.find(b => !b.qs.length); const top = priorities().slice(0,5);
+  const list = top.length ? `<div class="tablewrap"><table><thead><tr><th>#</th><th>Question</th><th class="num">Score</th><th>First step</th><th>Owner</th><th>Board review</th></tr></thead><tbody>${top.map((q,i) => { const o = (D.actions[q.id]||{}).owner;
+    return `<tr><td>${i+1}</td><td><b>${q.id}</b> ${esc(q.name)}</td><td class="num">${fmt(finalScore(q))}</td><td>${esc(nextStep(q))}</td><td>${o ? esc(o) : esc(OWNERS[q.p])+' <span class="muted">(suggested)</span>'}</td><td>${esc(reviewBy(q))}</td></tr>`; }).join('')}</tbody></table></div>
+    <p class="small muted">Ranked by how far each question is below the 4.0 floor and the weight of its pillar, with questions on legal compliance and the use of funds given more weight. Anything at Level 1 comes first. Owners and dates entered in the Action plan replace the suggestions.</p>`
+    : '<p class="small muted">No questions are below the 4.0 floor.</p>';
+  return `<h1>Four questions for the Board</h1>
+    <p class="small muted">What the self-assessment indicates for the four questions a Board must be able to answer. Any related question at Level 1 makes the answer "Not yet demonstrated", however strong the rest.</p>
+    <table class="bq"><tbody>${rows}</tbody></table>
+    <p style="margin:12px 0 6px;font-size:14.5px;"><b>${b4.n}. ${esc(b4.q)}</b></p>${list}`;
+}
 
 /* ---------- Licence and content ---------- */
 async function decryptContent(keyB64){
@@ -343,7 +403,8 @@ function vStart(){
   $('#view').innerHTML = renewBanner() + `
   <div class="card">
     <h1>Welcome</h1>
-    <p>This assessment covers <b>60 questions</b> across <b>8 governance pillars</b>. For each question, pick the level that best describes your organisation today. That takes about an hour. When you want evidence for the Board, open the detailed criteria for any question and answer Yes or No instead.</p>
+    <p>This assessment covers <b>${TOTAL()} questions</b> across <b>8 governance pillars</b>. For each question, pick the level that best describes your organisation today. That takes about an hour. When you want evidence for the Board, open the detailed criteria for any question and answer Yes or No instead.</p>
+    <p>The Board report opens with four questions every Board should be able to answer: are we complying with the law, are funds used for their intended purposes and as donors directed, is the Board exercising meaningful oversight, and what must we do now about the most significant risks.</p>
     <p class="muted small">Questions marked <span class="pill core">Core</span> matter most; start there if time is short. <span class="pill">Deep-dive</span> questions add depth. Both count equally in the score.</p>
     <div class="grid2">
       <div><label class="f" for="org">Organisation name (shown on your reports)</label><input type="text" id="org" value="${esc(D.org)}"></div>
@@ -351,7 +412,7 @@ function vStart(){
     </div>
     <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
       <button class="btn" id="startgo">${n ? 'Continue the assessment' : 'Start the assessment'}</button>
-      <span class="muted small">${n} of 60 questions answered</span>
+      <span class="muted small">${n} of ${TOTAL()} questions answered</span>
     </div>
   </div>
   <div class="card small">
@@ -373,8 +434,8 @@ function vAssess(){
   $('#view').innerHTML = renewBanner() + `
   <div class="layout">
     <aside class="pnav card" style="padding:10px;">
-      <div class="small muted" style="padding:4px 10px 8px;">${n} of 60 answered</div>
-      <div class="progress" style="margin:0 10px 10px;"><span style="width:${n/60*100}%"></span></div>
+      <div class="small muted" style="padding:4px 10px 8px;">${n} of ${TOTAL()} answered</div>
+      <div class="progress" style="margin:0 10px 10px;"><span style="width:${n/TOTAL()*100}%"></span></div>
       ${ps.map(x => `<button data-p="${x.p.n}" aria-current="${x.p.n===curPillar}"><span>${x.p.n}. ${esc(x.p.name)}</span><span class="cnt">${x.answered}/${x.total}</span></button>`).join('')}
     </aside>
     <section id="qs"></section>
@@ -400,7 +461,7 @@ function renderPillar(){
 function qHtml(q){
   const a = D.answers[q.id] || {};
   return `<div class="q" id="q-${q.id}">
-    <div class="qhead"><span class="qid">${q.id}</span><span class="qname">${esc(q.name)}</span><span class="pill ${q.tier==='Core'?'core':''}">${q.tier==='Core'?'Core':'Deep-dive'}</span></div>
+    <div class="qhead"><span class="qid">${q.id}</span><span class="qname">${esc(q.name)}</span><span class="pill ${q.tier==='Core'?'core':''}">${q.tier==='Core'?'Core':'Deep-dive'}</span>${q.isNew?'<span class="pill">New in v1.2</span>':''}</div>
     <div class="qtext">${esc(q.text)}</div>
     <div class="levels" role="group" aria-label="Quick score for ${esc(q.name)}">
       ${[1,2,3,4,5].map(l => `<button class="lv" data-l="${l}" aria-pressed="${a.quick===l}"><b>${l} · ${LEVELS[l-1]}</b><ul>${q.c[l-1].map(t=>`<li>${esc(t)}</li>`).join('')}</ul></button>`).join('')}
@@ -420,8 +481,8 @@ function bindQ(q){
 }
 function refreshNav(){
   pillarStats().forEach(x => { const b = document.querySelector(`.pnav button[data-p="${x.p.n}"] .cnt`); if (b) b.textContent = x.answered+'/'+x.total; });
-  const n = answeredCount(); const bar = document.querySelector('.pnav .progress span'); if (bar) bar.style.width = (n/60*100)+'%';
-  const t = document.querySelector('.pnav .small'); if (t) t.textContent = n+' of 60 answered';
+  const n = answeredCount(); const bar = document.querySelector('.pnav .progress span'); if (bar) bar.style.width = (n/TOTAL()*100)+'%';
+  const t = document.querySelector('.pnav .small'); if (t) t.textContent = n+' of '+TOTAL()+' answered';
 }
 function refreshQ(q){
   const el = $('#q-'+q.id); const s = finalScore(q); const a = D.answers[q.id] || {};
@@ -487,7 +548,7 @@ function barChart(ps){
 function vResults(){
   const ps = pillarStats(); const ov = overall(ps); const n = answeredCount();
   const qs = C.questions.filter(q => finalScore(q)!==null).sort((a,b) => finalScore(a)-finalScore(b));
-  $('#view').innerHTML = renewBanner() + (n<60 ? `<div class="banner">${n} of 60 questions answered. Results use the questions answered so far.</div>` : '') + `
+  $('#view').innerHTML = renewBanner() + (n<TOTAL() ? `<div class="banner">${n} of ${TOTAL()} questions answered. Results use the questions answered so far.</div>` : '') + `
   <div class="kpis">
     <div class="kpi"><div class="v">${fmt(ov)}</div><div class="l">Overall score (out of 5)</div></div>
     <div class="kpi"><div class="v" style="font-size:20px;padding-top:8px;">${esc(levelOf(ov))}</div><div class="l">Maturity level</div></div>
@@ -499,12 +560,12 @@ function vResults(){
     <thead><tr><th>Pillar</th><th class="num">Weight</th><th class="num">Answered</th><th class="num">Score</th><th class="num">Peer avg</th><th class="num">vs peer</th><th>Level and risk</th></tr></thead>
     <tbody>${ps.map(x => `<tr><td>${x.p.n}. ${esc(x.p.name)}</td><td class="num">${Math.round(x.p.w*100)}%</td><td class="num">${x.answered}/${x.total}</td><td class="num">${fmt(x.avg)}</td><td class="num">${x.peer.toFixed(2)}</td><td class="num ${x.avg!==null&&x.avg<x.peer?'neg':'pos'}">${x.avg===null?'—':((x.avg-x.peer>=0?'+':'')+(x.avg-x.peer).toFixed(2))}</td><td>${esc(levelOf(x.avg))}<br><span class="muted small">${esc(riskOf(x.avg))}</span></td></tr>`).join('')}</tbody>
   </table></div>
-  <p class="small muted">The peer benchmark draws on anonymised assessments of ${BENCH_BAND} Indian NGOs (updated ${BENCH_DATE}). It is a guide for comparison, not a statistically representative survey. The 4.0 floor and 5.0 ideal remain the main reference points.</p>
+  <p class="small muted">The peer benchmark draws on anonymised assessments of ${BENCH_BAND} Indian NGOs (updated ${BENCH_DATE}). It is a guide for comparison, not a statistically representative survey. The 4.0 floor and 5.0 ideal remain the main reference points. Q61 is new in version 1.2 and has no peer figure yet.</p>
   </div>
   <div class="card"><h2>Questions, weakest first</h2>
   <div class="tablewrap"><table>
     <thead><tr><th>Question</th><th class="num">Score</th><th class="num">Peer</th><th>What it means and what to do</th></tr></thead>
-    <tbody>${qs.map(q => { const g = gaps(q); return `<tr><td><b>${q.id}</b> ${esc(q.name)}<br><span class="muted small">${basis(q)}</span></td><td class="num">${fmt(finalScore(q))}</td><td class="num">${q.bm.avg.toFixed(2)}</td><td>${esc(recommendation(q))}<br><span class="muted small">${esc(riskText(q))}</span>${g.length?`<ul class="small" style="margin:6px 0 0;padding-left:18px;">${g.map(t=>`<li>${esc(t)}</li>`).join('')}</ul>`:''}</td></tr>`; }).join('') || '<tr><td colspan="4" class="muted">No questions answered yet.</td></tr>'}</tbody>
+    <tbody>${qs.map(q => { const g = gaps(q); return `<tr><td><b>${q.id}</b> ${esc(q.name)}<br><span class="muted small">${basis(q)}</span></td><td class="num">${fmt(finalScore(q))}</td><td class="num">${q.bm ? q.bm.avg.toFixed(2) : 'New'}</td><td>${esc(recommendation(q))}<br><span class="muted small">${esc(riskText(q))}</span>${g.length?`<ul class="small" style="margin:6px 0 0;padding-left:18px;">${g.map(t=>`<li>${esc(t)}</li>`).join('')}</ul>`:''}</td></tr>`; }).join('') || '<tr><td colspan="4" class="muted">No questions answered yet.</td></tr>'}</tbody>
   </table></div></div>
   ${shareCard(n)}`;
   bindShare();
@@ -524,15 +585,16 @@ function plan(ps){
 }
 function vReport(){
   const ps = pillarStats(); const ov = overall(ps); const pl = plan(ps);
-  const top = C.questions.filter(q => finalScore(q)!==null && finalScore(q)<4).sort((a,b) => finalScore(a)-finalScore(b)).slice(0,10);
+  const top = priorities().slice(5,15);
   const date = new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
   $('#view').innerHTML = `
   <div class="noprint" style="display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap;"><button class="btn" onclick="window.print()">Print or save as PDF</button><span class="muted small" style="align-self:center;">Use your browser's "Save as PDF" to keep a copy.</span></div>
   <div class="card report">
     <div class="meta"><span><b>${esc(D.org || 'Organisation name')}</b>${D.period?' · '+esc(D.period):''}</span><span>Board executive summary · ${date}</span></div>
-    <h1>Governance maturity: ${fmt(ov)} / 5.00</h1>
-    <p><b>${esc(levelOf(ov))}</b> · ${esc(riskOf(ov))}. Peer average ${C.bmOverall.avg.toFixed(2)}. ${answeredCount()} of 60 questions assessed.</p>
-    ${pl ? `<p>This assessment covers 60 questions across 8 pillars. The strongest pillar is ${esc(pl.max.p.name)} (${pl.max.avg.toFixed(2)}) and the weakest is ${esc(pl.min.p.name)} (${pl.min.avg.toFixed(2)}). ${pl.below3} of 8 pillars are below Level 3 (Defined) and need Board attention. Priority owners should be assigned and progress reviewed at each Board meeting.</p>` : '<p>Answer the assessment to generate this report.</p>'}
+    ${boardQuestionsHtml()}
+    <h2>Governance maturity: ${fmt(ov)} / 5.00</h2>
+    <p><b>${esc(levelOf(ov))}</b> · ${esc(riskOf(ov))}. Peer average ${C.bmOverall.avg.toFixed(2)}. ${answeredCount()} of ${TOTAL()} questions assessed.</p>
+    ${pl ? `<p>This assessment covers ${TOTAL()} questions across 8 pillars. The strongest pillar is ${esc(pl.max.p.name)} (${pl.max.avg.toFixed(2)}) and the weakest is ${esc(pl.min.p.name)} (${pl.min.avg.toFixed(2)}). ${pl.below3} of 8 pillars are below Level 3 (Defined) and need Board attention. Priority owners should be assigned and progress reviewed at each Board meeting.</p>` : '<p>Answer the assessment to generate this report.</p>'}
     <h2>Pillar scores</h2>
     ${barChart(ps)}
     <table style="margin-top:10px;"><thead><tr><th>Pillar</th><th class="num">Weight</th><th class="num">Score</th><th class="num">Peer avg</th><th>Level</th></tr></thead>
@@ -543,21 +605,21 @@ function vReport(){
       <tr><th>31–90 days</th><td>${esc(pl.p90)}</td></tr>
       <tr><th>3–12 months</th><td>${esc(pl.p12)}</td></tr>
     </tbody></table>` : ''}
-    ${top.length ? `<h2>Priority questions (below the 4.0 floor)</h2>
+    ${top.length ? `<h2>Further priorities below the 4.0 floor</h2>
     <table><thead><tr><th>Question</th><th class="num">Score</th><th>Governance risk</th></tr></thead>
     <tbody>${top.map(q => `<tr><td><b>${q.id}</b> ${esc(q.name)}</td><td class="num">${fmt(finalScore(q))}</td><td>${esc(riskText(q))}</td></tr>`).join('')}</tbody></table>` : ''}
-    <p class="disclaimer" style="margin-top:18px;">Peer benchmark: anonymised governance assessments of ${BENCH_BAND} Indian NGOs completed using this framework, updated ${BENCH_DATE}; a guide for comparison, not a statistically representative survey. This report was produced with the Institutional Governance Maturity Assessment, a management self-assessment tool. It reflects only the responses entered, is not legal, regulatory or other professional advice, and does not certify compliance or governance standing.</p>
+    <p class="disclaimer" style="margin-top:18px;">Peer benchmark: anonymised governance assessments of ${BENCH_BAND} Indian NGOs completed using this framework, updated ${BENCH_DATE}; a guide for comparison, not a statistically representative survey. Q61 is new in version 1.2 and has no peer figure yet. This report was produced with the Institutional Governance Maturity Assessment, a management self-assessment tool. It reflects only the responses entered, is not legal, regulatory or other professional advice, and does not certify compliance or governance standing.</p>
     <div class="watermark">${esc(licenceLine())}</div>
   </div>`;
 }
 
 function vActions(){
-  const qs = C.questions.filter(q => finalScore(q)!==null && finalScore(q)<4).sort((a,b) => finalScore(a)-finalScore(b));
+  const qs = priorities();
   $('#view').innerHTML = `<div class="card"><h2>Action plan</h2>
-  <p class="muted small">Every question below the 4.0 floor, weakest first. Assign an owner, a target date and a status. Saved in this browser.</p>
+  <p class="muted small">Every question below the 4.0 floor, most significant first (Level 1 items, then larger gaps in heavier pillars, with legal compliance and use of funds weighted up). Assign an owner, a target date and a status. Saved in this browser.</p>
   <div class="noprint" style="margin-bottom:10px;"><button class="btn secondary" onclick="window.print()">Print</button> <button class="btn secondary" id="csv">Download as spreadsheet (CSV)</button></div>
   <div class="tablewrap"><table><thead><tr><th>Question</th><th class="num">Score</th><th>Action needed</th><th style="min-width:130px;">Owner</th><th style="min-width:140px;">Target date</th><th style="min-width:130px;">Status</th></tr></thead>
-  <tbody>${qs.map(q => { const a = D.actions[q.id] || {}; return `<tr data-q="${q.id}"><td><b>${q.id}</b> ${esc(q.name)}</td><td class="num">${fmt(finalScore(q))}</td><td class="small">${esc(recommendation(q))}</td>
+  <tbody>${qs.map(q => { const a = D.actions[q.id] || {}; return `<tr data-q="${q.id}"><td><b>${q.id}</b> ${esc(q.name)}</td><td class="num">${fmt(finalScore(q))}</td><td class="small">${esc(recommendation(q))}<br><span class="muted">First step: ${esc(nextStep(q))}</span></td>
     <td><input type="text" data-f="owner" value="${esc(a.owner)}" aria-label="Owner"></td><td><input type="date" data-f="date" value="${esc(a.date)}" aria-label="Target date"></td>
     <td><select data-f="status" aria-label="Status">${['Not started','In progress','Done','Deferred'].map(s => `<option ${a.status===s?'selected':''}>${s}</option>`).join('')}</select></td></tr>`; }).join('') || '<tr><td colspan="6" class="muted">No questions below 4.0 yet.</td></tr>'}</tbody></table></div></div>`;
   document.querySelectorAll('tr[data-q] [data-f]').forEach(inp => inp.oninput = inp.onchange = () => {
@@ -617,7 +679,7 @@ function vData(){
 /* ---------- Optional anonymous benchmark contribution ---------- */
 function shareCard(n){
   return `<div class="card small noprint" id="sharecard"><h3>Help improve the peer benchmark (optional)</h3>
-  <p>Share your 60 question scores anonymously. Only the scores and the two answers below are sent: no organisation name, no notes, no email and no criteria answers.</p>
+  <p>Share your question scores anonymously. Only the scores and the two answers below are sent: no organisation name, no notes, no email and no criteria answers.</p>
   <div class="grid2">
     <div><label class="f" for="sec">Type of organisation</label><select id="sec">${['','Trust','Society','Section 8 company','Foundation / grant-maker','Other'].map(s=>`<option ${D.sector===s?'selected':''}>${s}</option>`).join('')}</select></div>
     <div><label class="f" for="siz">Annual budget</label><select id="siz">${['','Under ₹1 crore','₹1–10 crore','₹10–50 crore','Over ₹50 crore'].map(s=>`<option ${D.size===s?'selected':''}>${s}</option>`).join('')}</select></div>
