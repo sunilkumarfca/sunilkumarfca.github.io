@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FC-4 Annual Return Readiness Pack</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2210%22%20fill%3D%22%231C2530%22/%3E%3Ctext%20x%3D%2232%22%20y%3D%2243%22%20font-family%3D%22Georgia%2C%20serif%22%20font-size%3D%2226%22%20fill%3D%22%23FAF8F4%22%20text-anchor%3D%22middle%22%3EF4%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/packs/pack.css">
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="brand">FC-4 Annual Return Readiness Pack</div>
+    <nav class="tabs hidden" id="tabs" aria-label="Sections">
+      <button data-tab="start">Start</button>
+      <button data-tab="checks">Checks</button>
+      <button data-tab="activity">Activity table</button>
+      <button data-tab="admin">20% test</button>
+      <button data-tab="donors">Ultimate donors</button>
+      <button data-tab="disc">Disclosures</button>
+      <button data-tab="kf">Key functionaries</button>
+      <button data-tab="sign">Sign-off</button>
+      <button data-tab="board">Board summary</button>
+      <button data-tab="data">Your data</button>
+    </nav>
+  </div>
+</header>
+<main><div class="wrap" id="view"><p class="muted">Loading…</p></div></main>
+<footer>
+  <div class="wrap">
+    Version 1.0 (web), October 2026 · © 2026 CA Sunil Kumar, FCA · <a href="https://sunilkumarfca.com">sunilkumarfca.com</a> · <a href="mailto:sunil@sunilkumarfca.com">sunil@sunilkumarfca.com</a><br>
+    A management working tool for education and internal use. It is not a legal opinion and does not guarantee any filing outcome. Check the current Act, Rules, form version and MHA notices on fcraonline.nic.in before filing. Your entries stay in this browser and are not sent to anyone.
+  </div>
+</footer>
+<script>
+window.PACK = {
+  tool: 'fc4', slug: 'fc4-readiness', short: 'FC-4 Readiness Pack',
+  buyUrl: 'https://sunilfca.gumroad.com/l/fc4-readiness-pack',
+  licKey: 'fc4-licence', dataKey: 'fc4-data-v1',
+  blank: () => ({org:'', due:'2026-12-31', checks:{}, act:[], audited:'', fcReceived:'', admin:{}, ud:[], disc:[], kf:[], sign:{}, udin1:'', udin2:'', filed:'', ack:''}),
+  firstTab: D => D.org ? 'checks' : 'start',
+  views: {}
+};
+</script>
+<script src="/packs/pack-core.js"></script>
+<script>
+(function(){
+const {$, esc, num, inr, pct, fmtDate, daysBetween, today, st} = Pack;
+const V = PACK.views;
+const D = () => Pack.D, C = () => Pack.C;
+const STATUSES = ['Done','In progress','Not started','N/A'];
+const SIGN_STEPS = ['Programmes','Finance (preparer)','Compliance','Statutory Auditor','CFO','CEO','Board or Audit Committee'];
+const ADMIN_CATS = ['Salaries and benefits of managerial staff','Office rent','Utilities (electricity, water, telephone, internet)','Legal and professional fees','Audit fees','Office travel and conveyance (non-programme)','Office maintenance, repairs and supplies','Other administrative expenses'];
+
+function addDays(iso, n){ const d = new Date(iso + 'T00:00:00'); d.setDate(d.getDate() + n); return d.toISOString().slice(0,10); }
+function daysLeft(){ return Math.max(0, daysBetween(today(), D().due || '2026-12-31')); }
+function allChecks(){ return C().stages.flatMap(s => s.items.map(it => Object.assign({stage: s.name, offset: s.offset}, it))); }
+function chk(id){ const d = D(); if (!d.checks[id]) d.checks[id] = {}; return d.checks[id]; }
+function target(c){ const x = D().checks[c.id] || {}; return x.date || addDays(D().due || '2026-12-31', -c.offset); }
+function owner(c){ const x = D().checks[c.id] || {}; return x.owner ?? c.owner; }
+function status(c){ return (D().checks[c.id] || {}).status || 'Not started'; }
+function overdue(c){ const s = status(c); return s !== 'Done' && s !== 'N/A' && target(c) < today(); }
+function header(title, sub){ return `<h1>${esc(title)}</h1>${sub ? `<p class="muted">${sub}</p>` : ''}`; }
+
+/* ---------- Metrics ---------- */
+function m(){
+  const d = D(); const cs = allChecks();
+  const applicable = cs.filter(c => status(c) !== 'N/A').length;
+  const done = cs.filter(c => status(c) === 'Done').length;
+  const over = cs.filter(overdue).length;
+  const fc = num(d.fcReceived);
+  const adminTotal = ADMIN_CATS.reduce((t, k) => t + (num((d.admin[k] || {}).amt) || 0), 0);
+  const adminPct = fc ? adminTotal / fc : null;
+  const adminSt = adminPct === null ? '' : adminPct > 0.2 ? 'Red' : adminPct > 0.18 ? 'Amber' : 'Green';
+  const actTotal = d.act.reduce((t, r) => t + (num(r.amount) || 0), 0);
+  const aud = num(d.audited);
+  const audDiff = aud === null ? null : actTotal - aud;
+  const unexplained = d.act.filter(r => num(r.amount) !== null && num(r.donor) !== null && num(r.amount) !== num(r.donor) && !String(r.expl || '').trim()).length;
+  const udOpen = d.ud.filter(r => String(r.inter || '').trim() && udStatus(r) !== 'Received').length;
+  const kfLate = d.kf.filter(r => kfStatus(r).startsWith('Late')).length;
+  const signed = SIGN_STEPS.filter(s => (d.sign[s] || {}).signed === 'Yes').length;
+  return {cs, applicable, done, over, fc, adminTotal, adminPct, adminSt, actTotal, aud, audDiff, unexplained, udOpen, kfLate, signed};
+}
+function udStatus(r){ if (!String(r.inter || '').trim()) return ''; return r.recd ? 'Received' : r.req ? 'Requested' : 'To request'; }
+function kfStatus(r){
+  if (!r.changed) return '';
+  if (!r.intimated) return daysBetween(r.changed, today()) > 45 ? 'Late, not filed' : 'Pending';
+  return daysBetween(r.changed, r.intimated) <= 45 ? 'Yes' : 'Late';
+}
+
+/* ---------- Start ---------- */
+V.start = () => {
+  const d = D(), x = m();
+  $('#view').innerHTML = `
+  <div class="card">
+    ${header('Get FC-4 for 2025-26 ready, reviewed and filed', 'The FCRA Amendment Rules 2026 (notified 22 June 2026) added new FC-4 disclosures: website and social media, ultimate donors behind intermediaries, publications, a detailed activity report with locations and amounts, and UDINs. Information that was never collected during the year is hard to rebuild in December, so this pack starts in October.')}
+    <div class="grid3">
+      <div><label class="f" for="org">Organisation name (shown on the Board summary)</label><input type="text" id="org" value="${esc(d.org)}"></div>
+      <div><label class="f" for="due">FC-4 due date</label><input type="date" id="due" value="${esc(d.due)}"></div>
+      <div><label class="f">Days left</label><div style="font-family:Newsreader,Georgia,serif;font-size:30px;" id="dl">${daysLeft()}</div></div>
+    </div>
+    <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+      <button class="btn" id="go">${x.done ? 'Continue the checks' : 'Start the checks'}</button>
+      <span class="muted small">${x.done} of ${x.applicable} applicable checks done</span>
+    </div>
+  </div>
+  <div class="card small">
+    <h3>How it works</h3>
+    <ol>
+      <li><b>Checks:</b> work through the ${x.cs.length} checks in eight stages. Each has a suggested owner and a target date set from your due date; change them to suit your team.</li>
+      <li><b>This week:</b> send the request letter to every intermediary on the Ultimate donors page. Replies can take weeks.</li>
+      <li><b>As you go:</b> fill the Activity table, the 20% test, Disclosures and Key functionaries.</li>
+      <li><b>Before filing:</b> complete the Sign-off chain and print the Board summary for your Board or Audit Committee.</li>
+    </ol>
+    <p><b>Timeline:</b> October for the money, donors and key functionaries; November for the activity table, disclosures, assets and the auditor's certificate; December for review and filing well before the last week, when the portal is busiest.</p>
+    <p class="muted">Your entries are saved in this browser only. To move to another computer or share with a colleague, use Your data → Download a backup. ${esc(Pack.licenceLine())}</p>
+  </div>`;
+  $('#org').oninput = e => { d.org = e.target.value; Pack.save(); };
+  $('#due').onchange = e => { d.due = e.target.value || '2026-12-31'; Pack.save(); $('#dl').textContent = daysLeft(); };
+  $('#go').onclick = () => Pack.go('checks');
+};
+
+/* ---------- Checks ---------- */
+V.checks = () => {
+  const x = m();
+  $('#view').innerHTML = header('Readiness checks', `Set a status for each check. <b>Done</b> means complete, with evidence on file. <b>N/A</b> means it genuinely does not apply.`) + `
+  <div class="card" style="padding:14px 20px;">
+    <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;"><span><b>${x.done}</b> of ${x.applicable} applicable checks done</span><span>${x.over ? st('Overdue') + ' ' + x.over : '<span class="muted">Nothing overdue</span>'}</span></div>
+    <div class="progress" style="margin-top:8px;"><span style="width:${x.applicable ? x.done / x.applicable * 100 : 0}%"></span></div>
+  </div>
+  ${C().stages.map(s => `<div class="card stage"><h2>${esc(s.name)}</h2><p class="small muted">Suggested target: ${fmtDate(addDays(D().due, -s.offset))}</p>
+    ${s.items.map(it => { const c = Object.assign({stage:s.name, offset:s.offset}, it); const cur = status(c); return `
+    <div class="chk" id="c-${c.id}">
+      <div class="id">${c.id}</div>
+      <div>${esc(c.text)}<div class="ref">${esc(c.ref)}</div>${overdue(c) ? '<div style="margin-top:4px;">' + st('Overdue') + '</div>' : ''}</div>
+      <div><label class="f" style="margin-top:0;">Status</label><div class="seg">${STATUSES.map(o => `<button data-id="${c.id}" data-s="${o}" aria-pressed="${o===cur}">${o}</button>`).join('')}</div></div>
+      <div><label class="f" style="margin-top:0;" for="o-${c.id}">Owner</label><input type="text" id="o-${c.id}" data-own="${c.id}" value="${esc(owner(c))}"></div>
+      <div><label class="f" style="margin-top:0;" for="t-${c.id}">Target date</label><input type="date" id="t-${c.id}" data-date="${c.id}" value="${esc(target(c))}"></div>
+      <div class="notes"><input type="text" data-note="${c.id}" placeholder="Evidence / notes" value="${esc((D().checks[c.id]||{}).notes || '')}" aria-label="Evidence or notes for ${c.id}"></div>
+    </div>`; }).join('')}</div>`).join('')}`;
+  document.querySelectorAll('.seg button').forEach(b => b.onclick = () => { chk(b.dataset.id).status = b.dataset.s; Pack.save(); const y = window.scrollY; V.checks(); window.scrollTo(0, y); });
+  document.querySelectorAll('[data-own]').forEach(i => i.oninput = () => { chk(i.dataset.own).owner = i.value; Pack.save(); });
+  document.querySelectorAll('[data-date]').forEach(i => i.onchange = () => { chk(i.dataset.date).date = i.value; Pack.save(); });
+  document.querySelectorAll('[data-note]').forEach(i => i.oninput = () => { chk(i.dataset.note).notes = i.value; Pack.save(); });
+};
+
+/* ---------- Activity table ---------- */
+V.activity = () => {
+  const d = D();
+  $('#view').innerHTML = header('Activity table for the detailed activity report', 'One row per project or activity, from FCRA-only data: grant → project → activity → location → amount → FCRA purpose → evidence. Amounts in ₹.') +
+    `<div class="card" id="tbl"></div><div class="card" id="aud"></div>`;
+  const diff = r => { const a = num(r.amount), b = num(r.donor); if (a === null || b === null) return ''; const v = a - b; return v ? `<span style="color:var(--bad)">${inr(v)}</span>${String(r.expl||'').trim() ? '' : ' ' + st('Red')}` : inr(0); };
+  const sum = k => rows => inr(rows.reduce((t, r) => t + (num(r[k]) || 0), 0));
+  Pack.tableEditor($('#tbl'), 'act', [
+    {k:'grant', label:'Grant / donor', w:140}, {k:'project', label:'Project', w:130}, {k:'activity', label:'Activity', w:150},
+    {k:'state', label:'State / UT', w:110}, {k:'loc', label:'District / location', w:130}, {k:'purpose', label:'Registered FCRA purpose', w:150},
+    {k:'amount', label:'Amount utilised', type:'number', w:120}, {k:'assets', label:'Fresh assets', type:'number', w:110}, {k:'admin', label:'Admin expenses', type:'number', w:110},
+    {k:'donor', label:'Amount in donor report', type:'number', w:130}, {k:'_diff', label:'Difference', calc: diff},
+    {k:'expl', label:'Explanation of difference', w:170}, {k:'ev', label:'Evidence reference', w:130}
+  ], {startRows: 5, totals: {amount: sum('amount'), assets: sum('assets'), admin: sum('admin'), donor: sum('donor')}, onChange: drawAud});
+  function drawAud(){
+    const x = m();
+    $('#aud').innerHTML = `<div class="grid3">
+      <div><label class="f" for="audv">Total FC utilised per audited FC statements (₹)</label><input type="number" step="any" id="audv" value="${esc(d.audited)}"></div>
+      <div><label class="f">Activity table total</label><div style="padding-top:8px;font-weight:600;">${inr(x.actTotal)}</div></div>
+      <div><label class="f">Difference (should be nil before filing)</label><div style="padding-top:8px;font-weight:600;" id="audd">${x.audDiff === null ? '—' : inr(x.audDiff) + ' ' + st(x.audDiff === 0 ? 'Green' : 'Red')}</div></div></div>`;
+    $('#audv').oninput = e => { d.audited = e.target.value; Pack.save(); };
+    $('#audv').onchange = drawAud;
+  }
+  drawAud();
+};
+
+/* ---------- 20% test ---------- */
+V.admin = () => {
+  const d = D();
+  const draw = () => {
+    const x = m();
+    $('#res').innerHTML = `<div class="kpis">
+      <div class="kpi"><div class="v">${pct(x.adminPct)}</div><div class="l">Administrative expenses, % of FC received</div></div>
+      <div class="kpi"><div class="v">${x.fc ? inr(x.fc * 0.2) : '—'}</div><div class="l">The 20% limit</div></div>
+      <div class="kpi"><div class="v">${x.fc ? inr(x.fc * 0.2 - x.adminTotal) : '—'}</div><div class="l">Headroom (+) or excess (−)</div></div>
+      <div class="kpi"><div class="v">${x.adminSt ? st(x.adminSt) : '—'}</div><div class="l">Status (Amber = within 2 points of the limit)</div></div></div>`;
+  };
+  $('#view').innerHTML = header('The 20% limit on administrative expenses', 'Use actual cost allocations, not the budget. Write down the basis for any shared cost and apply it consistently. Managerial salaries, office rent, utilities and legal and audit fees are administrative, not project cost.') + `
+  <div class="card"><label class="f" for="fc">Foreign contribution received in 2025-26 (₹)</label><input type="number" step="any" id="fc" value="${esc(d.fcReceived)}" style="max-width:280px;"></div>
+  <div class="card"><div class="tablewrap"><table class="edit"><thead><tr><th>Administrative expense (FCRA funds)</th><th class="num">Amount (₹)</th><th>Basis of allocation for shared costs</th></tr></thead><tbody>
+    ${ADMIN_CATS.map((k, i) => `<tr><td style="padding:10px 7px;">${esc(k)}</td><td><input type="number" step="any" data-a="${i}" value="${esc((d.admin[k]||{}).amt || '')}"></td><td><input type="text" data-b="${i}" value="${esc((d.admin[k]||{}).basis || '')}"></td></tr>`).join('')}
+    <tr><td style="padding:10px 7px;"><b>Total</b></td><td class="num" id="tot"><b>${inr(m().adminTotal)}</b></td><td></td></tr>
+  </tbody></table></div></div><div id="res"></div>`;
+  const a = k => (d.admin[k] = d.admin[k] || {});
+  $('#fc').oninput = e => { d.fcReceived = e.target.value; Pack.save(); draw(); };
+  document.querySelectorAll('[data-a]').forEach(i => i.oninput = () => { a(ADMIN_CATS[+i.dataset.a]).amt = i.value; Pack.save(); $('#tot').innerHTML = '<b>' + inr(m().adminTotal) + '</b>'; draw(); });
+  document.querySelectorAll('[data-b]').forEach(i => i.oninput = () => { a(ADMIN_CATS[+i.dataset.b]).basis = i.value; Pack.save(); });
+  draw();
+};
+
+/* ---------- Ultimate donors ---------- */
+V.donors = () => {
+  const d = D();
+  $('#view').innerHTML = header('Ultimate donors behind intermediaries', 'For money received through donor-advised funds, online giving platforms or other intermediaries. FC-4 asks for each ultimate donor’s name, address, email and amount. Request early: replies can take weeks.') + `
+  <div class="card" id="tbl"></div>
+  <div class="card"><h3>Request letter</h3><p class="small muted">Copy into an email to each intermediary, then edit the bracketed parts.</p>
+    <div class="letter" id="letter"></div>
+    <button class="btn secondary small noprint" id="copy" style="margin-top:10px;">Copy the letter</button> <span class="small muted" id="cmsg"></span></div>`;
+  Pack.tableEditor($('#tbl'), 'ud', [
+    {k:'inter', label:'Intermediary', w:150}, {k:'type', label:'Type', type:'select', opts:['Donor Advised Fund','Online giving platform','Other intermediary'], w:150},
+    {k:'amt', label:'Amount received', type:'number', w:120}, {k:'req', label:'Date requested', type:'date'}, {k:'rem', label:'Reminder sent', type:'date'},
+    {k:'recd', label:'Date received', type:'date'}, {k:'name', label:'Ultimate donor name', w:150}, {k:'addr', label:'Address', w:170},
+    {k:'email', label:'Email', w:150}, {k:'damt', label:'Amount for this donor', type:'number', w:120},
+    {k:'_st', label:'Status', calc: r => st(udStatus(r))}, {k:'notes', label:'Notes', w:140}
+  ], {startRows: 3});
+  const text = C().letter.join('\n').replace(/\[organisation name\]/g, d.org || '[organisation name]');
+  $('#letter').textContent = text;
+  $('#copy').onclick = async () => { try{ await navigator.clipboard.writeText(text); $('#cmsg').textContent = 'Copied.'; }catch(e){ $('#cmsg').textContent = 'Select the text above and copy it.'; } };
+};
+
+/* ---------- Disclosures ---------- */
+V.disc = () => {
+  $('#view').innerHTML = header('Website, social media and publications', 'List every official account and publication, and read each once with FCRA status in mind. Programme descriptions should match what the organisation is registered to do. Publications are screened against the news and current-affairs restriction.') + `<div class="card" id="tbl"></div>`;
+  Pack.tableEditor($('#tbl'), 'disc', [
+    {k:'type', label:'Type', type:'select', opts:['Website','Social media','Publication (organisation)','Publication (key functionary)'], w:170},
+    {k:'name', label:'Name or URL', w:220}, {k:'owner', label:'Owner', w:120},
+    {k:'rev', label:'Reviewed for FCRA consistency?', type:'select', opts:['Yes','No']}, {k:'date', label:'Date reviewed', type:'date'},
+    {k:'issue', label:'Issues found / action', w:220}, {k:'inc', label:'Include in FC-4?', type:'select', opts:['Yes','No']}
+  ], {startRows: 4});
+};
+
+/* ---------- Key functionaries ---------- */
+V.kf = () => {
+  $('#view').innerHTML = header('Key functionary changes during the year', 'Appointments, resignations and other changes under the wider 2026 definition (trustees, governing-body members and anyone who controls or manages the organisation). The intimation is due within 45 days.') + `<div class="card" id="tbl"></div>`;
+  Pack.tableEditor($('#tbl'), 'kf', [
+    {k:'name', label:'Name', w:160}, {k:'role', label:'Role', w:150},
+    {k:'change', label:'Change', type:'select', opts:['Appointment','Resignation','Change of role','Other'], w:140},
+    {k:'changed', label:'Date of change', type:'date'}, {k:'intimated', label:'Date intimated', type:'date'},
+    {k:'_d', label:'Days taken', calc: r => (r.changed && r.intimated) ? daysBetween(r.changed, r.intimated) : ''},
+    {k:'_s', label:'Within 45 days?', calc: r => st(kfStatus(r))}
+  ], {startRows: 2});
+};
+
+/* ---------- Sign-off ---------- */
+V.sign = () => {
+  const d = D();
+  $('#view').innerHTML = header('Review chain and sign-off', 'Programmes → Finance → Compliance → Statutory Auditor → CFO → CEO → Board. Prepare FC-4 offline first. The person who prepares it should not be the only person who validates it.') + `
+  <div class="card"><div class="tablewrap"><table class="edit"><thead><tr><th>Step</th><th>Reviewer name</th><th>Date</th><th>Points raised</th><th>Points closed?</th><th>Signed off?</th></tr></thead><tbody>
+  ${SIGN_STEPS.map((s, i) => { const r = d.sign[s] || {}; const sel = (k) => `<select data-i="${i}" data-k="${k}"><option value=""></option>${['Yes','No'].map(o => `<option${r[k]===o?' selected':''}>${o}</option>`).join('')}</select>`;
+    return `<tr><td style="padding:10px 7px;"><b>${esc(s)}</b></td><td><input type="text" data-i="${i}" data-k="name" value="${esc(r.name||'')}"></td><td><input type="date" data-i="${i}" data-k="date" value="${esc(r.date||'')}"></td><td><input type="text" data-i="${i}" data-k="points" value="${esc(r.points||'')}" style="min-width:200px;"></td><td>${sel('closed')}</td><td>${sel('signed')}</td></tr>`; }).join('')}
+  </tbody></table></div></div>
+  <div class="card"><div class="grid2">
+    <div><label class="f" for="u1">UDIN of the FC-4 certificate</label><input type="text" id="u1" data-f="udin1" value="${esc(d.udin1)}"></div>
+    <div><label class="f" for="u2">UDIN of the audited FC statements</label><input type="text" id="u2" data-f="udin2" value="${esc(d.udin2)}"></div>
+    <div><label class="f" for="fd">Date filed</label><input type="date" id="fd" data-f="filed" value="${esc(d.filed)}"></div>
+    <div><label class="f" for="ak">Acknowledgement number</label><input type="text" id="ak" data-f="ack" value="${esc(d.ack)}"></div>
+  </div></div>`;
+  document.querySelectorAll('[data-i]').forEach(inp => { const h = () => { const s = SIGN_STEPS[+inp.dataset.i]; d.sign[s] = d.sign[s] || {}; d.sign[s][inp.dataset.k] = inp.value; Pack.save(); }; inp.oninput = h; inp.onchange = h; });
+  document.querySelectorAll('[data-f]').forEach(inp => { const h = () => { d[inp.dataset.f] = inp.value; Pack.save(); }; inp.oninput = h; inp.onchange = h; });
+};
+
+/* ---------- Board summary ---------- */
+V.board = () => {
+  const d = D(), x = m(), dl = daysLeft();
+  const rows = [
+    ['Days to the FC-4 due date', dl, dl > 30 ? 'Green' : dl > 10 ? 'Amber' : 'Red', 'File well before the last week of December.'],
+    ['Readiness checks done (of applicable)', x.applicable ? Math.round(x.done / x.applicable * 100) + '%' : '—', !x.applicable ? 'Red' : x.done / x.applicable >= 0.9 ? 'Green' : x.done / x.applicable >= 0.6 ? 'Amber' : 'Red', `${x.done} of ${x.applicable} checks complete, with evidence on file.`],
+    ['Checks past their target date', x.over, x.over === 0 ? 'Green' : x.over <= 3 ? 'Amber' : 'Red', 'Open checks whose target date has passed.'],
+    ['Administrative expenses, % of FC received', pct(x.adminPct), x.adminSt, 'The legal limit is 20%.'],
+    ['Activity table less audited FC utilised', x.audDiff === null ? '—' : inr(x.audDiff), x.audDiff === null ? '' : x.audDiff === 0 ? 'Green' : 'Red', 'Should be nil before filing.'],
+    ['Unexplained differences from donor reports', x.unexplained, x.unexplained ? 'Red' : 'Green', 'Rows where the activity table and the donor report differ with no explanation.'],
+    ['Ultimate-donor requests outstanding', x.udOpen, x.udOpen === 0 ? 'Green' : dl > 30 ? 'Amber' : 'Red', 'Intermediaries that have not yet sent details.'],
+    ['Key functionary changes intimated late', x.kfLate, x.kfLate ? 'Red' : 'Green', 'Changes not intimated within 45 days.'],
+    ['Review chain steps signed off (of 7)', x.signed, x.signed === 7 ? 'Green' : x.signed >= 4 ? 'Amber' : 'Red', 'Every step should sign off before filing.']
+  ];
+  const sts = rows.map(r => r[2]).filter(Boolean);
+  const overall = sts.includes('Red') ? 'Red' : sts.includes('Amber') ? 'Amber' : 'Green';
+  const open = x.cs.filter(c => status(c) !== 'Done' && status(c) !== 'N/A').sort((a, b) => target(a).localeCompare(target(b))).slice(0, 8);
+  $('#view').innerHTML = `
+  <div class="noprint" style="display:flex;gap:10px;margin-bottom:14px;"><button class="btn" onclick="window.print()">Print or save as PDF</button></div>
+  <div class="card report">
+    <div class="meta"><span><b>${esc(d.org || '[organisation name]')}</b> · FC-4 for 2025-26 · due ${fmtDate(d.due)}</span><span>Prepared ${fmtDate(today())}</span></div>
+    <h1>FC-4 readiness: summary for the Board</h1>
+    <p>Overall readiness: ${st(overall)}</p>
+    <div class="tablewrap"><table><thead><tr><th>Measure</th><th class="num">Position</th><th>Status</th><th>What it means</th></tr></thead><tbody>
+      ${rows.map(r => `<tr><td><b>${esc(r[0])}</b></td><td class="num">${esc(r[1])}</td><td>${st(r[2])}</td><td class="small">${esc(r[3])}</td></tr>`).join('')}
+    </tbody></table></div>
+    ${open.length ? `<h3 style="margin-top:20px;">Next open checks</h3><div class="tablewrap"><table><thead><tr><th>Check</th><th>Owner</th><th>Target</th><th>Status</th></tr></thead><tbody>
+      ${open.map(c => `<tr><td><b>${c.id}</b> ${esc(c.text)}</td><td>${esc(owner(c))}</td><td style="white-space:nowrap;">${fmtDate(target(c))}${overdue(c) ? ' ' + st('Overdue') : ''}</td><td>${esc(status(c))}</td></tr>`).join('')}</tbody></table></div>` : ''}
+    <h3 style="margin-top:20px;">Questions for the Board</h3>
+    <ul>${C().boardQs.map(q => `<li>${esc(q)}</li>`).join('')}</ul>
+    ${d.filed ? `<p class="small">Filed on ${fmtDate(d.filed)}${d.ack ? ', acknowledgement ' + esc(d.ack) : ''}.</p>` : ''}
+    <p class="small muted">A management working tool, not a legal opinion. Check the current form version and Rules on fcraonline.nic.in before filing.</p>
+    <div class="watermark">${esc(Pack.licenceLine())} · FC-4 Annual Return Readiness Pack · © CA Sunil Kumar, FCA</div>
+  </div>`;
+};
+
+PACK.exports = [
+  {label:'Download checks (CSV)', file:'fc4-readiness-checks.csv', rows: () => [['ID','Stage','Check','Reference','Owner','Target date','Status','Evidence / notes']].concat(allChecks().map(c => [c.id, c.stage, c.text, c.ref, owner(c), target(c), status(c), (D().checks[c.id]||{}).notes || '']))},
+  {label:'Download activity table (CSV)', file:'fc4-activity-table.csv', rows: () => [['Grant / donor','Project','Activity','State / UT','District / location','FCRA purpose','Amount utilised','Fresh assets','Admin expenses','Amount in donor report','Explanation','Evidence']].concat(D().act.map(r => [r.grant,r.project,r.activity,r.state,r.loc,r.purpose,r.amount,r.assets,r.admin,r.donor,r.expl,r.ev]))},
+  {label:'Download ultimate donors (CSV)', file:'fc4-ultimate-donors.csv', rows: () => [['Intermediary','Type','Amount received','Date requested','Reminder','Date received','Ultimate donor','Address','Email','Amount for donor','Status','Notes']].concat(D().ud.map(r => [r.inter,r.type,r.amt,r.req,r.rem,r.recd,r.name,r.addr,r.email,r.damt,udStatus(r),r.notes]))}
+];
+Pack.start();
+})();
+</script>
+</body>
+</html>

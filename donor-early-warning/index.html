@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Donor Concentration and Reserves Early Warning</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2210%22%20fill%3D%22%231C2530%22/%3E%3Ctext%20x%3D%2232%22%20y%3D%2243%22%20font-family%3D%22Georgia%2C%20serif%22%20font-size%3D%2226%22%20fill%3D%22%23FAF8F4%22%20text-anchor%3D%22middle%22%3EEW%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/packs/pack.css">
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="brand">Donor Concentration &amp; Reserves Early Warning</div>
+    <nav class="tabs hidden" id="tabs" aria-label="Sections">
+      <button data-tab="start">Start</button>
+      <button data-tab="donors">Donors</button>
+      <button data-tab="reserves">Reserves &amp; shocks</button>
+      <button data-tab="cash">13-week cash</button>
+      <button data-tab="ew">Early warning</button>
+      <button data-tab="board">Board summary</button>
+      <button data-tab="log">Quarterly log</button>
+      <button data-tab="data">Your data</button>
+    </nav>
+  </div>
+</header>
+<main><div class="wrap" id="view"><p class="muted">Loading…</p></div></main>
+<footer>
+  <div class="wrap">
+    Version 1.0 (web), October 2026 · Based on <i>The Strategic CFO</i>, Chapter 2 · © 2026 CA Sunil Kumar, FCA · <a href="https://sunilkumarfca.com">sunilkumarfca.com</a> · <a href="mailto:sunil@sunilkumarfca.com">sunil@sunilkumarfca.com</a><br>
+    A management early-warning tool for education and internal use. It is not financial, legal or audit advice. Your entries stay in this browser and are not sent to anyone.
+  </div>
+</footer>
+<script>
+window.PACK = {
+  tool: 'donor', slug: 'donor-early-warning', short: 'Early-Warning Sheet',
+  buyUrl: 'https://sunilfca.gumroad.com/l/donor-early-warning',
+  licKey: 'donor-licence', dataKey: 'donor-data-v1',
+  blank: () => ({org:'', quarter:'', donors:[], reserves:'', opex:'', target:'6', shocks:{}, finStatus:'', cashStart:'', opening:'', weeks:[], ew:{}, log:[]}),
+  firstTab: D => D.org ? 'donors' : 'start',
+  views: {}
+};
+</script>
+<script src="/packs/pack-core.js"></script>
+<script>
+(function(){
+const {$, esc, num, inr, pct, dec, fmtDate, today, st} = Pack;
+const V = PACK.views;
+const D = () => Pack.D, C = () => Pack.C;
+function header(title, sub){ return `<h1>${esc(title)}</h1>${sub ? `<p class="muted">${sub}</p>` : ''}`; }
+const dep = p => p === null ? '' : p > 0.35 ? 'High' : p >= 0.2 ? 'Medium' : 'Low';
+const cover = mo => mo === null ? '' : mo >= 12 ? 'Green' : mo >= 6 ? 'Amber' : 'Red';
+function defaultQuarter(){ const d = new Date(); const m = d.getMonth(); const fy = m >= 3 ? d.getFullYear() : d.getFullYear() - 1; const q = m >= 3 ? Math.floor((m - 3) / 3) + 1 : 4;
+  return `Q${q} ${fy}-${String(fy + 1).slice(2)} (${['Apr–Jun','Jul–Sep','Oct–Dec','Jan–Mar'][q - 1]})`; }
+
+/* ---------- Metrics ---------- */
+function m(){
+  const d = D();
+  const inc = d.donors.map(r => num(r.income)).filter(v => v !== null && v > 0);
+  const total = inc.reduce((a, b) => a + b, 0);
+  const sorted = inc.slice().sort((a, b) => b - a);
+  const top1 = total ? sorted[0] / total : null;
+  const top3 = total ? sorted.slice(0, 3).reduce((a, b) => a + b, 0) / total : null;
+  const foreign = d.donors.filter(r => r.type === 'Foreign (FCRA)').reduce((t, r) => t + (num(r.income) || 0), 0);
+  const res = num(d.reserves), opex = num(d.opex), tgt = num(d.target) || 6;
+  const monthly = opex ? opex / 12 : null;
+  const months = (res !== null && monthly) ? res / monthly : null;
+  const resSt = months === null ? '' : months >= tgt ? 'Green' : months >= 3 ? 'Amber' : 'Red';
+  const gapMonths = lost => (res !== null && lost) ? res / (lost / 12) : null;
+  const shocks = [
+    {k:'s1', name:'Largest donor withdraws', lost: total ? sorted[0] : null},
+    {k:'s2', name:'Income falls by 25% for 12 months', lost: total ? total * 0.25 : null},
+    {k:'s3', name:'FCRA registration suspended (all foreign income stops)', lost: total ? foreign : null},
+    {k:'s4', name:'Key finance person leaves suddenly', lost: null, manual: true}
+  ].map(s => Object.assign(s, s.manual ? {months: null, st: d.finStatus} : {months: gapMonths(s.lost), st: cover(gapMonths(s.lost))}));
+  const outs = d.weeks.map(w => num(w && w.out)).filter(v => v !== null);
+  const avgOut = outs.length ? outs.reduce((a, b) => a + b, 0) / outs.length : null;
+  const open = num(d.opening);
+  const weeksCash = (open !== null && avgOut) ? open / avgOut : null;
+  const cashSt = weeksCash === null ? '' : weeksCash > 12 ? 'Green' : weeksCash >= 8 ? 'Amber' : weeksCash >= 4 ? 'Red' : 'Critical';
+  let bal = open, lowest = null; const closing = [];
+  for (let i = 0; i < 13; i++){ const w = d.weeks[i] || {}; const a = num(w.in), b = num(w.out);
+    if (bal === null || (a === null && b === null)){ closing.push(null); continue; }
+    bal = bal + (a || 0) - (b || 0); closing.push(bal); lowest = lowest === null ? bal : Math.min(lowest, bal); }
+  const answers = C().questions.flatMap(x => x.items).map((_, i) => (d.ew[i] || {}).a || '');
+  const answered = answers.filter(Boolean).length;
+  const flags = answers.filter(a => a === 'Yes' || a === 'Unsure').length;
+  const action = !answered ? 'Answer the 15 questions.' : flags === 0 ? 'No immediate governance concerns — maintain discipline.' : flags <= 2 ? 'Monitor closely — discuss with CEO within 2 weeks.' : flags <= 4 ? 'Elevated risk — raise at next Board/Audit Committee meeting.' : 'Significant governance concern — convene urgent leadership discussion.';
+  const ewSt = !answered ? '' : flags === 0 ? 'Green' : flags <= 2 ? 'Amber' : 'Red';
+  return {total, top1, top3, res, months, tgt, resSt, shocks, avgOut, weeksCash, cashSt, closing, lowest, answered, flags, action, ewSt};
+}
+
+/* ---------- Start ---------- */
+V.start = () => {
+  const d = D(); if (!d.quarter){ d.quarter = defaultQuarter(); Pack.save(); }
+  $('#view').innerHTML = `
+  <div class="card">
+    ${header('See the warning signs before they reach the accounts', 'The audit can be clean and the reserves can look healthy while one donor quietly funds 40% of the year. Financial health is a lagging indicator; governance integrity is the leading one. This sheet turns the warning signs into numbers your Board can see every quarter.')}
+    <div class="grid2">
+      <div><label class="f" for="org">Organisation name (shown on the Board summary)</label><input type="text" id="org" value="${esc(d.org)}"></div>
+      <div><label class="f" for="qt">Quarter being reviewed</label><input type="text" id="qt" value="${esc(d.quarter)}"></div>
+    </div>
+    <div style="margin-top:16px;"><button class="btn" id="go">Start with your donors</button></div>
+  </div>
+  <div class="card small">
+    <h3>How it works (about an hour a quarter)</h3>
+    <ol>
+      <li><b>Donors:</b> list this year's donors and income. The sheet ranks them and flags dependency.</li>
+      <li><b>Reserves &amp; shocks:</b> enter unrestricted reserves and operating costs, then read four shock tests.</li>
+      <li><b>13-week cash:</b> enter today's cash and the next 13 weeks in and out.</li>
+      <li><b>Early warning:</b> answer the 15 questions from <i>The Strategic CFO</i>, Chapter 2.7.</li>
+      <li><b>Board summary:</b> print it for your Board or Audit Committee, then save the quarter to the log to see the trend.</li>
+    </ol>
+    <p><b>Thresholds:</b> donor dependency below 20% of income is Low, 20–35% Medium, above 35% High. Reserves target: 6 months of operating expenditure (you can change it). Cash: more than 12 weeks Green, 8–12 Amber, 4–8 Red, under 4 Critical. Early warning: any Yes or Unsure is a flag; 3 or more go to the next Board or Audit Committee meeting.</p>
+    <p class="muted">Your entries are saved in this browser only. To move to another computer or share with a colleague, use Your data → Download a backup. ${esc(Pack.licenceLine())}</p>
+  </div>`;
+  $('#org').oninput = e => { d.org = e.target.value; Pack.save(); };
+  $('#qt').oninput = e => { d.quarter = e.target.value; Pack.save(); };
+  $('#go').onclick = () => Pack.go('donors');
+};
+
+/* ---------- Donors ---------- */
+V.donors = () => {
+  $('#view').innerHTML = header('Donor income and dependency', 'Current-year income by donor (₹), one row per donor. Mark foreign contributions as "Foreign (FCRA)" so the registration shock test can use them.') + `<div class="card" id="sum"></div><div class="card" id="tbl"></div>`;
+  const drawSum = () => { const x = m(); $('#sum').innerHTML = `<div class="kpis" style="margin:0;">
+    <div class="kpi"><div class="v">${pct(x.top1)}</div><div class="l">Largest donor's share ${st(dep(x.top1))}</div></div>
+    <div class="kpi"><div class="v">${pct(x.top3)}</div><div class="l">Top three donors' share</div></div>
+    <div class="kpi"><div class="v">${inr(x.total)}</div><div class="l">Total income listed</div></div>
+    <div class="kpi"><div class="v">${D().donors.filter(r => num(r.income)).length}</div><div class="l">Donors listed</div></div></div>`; };
+  const share = r => { const x = m(); const v = num(r.income); return (v && x.total) ? pct(v / x.total) : ''; };
+  const rank = r => { const v = num(r.income); if (!v) return ''; return 1 + D().donors.filter(o => (num(o.income) || 0) > v).length; };
+  const level = r => { const x = m(); const v = num(r.income); return (v && x.total) ? st(dep(v / x.total)) : ''; };
+  Pack.tableEditor($('#tbl'), 'donors', [
+    {k:'name', label:'Donor', w:180}, {k:'type', label:'Type', type:'select', opts:['Institutional','CSR','Individual','Government','Foreign (FCRA)','Other'], w:140},
+    {k:'restricted', label:'Restricted?', type:'select', opts:['Yes','No']}, {k:'income', label:'Current-year income', type:'number', w:140},
+    {k:'ends', label:'Main grant ends', type:'date'}, {k:'renew', label:'Renewal likely?', type:'select', opts:['High','Medium','Low']},
+    {k:'_p', label:'% of total', calc: share}, {k:'_r', label:'Rank', calc: rank}, {k:'_d', label:'Dependency', calc: level}
+  ], {startRows: 5, onChange: drawSum, totals: {income: rows => inr(m().total)}});
+  drawSum();
+};
+
+/* ---------- Reserves ---------- */
+V.reserves = () => {
+  const d = D();
+  $('#view').innerHTML = header('Reserves and four shocks', 'How many months of operations are protected, and what happens if the largest donor exits?') + `
+  <div class="card"><div class="grid3">
+    <div><label class="f" for="res">Unrestricted reserves available (₹)</label><input type="number" step="any" id="res" value="${esc(d.reserves)}"></div>
+    <div><label class="f" for="opex">Annual operating expenditure (₹)</label><input type="number" step="any" id="opex" value="${esc(d.opex)}"></div>
+    <div><label class="f" for="tgt">Target months (book benchmark: more than 6)</label><input type="number" step="any" id="tgt" value="${esc(d.target)}"></div>
+  </div><div id="rk" style="margin-top:16px;"></div></div>
+  <div class="card"><h3>Four shock tests</h3><p class="small muted">Months the reserves cover the gap = unrestricted reserves ÷ the monthly income lost, assuming costs do not change. 12 months or more is Green, 6–12 Amber, under 6 Red.</p><div id="sh"></div></div>`;
+  const draw = () => { const x = m();
+    $('#rk').innerHTML = `<div class="kpis" style="margin:0;">
+      <div class="kpi"><div class="v">${dec(x.months)}</div><div class="l">Months of operations covered ${st(x.resSt)}</div></div>
+      <div class="kpi"><div class="v">${x.months === null ? '—' : (x.months / x.tgt).toFixed(2)}</div><div class="l">Reserve coverage ratio (actual ÷ target)</div></div>
+      <div class="kpi"><div class="v">${num(d.opex) ? inr(num(d.opex) / 12) : '—'}</div><div class="l">Monthly operating expenditure</div></div>
+      <div class="kpi"><div class="v">${inr(x.total)}</div><div class="l">Income listed on Donors</div></div></div>`;
+    $('#sh').innerHTML = `<div class="tablewrap"><table class="edit"><thead><tr><th>Shock</th><th class="num">Annual income lost</th><th class="num">Months reserves cover the gap</th><th>Status</th><th>First three responses</th><th>Owner</th></tr></thead><tbody>
+      ${x.shocks.map(s => { const r = d.shocks[s.k] || {}; return `<tr><td style="padding:10px 7px;"><b>${esc(s.name)}</b></td>
+        <td class="calc num">${s.manual ? 'n/a' : inr(s.lost)}</td><td class="calc num">${s.manual ? 'n/a' : dec(s.months)}</td>
+        <td>${s.manual ? `<select id="fs"><option value=""></option>${['Green','Amber','Red'].map(o => `<option${d.finStatus===o?' selected':''}>${o}</option>`).join('')}</select><div class="small muted">Your judgement: can the records be rebuilt and the month closed without them?</div>` : st(s.st)}</td>
+        <td><input type="text" data-s="${s.k}" data-k="resp" value="${esc(r.resp || '')}" style="min-width:220px;"></td><td><input type="text" data-s="${s.k}" data-k="owner" value="${esc(r.owner || '')}"></td></tr>`; }).join('')}
+      </tbody></table></div>`;
+    document.querySelectorAll('[data-s]').forEach(i => i.oninput = () => { d.shocks[i.dataset.s] = d.shocks[i.dataset.s] || {}; d.shocks[i.dataset.s][i.dataset.k] = i.value; Pack.save(); });
+    $('#fs').onchange = e => { d.finStatus = e.target.value; Pack.save(); };
+  };
+  ['res','opex','tgt'].forEach(id => { $('#' + id).oninput = e => { d[{res:'reserves', opex:'opex', tgt:'target'}[id]] = e.target.value; Pack.save(); }; $('#' + id).onchange = draw; });
+  draw();
+};
+
+/* ---------- Cash ---------- */
+V.cash = () => {
+  const d = D();
+  for (let i = 0; i < 13; i++) d.weeks[i] = d.weeks[i] || {};
+  $('#view').innerHTML = header('13-week cash forecast', 'Enter today\'s cash, then the expected inflows and outflows for each week (₹).') + `
+  <div class="card"><div class="grid3">
+    <div><label class="f" for="cs">Week 1 starts on</label><input type="date" id="cs" value="${esc(d.cashStart)}"></div>
+    <div><label class="f" for="op">Cash on hand today (₹)</label><input type="number" step="any" id="op" value="${esc(d.opening)}"></div>
+  </div><div id="ck" style="margin-top:16px;"></div></div>
+  <div class="card"><div class="tablewrap"><table class="edit"><thead><tr><th>Week</th><th>Starting</th><th class="num">Inflows</th><th class="num">Outflows</th><th class="num">Closing cash</th></tr></thead><tbody id="wk"></tbody></table></div></div>`;
+  const wkStart = i => { if (!d.cashStart) return ''; const t = new Date(d.cashStart + 'T00:00:00'); t.setDate(t.getDate() + 7 * i); return fmtDate(t.toISOString().slice(0, 10)); };
+  const draw = () => { const x = m();
+    $('#ck').innerHTML = `<div class="kpis" style="margin:0;">
+      <div class="kpi"><div class="v">${dec(x.weeksCash)}</div><div class="l">Weeks of cash on hand ${st(x.cashSt)}</div></div>
+      <div class="kpi"><div class="v">${inr(x.avgOut)}</div><div class="l">Average weekly outflow</div></div>
+      <div class="kpi"><div class="v" style="${x.lowest !== null && x.lowest < 0 ? 'color:var(--bad)' : ''}">${inr(x.lowest)}</div><div class="l">Lowest closing balance in 13 weeks</div></div>
+      <div class="kpi"><div class="v">${inr(x.closing[12])}</div><div class="l">Closing cash, week 13</div></div></div>`;
+    document.querySelectorAll('[data-cl]').forEach(c => { const v = x.closing[+c.dataset.cl]; c.innerHTML = v === null ? '' : `<span style="${v < 0 ? 'color:var(--bad);font-weight:600' : ''}">${inr(v)}</span>`; });
+    document.querySelectorAll('[data-ws]').forEach(c => c.textContent = wkStart(+c.dataset.ws));
+  };
+  $('#wk').innerHTML = d.weeks.slice(0, 13).map((w, i) => `<tr><td style="padding:10px 7px;"><b>${i + 1}</b></td><td class="calc" data-ws="${i}"></td>
+    <td><input type="number" step="any" data-w="${i}" data-k="in" value="${esc(w.in || '')}"></td><td><input type="number" step="any" data-w="${i}" data-k="out" value="${esc(w.out || '')}"></td><td class="calc num" data-cl="${i}"></td></tr>`).join('');
+  document.querySelectorAll('[data-w]').forEach(i => i.oninput = () => { d.weeks[+i.dataset.w][i.dataset.k] = i.value; Pack.save(); draw(); });
+  $('#cs').onchange = e => { d.cashStart = e.target.value; Pack.save(); draw(); };
+  $('#op').oninput = e => { d.opening = e.target.value; Pack.save(); draw(); };
+  draw();
+};
+
+/* ---------- Early warning ---------- */
+V.ew = () => {
+  const d = D(); let n = 0;
+  $('#view').innerHTML = header("The CFO's Governance Health Check", 'From <i>The Strategic CFO</i>, Chapter 2.7. About 15 minutes, once a quarter. A single Yes or Unsure warrants a direct conversation with the CEO or Board Chair.') +
+  C().questions.map(g => `<div class="card"><h3>${esc(g.area)}</h3>${g.items.map(q => { const i = n++; const a = (d.ew[i] || {}).a || ''; return `
+    <div style="padding:10px 0;border-bottom:1px solid var(--line);">
+      <div>${esc(q)}</div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:8px;">
+        <div class="seg">${['No','Yes','Unsure'].map(o => `<button data-q="${i}" data-a="${o}" aria-pressed="${a===o}">${o}</button>`).join('')}</div>
+        <input type="text" data-n="${i}" placeholder="Response / action" value="${esc((d.ew[i] || {}).n || '')}" style="flex:1;min-width:200px;" aria-label="Response or action">
+      </div></div>`; }).join('')}</div>`).join('') + `<div class="card" id="ewr"></div><p class="small muted"><i>"${esc(C().quote)}"</i> — The Strategic CFO</p>`;
+  const draw = () => { const x = m(); $('#ewr').innerHTML = `<b>Yes or Unsure answers: ${x.flags} of 15</b> ${st(x.ewSt)}<br>${esc(x.action)}`; };
+  document.querySelectorAll('[data-q]').forEach(b => b.onclick = () => { const i = +b.dataset.q; d.ew[i] = d.ew[i] || {}; d.ew[i].a = b.dataset.a; Pack.save();
+    b.parentElement.querySelectorAll('button').forEach(o => o.setAttribute('aria-pressed', o === b)); draw(); });
+  document.querySelectorAll('[data-n]').forEach(i => i.oninput = () => { const k = +i.dataset.n; d.ew[k] = d.ew[k] || {}; d.ew[k].n = i.value; Pack.save(); });
+  draw();
+};
+
+/* ---------- Board summary ---------- */
+function boardRows(x){
+  const top3St = x.top3 === null ? '' : x.top3 > 0.75 ? 'Red' : x.top3 >= 0.5 ? 'Amber' : 'Green';
+  const top1St = x.top1 === null ? '' : x.top1 > 0.35 ? 'Red' : x.top1 >= 0.2 ? 'Amber' : 'Green';
+  return [
+    ['Largest single donor, % of income', pct(x.top1), top1St, 'Above 35% is high dependency; flag it to the Board.'],
+    ['Top three donors, % of income', pct(x.top3), top3St, 'How much of the year rests on three relationships.'],
+    ['Months of operations covered by reserves', dec(x.months), x.resSt, `Against a target of ${x.tgt} months.`],
+    ['Months reserves cover if the largest donor exits', dec(x.shocks[0].months), x.shocks[0].st, 'What happens if the largest donor exits?'],
+    ['Weeks of cash on hand', dec(x.weeksCash), x.cashSt, 'More than 12 weeks is Green; under 4 is Critical.'],
+    ['Lowest cash balance in the next 13 weeks', inr(x.lowest), x.lowest === null ? '' : x.lowest < 0 ? 'Red' : 'Green', 'A negative week needs a plan now.'],
+    ['Early-warning flags (Yes or Unsure, of 15)', x.answered ? x.flags : '—', x.ewSt, x.action]
+  ];
+}
+V.board = () => {
+  const d = D(), x = m(), rows = boardRows(x);
+  const sts = rows.map(r => r[2]).filter(Boolean);
+  const overall = !sts.length ? '' : (sts.includes('Red') || sts.includes('Critical')) ? 'Red' : sts.includes('Amber') ? 'Amber' : 'Green';
+  $('#view').innerHTML = `
+  <div class="noprint" style="display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap;"><button class="btn" onclick="window.print()">Print or save as PDF</button><button class="btn secondary" id="tolog">Save this quarter to the log</button><span class="small muted" id="lmsg" style="align-self:center;"></span></div>
+  <div class="card report">
+    <div class="meta"><span><b>${esc(d.org || '[organisation name]')}</b> · ${esc(d.quarter || '')}</span><span>Prepared ${fmtDate(today())}</span></div>
+    <h1>Early-warning summary for the Board</h1>
+    <p>Overall: ${st(overall)}</p>
+    <div class="tablewrap"><table><thead><tr><th>Measure</th><th class="num">Position</th><th>Status</th><th>What it means</th></tr></thead><tbody>
+      ${rows.map(r => `<tr><td><b>${esc(r[0])}</b></td><td class="num">${esc(r[1])}</td><td>${st(r[2])}</td><td class="small">${esc(r[3])}</td></tr>`).join('')}
+    </tbody></table></div>
+    <h3 style="margin-top:20px;">Shock tests</h3>
+    <div class="tablewrap"><table><thead><tr><th>Shock</th><th class="num">Months covered</th><th>Status</th><th>First responses</th><th>Owner</th></tr></thead><tbody>
+      ${x.shocks.map(s => { const r = d.shocks[s.k] || {}; return `<tr><td>${esc(s.name)}</td><td class="num">${s.manual ? 'n/a' : dec(s.months)}</td><td>${st(s.st)}</td><td class="small">${esc(r.resp || '')}</td><td class="small">${esc(r.owner || '')}</td></tr>`; }).join('')}
+    </tbody></table></div>
+    <h3 style="margin-top:20px;">Questions for the Board</h3>
+    <ul>${C().boardQs.map(q => `<li>${esc(q)}</li>`).join('')}</ul>
+    <p class="small muted">A management early-warning tool, not financial, legal or audit advice.</p>
+    <div class="watermark">${esc(Pack.licenceLine())} · Donor Concentration and Reserves Early Warning · © CA Sunil Kumar, FCA</div>
+  </div>`;
+  $('#tolog').onclick = () => {
+    const q = d.quarter || today();
+    const rec = {quarter: q, saved: today(), top1: x.top1, top3: x.top3, months: x.months, weeks: x.weeksCash, flags: x.answered ? x.flags : null};
+    const i = d.log.findIndex(r => r.quarter === q);
+    if (i >= 0){ if (!window.confirm('Replace the entry already saved for ' + q + '?')) return; d.log[i] = rec; } else d.log.push(rec);
+    Pack.save(); $('#lmsg').textContent = 'Saved to the quarterly log.';
+  };
+};
+
+/* ---------- Quarterly log ---------- */
+V.log = () => {
+  const d = D();
+  $('#view').innerHTML = header('Quarterly log', 'Use "Save this quarter to the log" on the Board summary each quarter to see the trend.') + `
+  <div class="card"><div class="tablewrap"><table><thead><tr><th>Quarter</th><th class="num">Largest donor</th><th class="num">Top three</th><th class="num">Months of reserves</th><th class="num">Weeks of cash</th><th class="num">Early-warning flags</th><th>Saved</th><th></th></tr></thead><tbody>
+  ${d.log.length ? d.log.map((r, i) => `<tr><td><b>${esc(r.quarter)}</b></td><td class="num">${pct(r.top1)}</td><td class="num">${pct(r.top3)}</td><td class="num">${dec(r.months)}</td><td class="num">${dec(r.weeks)}</td><td class="num">${r.flags ?? '—'}</td><td>${fmtDate(r.saved)}</td><td><button class="del" data-del="${i}" aria-label="Remove">×</button></td></tr>`).join('') : '<tr><td colspan="8" class="muted">Nothing saved yet.</td></tr>'}
+  </tbody></table></div></div>`;
+  document.querySelectorAll('[data-del]').forEach(b => b.onclick = () => { if (window.confirm('Remove this quarter from the log?')){ d.log.splice(+b.dataset.del, 1); Pack.save(); V.log(); } });
+};
+
+PACK.exports = [
+  {label:'Download donors (CSV)', file:'donor-income.csv', rows: () => [['Donor','Type','Restricted','Current-year income','Main grant ends','Renewal likely']].concat(D().donors.map(r => [r.name,r.type,r.restricted,r.income,r.ends,r.renew]))},
+  {label:'Download Board summary (CSV)', file:'early-warning-board-summary.csv', rows: () => [['Measure','Position','Status','What it means']].concat(boardRows(m()))},
+  {label:'Download quarterly log (CSV)', file:'early-warning-quarterly-log.csv', rows: () => [['Quarter','Largest donor %','Top three %','Months of reserves','Weeks of cash','Early-warning flags','Saved']].concat(D().log.map(r => [r.quarter, r.top1 === null ? '' : (r.top1*100).toFixed(1), r.top3 === null ? '' : (r.top3*100).toFixed(1), r.months === null ? '' : r.months.toFixed(1), r.weeks === null ? '' : r.weeks.toFixed(1), r.flags ?? '', r.saved]))}
+];
+Pack.start();
+})();
+</script>
+</body>
+</html>
