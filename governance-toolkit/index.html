@@ -158,7 +158,7 @@ const LICENCE_URL = 'https://wispy-bonus-8272.casunilkumarfca.workers.dev';
 const BUY_URL = 'https://sunilfca.gumroad.com/l/igma-organisational-toolkit';
 const RENEW_URL = 'https://sunilfca.gumroad.com/';
 const BENCH_BAND = '10–25';
-const BENCH_DATE = '27 October 2026';
+const BENCH_DATE = '29 October 2026';
 
 /* ---------- Storage (always optional) ---------- */
 const store = {
@@ -184,9 +184,12 @@ const LEVEL_DEFS = [
 /* Reviewer clarifications (Oct 2026). Wording only: scoring is unchanged. */
 const QFIX = {
   Q1:{c:{'Significant expertise gaps exist.':'Significant expertise gaps exist: two or more key areas (finance, legal, risk, strategy, technology, programmes) have no Board member with relevant expertise.',
-         'Some relevant expertise exists.':'Relevant expertise exists in some key areas, but not all of them are covered.'}},
-  Q28:{cover:'Covers: registrations and statutory filings under FCRA and the laws your entity is set up under (Trusts, Societies or Companies Act), labour and other laws. Tax-exemption registrations are in Q29; contracts, disputes and other legal risks are in Q33.'},
-  Q29:{cover:'Covers: income-tax registrations and approvals (12A/12AB, 80G), their renewals, and the conditions that protect them (application of income, Form 10B/10BD, donor receipts). Other statutory filings are in Q28; disputes and wider legal risks are in Q33.'},
+         'Some relevant expertise exists.':'Relevant expertise exists in some key areas, but not all of them are covered.',
+         'Skills gaps are known but not formally assessed.':'Skills gaps are known, even if not yet formally assessed.',
+         'Recruitment is opportunistic rather than strategic.':'Some recruitment fills known skills gaps, though not through a planned process.',
+         'Skills gaps are identified and discussed.':'Skills gaps are identified and discussed (answer Yes even if no action has followed yet; acting on the gaps is tested at Level 4).'}},
+  Q28:{cover:'Covers: registrations and statutory filings under the laws your organisation is set up under, any rules on receiving foreign funds, labour and other laws. In India: FCRA and the Trusts, Societies or Companies Act. Tax-exemption registrations are in Q29; contracts, disputes and other legal risks are in Q33.'},
+  Q29:{cover:'Covers: tax-exemption registrations and donor tax-deduction approvals, their renewals, and the conditions that protect them (how income is applied, annual tax filings, donor receipts). In India: 12A/12AB, 80G and Form 10B/10BD. Other statutory filings are in Q28; disputes and wider legal risks are in Q33.'},
   Q33:{cover:'Covers: legal risks beyond routine filings, such as contracts, litigation and disputes, intellectual property, data protection, and how external counsel is used. Statutory filings are in Q28; tax-exemption status is in Q29.'},
   Q42:{cover:'Covers: how goods and services are bought: procurement policy, quotes or tenders, approval thresholds and documenting the purchase decision. Managing suppliers after the contract is signed is in Q43.'},
   Q43:{cover:'Covers: suppliers after they are selected: contracts, performance reviews, and dependence on a few key vendors. The buying process itself (quotes, tenders, approvals) is in Q42.'},
@@ -208,7 +211,7 @@ const r2 = x => Math.round(x*100)/100;
 let C = null;          // decrypted content
 let LIC = store.get(LIC_KEY);
 let D = store.get(DATA_KEY) || {};
-function blankData(){ return {org:'', period:'', sector:'', size:'', answers:{}, actions:{}, snapshots:[], sharedOn:null}; }
+function blankData(){ return {org:'', period:'', sector:'', size:'', country:'', answers:{}, actions:{}, snapshots:[], sharedOn:null}; }
 D = Object.assign(blankData(), D);
 function save(){ if(!store.set(DATA_KEY, D)) showSaveWarning(); }
 let saveWarned = false;
@@ -453,7 +456,7 @@ function vStart(){
     <ul>
       <li>Your answers are saved in this browser only. Nothing is sent to us. To move to another computer, use <b>Your data → Download a backup</b> and load it there.</li>
       <li>Scores run from 1 to 5. 4.0 is the governance floor and 5.0 the ideal.</li>
-      <li>The peer benchmark draws on anonymised governance assessments of ${BENCH_BAND} Indian NGOs, completed using this framework (updated ${BENCH_DATE}). It is a guide for comparison, not a statistically representative survey. We aim to share a refreshed benchmark each quarter at no extra cost, but this is not a commitment to update.</li>
+      <li>The peer benchmark draws on anonymised governance assessments of ${BENCH_BAND} NGOs and non-profits, mostly in India, completed using this framework (updated ${BENCH_DATE}). It is a guide for comparison, not a statistically representative survey. We aim to share a refreshed benchmark each quarter at no extra cost, but this is not a commitment to update.</li>
       <li class="muted">${esc(licenceLine())}</li>
     </ul>
   </div>`;
@@ -596,7 +599,7 @@ function vResults(){
     <thead><tr><th>Pillar</th><th class="num">Weight</th><th class="num">Answered</th><th class="num">Score</th><th class="num">Peer avg</th><th class="num">vs peer</th><th>Level and risk</th></tr></thead>
     <tbody>${ps.map(x => `<tr><td>${x.p.n}. ${esc(x.p.name)}</td><td class="num">${Math.round(x.p.w*100)}%</td><td class="num">${x.answered}/${x.total}</td><td class="num">${fmt(x.avg)}</td><td class="num">${x.peer.toFixed(2)}</td><td class="num ${x.avg!==null&&x.avg<x.peer?'neg':'pos'}">${x.avg===null?'—':((x.avg-x.peer>=0?'+':'')+(x.avg-x.peer).toFixed(2))}</td><td>${esc(levelOf(x.avg))}<br><span class="muted small">${esc(riskOf(x.avg))}</span></td></tr>`).join('')}</tbody>
   </table></div>
-  <p class="small muted">The peer benchmark draws on anonymised assessments of ${BENCH_BAND} Indian NGOs (updated ${BENCH_DATE}). It is a guide for comparison, not a statistically representative survey. The 4.0 floor and 5.0 ideal remain the main reference points. Q61 is new in version 1.2 and has no peer figure yet.</p>
+  <p class="small muted">The peer benchmark draws on anonymised assessments of ${BENCH_BAND} NGOs and non-profits, mostly in India (updated ${BENCH_DATE}). It is a guide for comparison, not a statistically representative survey. The 4.0 floor and 5.0 ideal remain the main reference points. Q61 is new in version 1.2 and has no peer figure yet.</p>
   </div>
   <div class="card"><h2>Questions, weakest first</h2>
   <div class="tablewrap"><table>
@@ -644,7 +647,7 @@ function vReport(){
     ${top.length ? `<h2>Further priorities below the 4.0 floor</h2>
     <table><thead><tr><th>Question</th><th class="num">Score</th><th>Governance risk</th></tr></thead>
     <tbody>${top.map(q => `<tr><td><b>${q.id}</b> ${esc(q.name)}</td><td class="num">${fmt(finalScore(q))}</td><td>${esc(riskText(q))}</td></tr>`).join('')}</tbody></table>` : ''}
-    <p class="disclaimer" style="margin-top:18px;">Peer benchmark: anonymised governance assessments of ${BENCH_BAND} Indian NGOs completed using this framework, updated ${BENCH_DATE}; a guide for comparison, not a statistically representative survey. Q61 is new in version 1.2 and has no peer figure yet. This report was produced with the Institutional Governance Maturity Assessment, a management self-assessment tool. It reflects only the responses entered, is not legal, regulatory or other professional advice, and does not certify compliance or governance standing.</p>
+    <p class="disclaimer" style="margin-top:18px;">Peer benchmark: anonymised governance assessments of ${BENCH_BAND} NGOs and non-profits, mostly in India completed using this framework, updated ${BENCH_DATE}; a guide for comparison, not a statistically representative survey. Q61 is new in version 1.2 and has no peer figure yet. This report was produced with the Institutional Governance Maturity Assessment, a management self-assessment tool. It reflects only the responses entered, is not legal, regulatory or other professional advice, and does not certify compliance or governance standing.</p>
     <div class="watermark">${esc(licenceLine())}</div>
   </div>`;
 }
@@ -713,12 +716,20 @@ function vData(){
 }
 
 /* ---------- Optional anonymous benchmark contribution ---------- */
+const SECTORS = ['','Charitable trust','Society or association','Non-profit company (e.g. Section 8)','Foundation / grant-maker','Other'];
+const SIZES = ['','Under US$100k (about ₹1 crore)','US$100k–1 million (about ₹1–10 crore)','US$1–5 million (about ₹10–50 crore)','Over US$5 million (about ₹50 crore)'];
+// Answers saved before the wording went country-neutral (Oct 2026) map to the new options.
+const OLD_SECTOR = {'Trust':SECTORS[1],'Society':SECTORS[2],'Section 8 company':SECTORS[3]};
+const OLD_SIZE = {'Under ₹1 crore':SIZES[1],'₹1–10 crore':SIZES[2],'₹10–50 crore':SIZES[3],'Over ₹50 crore':SIZES[4]};
+const sharedSector = () => OLD_SECTOR[D.sector] || D.sector;
+const sharedSize = () => OLD_SIZE[D.size] || D.size;
 function shareCard(n){
   return `<div class="card small noprint" id="sharecard"><h3>Help improve the peer benchmark (optional)</h3>
-  <p>Share your question scores anonymously. Only the scores and the two answers below are sent: no organisation name, no notes, no email and no criteria answers.</p>
+  <p>Share your question scores anonymously. Only the scores and the three answers below are sent: no organisation name, no notes, no email and no criteria answers.</p>
   <div class="grid2">
-    <div><label class="f" for="sec">Type of organisation</label><select id="sec">${['','Trust','Society','Section 8 company','Foundation / grant-maker','Other'].map(s=>`<option ${D.sector===s?'selected':''}>${s}</option>`).join('')}</select></div>
-    <div><label class="f" for="siz">Annual budget</label><select id="siz">${['','Under ₹1 crore','₹1–10 crore','₹10–50 crore','Over ₹50 crore'].map(s=>`<option ${D.size===s?'selected':''}>${s}</option>`).join('')}</select></div>
+    <div><label class="f" for="sec">Type of organisation</label><select id="sec">${SECTORS.map(s=>`<option ${sharedSector()===s?'selected':''}>${s}</option>`).join('')}</select></div>
+    <div><label class="f" for="siz">Annual budget</label><select id="siz">${SIZES.map(s=>`<option ${sharedSize()===s?'selected':''}>${s}</option>`).join('')}</select></div>
+    <div><label class="f" for="cty">Country</label><input type="text" id="cty" maxlength="40" placeholder="e.g. India" value="${esc(D.country||'')}"></div>
   </div>
   <div style="margin-top:12px;"><button class="btn brass" id="sharego" ${(!LICENCE_URL||n<40)?'disabled':''}>Share my anonymous pillar scores</button>
   <span class="muted" id="sharemsg">${!LICENCE_URL?'Sharing will open once the toolkit goes live.':n<40?'Available once at least 40 questions are answered.':D.sharedOn?'You shared scores on '+esc(D.sharedOn)+'. Thank you.':''}</span></div></div>`;
@@ -726,10 +737,11 @@ function shareCard(n){
 function bindShare(){
   const sec = $('#sec'), siz = $('#siz'), b = $('#sharego'); if (!b) return;
   sec.onchange = () => { D.sector = sec.value; save(); }; siz.onchange = () => { D.size = siz.value; save(); };
+  $('#cty').oninput = e => { D.country = e.target.value.trim(); save(); };
   b.onclick = async () => {
     const scores = {}; C.questions.forEach(q => { const s = finalScore(q); if (s!==null) scores[q.id] = r2(s); });
     b.disabled = true; $('#sharemsg').textContent = 'Sending…';
-    try{ const r = await callLicence('/share', {v:1, scores, sector:D.sector, size:D.size});
+    try{ const r = await callLicence('/share', {v:1, scores, sector:sharedSector(), size:sharedSize(), country:D.country||''});
       if (!r.ok) throw 0; D.sharedOn = new Date().toISOString().slice(0,10); save(); $('#sharemsg').textContent = 'Thank you. Your anonymous scores were shared.'; }
     catch(_){ $('#sharemsg').textContent = 'Could not send right now. Please try again later.'; b.disabled = false; }
   };
