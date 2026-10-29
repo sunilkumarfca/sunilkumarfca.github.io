@@ -1,4 +1,4 @@
-# CA Sunil Kumar, FCA — NGO governance frameworks, books and governance toolkits
+# CA Sunil Kumar, FCA — governance and risk management for NGOs and the social sector
 
 > Chartered Accountant with 30+ years in NGO and development-sector finance, audit and governance. Author of books on NGO governance, strategic finance and personal effectiveness, and creator of the Institutional Governance Maturity Assessment self-assessment toolkits, in public use since June 2026. This site sells books and self-assessment toolkits; it does not offer consulting or advisory services.
 
@@ -9,7 +9,7 @@
 - [NGO governance assessment tool](https://sunilkumarfca.com/ngo-governance-assessment-tool.html): Institutional Governance Maturity Toolkit ($500): 60 questions, 8 pillars, 646 criteria, L1–L5 maturity scale.
 - [DPDP Act compliance for NGOs](https://sunilkumarfca.com/dpdp-compliance-ngos.html): DPDP Compliance Assessment Toolkit ($100).
 - [Free FCRA Compliance Essentials check](https://sunilkumarfca.com/fcra-compliance-essentials.html): free 50-point FCRA self-check for NGOs under the 2026 Rules, in the browser, with a score, critical gaps and an action plan; free until 31 March 2027.
-- [Free Governance Quick Assessment](https://sunilkumarfca.com/governance-quick-assessment.html): free 16-question, 8-pillar governance self-assessment for NGOs and nonprofits, in the browser, with a score and five priority areas.
+- [Free Governance and Risk Quick Assessment](https://sunilkumarfca.com/governance-quick-assessment.html): free 16-question, 8-pillar governance and risk self-assessment for NGOs, nonprofits and foundations in any country, in the browser, with a score and five priority areas.
 - [FC-4 Annual Return Readiness Pack](https://sunilfca.gumroad.com/l/fc4-readiness-pack) ($29): gather and check the new FC-4 disclosures for 2025-26 before the 31 December 2026 deadline.
 - [Donor Concentration and Reserves Early Warning Sheet](https://sunilfca.gumroad.com/l/donor-early-warning) ($29): see donor dependence and reserve cover early.
 - [Where to start](https://sunilkumarfca.com/where-to-start.html): match an NGO's problem to the right free guide, check or toolkit.
