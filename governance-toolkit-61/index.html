@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Institutional Governance Toolkit (61-Question Edition)</title>
+<title>Institutional Governance Toolkit (Executive Edition)</title>
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2210%22%20fill%3D%22%231C2530%22/%3E%3Ctext%20x%3D%2232%22%20y%3D%2243%22%20font-family%3D%22Georgia%2C%20serif%22%20font-size%3D%2230%22%20fill%3D%22%23FAF8F4%22%20text-anchor%3D%22middle%22%3EG%3C/text%3E%3C/svg%3E">
@@ -127,7 +127,7 @@ footer{border-top:1px solid var(--line);padding:18px 0 40px;font-size:13px;color
 <body>
 <header class="top">
   <div class="wrap">
-    <div class="brand">Institutional Governance Toolkit <span class="muted" style="font-size:15px;">61-Question Edition</span></div>
+    <div class="brand">Institutional Governance Toolkit <span class="muted" style="font-size:15px;">Executive Edition</span></div>
     <nav class="tabs hidden" id="tabs" aria-label="Sections">
       <button data-tab="start">Start</button>
       <button data-tab="assess">Assess</button>
@@ -146,7 +146,7 @@ footer{border-top:1px solid var(--line);padding:18px 0 40px;font-size:13px;color
 
 <footer>
   <div class="wrap">
-    61-Question Edition, version 1.0 (web), October 2026 · © 2026 CA Sunil Kumar, FCA · <a href="https://sunilkumarfca.com">sunilkumarfca.com</a> · <a href="mailto:sunil@sunilkumarfca.com">sunil@sunilkumarfca.com</a><br>
+    Executive Edition, version 1.0 (web), October 2026 · © 2026 CA Sunil Kumar, FCA · <a href="https://sunilkumarfca.com">sunilkumarfca.com</a> · <a href="mailto:sunil@sunilkumarfca.com">sunil@sunilkumarfca.com</a><br>
     A management self-assessment tool. It is not legal, regulatory, tax or other professional advice, does not certify compliance or governance standing, and creates no advisory relationship. Your answers stay in this browser and are not sent to anyone unless you choose to share anonymous scores.
   </div>
 </footer>
@@ -610,7 +610,7 @@ function vReport(){
     ${top.length ? `<h2>Further priorities below the 4.0 floor</h2>
     <table><thead><tr><th>Question</th><th class="num">Score</th><th>Governance risk</th></tr></thead>
     <tbody>${top.map(q => `<tr><td><b>${q.id}</b> ${esc(q.name)}</td><td class="num">${fmt(finalScore(q))}</td><td>${esc(riskText(q))}</td></tr>`).join('')}</tbody></table>` : ''}
-    <p class="disclaimer" style="margin-top:18px;">Peer benchmark: anonymised governance assessments of ${BENCH_BAND} NGOs and non-profits, mostly in India completed using this framework, updated ${BENCH_DATE}; a guide for comparison, not a statistically representative survey. Q61 Use of Funds was added in October 2026 and has no peer figure yet. This report was produced with the Institutional Governance Toolkit (61-Question Edition), a management self-assessment tool based on self-rated scores. It reflects only the responses entered, is not legal, regulatory or other professional advice, and does not certify compliance or governance standing.</p>
+    <p class="disclaimer" style="margin-top:18px;">Peer benchmark: anonymised governance assessments of ${BENCH_BAND} NGOs and non-profits, mostly in India completed using this framework, updated ${BENCH_DATE}; a guide for comparison, not a statistically representative survey. Q61 Use of Funds was added in October 2026 and has no peer figure yet. This report was produced with the Institutional Governance Toolkit (Executive Edition), a management self-assessment tool based on self-rated scores. It reflects only the responses entered, is not legal, regulatory or other professional advice, and does not certify compliance or governance standing.</p>
     <div class="watermark">${esc(licenceLine())}</div>
   </div>`;
 }
