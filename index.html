@@ -246,6 +246,18 @@ footer .disclaimer{margin:0; max-width:80ch;}
 .tk-note{margin-top:20px; font-size:.9rem; color:var(--slate);}
 @media (max-width:900px){ .tk-grid{grid-template-columns:1fr 1fr;} }
 @media (max-width:600px){ .tk-grid{grid-template-columns:1fr;} }
+/* Everything on this site, at a glance */
+.glance{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
+.glance .col{border:1px solid var(--line); border-top:3px solid #7a8a5a; background:#fff; padding:22px 24px;}
+.glance .col.paid{border-top-color:var(--brass);}
+.glance h3{font-size:1.3rem;}
+.glance .col-sub{color:var(--slate); font-size:.92rem; margin:4px 0 10px;}
+.glance ul{list-style:none; margin:0; padding:0;}
+.glance li{padding:9px 0; border-top:1px solid var(--line); font-size:.95rem;}
+.glance li:first-child{border-top:none;}
+.glance .k{display:block; font-size:.78rem; letter-spacing:.04em; text-transform:uppercase; color:var(--slate);}
+.glance .price{float:right; color:var(--brass-dark); font-weight:600; margin-left:12px;}
+@media (max-width:760px){ .glance{grid-template-columns:1fr;} }
 /* Problem chooser (mirrors toolkits.html) */
 .chooser{display:grid; grid-template-columns:repeat(auto-fill, minmax(300px, 1fr)); gap:16px;}
 .pick{display:block; text-decoration:none; border:1px solid var(--line); background:var(--paper); padding:18px 20px; border-left:3px solid var(--brass);}
@@ -406,6 +418,7 @@ footer .disclaimer{margin:0; max-width:80ch;}
     <a class="brand" href="index.html">CA Sunil Kumar, FCA<span>FCA · Governance Frameworks &amp; Books</span></a>
     <nav class="site">
       <a href="index.html" class="current">Home</a>
+      <a href="where-to-start.html">Start here</a>
       <a href="library.html">Books</a>
       <a href="toolkits.html">Toolkits</a>
       <a href="watch.html">Watch</a>
@@ -414,21 +427,9 @@ footer .disclaimer{margin:0; max-width:80ch;}
     </nav>
   </div>
 </header>
-<!-- Webinar banner (24 Oct 2026); hides itself after the session -->
-<div id="webinar-banner" style="background:#1C2530;color:#FAF8F4;padding:10px 16px;text-align:center;font-size:0.95rem;line-height:1.5;">
-  <strong>Free 30-minute session, Sat 24 Oct 2026, 11:00 am IST:</strong> Is your FCRA problem really a compliance problem?
-  <a href="https://forms.gle/rm3kyS4F1na7g4Uc7" target="_blank" rel="noopener" style="color:#FAF8F4;text-decoration:underline;font-weight:600;white-space:nowrap;">Register here</a> <span style="white-space:nowrap;">or <a href="https://www.eventbrite.com/e/is-your-fcra-problem-really-a-compliance-problem-tickets-2003548180542" target="_blank" rel="noopener" style="color:#FAF8F4;text-decoration:underline;">view on Eventbrite</a></span>
-</div>
-<script>if(new Date()>new Date("2026-10-24T12:00:00+05:30")){var wb=document.getElementById("webinar-banner");if(wb)wb.style.display="none";}</script>
-<!-- Free Governance and Risk Quick Assessment banner (any country, no end date) -->
-<div id="governance-banner" style="background:#F2EEE4;color:#1C2530;padding:10px 16px;text-align:center;font-size:0.95rem;line-height:1.5;border-bottom:1px solid #D9D3C7;">
-  <strong>Free for NGOs and nonprofits in any country:</strong> Governance and Risk Quick Assessment, 16 questions across 8 pillars in about 15 minutes.
-  <a href="/governance-quick-assessment.html" style="color:#6E5527;text-decoration:underline;font-weight:600;white-space:nowrap;">Take the free check</a>
-</div>
-<!-- Free FCRA Compliance Essentials banner; hides itself after 31 March 2027 -->
-<div id="essentials-banner" style="background:#F2EEE4;color:#1C2530;padding:10px 16px;text-align:center;font-size:0.95rem;line-height:1.5;border-bottom:1px solid #D9D3C7;">
-  <strong>New, free for every FCRA-registered NGO:</strong> FCRA Compliance Essentials, 50 essential checks under the 2026 Rules in 30&ndash;40 minutes.
-  <a href="/fcra-compliance-essentials.html" style="color:#6E5527;text-decoration:underline;font-weight:600;white-space:nowrap;">Get the free check</a>
+<!-- Free checks banner: one line for both free checks; the FCRA link hides itself after 31 March 2027 -->
+<div id="free-checks-banner" style="background:#F2EEE4;color:#1C2530;padding:10px 16px;text-align:center;font-size:0.95rem;line-height:1.5;border-bottom:1px solid #D9D3C7;">
+  <strong>Free checks:</strong> <a href="/governance-quick-assessment.html" style="color:#6E5527;text-decoration:underline;font-weight:600;">Governance &amp; Risk Quick Assessment</a> <span style="white-space:nowrap;">(any country, 15 min)</span><span id="essentials-banner"> &middot; <a href="/fcra-compliance-essentials.html" style="color:#6E5527;text-decoration:underline;font-weight:600;">FCRA Compliance Essentials</a> <span style="white-space:nowrap;">(2026 Rules, 50 checks)</span></span>
 </div>
 <script>if(new Date()>new Date("2027-04-01T00:00:00+05:30")){var eb=document.getElementById("essentials-banner");if(eb)eb.style.display="none";}</script>
 
@@ -440,12 +441,52 @@ footer .disclaimer{margin:0; max-width:80ch;}
     <div class="cta-row">
       <a class="btn primary" href="/governance-quick-assessment.html">Take the free governance check</a>
       <a class="btn" href="library.html">Browse the books</a>
+      <a class="btn" href="#everything">See everything on this site</a>
     </div>
     <div class="trust-bar">
       <span>Fellow Chartered Accountant (FCA), ICAI</span>
       <span>30+ years in NGO &amp; development-sector finance</span>
       <span>Author of The Resilient Institution &amp; The Strategic CFO</span>
       <span>Creator of the Institutional Governance Maturity methodology</span>
+    </div>
+  </div>
+</section>
+
+<section id="everything">
+  <div class="wrap">
+    <div class="section-head" style="margin-bottom:24px;">
+      <span class="num"></span>
+      <div><span class="kicker">Everything on this site</span><h2>What is here, at a glance.</h2>
+      <p>Free reading, checks and videos on the left. Paid toolkits on the right, from $29. Each link goes straight to the page.</p></div>
+    </div>
+    <div class="glance">
+      <div class="col">
+        <h3>Free</h3>
+        <p class="col-sub">No payment, and no email needed to read the books online.</p>
+        <ul>
+          <li><span class="k">Books, read online in full</span><a href="read-the-resilient-institution.html">The Resilient Institution</a> · <a href="read-the-strategic-cfo.html">The Strategic CFO</a> · <a href="read-the-wealthy-life.html">The Wealthy Life</a></li>
+          <li><span class="k">Free briefing</span><a href="https://sunilfca.gumroad.com/l/jptyr">Governance Lessons from the Field</a>: 18 case briefs and 5 frameworks</li>
+          <li><span class="k">Free checks</span><a href="/governance-quick-assessment.html">Governance &amp; Risk Quick Assessment</a> (any country, 15 min) · <a href="/fcra-compliance-essentials.html">FCRA Compliance Essentials</a> (50 checks)</li>
+          <li><span class="k">Questions answered</span><a href="resilient-institution-questions.html">12 questions Boards ask on resilience</a> · <a href="strategic-cfo-questions.html">12 questions on nonprofit finance</a> · <a href="ceo-questions-cfo-insights.html">68 questions CEOs should ask</a></li>
+          <li><span class="k">Videos &amp; audiobooks</span><a href="watch.html">Governance, FCRA and finance videos and full audiobooks</a></li>
+          <li><span class="k">Articles &amp; checklists</span><a href="ngo-governance.html">Governance</a> · <a href="fcra-governance.html">FCRA</a> · <a href="strategic-finance-ngos.html">Strategic CFO</a> · <a href="fcra-governance-hindi.html">हिंदी में</a> · <a href="notes.html">all articles</a></li>
+          <li><span class="k">Weekly newsletter</span><a href="#subscribe">The Strategic CFO by email</a></li>
+        </ul>
+      </div>
+      <div class="col paid">
+        <h3>Toolkits</h3>
+        <p class="col-sub">One-time payment, instant download. Prices in USD, converted at checkout.</p>
+        <ul>
+          <li><span class="price">$29</span><span class="k">Working packs</span><a href="toolkits.html#packs">FC-4 Readiness Pack · Donor &amp; Reserves Early-Warning Sheet</a></li>
+          <li><span class="price">$49</span><span class="k">Risk, any country</span><a href="toolkits.html#assessments">Enterprise Risk Management Toolkit</a></li>
+          <li><span class="price">$100</span><span class="k">Data protection, India</span><a href="dpdp-compliance-ngos.html">DPDP Compliance Toolkit</a></li>
+          <li><span class="price">$149</span><span class="k">Governance, any country</span><a href="ngo-governance-assessment-tool.html">Institutional Governance Toolkit, Professional Edition</a></li>
+          <li><span class="price">$300</span><span class="k">FCRA, India</span><a href="fcra-compliance-toolkit.html">FCRA Compliance Toolkit</a></li>
+          <li><span class="price">$500</span><span class="k">FCRA Board oversight, India</span><a href="fcra-governance-assessment-toolkit.html">FCRA Governance Toolkit, Professional Edition</a></li>
+          <li><span class="price">$700</span><span class="k">Best value, India</span><a href="toolkits.html#bundle">FCRA + FCRA Governance + DPDP bundle</a></li>
+        </ul>
+        <p class="col-sub" style="margin-top:12px;">Unsure which one? <a href="/where-to-start.html">Start from your problem</a>. Paid book editions are on the <a href="library.html">Books</a> page.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -462,6 +503,9 @@ footer .disclaimer{margin:0; max-width:80ch;}
       <a class="pick" href="dpdp-compliance-ngos.html"><span class="q">"Are we ready for India's DPDP data-protection law?"</span><span class="a">DPDP Compliance Assessment Toolkit</span><span class="p">$100 · a structured view of your DPDP gaps</span></a>
       <a class="pick" href="fcra-governance-assessment-toolkit.html"><span class="q">"Does our Board have real oversight of FCRA: approvals, controls, evidence?"</span><span class="a">FCRA Governance Toolkit, Professional Edition</span><span class="p">$500 · 6 pillars, 411 criteria, audit-ready</span></a>
       <a class="pick" href="ngo-governance-assessment-tool.html"><span class="q">"How strong is our governance overall: Board, finance, risk, people, data?"</span><span class="a">Institutional Governance Maturity Toolkit</span><span class="p">$149 · any NGO, foundation or trust, in any country</span></a>
+      <a class="pick" href="toolkits.html#assessments"><span class="q">"Which risks could stop us, and does the Board see them?"</span><span class="a">Enterprise Risk Management Toolkit</span><span class="p">$49 · any country, about 45 minutes</span></a>
+      <a class="pick" href="toolkits.html#packs"><span class="q">"Our FC-4 is due by 31 December. We need one plan to get it ready, reviewed and filed."</span><span class="a">FC-4 Annual Return Readiness Pack</span><span class="p">$29 · web app, 2026 Rules included</span></a>
+      <a class="pick" href="toolkits.html#packs"><span class="q">"Does one donor fund too much of us, and how long would our reserves last?"</span><span class="a">Donor Concentration &amp; Reserves Early-Warning Sheet</span><span class="p">$29 · web app, one page for the Board each quarter</span></a>
       <a class="pick best" href="toolkits.html#bundle"><span class="q">"We need FCRA compliance, FCRA governance and DPDP covered together."</span><span class="a">Compliance Toolkits Bundle</span><span class="p">$700 instead of $900 · best value</span></a>
       <a class="pick free" href="/governance-quick-assessment.html"><span class="q">"We want to test the method before investing: where do we stand on governance?"</span><span class="a">Quick Assessment: Institutional Governance</span><span class="p">Free · 16 questions, 80 statements, about 15 minutes</span></a>
       <a class="pick free" href="/fcra-compliance-essentials.html"><span class="q">"We want a quick FCRA check before buying the full toolkit."</span><span class="a">FCRA Compliance Essentials</span><span class="p">Free · 50 checks, 2026 Rules</span></a>
@@ -590,6 +634,22 @@ footer .disclaimer{margin:0; max-width:80ch;}
         <p class="tk-spec">An automated self-assessment against India’s DPDP Act that scores your position and flags the gaps to close.</p>
         <div class="tk-price">$100</div>
         <div class="tk-row"><a class="btn primary" href="https://sunilfca.gumroad.com/l/DPDPCompliance">Buy on Gumroad</a><a class="tk-more" href="dpdp-compliance-ngos.html">Details →</a></div>
+      </div>
+      <div class="tk">
+        <span class="tk-for">No. 05 · Any organisation, any country</span>
+        <h3>Enterprise Risk Management Toolkit</h3>
+        <p class="tk-blurb">Your Board asks which risks could stop the organisation, and the answer sits in people's heads: score how well you manage risk and build a working register the Board can review.</p>
+        <p class="tk-spec">42 questions, 8 pillars, about 45 minutes. 2026–27 edition, updated every year.</p>
+        <div class="tk-price">$49</div>
+        <div class="tk-row"><a class="btn primary" href="https://sunilfca.gumroad.com/l/erm-toolkit">Buy on Gumroad</a><a class="tk-more" href="toolkits.html#assessments">Details →</a></div>
+      </div>
+      <div class="tk">
+        <span class="tk-for">Working packs · One job each</span>
+        <h3>FC-4 Readiness Pack and Donor Early-Warning Sheet</h3>
+        <p class="tk-blurb">Get this year's FC-4 ready, reviewed and filed, or see donor dependency, reserve cover and cash runway on one page for the Board.</p>
+        <p class="tk-spec">Web apps that open in your browser; your entries stay on your device.</p>
+        <div class="tk-price">$29 <small>each</small></div>
+        <div class="tk-row"><a class="btn primary" href="toolkits.html#packs">See the packs</a></div>
       </div>
       <div class="tk best">
         <span class="tk-for">Bundle · Best value for Indian NGOs</span>
@@ -750,6 +810,8 @@ footer .disclaimer{margin:0; max-width:80ch;}
     <div class="footer-links">
       <h4>Explore</h4>
       <a href="index.html">Home</a>
+      <a href="where-to-start.html">Start here</a>
+      <a href="/#everything">Everything on this site</a>
       <a href="library.html">Books</a>
       <a href="toolkits.html">Toolkits</a>
       <a href="watch.html">Watch &amp; Listen</a>
