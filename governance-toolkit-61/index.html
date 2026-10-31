@@ -135,6 +135,7 @@ footer{border-top:1px solid var(--line);padding:18px 0 40px;font-size:13px;color
       <button data-tab="report">Board report</button>
       <button data-tab="actions">Action plan</button>
       <button data-tab="trend">Year on year</button>
+      <button data-tab="board">Board view</button>
       <button data-tab="data">Your data</button>
     </nav>
   </div>
@@ -214,7 +215,7 @@ const r2 = x => Math.round(x*100)/100;
 let C = null;          // decrypted content
 let LIC = store.get(LIC_KEY);
 let D = store.get(DATA_KEY) || {};
-function blankData(){ return {org:'', period:'', sector:'', size:'', country:'', answers:{}, actions:{}, snapshots:[], sharedOn:null}; }
+function blankData(){ return {org:'', period:'', sector:'', size:'', country:'', answers:{}, actions:{}, snapshots:[], sharedOn:null, board:{members:[]}, boardApplied:null}; }
 D = Object.assign(blankData(), D);
 function save(){ if(!store.set(DATA_KEY, D)) showSaveWarning(); }
 let saveWarned = false;
@@ -225,7 +226,7 @@ function ans(qid){ if(!D.answers[qid]) D.answers[qid] = {quick:null, crit:{}, no
 /* ---------- Scoring (same rules as the Excel v1.1 workbook) ---------- */
 function critScore(q){ return null; } // this edition has no detailed criteria
 function finalScore(q){ const a = D.answers[q.id]; if (a && a.quick) return a.quick; return critScore(q); }
-function basis(q){ const a = D.answers[q.id]; return (a && a.quick) ? 'Self-rated' : 'Not assessed'; }
+function basis(q){ const a = D.answers[q.id]; return (a && a.quick) ? (a.board ? 'Board average' : 'Self-rated') : 'Not assessed'; }
 function consistency(q){
   const a = (D.answers[q.id]||{}).crit || {};
   const cnt = (li, v) => q.c[li].filter((_,ci)=>a[li+'.'+ci]===v).length;
@@ -244,7 +245,7 @@ function gaps(q){
 function recommendation(q){
   const s = finalScore(q); const a = D.answers[q.id];
   if (s===null) return 'Not yet assessed.';
-  if (a && a.quick) return a.quick>=4 ? 'Score '+a.quick+'/5. At or above the 4.0 floor: maintain and monitor.' : 'Score '+a.quick+'/5. Next step: '+nextStep(q)+'.';
+  if (a && a.quick){ const sc = Number.isInteger(a.quick) ? a.quick : fmt(a.quick); return a.quick>=4 ? 'Score '+sc+'/5. At or above the 4.0 floor: maintain and monitor.' : 'Score '+sc+'/5. Next step: '+nextStep(q)+'.'; }
   const g = gaps(q).length;
   if (!g) return 'No gaps among the criteria answered — maintain and monitor.';
   return 'Strengthen '+q.name+' — formalise policy, assign clear ownership and close the '+g+(g===1?' gap':' gaps')+' listed.';
@@ -401,7 +402,7 @@ let current = 'start', curPillar = 1;
 function go(tab){
   current = tab;
   document.querySelectorAll('#tabs button').forEach(b => b.setAttribute('aria-current', b.dataset.tab===tab ? 'true' : 'false'));
-  ({start:vStart, assess:vAssess, results:vResults, report:vReport, actions:vActions, trend:vTrend, data:vData})[tab]();
+  ({start:vStart, assess:vAssess, results:vResults, report:vReport, actions:vActions, trend:vTrend, board:vBoard, data:vData})[tab]();
   window.scrollTo(0,0);
 }
 document.querySelectorAll('#tabs button').forEach(b => b.onclick = () => go(b.dataset.tab));
@@ -503,7 +504,7 @@ function qHtml(q){
 function bindQ(q){
   const el = $('#q-'+q.id);
   el.querySelectorAll('.lv').forEach(b => b.onclick = () => {
-    const l = +b.dataset.l; const a = ans(q.id); a.quick = (a.quick===l) ? null : l; save();
+    const l = +b.dataset.l; const a = ans(q.id); a.quick = (a.quick===l) ? null : l; delete a.board; save();
     el.querySelectorAll('.lv').forEach(x => x.setAttribute('aria-pressed', String(a.quick===+x.dataset.l)));
     refreshQ(q); refreshNav();
   });
@@ -550,7 +551,7 @@ function barChart(ps){
 function vResults(){
   const ps = pillarStats(); const ov = overall(ps); const n = answeredCount();
   const qs = C.questions.filter(q => finalScore(q)!==null).sort((a,b) => finalScore(a)-finalScore(b));
-  $('#view').innerHTML = renewBanner() + (n<TOTAL() ? `<div class="banner">${n} of ${TOTAL()} questions answered. Results use the questions answered so far.</div>` : '') + `
+  $('#view').innerHTML = renewBanner() + (D.boardApplied ? `<div class="banner">These results use the combined scores of ${D.boardApplied.n} board members. See Board view for where they disagree.</div>` : '') + (n<TOTAL() ? `<div class="banner">${n} of ${TOTAL()} questions answered. Results use the questions answered so far.</div>` : '') + `
   <div class="kpis">
     <div class="kpi"><div class="v">${fmt(ov)}</div><div class="l">Overall score (out of 5)</div></div>
     <div class="kpi"><div class="v" style="font-size:20px;padding-top:8px;">${esc(levelOf(ov))}</div><div class="l">Maturity level</div></div>
@@ -595,12 +596,13 @@ function vReport(){
     <div class="meta"><span><b>${esc(D.org || 'Organisation name')}</b>${D.period?' · '+esc(D.period):''}</span><span>Board executive summary · ${date}</span></div>
     ${boardQuestionsHtml()}
     <h2>Governance maturity: ${fmt(ov)} / 5.00</h2>
-    <p><b>${esc(levelOf(ov))}</b> · ${esc(riskOf(ov))}. Peer average ${C.bmOverall.avg.toFixed(2)}. ${answeredCount()} of ${TOTAL()} questions assessed.</p>
+    <p><b>${esc(levelOf(ov))}</b> · ${esc(riskOf(ov))}. Peer average ${C.bmOverall.avg.toFixed(2)}. ${answeredCount()} of ${TOTAL()} questions assessed.${D.boardApplied ? ' Combined from the independent scores of '+D.boardApplied.n+' board members.' : ''}</p>
     ${pl ? `<p>This assessment covers ${TOTAL()} questions across 8 pillars. The strongest pillar is ${esc(pl.max.p.name)} (${pl.max.avg.toFixed(2)}) and the weakest is ${esc(pl.min.p.name)} (${pl.min.avg.toFixed(2)}). ${pl.below3} of 8 pillars are below Level 3 (Defined) and need Board attention. Priority owners should be assigned and progress reviewed at each Board meeting.</p>` : '<p>Answer the assessment to generate this report.</p>'}
     <h2>Pillar scores</h2>
     ${barChart(ps)}
     <table style="margin-top:10px;"><thead><tr><th>Pillar</th><th class="num">Weight</th><th class="num">Score</th><th class="num">Peer avg</th><th>Level</th></tr></thead>
     <tbody>${ps.map(x => `<tr><td>${esc(x.p.name)}</td><td class="num">${Math.round(x.p.w*100)}%</td><td class="num">${fmt(x.avg)}</td><td class="num">${x.peer.toFixed(2)}</td><td>${esc(levelOf(x.avg))}</td></tr>`).join('')}</tbody></table>
+    ${boardReportHtml()}
     ${pl ? `<h2>30 / 90 day and 12 month plan</h2>
     <table><tbody>
       <tr><th style="width:150px;">0–30 days</th><td>${esc(pl.p30)}</td></tr>
@@ -610,7 +612,7 @@ function vReport(){
     ${top.length ? `<h2>Further priorities below the 4.0 floor</h2>
     <table><thead><tr><th>Question</th><th class="num">Score</th><th>Governance risk</th></tr></thead>
     <tbody>${top.map(q => `<tr><td><b>${q.id}</b> ${esc(q.name)}</td><td class="num">${fmt(finalScore(q))}</td><td>${esc(riskText(q))}</td></tr>`).join('')}</tbody></table>` : ''}
-    <p class="disclaimer" style="margin-top:18px;">Peer benchmark: anonymised governance assessments of ${BENCH_BAND} NGOs and non-profits, mostly in India completed using this framework, updated ${BENCH_DATE}; a guide for comparison, not a statistically representative survey. Q61 Use of Funds was added in October 2026 and has no peer figure yet. This report was produced with the Institutional Governance Toolkit (Executive Edition), a management self-assessment tool based on self-rated scores. It reflects only the responses entered, is not legal, regulatory or other professional advice, and does not certify compliance or governance standing.</p>
+    <p class="disclaimer" style="margin-top:18px;">Peer benchmark: anonymised governance assessments of ${BENCH_BAND} NGOs and non-profits, mostly in India completed using this framework, updated ${BENCH_DATE}; a guide for comparison, not a statistically representative survey. Q61 Use of Funds was added in October 2026 and has no peer figure yet. This report was produced with the Institutional Governance Toolkit (Executive Edition), a management self-assessment tool based on self-rated scores${D.boardApplied ? ' combined from several board members' : ''}. It reflects only the responses entered, is not legal, regulatory or other professional advice, and does not certify compliance or governance standing.</p>
     <div class="watermark">${esc(licenceLine())}</div>
   </div>`;
 }
@@ -646,7 +648,7 @@ function vTrend(){
   <tbody>${rows.map((r,i) => `<tr><td>${esc(r.period)}${r.date?`<br><span class="muted small">${esc(r.date)}</span>`:''}</td><td class="num"><b>${fmt(r.overall)}</b></td>${r.pillars.map(v => `<td class="num">${fmt(v)}</td>`).join('')}<td>${i<D.snapshots.length?`<button class="linkbtn" data-del="${i}">Delete</button>`:''}</td></tr>`).join('')}</tbody></table></div>
   <p class="small muted">${C.pillars.map(p => `P${p.n} ${esc(p.name)}`).join(' · ')}</p></div>`;
   $('#snap').onclick = () => { D.snapshots.push({period: $('#snapname').value || D.period || 'Assessment', date: new Date().toISOString().slice(0,10), overall: ov, pillars: ps.map(x=>x.avg)}); save(); vTrend(); };
-  $('#fresh').onclick = () => { if (!confirm('Clear the current answers and action plan to start a new assessment? Save a snapshot first if you have not.')) return; D.answers = {}; D.actions = {}; D.period = ''; save(); go('start'); };
+  $('#fresh').onclick = () => { if (!confirm('Clear the current answers, action plan and Board view members to start a new assessment? Save a snapshot first if you have not.')) return; D.answers = {}; D.actions = {}; D.period = ''; D.board = {members:[]}; D.boardApplied = null; save(); go('start'); };
   document.querySelectorAll('[data-del]').forEach(b => b.onclick = () => { D.snapshots.splice(+b.dataset.del,1); save(); vTrend(); });
 }
 
@@ -676,6 +678,156 @@ function vData(){
   };
   $('#signout').onclick = () => { if (!confirm('Remove the licence from this browser? You will need your key or link to open the toolkit again.')) return; store.del(LIC_KEY); location.reload(); };
   $('#wipe').onclick = () => { if (!confirm('Delete all answers, notes, actions and snapshots from this browser? This cannot be undone unless you have a backup.')) return; D = blankData(); save(); go('start'); };
+}
+
+/* ---------- Board view: combine several members' independent scores ---------- */
+const letter = i => i<26 ? String.fromCharCode(65+i) : String(i+1);
+// Each member scores on their own; the page averages the question scores (1–5), then applies the usual pillar weights.
+// It never shows one member's scores on their own: only averages, the lowest and highest scores, and disagreement flags.
+const MIN_MEMBERS = 3;   // fewer than this and no combined score is shown
+const SPLIT = 2;         // members 2 or more levels apart on a question = "Board to discuss"
+const newId = () => (crypto.randomUUID ? crypto.randomUUID() : String(Math.random()).slice(2)+Date.now());
+const mean = v => v.reduce((a,b)=>a+b,0)/v.length;
+function boardData(){ if (!D.board || !Array.isArray(D.board.members)) D.board = {members:[]}; return D.board; }
+// This device's own answers (combined scores applied from Board view are left out).
+function ownScores(){ const s = {}; C.questions.forEach(q => { const a = D.answers[q.id]; if (a && a.board) return; const v = finalScore(q); if (v!==null) s[q.id] = r2(v); }); return s; }
+function memberPillars(scores){ return C.pillars.map(p => { const v = C.questions.filter(q => q.p===p.n).map(q => scores[q.id]).filter(x => typeof x==='number'); return {p, avg: v.length ? r2(mean(v)) : null}; }); }
+function boardStats(){
+  const M = boardData().members;
+  const qs = C.questions.map(q => {
+    const v = M.map(m => m.scores[q.id]).filter(x => typeof x==='number');
+    if (!v.length) return {q, n:0, avg:null};
+    const lo = Math.min(...v), hi = Math.max(...v);
+    return {q, n:v.length, avg:r2(mean(v)), lo, hi, spread:r2(hi-lo), split: v.length>=2 && hi-lo>=SPLIT};
+  });
+  const mp = M.map(m => memberPillars(m.scores));
+  const ps = C.pillars.map((p, i) => {
+    const rows = qs.filter(x => x.q.p===p.n && x.avg!==null);
+    const own = mp.map(x => x[i].avg).filter(x => x!==null);
+    return {p, i, avg: rows.length ? r2(mean(rows.map(x => x.avg))) : null, answered: rows.length, total: C.questions.filter(q => q.p===p.n).length,
+      lo: own.length ? Math.min(...own) : null, hi: own.length ? Math.max(...own) : null, peer: C.bmPillars[i].avg};
+  });
+  const ovs = mp.map(overall).filter(x => x!==null);
+  return {M, qs, ps, ov: overall(ps), lo: ovs.length ? Math.min(...ovs) : null, hi: ovs.length ? Math.max(...ovs) : null,
+    split: qs.filter(x => x.split).sort((a,b) => b.spread-a.spread || a.avg-b.avg)};
+}
+function addMember(m){
+  const B = boardData(); const i = B.members.findIndex(x => x.id===m.id);
+  if (i>=0){ B.members[i] = m; return 'updated'; }
+  B.members.push(m); return 'added';
+}
+function memberFile(){
+  if (!D.memberId){ D.memberId = newId(); save(); }
+  return {format:'gov-board-member', v:1, id:D.memberId, org:D.org||'', period:D.period||'', date:new Date().toISOString().slice(0,10), scores:ownScores()};
+}
+function readMember(j){
+  if (!j || j.format!=='gov-board-member' || !j.id || typeof j.scores!=='object') return null;
+  const ids = new Set(C.questions.map(q => q.id)); const scores = {};
+  Object.keys(j.scores).forEach(k => { const v = Number(j.scores[k]); if (ids.has(k) && v>=1 && v<=5) scores[k] = r2(v); });
+  if (!Object.keys(scores).length) return null;
+  return {id:String(j.id).slice(0,80), org:String(j.org||'').slice(0,120), period:String(j.period||'').slice(0,60), date:String(j.date||'').slice(0,10), source:'file', scores};
+}
+function boardDiscussRows(list){
+  return list.map(x => `<tr><td><b>${x.q.id}</b> ${esc(x.q.name)}<br><span class="muted small">${esc(C.pillars[x.q.p-1].name)}</span></td><td class="num">${fmt(x.avg)}</td><td class="num">${x.lo} – ${x.hi}</td><td class="num">${x.n}</td></tr>`).join('');
+}
+function boardReportHtml(){
+  if (!D.boardApplied) return '';
+  const S = boardStats(); if (S.M.length < MIN_MEMBERS) return '';
+  const list = S.split.slice(0,10);
+  return `<h2>Where board members disagree</h2>
+    <p>These scores combine the independent self-assessments of <b>${S.M.length} board members</b>. Individual members' overall scores ranged from ${fmt(S.lo)} to ${fmt(S.hi)}. ${S.split.length ? `On ${S.split.length} question${S.split.length===1?'':'s'}, members' scores were ${SPLIT} or more levels apart. An average can hide that difference, so the Board should discuss ${S.split.length===1?'it':'these'} before relying on the score.` : `No question shows members ${SPLIT} or more levels apart.`}</p>
+    ${list.length ? `<table><thead><tr><th>Question</th><th class="num">Average</th><th class="num">Lowest – highest</th><th class="num">Members</th></tr></thead><tbody>${boardDiscussRows(list)}</tbody></table>${S.split.length>10?`<p class="small muted">Showing the 10 widest of ${S.split.length}. The full list is in Board view.</p>`:''}` : ''}`;
+}
+function vBoard(){
+  const S = boardStats(); const n = S.M.length; const own = Object.keys(ownScores()).length; const enough = n >= MIN_MEMBERS;
+  const ownLine = own ? `${own} of ${TOTAL()} questions answered on this device.` : 'No questions answered on this device yet.';
+  $('#view').innerHTML = `
+  <div class="card"><h1>Board view</h1>
+    <p>When several board members each complete the assessment, this page combines their answers into one score for the organisation. It averages each question's scores, applies the usual pillar weights, and flags the questions where members see things differently.</p>
+    <ol class="small" style="padding-left:20px;margin:0;">
+      <li><b>Each member scores on their own</b>, before any discussion, so that one view does not shape the rest.</li>
+      <li><b>One person collects the answers</b>, usually the company secretary, CFO or governance lead. Members can send a file, or take turns on this device.</li>
+      <li><b>At least ${MIN_MEMBERS} members are needed</b> before a combined score is shown.</li>
+    </ol>
+    <p class="small muted" style="margin-top:10px;">Members appear as Member A, B, C and so on. This page never shows one member's scores on their own, only averages, the lowest and highest scores, and the questions where members are ${SPLIT} or more levels apart. The person collecting the files can still open them, so choose someone the Board trusts. Everything stays in this browser.</p>
+  </div>
+  <div class="card"><h2>If you are a board member</h2>
+    <p class="small">Answer the questions in <b>Assess</b>, then download your scores and send the file to the person collecting them. The file holds your question scores only: no name, notes or action plan.</p>
+    <button class="btn" id="mydl" ${own?'':'disabled'}>Download my scores for the Board</button> <span class="muted small">${ownLine}</span>
+  </div>
+  <div class="card"><h2>Members' answers (${n})</h2>
+    ${n ? `<div class="tablewrap"><table><thead><tr><th>Member</th><th class="num">Questions answered</th><th>Added from</th><th></th></tr></thead><tbody>
+      ${S.M.map((m,i) => `<tr><td>Member ${letter(i)}</td><td class="num">${Object.keys(m.scores).length} / ${TOTAL()}</td><td class="small">${m.source==='device'?'This device':'File'}${m.date?' · '+esc(m.date):''}${m.org && D.org && m.org.trim().toLowerCase()!==D.org.trim().toLowerCase()?` <span class="neg">· organisation "${esc(m.org)}"</span>`:''}</td><td><button class="linkbtn" data-rm="${i}">Remove</button></td></tr>`).join('')}
+    </tbody></table></div>` : '<p class="muted small">No members added yet.</p>'}
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;">
+      <label class="btn" for="mfiles" style="cursor:pointer;">Add members' files</label><input type="file" id="mfiles" accept=".json,application/json" multiple class="hidden">
+      <button class="btn secondary" id="addown" ${own?'':'disabled'}>Add this device's answers as a member</button>
+      <button class="btn secondary" id="handover" ${own?'':'disabled'}>Add as a member and clear for the next person</button>
+    </div>
+    <p class="small muted" style="margin-top:8px;">Taking turns on one device: after each member finishes in Assess, press "Add as a member and clear for the next person". Their scores are kept here and the questions are cleared, so the next member starts blank and cannot see earlier answers. A file loaded again from the same member replaces their earlier one.</p>
+    <div class="err" id="merr"></div><div class="ok small" id="mok"></div>
+  </div>
+  ${enough ? `
+  <div class="kpis">
+    <div class="kpi"><div class="v">${fmt(S.ov)}</div><div class="l">Board score (out of 5)</div></div>
+    <div class="kpi"><div class="v" style="font-size:20px;padding-top:8px;">${esc(levelOf(S.ov))}</div><div class="l">Maturity level</div></div>
+    <div class="kpi"><div class="v">${fmt(S.lo)} – ${fmt(S.hi)}</div><div class="l">Range of members' overall scores</div></div>
+    <div class="kpi"><div class="v ${S.split.length?'neg':''}">${S.split.length}</div><div class="l">Questions for the Board to discuss</div></div>
+  </div>
+  <div class="card"><h2>Pillars</h2>
+    <div class="tablewrap"><table><thead><tr><th>Pillar</th><th class="num">Weight</th><th class="num">Board score</th><th class="num">Lowest – highest member</th><th class="num">Peer avg</th><th>Level</th></tr></thead>
+    <tbody>${S.ps.map(x => `<tr><td>${x.p.n}. ${esc(x.p.name)}</td><td class="num">${Math.round(x.p.w*100)}%</td><td class="num">${fmt(x.avg)}</td><td class="num">${x.lo===null?'—':fmt(x.lo)+' – '+fmt(x.hi)}</td><td class="num">${x.peer.toFixed(2)}</td><td>${esc(levelOf(x.avg))}</td></tr>`).join('')}</tbody></table></div>
+    <p class="small muted">Board score: the average of members' scores on each question, then the usual pillar weights. A wide range means members disagree about that pillar.</p>
+  </div>
+  <div class="card"><h2>Board to discuss</h2>
+    ${S.split.length ? `<p class="small">Members' scores on these questions are ${SPLIT} or more levels apart. Ask the members who scored lowest and highest to explain what they see. That conversation is often more useful than the score.</p>
+    <div class="tablewrap"><table><thead><tr><th>Question</th><th class="num">Average</th><th class="num">Lowest – highest</th><th class="num">Members</th></tr></thead><tbody>${boardDiscussRows(S.split)}</tbody></table></div>`
+    : `<p class="small">No question shows members ${SPLIT} or more levels apart. The Board broadly agrees on where the organisation stands.</p>`}
+    <details style="margin-top:12px;"><summary class="small" style="cursor:pointer;">All ${TOTAL()} questions</summary>
+    <div class="tablewrap"><table><thead><tr><th>Question</th><th class="num">Average</th><th class="num">Lowest – highest</th><th class="num">Members</th></tr></thead><tbody>${S.qs.map(x => x.avg===null ? `<tr><td><b>${x.q.id}</b> ${esc(x.q.name)}</td><td class="num">—</td><td class="num">—</td><td class="num">0</td></tr>` : boardDiscussRows([x])).join('')}</tbody></table></div></details>
+  </div>
+  <div class="card"><h2>Use the Board score in your reports</h2>
+    ${D.boardApplied ? `<p class="small ok">Results, the Board report and the Action plan are using the combined scores of ${D.boardApplied.n} members (applied ${esc(D.boardApplied.date)}). The Board report includes a section on where members disagree.</p>
+      <button class="btn" id="apply">Update with the latest members' answers</button> <button class="btn secondary" id="unapply">Stop using the Board score</button>`
+    : `<p class="small">This puts the combined scores into Results, the Board report, the Action plan and Year on year. It replaces the answers on this device. If those are your own answers and you have not added them as a member, add them first.</p>
+      <button class="btn" id="apply">Use the Board score in Results and the Board report</button>`}
+  </div>` : `<div class="banner">Add at least ${MIN_MEMBERS} members to see the combined Board score${n?` (${n} so far)`:''}.</div>`}`;
+
+  $('#mydl').onclick = () => { const f = memberFile(); download('board-member-scores-'+f.date+'.json', JSON.stringify(f, null, 1), 'application/json'); };
+  const ok = t => { $('#merr').textContent = ''; $('#mok').textContent = t; };
+  const own_ = () => ({id: D.memberId || newId(), org: D.org||'', period: D.period||'', date: new Date().toISOString().slice(0,10), source:'device', scores: ownScores()});
+  $('#addown').onclick = () => { const m = own_(); D.memberId = m.id; const r = addMember(m); save(); vBoard(); $('#mok').textContent = r==='updated' ? 'This device’s member answers were updated.' : 'Added.'; };
+  $('#handover').onclick = () => {
+    if (!confirm('Add the answers on this device as a member, then clear the questions, notes and action plan so the next person starts blank? The member’s scores are kept in Board view.')) return;
+    const m = own_(); addMember(m);
+    C.questions.forEach(q => { const a = D.answers[q.id]; if (a && !a.board) delete D.answers[q.id]; });
+    D.actions = {}; D.memberId = newId(); save(); vBoard(); $('#mok').textContent = 'Added. The next member can now start in Assess.';
+  };
+  $('#mfiles').onchange = async e => {
+    let add = 0, upd = 0, bad = [];
+    for (const f of e.target.files){
+      try{ const m = readMember(JSON.parse(await f.text())); if (!m) throw 0; addMember(m)==='updated' ? upd++ : add++; }
+      catch(_){ bad.push(f.name); }
+    }
+    save(); vBoard();
+    if (add || upd) $('#mok').textContent = [add?add+' added':'', upd?upd+' updated':''].filter(Boolean).join(', ')+'.';
+    if (bad.length) $('#merr').textContent = 'Not a member file from this toolkit: '+bad.join(', ')+'. A full backup is a different file; ask the member for "Download my scores for the Board".';
+  };
+  document.querySelectorAll('[data-rm]').forEach(b => b.onclick = () => {
+    if (!confirm('Remove Member '+letter(+b.dataset.rm)+'’s answers from Board view?')) return;
+    boardData().members.splice(+b.dataset.rm, 1); save(); vBoard(); });
+  if ($('#apply')) $('#apply').onclick = () => {
+    if (!D.boardApplied && !confirm('Replace the answers on this device with the Board’s combined scores? Members’ answers stay in Board view.')) return;
+    const T = boardStats();
+    T.qs.forEach(x => { const old = D.answers[x.q.id] || {};
+      if (x.avg===null){ if (old.board) delete D.answers[x.q.id]; else if (D.answers[x.q.id]) D.answers[x.q.id].quick = null; return; }
+      D.answers[x.q.id] = {quick:x.avg, crit:{}, note:old.note||'', board:true}; });
+    D.boardApplied = {n: T.M.length, date: new Date().toISOString().slice(0,10)}; save(); go('results');
+  };
+  if ($('#unapply')) $('#unapply').onclick = () => {
+    if (!confirm('Stop using the Board score? The combined scores are removed from Results and the Board report. Members’ answers stay in Board view.')) return;
+    Object.keys(D.answers).forEach(k => { if (D.answers[k].board) delete D.answers[k]; }); D.boardApplied = null; save(); vBoard();
+  };
 }
 
 /* ---------- Optional anonymous benchmark contribution ---------- */
