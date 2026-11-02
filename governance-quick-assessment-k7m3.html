@@ -322,7 +322,7 @@ footer .disclaimer{margin:0; max-width:80ch;}
       <h3>Your five priority areas</h3>
       <ol id="qa-prio" class="qa-prio"></ol>
       <div class="qa-note"><p><b>What this Quick Assessment cannot tell you.</b> This Quick Assessment covers 16 of the 60 questions (80 of 646 criteria). The full toolkit covers all 60 questions, compares your scores with a peer benchmark, and produces a Board summary, heat map, 30/60/90-day action plan, action tracker and year-on-year tracking. Scores here are indicative because they rest on a sample of questions and one statement per level.</p></div>
-      <div class="lp-buy"><a class="btn primary" href="/ngo-governance-assessment-tool.html">See the full Institutional Governance Maturity Assessment Toolkit<small>$149</small></a></div>
+      <div class="lp-buy" id="qa-offer"><a class="btn primary" href="/ngo-governance-assessment-tool.html">See the full Institutional Governance Maturity Assessment Toolkit<small>$149</small></a></div>
       <p class="qa-extra"><a href="/institutional-governance-sample-report.pdf">See a sample Board &amp; CEO report</a> from the full toolkit.</p>
       <p class="qa-actions"><button type="button" class="btn" onclick="window.print()">Print or save as PDF</button> <button type="button" class="btn" id="qa-edit">Change my answers</button></p>
     </div>
@@ -470,6 +470,11 @@ footer .disclaimer{margin:0; max-width:80ch;}
       if(r.inc)p+='<small class="qa-warn">⚠ Your answers here look inconsistent (a weakness confirmed alongside higher-level practice). Please review.</small>';
       p+='</li>';});
     document.getElementById('qa-prio').innerHTML=p;
+    (function(){var o=document.getElementById('qa-offer');if(!o)return;var h;
+      if(score<3)h=['/toolkits.html#governance-61','Get a Board-ready score in an hour: Institutional Governance Toolkit, Executive Edition','$49','At this level, a quick Board-level score with your top five risks is the most useful first step.'];
+      else h=['/ngo-governance-assessment-tool.html','Prepare for funder due diligence: Institutional Governance Toolkit, Professional Edition','$149','At this level, the full evidence-based assessment shows what a funder\'s due diligence would test.'];
+      o.innerHTML='<p class="qa-extra" style="flex-basis:100%;margin:0 0 4px;">Suggested next step: '+h[3]+'</p><a class="btn primary" href="'+h[0]+'">'+h[1]+'<small>'+h[2]+'</small></a>';
+      if(typeof gtag==='function')gtag('event','qa_offer_shown',{assessment:QA.ga,offer:h[2]});})();
     document.getElementById('qa-date').textContent=new Date().toLocaleDateString(undefined,{day:'numeric',month:'long',year:'numeric'});
     var r=document.getElementById('qa-result');form.hidden=true;r.hidden=false;window.scrollTo(0,r.offsetTop-20);
     if(typeof gtag==='function'){gtag('event','quick_assessment_complete',{assessment:QA.ga,maturity_level:LVN[L[1]],questions_answered:nq});}

@@ -322,7 +322,7 @@ footer .disclaimer{margin:0; max-width:80ch;}
       <h3>Your five priority areas</h3>
       <ol id="qa-prio" class="qa-prio"></ol>
       <div class="qa-note"><p><b>What this Quick Assessment cannot tell you.</b> This Quick Assessment covers 10 of the 180 questions (50 of 1,800 criteria). The full toolkit covers registration readiness, current compliance, governance integration and future regulatory readiness, with working registers (key functionaries, ultimate donors, purposes and States/UTs, FC-6F readiness), a CFO control calendar, a Board summary and an action tracker. Scores here are indicative because they rest on a sample of questions and one statement per level.</p></div>
-      <div class="lp-buy"><a class="btn primary" href="/fcra-compliance-toolkit.html">See the FCRA Compliance Assessment Toolkit<small>$300</small></a></div>
+      <div class="lp-buy" id="qa-offer"><a class="btn primary" href="/fcra-compliance-toolkit.html">See the FCRA Compliance Assessment Toolkit<small>$300</small></a></div>
       <p class="qa-extra"></p>
       <p class="qa-actions"><button type="button" class="btn" onclick="window.print()">Print or save as PDF</button> <button type="button" class="btn" id="qa-edit">Change my answers</button></p>
     </div>
@@ -470,6 +470,13 @@ footer .disclaimer{margin:0; max-width:80ch;}
       if(r.inc)p+='<small class="qa-warn">⚠ Your answers here look inconsistent (a weakness confirmed alongside higher-level practice). Please review.</small>';
       p+='</li>';});
     document.getElementById('qa-prio').innerHTML=p;
+    (function(){var ids=pr.map(function(r){return r.q.id;}),o=document.getElementById('qa-offer');if(!o)return;
+      var fc4=new Date()<new Date('2027-01-01T00:00:00+05:30'),h;
+      if(fc4&&(ids.indexOf('C47')>-1||ids.indexOf('C70')>-1))h=['/toolkits.html#packs','Get your FC-4 ready with the FC-4 Annual Return Readiness Pack','$29','FC-4 reporting or ultimate donors is one of your five priority areas, and FC-4 for 2025-26 is due by 31 December 2026.'];
+      else if(ids.indexOf('C58')>-1)h=['/fcra-governance-assessment-toolkit.html','Check Board oversight with the FCRA Board Oversight Toolkit','$99','Board oversight of FCRA is one of your five priority areas.'];
+      else h=['/fcra-compliance-toolkit.html','See the FCRA Compliance Assessment Toolkit','$300','Your gaps span several areas, so the full toolkit is the closest fit.'];
+      o.innerHTML='<p class="qa-extra" style="flex-basis:100%;margin:0 0 4px;">Suggested next step: '+h[3]+'</p><a class="btn primary" href="'+h[0]+'">'+h[1]+'<small>'+h[2]+'</small></a>';
+      if(typeof gtag==='function')gtag('event','qa_offer_shown',{assessment:QA.ga,offer:h[2]});})();
     document.getElementById('qa-date').textContent=new Date().toLocaleDateString(undefined,{day:'numeric',month:'long',year:'numeric'});
     var r=document.getElementById('qa-result');form.hidden=true;r.hidden=false;window.scrollTo(0,r.offsetTop-20);
     if(typeof gtag==='function'){gtag('event','quick_assessment_complete',{assessment:QA.ga,maturity_level:LVN[L[1]],questions_answered:nq});}
