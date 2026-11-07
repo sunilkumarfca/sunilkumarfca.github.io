@@ -265,6 +265,10 @@ footer .disclaimer{margin:0; max-width:80ch;}
 .qa-prio small{display:block;color:var(--slate);}
 .qa-note{background:rgba(201,163,90,.12);border-radius:8px;padding:14px 16px;margin:18px 0;}
 .qa-note p{margin:0;}
+.role-chips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 2px;}
+.role-chip{font:inherit;font-size:.92rem;padding:8px 14px;border:1px solid var(--ink);background:#fff;color:var(--ink);border-radius:20px;cursor:pointer;}
+.role-chip:hover{background:var(--paper-raised);}
+.role-chip[aria-pressed="true"]{background:var(--ink);color:#fff;}
 .qa-extra,.qa-fine{font-size:.88rem;color:var(--slate);}
 .qa-fine{margin-top:26px;}
 @media (max-width:600px){.qa-row{grid-template-columns:1fr 64px;}.qa-row .qa-track{grid-column:1 / -1;grid-row:2;}.qa-score b{font-size:2.4rem;}}
@@ -334,6 +338,9 @@ footer .disclaimer{margin:0; max-width:80ch;}
       <div class="qa-note"><p><b>What this Quick Assessment cannot tell you.</b> This Quick Assessment covers 16 of the 60 questions (80 of 646 criteria). The full toolkit covers all 60 questions, compares your scores with a peer benchmark, and produces a Board summary, heat map, 30/60/90-day action plan, action tracker and year-on-year tracking. Scores here are indicative because they rest on a sample of questions and one statement per level.</p></div>
       <div class="lp-buy" id="qa-offer"><a class="btn primary" href="/ngo-governance-assessment-tool.html">See the full Institutional Governance Maturity Assessment Toolkit<small>$149</small></a></div>
       <p class="qa-extra"><a href="/institutional-governance-sample-report.pdf">See a sample Board &amp; CEO report</a> from the full toolkit.</p>
+      <div class="qa-note qa-noprint role-ask" id="role-ask"><p><b>Your role, in one click?</b> Optional and anonymous. It only tells me who uses this check, so I can write the next guides for you.</p>
+        <div class="role-chips"><button type="button" class="role-chip" data-role="board">Board</button><button type="button" class="role-chip" data-role="ceo">CEO</button><button type="button" class="role-chip" data-role="cfo">CFO or finance head</button><button type="button" class="role-chip" data-role="compliance">Compliance or accounts</button><button type="button" class="role-chip" data-role="adviser">CA or adviser</button><button type="button" class="role-chip" data-role="other">Other</button></div>
+        <p class="qa-extra role-thanks" hidden>Thank you. Noted.</p></div>
       <div class="qa-note qa-noprint" id="qa-signup"><p><b>Keep your governance on track.</b> Get one practical piece a week for NGO Boards, CEOs and finance leaders, plus notes before key compliance deadlines. Free, optional, and you can unsubscribe at any time.</p>
         <iframe src="https://sunilkumarfca.substack.com/embed" title="Get governance notes by email (The Strategic CFO on Substack)" width="100%" height="150" style="border:1px solid var(--line); background:#fff; max-width:480px;" frameborder="0" scrolling="no" loading="lazy"></iframe>
         <p class="qa-extra">Your answers above stay in this browser. Only the email you type here goes to Substack, which holds it; it is used only for the newsletter and occasional news of new toolkits and books.</p></div>
@@ -497,5 +504,14 @@ footer .disclaimer{margin:0; max-width:80ch;}
 })();
 </script>
 
+<script>
+(function(){var box=document.getElementById('role-ask');if(!box)return;var K='igma_role_sent';
+  function mark(r){box.querySelectorAll('.role-chip').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.role===r?'true':'false');});box.querySelector('.role-thanks').hidden=!r;}
+  try{mark(localStorage.getItem(K)||'');}catch(e){}
+  box.addEventListener('click',function(e){var b=e.target.closest('.role-chip');if(!b)return;var r=b.dataset.role,prev='';
+    try{prev=localStorage.getItem(K)||'';localStorage.setItem(K,r);}catch(x){}
+    mark(r);if(r!==prev&&typeof gtag==='function'){gtag('event','role_'+r,{tool:'governance_quick'});}});
+})();
+</script>
 </body>
 </html>
