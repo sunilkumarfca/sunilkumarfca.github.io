@@ -356,6 +356,8 @@ footer .disclaimer{margin:0; max-width:80ch;}
       <span class="eyebrow">Your result</span>
       <p class="qa-cover" id="qa-cover"></p>
       <div class="qa-score"><b id="qa-num"></b><div><h2><span id="fe-rating" class="fe-rating"></span></h2><p id="qa-level-text"></p></div></div>
+      <div class="qa-note fe-noprint fe-fc4-offer" id="fe-fc4-offer"><p><b>FC-4 is due 31 December<span id="fe-fc4-days"></span>.</b> Turn the gaps below into a dated filing plan with the FC-4 Annual Return Readiness Pack: 33 checks with owners, the activity table, the 20% test and a one-page Board summary.</p>
+        <p><a class="btn primary" href="https://sunilfca.gumroad.com/l/fc4-readiness-pack?utm_source=website&amp;utm_medium=site&amp;utm_campaign=fcra-essentials-results-top">Get the FC-4 Readiness Pack ($29)</a></p></div>
       <h3>By area</h3>
       <div id="qa-bars" class="qa-bars"></div>
       <p class="qa-key"><span class="k g"></span> Green: 90% or more · <span class="k a"></span> Amber: 70–89% · <span class="k r"></span> Red: below 70%</p>
@@ -365,7 +367,8 @@ footer .disclaimer{margin:0; max-width:80ch;}
       <p class="qa-extra">Every check answered No or Partly, critical ones first. Print it and add an owner and a target date for each.</p>
       <div id="fe-plan"></div>
       <div class="fe-actions"><button type="button" class="btn primary" id="fe-print">Print or save as PDF</button><button type="button" class="btn" id="fe-csv">Download action plan (CSV)</button><button type="button" class="btn" id="fe-edit">Change my answers</button></div>
-      <div class="qa-note fe-noprint"><p><b>Filing FC-4 by 31 December?</b> Turn the FC-4 gaps above into a dated plan with the <a href="https://sunilfca.gumroad.com/l/fc4-readiness-pack?utm_source=website&amp;utm_medium=site&amp;utm_campaign=fcra-essentials-results">FC-4 Annual Return Readiness Pack</a> ($29): 33 checks with owners, the activity table, the 20% test and a one-page Board summary.</p></div>
+      <div class="qa-note fe-noprint"><p><b>Filing FC-4 by 31 December?</b> Turn the FC-4 gaps above into a dated plan with the FC-4 Annual Return Readiness Pack: 33 checks with owners, the activity table, the 20% test and a one-page Board summary.</p>
+        <p><a class="btn primary" href="https://sunilfca.gumroad.com/l/fc4-readiness-pack?utm_source=website&amp;utm_medium=site&amp;utm_campaign=fcra-essentials-results">Get the FC-4 Readiness Pack ($29)</a></p></div>
       <div class="qa-note"><p><b>Want the full picture?</b> These 50 checks cover the essential compliance points. The full <a href="/fcra-compliance-toolkit.html">FCRA Compliance Assessment Toolkit</a> (180 questions, 1,800 evidence-based criteria, registers for FC-6F, key functionaries and ultimate donors, Board and assurance reports) and the <a href="/fcra-governance-assessment-toolkit.html">FCRA Governance Assessment Toolkit</a> (Board-level oversight) go deeper.</p></div>
       <div class="qa-note fe-noprint role-ask" id="role-ask"><p><b>Your role, in one click?</b> Optional and anonymous. It only tells me who uses this check, so I can write the next guides for you.</p>
         <div class="role-chips"><button type="button" class="role-chip" data-role="board">Board or trustee</button><button type="button" class="role-chip" data-role="ceo">CEO</button><button type="button" class="role-chip" data-role="cfo">CFO or finance head</button><button type="button" class="role-chip" data-role="compliance">Compliance or accounts</button><button type="button" class="role-chip" data-role="adviser">CA or adviser</button><button type="button" class="role-chip" data-role="other">Other</button></div>
@@ -570,6 +573,12 @@ document.getElementById('fe-csv').addEventListener('click',function(){
 })();
 </script>
 
+<script>
+(function(){var d=document.getElementById('fe-fc4-days'),box=document.getElementById('fe-fc4-offer');if(!d||!box)return;
+var now=new Date(),end=new Date(now.getFullYear(),11,31),n=Math.ceil((end-now)/864e5);
+if(now.getMonth()<9){box.hidden=true;return;}
+if(n>=1)d.textContent=' ('+n+(n===1?' day':' days')+' left)';})();
+</script>
 <script src="https://gumroad.com/js/gumroad.js"></script>
 <script>
 (function(){var box=document.getElementById('role-ask');if(!box)return;var K='igma_role_sent';
