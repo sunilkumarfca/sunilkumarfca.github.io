@@ -40,6 +40,11 @@
 .roe .sub{color:var(--slate); max-width:66ch; margin:0 0 18px;}
 .roe label.q{display:block; font-weight:500; font-size:.95rem; margin:14px 0 5px;}
 .roe textarea, .roe input[type=text], .roe input[type=number], .roe input[type=date], .roe select{font:inherit; font-size:.95rem; color:var(--ink); background:#fff; border:1px solid var(--line); border-radius:2px; padding:7px 9px; max-width:100%;}
+.roe ::placeholder{color:#8F96A0; font-style:italic; opacity:1;}
+.roe select.empty{color:#8F96A0; font-style:italic;}
+.roe select.empty option{color:var(--ink); font-style:normal;}
+.chips button.ex{border-style:dashed; border-color:#8F96A0; color:#5B6472;}
+.samplenote{font-size:.86rem; color:var(--slate); margin:8px 0 0;}
 .roe .hint{margin:-2px 0 6px; font-size:.86rem; color:var(--slate); max-width:66ch;}
 .roe select[id^="f_"]{width:100%; max-width:520px;}
 .roe textarea[data-other]{margin-top:6px;}
@@ -163,6 +168,7 @@ details.settings input{width:80px;}
       <p class="sub">Think of a choice you are facing and two options. If waiting or doing nothing is a real option, use it as one of them. Tap one answer for each question.</p>
       <label class="q" for="f_q_dec">The choice I am facing (optional)</label>
       <input type="text" id="f_q_dec" data-k="q_dec" placeholder="e.g. Should I take the new job?">
+      <p class="samplenote">Grey text and dashed outlines show a sample answer. They are only a guide and do not count until you answer.</p>
       <div class="qgrid" id="qOpts"></div>
       <div class="btns noprint"><button class="btn sm" id="qAdd" type="button">+ Add a third option</button></div>
       <h3>My result</h3>
@@ -176,6 +182,7 @@ details.settings input{width:80px;}
     </section>
 
     <div id="deep" hidden>
+    <p class="samplenote" style="margin:0 0 10px;">Grey text in each box shows a sample answer from the worked example. It is only a guide and does not count until you answer. Skip anything that does not apply; results use whatever you fill in.</p>
     <div class="roe-tabs" role="tablist" aria-label="Steps">
       <button role="tab" data-s="1" aria-selected="true">1 What matters</button>
       <button role="tab" data-s="2" aria-selected="false">2 Decision test</button>
@@ -484,6 +491,7 @@ function buildActs(){
     d.appendChild(el('div',{'class':'out',id:'actout'+i}));
     box.appendChild(d);
   });
+  if(EX)applySamples(box);
   box.querySelectorAll('[data-a]').forEach(function(n){n.addEventListener(n.tagName==='SELECT'?'change':'input',function(){var p=n.getAttribute('data-a').split('.');var v=n.value;if(p[1]==='h'&&v!==''){v=Math.max(0,Math.min(168,+v));}S.acts[+p[0]][p[1]]=v;save();calc();});});
 }
 function move(a){
@@ -504,7 +512,7 @@ function card(parent,k,v,c,small){var d=el('div',{'class':'card'});d.appendChild
 function setv(id,txt,useTag){var n=document.getElementById(id);if(!n)return;n.innerHTML='';if(txt===''||txt===null||txt===undefined)return;if(useTag&&cls(txt))n.appendChild(tag(txt,cls(txt)));else n.textContent=txt;}
 var R={};
 function calc(){
-  syncOther();
+  syncOther();markEmpty();
   // step 1
   var rows=AREAS.map(function(a,i){var imp=num(S['ai'+i]),now=num(S['an'+i]);var ok=imp!==null;var nE=now===null?3:now;return {a:a,i:i,imp:imp,now:now,ok:ok,gap:ok?imp-nE:null,score:ok?imp*(6-nE):null};});
   var ranked=rows.filter(function(r){return r.ok;}).sort(function(x,y){return (y.score-x.score)||(y.imp-x.imp)||(x.i-y.i);});
@@ -602,7 +610,7 @@ function applyMode(md,dflt){
   md.ret.forEach(function(t,i){var n=document.getElementById('lbl_r'+i);if(n&&n.textContent!==t)n.textContent=t;});
   md.eff.forEach(function(t,i){var n=document.getElementById('lbl_e'+i);if(n&&n.textContent!==t)n.textContent=t;});
   document.getElementById('modeNote').textContent=md.note;
-  [0,1,2].forEach(function(j){var n=document.querySelector('[data-k="o'+j+'_name"]');if(n)n.placeholder=md.ph[j];});
+  [0,1,2].forEach(function(j){var n=document.querySelector('[data-k="o'+j+'_name"]');if(n)n.placeholder=(S.mode==='life'&&EX)?'e.g. '+EX['o'+j+'_name']:md.ph[j];});
   Object.keys(DEF_SET).forEach(function(k){var n=document.getElementById(k);if(n&&(S[k]===undefined||S[k]===''))n.value=dflt[k];});
   if(md.unit){document.getElementById('unitWord').textContent=md.unitWord;document.querySelectorAll('.unitWord2').forEach(function(x){x.textContent=md.unitWord;});
     var h=document.getElementById('al_h');if(h)h.textContent=md.unit;}
@@ -659,6 +667,15 @@ window.addEventListener('beforeprint',function(){document.querySelectorAll('.roe
 window.addEventListener('afterprint',function(){show(cur);});
 
 
+// ---------- sample answers shown as grey hints until the user answers
+var EX=null;function EXD(){if(!EX)EX=example();return EX;}
+function exText(n,v){if(v===undefined||v===null||v==='')return null;if(n.tagName==='SELECT'){var o=[].filter.call(n.options,function(x){return x.value===String(v);})[0];return o?o.textContent:null;}return String(v);}
+function applySamples(root){var E=EXD();(root||document).querySelectorAll('[data-k],[data-a]').forEach(function(n){var v;
+  if(n.hasAttribute('data-k')){var k=n.getAttribute('data-k');if(DEF_SET.hasOwnProperty(k)||k==='mode')return;v=E[k];}
+  else{var p=n.getAttribute('data-a').split('.');var a=E.acts&&E.acts[+p[0]];v=a?a[p[1]]:undefined;}
+  if(n.type==='date')return;var t=exText(n,v);if(!t)return;
+  if(n.tagName==='SELECT'){var o=n.options[0];if(o&&o.value==='')o.textContent='e.g. '+t;}else n.placeholder='e.g. '+t;});markEmpty();}
+function markEmpty(){document.querySelectorAll('.roe select').forEach(function(s){s.classList.toggle('empty',s.value==='');});}
 // ---------- 2-minute quick check (core)
 function quickRes(){var n=S.q_n===3?3:2;return [0,1,2].slice(0,n).map(function(j){var p='q'+j+'_';
   var v=num(S[p+'v']),f=num(S[p+'f']),c=num(S[p+'c']),d=num(S[p+'d']);
@@ -670,15 +687,15 @@ function quickRes(){var n=S.q_n===3?3:2;return [0,1,2].slice(0,n).map(function(j
 function buildQuick(){var box=document.getElementById('qOpts');box.innerHTML='';var n=S.q_n===3?3:2;
   for(var j=0;j<n;j++)(function(j){var c=el('div',{'class':'qopt'});var id='f_q'+j+'_name';
     c.appendChild(el('label',{'class':'q','for':id,style:'margin-top:0'},'Option '+(j+1)));
-    var nm=el('input',{type:'text',id:id,placeholder:QPH[j]});nm.value=S['q'+j+'_name']||'';
+    var nm=el('input',{type:'text',id:id,placeholder:EXD()['q'+j+'_name']?'e.g. '+EXD()['q'+j+'_name']:QPH[j]});nm.value=S['q'+j+'_name']||'';
     nm.addEventListener('input',function(){S['q'+j+'_name']=nm.value;save();calc();});c.appendChild(nm);
     QQ.forEach(function(q){var k='q'+j+'_'+q[0];c.appendChild(el('div',{'class':'qq'},q[1]));
       var ch=el('div',{'class':'chips',role:'group','aria-label':'Option '+(j+1)+': '+q[1]});
       q[2].forEach(function(t,i){var v=q[0]==='s'?(i?'No':'Yes'):String(i+1);
-        var b=el('button',{type:'button','aria-pressed':String(S[k]===v)},t);
+        var b=el('button',{type:'button','aria-pressed':String(S[k]===v)},t);if(!S[k]&&EXD()[k]===v){b.classList.add('ex');b.title='Sample answer';}
         b.addEventListener('click',function(){S[k]=(S[k]===v?'':v);save();
           ch.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed','false');});
-          if(S[k])b.setAttribute('aria-pressed','true');calc();});ch.appendChild(b);});
+          if(S[k])b.setAttribute('aria-pressed','true');ch.querySelectorAll('.ex').forEach(function(x){x.classList.remove('ex');});calc();});ch.appendChild(b);});
       c.appendChild(ch);});
     box.appendChild(c);})(j);
   document.getElementById('qAdd').hidden=n===3;}
@@ -707,7 +724,7 @@ function setView(v){S.view=v;document.getElementById('quick').hidden=v!=='quick'
 document.querySelectorAll('.view-switch button').forEach(function(b){b.addEventListener('click',function(){setView(b.getAttribute('data-view'));try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}});});
 document.getElementById('qAdd').addEventListener('click',function(){S.q_n=3;save();buildQuick();calc();});
 document.getElementById('qDeep').addEventListener('click',goDeeper);
-load();build();fixChoices(S);buildAlloc();bindAll();buildActs();buildQuick();calc();show(1);setView(S.view);
+load();build();fixChoices(S);buildAlloc();bindAll();buildActs();buildQuick();applySamples();calc();show(1);setView(S.view);
 })();
 </script>
 </body>
