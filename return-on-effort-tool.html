@@ -125,7 +125,6 @@ details.settings input{width:80px;}
     <div class="btns noprint" style="margin-top:0;">
       <button class="btn sm" id="loadEx" type="button">See a worked example</button>
       <button class="btn sm" id="printBtn" type="button">Print or save as PDF</button>
-      <a class="btn sm" href="/downloads/Optimise_Your_Return_on_Effort_Practice_Tool.xlsx" id="xlsx" download>Download the Excel version</a>
       <button class="btn sm" id="clearBtn" type="button">Clear my answers</button>
     </div>
 
@@ -507,7 +506,6 @@ document.getElementById('prevBtn').addEventListener('click',function(){if(cur>1)
 document.getElementById('nextBtn').addEventListener('click',function(){if(cur<5)go(cur+1);});
 function doPrint(){if(typeof gtag==='function')gtag('event','roe_tool_print',{tool:'return_on_effort'});window.print();}
 document.getElementById('printBtn').addEventListener('click',doPrint);document.getElementById('printBtn2').addEventListener('click',doPrint);
-document.getElementById('xlsx').addEventListener('click',function(){if(typeof gtag==='function')gtag('event','roe_tool_excel',{tool:'return_on_effort'});});
 document.getElementById('loadEx').addEventListener('click',function(){var has=Object.keys(S).some(function(k){return k!=='acts'&&S[k]!=='';})||S.acts.some(function(a){return a.n;});if(has&&!confirm('Replace your answers with the worked example?'))return;S=example();save();refill();if(typeof gtag==='function')gtag('event','roe_tool_example',{tool:'return_on_effort'});});
 document.getElementById('clearBtn').addEventListener('click',function(){if(!confirm('Clear all your answers?'))return;S={acts:[{},{},{}]};try{localStorage.removeItem(KEY);}catch(e){}refill();});
 document.getElementById('addAct').addEventListener('click',function(){if(S.acts.length>=25)return;S.acts.push({});save();buildActs();calc();var a=document.querySelectorAll('#acts .act');var last=a[a.length-1];if(last)last.querySelector('input').focus();});
