@@ -292,6 +292,15 @@ footer .disclaimer{margin:0; max-width:80ch;}
 
 .qa-noprint{}
 @media print{.qa-noprint{display:none !important;}}
+.ns-box{border:1px solid #C9A35A;border-left:4px solid #C9A35A;border-radius:6px;padding:18px 20px;margin:26px 0;background:#FBF8F1;}
+.ns-box .ns-k{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:#6E5527;margin:0 0 6px;font-weight:600;}
+.ns-box h3{margin:0 0 8px;font-size:1.1rem;}
+.ns-box p{margin:0 0 10px;}
+.ns-box .ns-for{font-size:.92rem;color:#3A4250;}
+.ns-box .ns-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:12px;}
+.ns-box .ns-row .btn small{opacity:.8;margin-left:6px;}
+.ns-box .ns-alt{font-size:.9rem;margin-top:12px;color:#3A4250;}
+@media print{.ns-box{display:none!important;}}
 </style>
 </head>
 <body>
@@ -336,8 +345,7 @@ footer .disclaimer{margin:0; max-width:80ch;}
       <h3>Your five priority areas</h3>
       <ol id="qa-prio" class="qa-prio"></ol>
       <div class="qa-note"><p><b>What this Quick Assessment cannot tell you.</b> This Quick Assessment covers 16 of the 60 questions (80 of 646 criteria). The full toolkit covers all 60 questions, compares your scores with a peer benchmark, and produces a Board summary, heat map, 30/60/90-day action plan, action tracker and year-on-year tracking. Scores here are indicative because they rest on a sample of questions and one statement per level.</p></div>
-      <div class="lp-buy" id="qa-offer"><a class="btn primary" href="/ngo-governance-assessment-tool.html">See the full Institutional Governance Maturity Assessment Toolkit<small>$149</small></a></div>
-      <p class="qa-extra"><a href="/institutional-governance-sample-report.pdf">See a sample Board &amp; CEO report</a> from the full toolkit.</p>
+      <div class="ns-box qa-noprint" id="qa-offer"></div>
       <div class="qa-note qa-noprint role-ask" id="role-ask"><p><b>Your role, in one click?</b> Optional and anonymous. It only tells me who uses this check, so I can write the next guides for you.</p>
         <div class="role-chips"><button type="button" class="role-chip" data-role="board">Board or trustee</button><button type="button" class="role-chip" data-role="ceo">CEO</button><button type="button" class="role-chip" data-role="cfo">CFO or finance head</button><button type="button" class="role-chip" data-role="compliance">Compliance or accounts</button><button type="button" class="role-chip" data-role="adviser">CA or adviser</button><button type="button" class="role-chip" data-role="other">Other</button></div>
         <p class="qa-extra role-thanks" hidden>Thank you. Noted.</p></div>
@@ -490,11 +498,28 @@ footer .disclaimer{margin:0; max-width:80ch;}
       if(r.inc)p+='<small class="qa-warn">⚠ Your answers here look inconsistent (a weakness confirmed alongside higher-level practice). Please review.</small>';
       p+='</li>';});
     document.getElementById('qa-prio').innerHTML=p;
-    (function(){var o=document.getElementById('qa-offer');if(!o)return;var h;
-      if(score<3)h=['/toolkits.html#governance-61','Get a Board-ready score in an hour: Institutional Governance Toolkit, Executive Edition','$49','At this level, a quick Board-level score with your top five risks is the most useful first step.'];
-      else h=['/ngo-governance-assessment-tool.html','Prepare for funder due diligence: Institutional Governance Toolkit, Professional Edition','$149','At this level, the full evidence-based assessment shows what a funder\'s due diligence would test.'];
-      o.innerHTML='<p class="qa-extra" style="flex-basis:100%;margin:0 0 4px;">Suggested next step: '+h[3]+'</p><a class="btn primary" href="'+h[0]+'">'+h[1]+'<small>'+h[2]+'</small></a>';
-      if(typeof gtag==='function')gtag('event','qa_offer_shown',{assessment:QA.ga,offer:h[2]});})();
+    (function(){var o=document.getElementById('qa-offer');if(!o)return;
+      var FULLQ={"Board Governance & Strategic Oversight":8,"Risk, Resilience & Continuity":8,"Financial Stewardship & Sustainability":10,"Compliance, Ethics & Legal Protection":8,"Leadership, Talent & Succession":6,"Operational Excellence & Delivery":6,"Digital Governance & Data Protection":6,"Stakeholder Trust & Institutional Credibility":8};
+      var pav=Object.keys(P).map(function(k){return [k,P[k].reduce(function(a,b){return a+b;},0)/P[k].length,P[k].length];}).sort(function(x,y){return x[1]-y[1];});
+      var weak=pav.filter(function(x){return x[1]<3.5;}).slice(0,2);
+      var why;
+      if(weak.length){why='Your weakest areas in this check: '+weak.map(function(x){return '<b>'+x[0]+'</b> ('+x[1].toFixed(2)+')';}).join(' and ')+'. This check asked '+(weak.length>1&&weak[0][2]===weak[1][2]?weak[0][2]+' question'+(weak[0][2]===1?'':'s')+' on each':weak.map(function(x){return x[2];}).join(' and ')+' question'+((weak.length===1&&weak[0][2]===1)?'':'s'))+'; the full toolkit asks '+weak.map(function(x){return FULLQ[x[0]];}).join(' and ')+', so you see exactly what is missing and what to fix first.';}
+      else{why='No pillar came out red or amber on the '+nq+' questions you answered. This check samples 16 of the 60 questions; the full toolkit tests the other 44, so you can confirm the picture holds across the whole institution.';}
+      var h;
+      if(score<3)h={k:'executive',name:'Institutional Governance Toolkit, Executive Edition',price:'$49',page:'/toolkits.html#governance-61',
+        lead:'At your level, a quick Board-level score is the most useful first step.',
+        what:'61 questions across the same 8 pillars, each scored 1 to 5 in about an hour, with a peer benchmark, your five most significant risks and a Board report.',
+        who:'For CEOs, CFOs and Board members of NGOs, charities, foundations and trusts anywhere (India, Africa, the UK, Europe, the US and beyond) who want a Board-ready governance score this month.',
+        alt:'Need evidence behind every score for a funder? The <a href="/ngo-governance-assessment-tool.html">Professional Edition</a> ($149) adds 646 Yes/No criteria to the same questions.'};
+      else h={k:'professional',name:'Institutional Governance Toolkit, Professional Edition',price:'$149',page:'/ngo-governance-assessment-tool.html',
+        lead:'At your level, the evidence-based assessment shows what a funder\'s due diligence would test.',
+        what:'All 60 questions across 8 pillars with 646 evidence criteria, a peer benchmark, a Board summary, heat map, 30/60/90-day action plan and year-on-year tracking.',
+        who:'For Boards, CEOs and CFOs of NGOs, charities, foundations and trusts anywhere (India, Africa, the UK, Europe, the US and beyond) preparing for funder due diligence, an audit or a Board review.',
+        alt:'Want a quicker self-rated score first? The <a href="/toolkits.html#governance-61">Executive Edition</a> ($49) uses the same questions without the detailed criteria.'};
+      o.innerHTML='<p class="ns-k">Your next step</p><h3>'+h.lead+'</h3><p>'+why+'</p><p>'+h.what+'</p><p class="ns-for">'+h.who+'</p>'+
+        '<div class="ns-row"><a class="btn primary" href="'+h.page+'">See the '+h.name+'<small>'+h.price+'</small></a><a href="/institutional-governance-sample-report.pdf">See a sample Board report first (free PDF'+(h.k==='executive'?', from the Professional Edition':'')+')</a></div>'+
+        '<p class="ns-alt">'+h.alt+'</p>';
+      if(typeof gtag==='function')gtag('event','qa_offer_shown',{assessment:QA.ga,offer:h.price});})();
     document.getElementById('qa-date').textContent=new Date().toLocaleDateString(undefined,{day:'numeric',month:'long',year:'numeric'});
     var r=document.getElementById('qa-result');form.hidden=true;r.hidden=false;window.scrollTo(0,r.offsetTop-20);
     if(typeof gtag==='function'){gtag('event','quick_assessment_complete',{assessment:QA.ga,maturity_level:LVN[L[1]],questions_answered:nq});}
