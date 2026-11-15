@@ -178,7 +178,22 @@ details.settings input{width:80px;}
         <p style="margin:0 0 8px;"><strong>What a 2-minute check cannot see.</strong> It does not weigh each kind of return separately (money, health, family, learning), the hidden costs, what you would give up, how sure you are, or whether you can undo it. The deep dive does, and it also looks at where your week actually goes.</p>
         <button class="btn sm primary noprint" id="qDeep" type="button">Go deeper: continue in the full tool →</button>
       </div>
-      <p class="note">How it works: value = good it does × 0.5 + fit × 0.3 + 3 × 0.2 (future choices taken as neutral); effort and risk = what it takes × 0.6 + downside × 0.4. High = ratio 1.3 or more with at least a partial fit; Low = below 0.9, or a downside you could not cope with.</p>
+<p class="note"><strong>This is an indicative result, not a recommendation.</strong> It turns your own answers into a simple comparison to help you think. It does not decide for you.</p>
+      <details class="settings"><summary>How the score works, and why</summary>
+        <p><strong>Value</strong> = good it does × 50% + fit × 30% + future choices × 20%. The good it does carries the most weight because it is the reason to act at all. Fit carries 30% because value that does not serve what matters now is often wasted. Future choices (whether an option opens or closes doors later) carry 20% because they matter but are harder to judge. In this quick check, future choices are fixed at the middle score (3) for every option, so the quick check does not compare them. The deep dive asks about them.</p>
+        <p><strong>Effort and risk</strong> = what it takes × 60% + how bad the downside would be × 40%. What it takes is certain; the downside may never happen, so it counts a little less.</p>
+        <p><strong>Value for effort</strong> = value ÷ effort and risk. A result of 1.0 means you get back about what you put in. <strong>High</strong> = 1.3 or more (at least 30% more value than effort and risk) with at least a partial fit. <strong>Low</strong> = below 0.9 (it takes more than it gives), or a downside you could not cope with. In between is <strong>Medium</strong>: promising but uncertain.</p>
+        <p><strong>Total value matters too.</strong> Value for effort shows the return on each unit of effort. An option with a lower ratio can still create more value in total. The result tells you when this happens.</p>
+      </details>
+      <details class="settings"><summary>What the answers mean</summary>
+        <ul style="margin:6px 0 0 18px; padding:0;">
+          <li><strong>Good it does and what it takes:</strong> Very little = hardly noticeable; A little = a small difference; Some = a clear difference; A lot = a big difference; A great deal = a major change.</li>
+          <li><strong>Fit:</strong> Poorly = works against what matters now; Partly = helps one priority and is neutral for the rest; Perfectly = directly serves the top priority.</li>
+          <li><strong>How bad the downside would be:</strong> Minor = easily absorbed; Moderate = a setback that takes months to recover from; Severe = lasting damage to health, money, reputation or relationships. Think of how likely it is and how much it would hurt together.</li>
+          <li><strong>Could you cope?</strong> Yes means the worst case could be absorbed without lasting damage.</li>
+        </ul>
+      </details>
+      <p class="note"><strong>When to take the deep dive:</strong> if the options are close (within about 20%), if the result is Medium, or if the decision is big or hard to undo, especially where money, career or health is at stake. The deep dive separates each kind of return and cost, asks how sure you are and whether you can undo it, and looks at where your week goes.</p>
     </section>
 
     <div id="deep" hidden>
@@ -220,6 +235,13 @@ details.settings input{width:80px;}
       <h3>Compare up to three options</h3>
       <p class="swipe">Swipe the table sideways to see all three options.</p>
       <div class="scroll"><table class="grid-t" id="decT"></table></div>
+      <details class="settings"><summary>How to judge each answer, including risk</summary>
+        <p><strong>What good will it do / what will it take:</strong> Nothing or Very little = hardly noticeable; A little = a small difference; Some = a clear difference; A lot = a big difference; A great deal = a major change in that part of life. Count returns that come later or indirectly, such as learning, relationships and rest, at their value over time.</p>
+        <p><strong>How bad the downside would be:</strong> think of how likely it is and how much it would hurt. Something likely and painful is Serious or Severe; something unlikely and small is Minor.</p>
+        <p><strong>How sure am I:</strong> Very sure = I have checked the facts; Unsure = some key facts are guesses; Just guessing = I have little to go on.</p>
+        <p><strong>Can I undo it later:</strong> could I go back, and at what cost? Leaving a new job after a year is usually possible at some cost; selling a house in a hurry often is not.</p>
+        <p><strong>Could I cope:</strong> could I absorb the worst case without lasting damage? For example, savings to cover six months of costs, other income, or support from family.</p>
+      </details>
       <h3>Result</h3>
       <div class="cards" id="decRes"></div>
       <div id="allocBox" hidden>
@@ -233,6 +255,7 @@ details.settings input{width:80px;}
         <p>Cost = Effort × <input type="number" step="0.05" min="0" max="1" id="w_e"> + Risk × <input type="number" step="0.05" min="0" max="1" id="w_k"></p>
         <p>High profile if ratio at least <input type="number" step="0.1" id="t_hi"> (and fit 3+); Low if below <input type="number" step="0.1" id="t_lo">. <span id="wcheck"></span></p>
         <p>Return score = average of the option's three biggest returns. Risk score = average of downside and uncertainty, plus 0.5 if reversible only with some cost, or 1 if not reversible (maximum 5). Any option whose downside you could not survive is marked Low.</p>
+        <p>Why these weights: for life and career decisions, what you get counts most (50%) and the effort it takes slightly more than the risk (60/40). For spare time, hours are the scarce resource, so effort weighs 70%. For money, risk weighs 60% because money lost is hard to win back. High needs a ratio of 1.3 or more (clearly more value than cost); Low is below 0.9 (it takes more than it gives). Change them if your situation is different.</p>
       </details>
       <p class="note">This is a decision aid, not a mathematical answer. Use it to make the full exchange visible, then use your own judgement. A good decision can still have a bad outcome.</p>
     </div>
@@ -241,10 +264,12 @@ details.settings input{width:80px;}
     <div class="roe-step" id="s3">
       <h2>Step 3: Where my week goes</h2>
       <p class="sub">Your calendar is like an investment statement. List the main things you do in a normal week, such as work, family, exercise, commuting and screen time. For each, give the hours, how useful it is and how it leaves you. That is enough for a suggestion. Add more detail only if you want sharper suggestions.</p>
+      <p class="note"><strong>Value that comes later still counts.</strong> Learning, family time, rest and building relationships often pay back slowly and indirectly. Rate the value they create over time, not only this week.</p>
       <div id="acts"></div>
       <div class="btns"><button class="btn sm" id="addAct" type="button">+ Add an activity</button></div>
       <h3>Summary</h3>
       <div class="cards" id="effSum"></div>
+      <p class="note">A week has 168 hours. About 56 go to sleep, which leaves about 112 waking hours. If many hours are not yet listed, the suggestions below see only part of your week.</p>
       <h3>Effort mix</h3>
       <div class="scroll"><table class="grid-t" id="mixT"></table></div>
       <p class="note">Keeping things running, building your future, trying new things, and rest: all four are needed. This table uses the "What kind of time is it?" detail.</p>
@@ -268,7 +293,7 @@ details.settings input{width:80px;}
       <h3>C. The 10-Year Adequacy Test</h3>
       <p class="sub">"If I continue exactly as I am today for the next ten years, will this still be adequate?" It is a trajectory test, not a forecast.</p>
       <div class="scroll"><table class="grid-t" id="tyT"></table></div>
-      <p class="note">Likely in 10 years = today's score, plus 1.5 if improving or minus 1.5 if declining (between 1 and 5). Adequate 3.5+ → Protect; At risk 2.5–3.4 → Strengthen; Inadequate below 2.5 → Change.</p>
+      <p class="note">Likely in 10 years = today's level, moved up 1.5 if getting better or down 1.5 if getting worse (between 1 and 5). Why 1.5: over ten years a steady trend usually moves a situation by more than one level on this five-level scale, so the test moves it one and a half. It is a rough guide, not a forecast. For a sharper view, run it twice: once with your realistic trend and once asking "what if it gets worse?". Any area that fails in the worse case needs a buffer. Adequate 3.5+ → Protect; At risk 2.5–3.4 → Strengthen; Inadequate below 2.5 → Change.</p>
       <h3>D. Think it through</h3>
       <div id="think"></div>
     </div>
@@ -297,7 +322,7 @@ details.settings input{width:80px;}
     </div>
     </div><!-- /deep -->
 
-    <p class="disc"><strong>Important note.</strong> This tool is for personal reflection and better decision-making. It is not financial, investment, legal, medical, career or other professional advice. The scores and labels are decision prompts based on your own inputs, not predictions or universal thresholds. Please take qualified advice for decisions that need it. Based on <em>Optimise Your Return on Effort</em> by CA Sunil Kumar, FCA. <a href="https://sunilfca.gumroad.com/l/optimise-your-return-on-effort?utm_source=website&amp;utm_medium=site&amp;utm_campaign=roe-tool">Read the book free</a>.</p>
+    <p class="disc"><strong>Important note.</strong> This tool is for personal reflection and better decision-making. It is not financial, investment, legal, medical, career or other professional advice. All numbers are indicative decision aids, not precise financial returns. The scores and labels are decision prompts based on your own inputs, not predictions or universal thresholds. Please take qualified advice for decisions that need it. Based on <em>Optimise Your Return on Effort</em> by CA Sunil Kumar, FCA. <a href="https://sunilfca.gumroad.com/l/optimise-your-return-on-effort?utm_source=website&amp;utm_medium=site&amp;utm_campaign=roe-tool">Read the book free</a>.</p>
   </div>
 </main>
 
@@ -395,7 +420,7 @@ var MOVES={'Stop':'Low value. Stop it; if you cannot, redesign it (for example, 
 var DEF_SET={w_r:0.5,w_f:0.3,w_o:0.2,w_e:0.6,w_k:0.4,t_hi:1.3,t_lo:0.9};
 function W(a,from){return a.map(function(t,i){return [String(i+(from||0)),t];});}
 var L={imp:W(['Not important now','Slightly important','Fairly important','Very important','Critical'],1),going:W(['Badly','Not well','OK','Well','Very well'],1),create:W(['Nothing','Very little','A little','Some','A lot','A great deal'],0),cost:W(['Very light','Light','Moderate','Heavy','Very heavy'],1),down:W(['Minor','Small','Moderate','Serious','Severe'],1),unc:W(['Very sure','Fairly sure','Unsure','Quite unsure','Just guessing'],1),fit:W(['Poor fit','Weak fit','Partly fits','Good fit','Perfect fit'],1),opt:W(['Closes doors','Narrows choices','Neutral','Opens some doors','Opens many doors'],1),str:W(['Weak','Below par','OK','Good','Strong'],1),useful:W(['Not useful','A little useful','Useful','Very useful','Essential'],1)};
-var QW={r:0.5,f:0.3,o:0.2,e:0.6,k:0.4},QSTEP=2;
+var QW={r:0.5,f:0.3,o:0.2,e:0.6,k:0.4},QSTEP=2,QLIM='your time, energy or money';
 var QPH=['e.g. Take the new job','e.g. Stay where I am','e.g. Study part-time'];
 var QQ=[['v','How much good will it do for me?',['Very little','A little','Some','A lot','A great deal']],['f','How well does it fit what matters to me now?',['Poorly','Not well','Partly','Well','Perfectly']],['c','How much will it take from me (time, energy, money)?',['Very little','A little','Some','A lot','A great deal']],['d','If it goes badly, how bad would that be?',['Minor','Small','Moderate','Serious','Severe']],['s','Could I cope if it goes badly?',['Yes','No']]];
 var QN={High:'Worth doing. Commit to it and set a date to review it.',Medium:'Promising but uncertain. Try a small first step, then review.',Low:'Value looks low for what it takes. Drop it, delay it or redesign it.',no:'You could not cope with the downside. Redesign it or drop it.'};
@@ -462,7 +487,7 @@ function build(){
     tr.appendChild(el('td',{'class':'c',id:'tyl'+i}));tr.appendChild(el('td',{'class':'c',id:'tyv'+i}));tr.appendChild(el('td',{'class':'c',id:'tya'+i}));tb2.appendChild(tr);});ty.appendChild(tb2);
   var th=document.getElementById('think');THINK.forEach(function(q){ask(q,th);});
   var rv=document.getElementById('review');REV.forEach(function(q){ask(q,rv);});
-  var mv=document.getElementById('moves');[1,2,3].forEach(function(n){var d=el('div',{'class':'act'});d.appendChild(el('label',{'class':'q','for':'f_mv'+n,style:'margin-top:0'},'Move '+n+': what exactly will I do?'));d.appendChild(el('input',{type:'text',id:'f_mv'+n,'data-k':'mv'+n}));d.appendChild(el('label',{'class':'q','for':'f_mvd'+n},'By when'));d.appendChild(el('input',{type:'date',id:'f_mvd'+n,'data-k':'mvd'+n}));mv.appendChild(d);});
+  var mv=document.getElementById('moves');[1,2,3].forEach(function(n){var d=el('div',{'class':'act'});function f(lbl,k,type,first){d.appendChild(el('label',{'class':'q','for':'f_'+k,style:first?'margin-top:0':''},lbl));d.appendChild(el('input',{type:type,id:'f_'+k,'data-k':k}));}f('Move '+n+': what exactly will I do?','mv'+n,'text',true);f('Expected result: what will be different?','mvo'+n,'text');f('How will I know it worked? (a simple measure)','mvm'+n,'text');f('By when','mvd'+n,'date');mv.appendChild(d);});
 }
 
 // ---------- activities
@@ -551,6 +576,7 @@ function calc(){
   var dr=document.getElementById('decRes');dr.innerHTML='';
   R.opts.forEach(function(o){if(!o.prof)return;var d=el('div',{'class':'card'});d.appendChild(el('span',{'class':'k'},o.name));var v=el('span',{'class':'v sm'});v.appendChild(tag(o.prof,cls(o.prof)));v.appendChild(document.createTextNode(' ratio '+fmt(o.ratio,2)));d.appendChild(v);d.appendChild(el('p',{style:'margin:8px 0 0;font-size:.9rem'},o.next));if(o.caution)d.appendChild(el('p',{style:'margin:6px 0 0;font-size:.85rem;color:#7A2614'},o.caution));dr.appendChild(d);});
   if(best)card(dr,'Option with the best SROE profile',best.name,null,true);
+  var tvo=R.opts.filter(function(o){return o.prof&&o.surv!=='No';}).sort(function(p,q){return q.val-p.val;})[0];if(best&&tvo&&tvo!==best&&tvo.val-best.val>=0.2){var td2=el('div',{'class':'card'});td2.appendChild(el('span',{'class':'k'},'Option with the most total value'));td2.appendChild(el('span',{'class':'v sm'},tvo.name+' (value '+fmt(tvo.val)+' against '+fmt(best.val)+')'));td2.appendChild(el('p',{style:'margin:8px 0 0;font-size:.9rem'},best.name+' gives more value for each unit of effort; '+tvo.name+' creates more value in total. Choose '+best.name+' if '+QLIM+' is the limit, and '+tvo.name+' if you can afford the extra effort and risk.'));dr.appendChild(td2);}
   if(!dr.children.length)dr.appendChild(el('p',{'class':'note'},'Answer at least one "What good will it do?" row and one "What will it take from me?" row for an option to see its result. Blank rows count as middle answers until you fill them.'));
   var ab=document.getElementById('allocBox');ab.hidden=!md.unit;
   if(md.unit){
@@ -570,7 +596,7 @@ function calc(){
     if(m==='Stop'||m==='Simplify'||m==='Improve recovery')free+=h;if(m==='Delegate'||m==='Automate / systemise')hand+=h;if(a.en==='Drains')drain+=h;
     if(mix[a.ty]!==undefined)mix[a.ty]+=h;if(a.area)byArea[a.area]=(byArea[a.area]||0)+h;});
   R.tot=tot;R.free=free;R.hand=hand;
-  var es=document.getElementById('effSum');es.innerHTML='';card(es,'Hours listed per week',fmt(tot));card(es,'Hours you could free (Stop, Simplify, Improve recovery)',fmt(free));card(es,'Hours you could hand over (Delegate, Automate)',fmt(hand));card(es,'Average value per hour (1-5)',tot?fmt(sv/tot):'–');card(es,'Hours that drain you',fmt(drain));
+  var es=document.getElementById('effSum');es.innerHTML='';card(es,'Hours listed per week',fmt(tot));card(es,'Waking hours not yet listed (of about 112)',tot?(tot>112?'Over by '+fmt(tot-112)+': check the hours':fmt(112-tot)):'');card(es,'Hours you could free (Stop, Simplify, Improve recovery)',fmt(free));card(es,'Hours you could hand over (Delegate, Automate)',fmt(hand));card(es,'Average value per hour (1-5)',tot?fmt(sv/tot):'–');card(es,'Hours that drain you',fmt(drain));
   var mt=document.getElementById('mixT');mt.innerHTML='<thead><tr><th>Kind of time</th><th class="c">Hours</th><th class="c">Share</th></tr></thead>';var MIXN={Maintenance:'Keeping things running',Growth:'Building my future',Exploration:'Trying something new',Recovery:'Rest and recharge'};var mb=el('tbody');Object.keys(mix).forEach(function(k){var tr=el('tr');tr.appendChild(el('td',null,MIXN[k]));tr.appendChild(el('td',{'class':'c'},fmt(mix[k])));tr.appendChild(el('td',{'class':'c'},tot?pct(mix[k]/tot):'–'));mb.appendChild(tr);});mt.appendChild(mb);
   var gt=document.getElementById('gapT');gt.innerHTML='<thead><tr><th>Life area</th><th class="c">Importance now</th><th class="c">Hours per week</th><th class="c">Share of hours</th><th>Signal</th></tr></thead>';var gb=el('tbody');R.underInv=null;
   rows.forEach(function(r){var h=byArea[r.a]||0,sh=tot?h/tot:null;var sig=r.imp===null||sh===null?'':(r.imp>=4&&sh<0.05)?'Under-invested':(r.imp<=2&&sh>=0.15)?'Over-invested':'In line';if(sig==='Under-invested'&&!R.underInv)R.underInv=r.a;
@@ -635,7 +661,7 @@ function example(){
     m1:'Exercise; learning that I actually apply.',m2:'Low-value meetings; scrolling.',m3:'Accepting every meeting invite by default.',m4:'A 30-minute walk on 5 days a week; automating the monthly report.',
     t1:'Career experience and savings, if I keep investing regularly.',t2:'Health, if long hours and no exercise continue; relationships, if time keeps shrinking.',t3:'Savings cover about 6 months. Health is the weak point.',t4:'Health first: a minimum weekly standard. Then one skill that travels outside my present employer.',
     r1:'Focused work on planning; family time; the few walks I did take.',r2:'Commuting, low-value meetings and scrolling (about 23 hours a week).',r3:'Default yes to meetings; late-night screen time.',r4:'Minimum health standard; automate the monthly report.',r5:'Title and visibility for their own sake.',r6:'Health, time and freedom.',r7:'Choose between Role A and Role B using Step 2, before the offer deadline.',
-    mv1:'Walk 30 minutes, 5 days a week',mvd1:'2026-12-31',mv2:'Decline or shorten 3 low-value meetings a week',mvd2:'2026-12-15',mv3:'Automate the monthly report with a template',mvd3:'2027-01-31',nextReview:'2027-02-15',
+    mv1:'Walk 30 minutes, 5 days a week',mvd1:'2026-12-31',mv2:'Decline or shorten 3 low-value meetings a week',mvd2:'2026-12-15',mv3:'Automate the monthly report with a template',mvd3:'2027-01-31',mvo1:'More energy and better sleep',mvm1:'Walks logged on my phone: at least 20 a month',mvo2:'About 3 hours a week freed for focused work',mvm2:'Meeting hours in my calendar each week',mvo3:'Report done in 1 hour instead of 4',mvm3:'Time taken each month',nextReview:'2027-02-15',
     q_dec:'Which job should I take?',q_n:2,q0_name:'Role A: higher pay',q0_v:'4',q0_f:'2',q0_c:'5',q0_d:'3',q0_s:'Yes',q1_name:'Role B: flexible',q1_v:'4',q1_f:'4',q1_c:'2',q1_d:'2',q1_s:'Yes'};
   var ai=[[5,2],[5,3],[4,3],[5,3],[3,3],[3,3],[4,2],[3,3],[3,4],[2,3],[3,3],[4,2]];ai.forEach(function(x,i){E['ai'+i]=String(x[0]);E['an'+i]=String(x[1]);});
   var ret=[[5,3,2],[4,3,2],[1,4,3],[1,4,3],[1,4,3],[4,3,1],[3,3,3],[4,3,1]],eff=[[5,4,2],[5,3,3],[4,3,3],[1,1,1],[4,2,3],[4,2,3]];
@@ -713,7 +739,8 @@ function calcQuick(){var Q=quickRes();var box=document.getElementById('qRes');bo
   else if(done.length===1)msg='Now answer the same four questions for another option to compare them.';
   else if(!ok.length)msg='None of these options has a downside you could cope with. Look for a safer version of one of them.';
   else{var a=ok[0],b=done.filter(function(o){return o!==a;})[0];var gap=Math.round((a.ratio/b.ratio-1)*100);
-    var x=a.ratio/b.ratio;msg=x>=1.95?a.name+' gives about '+(Math.round(x*2)/2)+' times as much value for each unit of effort and risk as '+b.name+'.':gap>=5?a.name+' gives about '+gap+'% more value for each unit of effort and risk than '+b.name+'.':a.name+' and '+b.name+' are close. The deep dive will show what really separates them.';}
+    var x=a.ratio/b.ratio;msg=x>=1.95?a.name+' gives about '+(Math.round(x*2)/2)+' times as much value for each unit of effort and risk as '+b.name+'.':gap>=5?a.name+' gives about '+gap+'% more value for each unit of effort and risk than '+b.name+'.':a.name+' and '+b.name+' are close. The deep dive will show what really separates them.';
+    var tv=ok.slice().sort(function(p,q){return q.val-p.val;})[0];if(tv&&tv!==a&&tv.val-a.val>=0.2)msg+=' But '+tv.name+' creates more value in total ('+fmt(tv.val)+' against '+fmt(a.val)+'). Choose '+a.name+' if '+QLIM+' is the limit; choose '+tv.name+' if you can afford the extra effort and risk.';}
   ins.textContent=msg;}
 function goDeeper(){var map={v:null,f:'fit',d:'down',s:'surv'};
   [0,1,2].forEach(function(j){var p='q'+j+'_',o='o'+j+'_';if(S[p+'name']&&!S[o+'name'])S[o+'name']=S[p+'name'];
