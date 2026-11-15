@@ -146,6 +146,8 @@ section.alt{background:var(--paper-raised);}
 .item .info h4{font-family:'Newsreader', Georgia, serif; font-weight:500; font-size:1.12rem; margin:0 0 6px;}
 .item .info .flag{display:inline-block; font-size:0.72rem; color:var(--brass-dark); border:1px solid var(--brass); padding:1px 8px; border-radius:12px; margin-left:10px; vertical-align:middle;}
 .item .info p{margin:0; color:var(--slate); font-size:0.94rem; max-width:60ch;}
+.item .info p.for{margin-top:8px; color:var(--ink); font-size:0.9rem;}
+.item .info p.for b{font-weight:600;}
 .item .buy{display:flex; flex-direction:column; align-items:flex-end; gap:7px; text-align:right; white-space:nowrap; padding-top:2px;}
 .item .buy .price{display:block; font-family:'Newsreader', Georgia, serif; font-size:1.15rem; color:var(--ink); margin-bottom:6px;}
 .item .buy .price.free{color:var(--brass-dark);}
@@ -1348,6 +1350,7 @@ footer .disclaimer{margin:0; max-width:80ch;}
     <div class="chooser">
       <a class="pick" href="ngo-governance-assessment-tool.html"><span class="q">"How strong is our governance overall — Board, finance, risk, people, data?"</span><span class="a">Institutional Governance Toolkit, Professional Edition</span><span class="p">$149 · any NGO, foundation or trust, in any country</span></a>
       <a class="pick" href="#governance-61"><span class="q">"We want a Board-ready governance score this month, without answering hundreds of criteria."</span><span class="a">Institutional Governance Toolkit, Executive Edition</span><span class="p">$49 · one price worldwide, about an hour</span></a>
+      <a class="pick" href="#erm"><span class="q">"Which risks could stop us, and does our Board see them?"</span><span class="a">Enterprise Risk Management Assessment Toolkit</span><span class="p">$49 · any country, about 45 minutes</span></a>
       <a class="pick" href="fcra-compliance-toolkit.html"><span class="q">"Are we actually FCRA compliant, across every function?"</span><span class="a">FCRA Compliance Toolkit</span><span class="p">$300 · Indian NGOs receiving foreign contribution</span></a>
       <a class="pick" href="fcra-governance-assessment-toolkit.html"><span class="q">"Does our Board have real oversight of FCRA — approvals, controls, evidence?"</span><span class="a">FCRA Board Oversight Toolkit — Professional Edition</span><span class="p">$99 · 6 pillars, 411 criteria, audit-ready</span></a>
       <a class="pick" href="dpdp-compliance-ngos.html"><span class="q">"Are we ready for India's DPDP data-protection law?"</span><span class="a">DPDP Act Toolkit for NGOs</span><span class="p">$100 · a structured view of your DPDP gaps</span></a>
@@ -1402,40 +1405,56 @@ footer .disclaimer{margin:0; max-width:80ch;}
 <section id="assessments">
   <div class="wrap">
     <h2 class="group-label">The assessments</h2>
-    <p class="group-sub">Choose the scope that matches your immediate risk — FCRA compliance, data protection, or full institutional governance.</p>
+    <p class="group-sub">Governance and risk toolkits for organisations in any country first, then the India-specific compliance toolkits (FCRA and DPDP).</p>
     <p class="placeholder-note" style="border-top:none; padding-top:0;">Looking for the FCRA Governance Maturity Framework book? It's on the <a href="library.html">Books</a> page.</p>
     <div class="items">
-
       <div class="item">
         <div class="info">
-          <h4>DPDP Act Toolkit for NGOs</h4>
-          <p>Your donor and beneficiary lists hold personal data and nobody can say what the DPDP Act asks of you: find the gaps to close before the duties apply.</p>
-          <span class="pending">Format: Excel workbook, automated scoring.</span>
+          <h4>Professional Edition — Institutional Governance Toolkit</h4>
+          <p>A funder’s due diligence is coming and your Board assumes its governance is fine: get an evidence-based score on a five-level scale and a list of what to fix first.</p>
+          <p class="for"><b>Who this is for:</b> Boards, CEOs and CFOs of NGOs, charities, foundations and trusts in any country (India, Africa, the UK, Europe, the US and beyond) preparing for funder due diligence, an audit or a Board review.</p>
+          <span class="pending">Format: 60 questions across 8 pillars, 646 evidence-based criteria, Board-ready outputs; 14-tab Excel workbook (Excel 2016+, no macros). <a href="#faq">Read the FAQ</a>.</span>
           <details class="more">
             <summary>What's inside</summary>
-            <div class="more-body">India's DPDP Act shifts data-protection accountability onto the board and management, not just IT — and most NGOs and small organisations have no structured way to demonstrate compliance if asked. This toolkit walks you through the Act's actual requirements as an automated Excel assessment: answer the questions, and it scores your current compliance position and flags the specific gaps to close, rather than leaving you to interpret the law yourself. A practical, low-friction way to establish a structured view of your current DPDP compliance position and identify the gaps that need attention.</div>
+            <div class="more-body">Most governance reviews stop at "do you have a policy?" This toolkit goes further: it scores your entire institution — board oversight, financial sustainability, donor confidence, operational resilience — against the five-level Governance Maturity Scale (L1 Vulnerable to L5 Optimised), and returns an executive dashboard your board can actually act on, with a prioritised list of what to fix first. It's the full-institution counterpart to the narrower FCRA and DPDP assessments, for boards who want one clear, evidence-based read on where they stand rather than a patchwork of compliance checks.</div>
           </details>
         </div>
-        <div class="buy"><span class="price">$100</span><a href="https://sunilfca.gumroad.com/l/DPDPCompliance?utm_source=website&amp;utm_medium=site&amp;utm_campaign=toolkits">Buy on Gumroad</a><a class="alt-link" href="dpdp-compliance-ngos.html">Full details</a></div>
+        <div class="buy"><span class="price">$149</span><a href="https://sunilfca.gumroad.com/l/Institutional-governance-toolkit?utm_source=website&amp;utm_medium=site&amp;utm_campaign=toolkits">Buy on Gumroad</a><a class="alt-link" href="ngo-governance-assessment-tool.html">Full details</a><a class="alt-link" href="/institutional-governance-sample-report.pdf">Sample report</a></div>
       </div>
 
-      <div class="item">
+      <div class="item" id="governance-61">
         <div class="info">
-          <h4>FCRA Compliance Toolkit</h4>
-          <p>Your FC-4 is due by 31 December and nobody can say whether every FCRA requirement is backed by evidence: check each one, across every function, with your own team.</p>
-          <span class="pending">Format: automated Excel assessment tool.</span>
+          <h4>Institutional Governance Toolkit — Executive Edition</h4>
+          <p>Your Board wants to know where governance stands, but nobody has three hours for hundreds of criteria: score 61 questions in about an hour and get the same pillar results, peer benchmark and Board report.</p>
+          <p class="for"><b>Who this is for:</b> CEOs, CFOs and Board members of NGOs, charities and foundations in any country who want a Board-ready governance score this month.</p>
+          <span class="pending">Format: 61 questions across 8 pillars, each scored 1 to 5 against level statements; opens in your browser, with nothing to install. One price worldwide.</span>
           <details class="more">
             <summary>What's inside</summary>
-            <div class="more-body">Filings done and documents on file don't always add up to a clear view of FCRA compliance — the work is spread across Finance, Programmes, Administration, Legal and the board. This toolkit brings it into one assessment across four modules (Registration Readiness, Current Compliance, Governance Integration and Future Regulatory Readiness) and six governance pillars. Rather than asking only "has this been done?", it asks whether each requirement is backed by a process, a control, evidence and a named owner. The outputs support management review, board reporting and a prioritised action plan. It works on its own or alongside the FCRA Governance and DPDP toolkits, and is a management tool, not a substitute for legal or regulatory advice.</div>
+            <div class="more-body">The same 61 questions, 8 pillars, weighting and five-level scale as the Professional Edition, without the detailed Yes/No criteria. You pick the level that best describes your organisation for each question. You get an overall score, a score for each pillar against the peer benchmark of NGOs and non-profits, the four questions every Board should be able to answer, your five most significant risks with a first step and suggested owner, an action plan and a year-on-year view. It is a self-rating; when you need evidence behind each score, the Professional Edition adds about 660 criteria to the same questions and opens the scores you have already entered.</div>
           </details>
         </div>
-        <div class="buy"><span class="price">$300</span><a href="https://sunilfca.gumroad.com/l/FCRAComplianceAssessmentToolkit?utm_source=website&amp;utm_medium=site&amp;utm_campaign=toolkits">Buy on Gumroad</a><a class="alt-link" href="fcra-compliance-toolkit.html">Full details</a></div>
+        <div class="buy"><span class="price">$49</span><a href="https://sunilfca.gumroad.com/l/governance-61?utm_source=website&amp;utm_medium=site&amp;utm_campaign=toolkits">Buy on Gumroad</a></div>
+      </div>
+
+      <div class="item" id="erm">
+        <div class="info">
+          <h4>Enterprise Risk Management Assessment Toolkit</h4>
+          <p>Your Board asks which risks could stop the organisation, and the answer sits in people's heads: score how well you manage risk and build a working register the Board can review.</p>
+          <p class="for"><b>Who this is for:</b> CEOs, CFOs, risk owners and Boards of NGOs, charities, foundations and social enterprises in any country.</p>
+          <span class="pending">Format: 42 questions across 8 pillars, scored 1&ndash;5 in about 45 minutes (462 optional evidence criteria); 18-tab Excel workbook (Excel 2016+, no macros). For organisations in any country. 2026&ndash;27 edition, updated every year.</span>
+          <details class="more">
+            <summary>What's inside</summary>
+            <div class="more-body">A risk-management maturity score for the whole organisation (risk governance, appetite, assessment and monitoring, financial and funding risk, legal, regulatory and donor compliance, internal control, operations and partners, resilience), plus the working tools to act on it: a 100-row risk register scored before and after controls and compared with your Board&rsquo;s risk appetite, a library of 50 typical risks for social-sector organisations, a compliance obligations register, a 30-point key-controls check, an incident log, heat maps, a dashboard with your top 10 risks, an automatic Board summary and an action tracker. Educational self-assessment only; not an audit or professional advice.</div>
+          </details>
+        </div>
+        <div class="buy"><span class="price">$49</span><a href="https://sunilfca.gumroad.com/l/erm-toolkit?utm_source=website&amp;utm_medium=site&amp;utm_campaign=toolkits">Buy on Gumroad</a></div>
       </div>
 
       <div class="item">
         <div class="info">
           <h4>FCRA Board Oversight Toolkit — Professional Edition</h4>
           <p>A funder or inspector asks how your Board oversees foreign contribution and the minutes say little: score that oversight and build the evidence an audit looks for.</p>
+          <p class="for"><b>Who this is for:</b> Board members, CEOs and CFOs of FCRA-registered organisations who need to show, not just say, that the Board oversees foreign contribution. India only.</p>
           <span class="pending">Format: web app (Chrome, Edge, Safari or Firefox), 6 pillars, 40 questions, 411 criteria. 12-month licence, one organisation, up to 3 devices.</span>
           <details class="more">
             <summary>What's inside</summary>
@@ -1447,41 +1466,30 @@ footer .disclaimer{margin:0; max-width:80ch;}
 
       <div class="item">
         <div class="info">
-          <h4>Professional Edition — Institutional Governance Toolkit</h4>
-          <p>A funder’s due diligence is coming and your Board assumes its governance is fine: get an evidence-based score on a five-level scale and a list of what to fix first.</p>
-          <span class="pending">Format: 60 questions across 8 pillars, 646 evidence-based criteria, Board-ready outputs; 14-tab Excel workbook (Excel 2016+, no macros). <a href="#faq">Read the FAQ</a>.</span>
+          <h4>FCRA Compliance Toolkit</h4>
+          <p>Your FC-4 is due by 31 December and nobody can say whether every FCRA requirement is backed by evidence: check each one, across every function, with your own team.</p>
+          <p class="for"><b>Who this is for:</b> CFOs, finance heads and compliance teams of Indian NGOs, trusts and foundations that receive foreign contribution. India only.</p>
+          <span class="pending">Format: automated Excel assessment tool.</span>
           <details class="more">
             <summary>What's inside</summary>
-            <div class="more-body">Most governance reviews stop at "do you have a policy?" This toolkit goes further: it scores your entire institution — board oversight, financial sustainability, donor confidence, operational resilience — against the five-level Governance Maturity Scale (L1 Vulnerable to L5 Optimised), and returns an executive dashboard your board can actually act on, with a prioritised list of what to fix first. It's the full-institution counterpart to the narrower FCRA and DPDP assessments, for boards who want one clear, evidence-based read on where they stand rather than a patchwork of compliance checks.</div>
+            <div class="more-body">Filings done and documents on file don't always add up to a clear view of FCRA compliance — the work is spread across Finance, Programmes, Administration, Legal and the board. This toolkit brings it into one assessment across four modules (Registration Readiness, Current Compliance, Governance Integration and Future Regulatory Readiness) and six governance pillars. Rather than asking only "has this been done?", it asks whether each requirement is backed by a process, a control, evidence and a named owner. The outputs support management review, board reporting and a prioritised action plan. It works on its own or alongside the FCRA Governance and DPDP toolkits, and is a management tool, not a substitute for legal or regulatory advice.</div>
           </details>
         </div>
-        <div class="buy"><span class="price">$149</span><a href="https://sunilfca.gumroad.com/l/Institutional-governance-toolkit?utm_source=website&amp;utm_medium=site&amp;utm_campaign=toolkits">Buy on Gumroad</a><a class="alt-link" href="ngo-governance-assessment-tool.html">Full details</a></div>
-      </div>
-
-      <div class="item" id="governance-61">
-        <div class="info">
-          <h4>Institutional Governance Toolkit — Executive Edition</h4>
-          <p>Your Board wants to know where governance stands, but nobody has three hours for hundreds of criteria: score 61 questions in about an hour and get the same pillar results, peer benchmark and Board report.</p>
-          <span class="pending">Format: 61 questions across 8 pillars, each scored 1 to 5 against level statements; opens in your browser, with nothing to install. One price worldwide.</span>
-          <details class="more">
-            <summary>What's inside</summary>
-            <div class="more-body">The same 61 questions, 8 pillars, weighting and five-level scale as the Professional Edition, without the detailed Yes/No criteria. You pick the level that best describes your organisation for each question. You get an overall score, a score for each pillar against the peer benchmark of NGOs and non-profits, the four questions every Board should be able to answer, your five most significant risks with a first step and suggested owner, an action plan and a year-on-year view. It is a self-rating; when you need evidence behind each score, the Professional Edition adds about 660 criteria to the same questions and opens the scores you have already entered.</div>
-          </details>
-        </div>
-        <div class="buy"><span class="price">$49</span><a href="https://sunilfca.gumroad.com/l/governance-61?utm_source=website&amp;utm_medium=site&amp;utm_campaign=toolkits">Buy on Gumroad</a></div>
+        <div class="buy"><span class="price">$300</span><a href="https://sunilfca.gumroad.com/l/FCRAComplianceAssessmentToolkit?utm_source=website&amp;utm_medium=site&amp;utm_campaign=toolkits">Buy on Gumroad</a><a class="alt-link" href="fcra-compliance-toolkit.html">Full details</a><a class="alt-link" href="/fcra-compliance-sample-report.pdf">Sample report</a></div>
       </div>
 
       <div class="item">
         <div class="info">
-          <h4>Enterprise Risk Management Assessment Toolkit</h4>
-          <p>Your Board asks which risks could stop the organisation, and the answer sits in people's heads: score how well you manage risk and build a working register the Board can review.</p>
-          <span class="pending">Format: 42 questions across 8 pillars, scored 1&ndash;5 in about 45 minutes (462 optional evidence criteria); 18-tab Excel workbook (Excel 2016+, no macros). For organisations in any country. 2026&ndash;27 edition, updated every year.</span>
+          <h4>DPDP Act Toolkit for NGOs</h4>
+          <p>Your donor and beneficiary lists hold personal data and nobody can say what the DPDP Act asks of you: find the gaps to close before the duties apply.</p>
+          <p class="for"><b>Who this is for:</b> Indian NGOs, trusts and foundations that hold donor, beneficiary or staff data. India only (DPDP Act 2023).</p>
+          <span class="pending">Format: Excel workbook, automated scoring.</span>
           <details class="more">
             <summary>What's inside</summary>
-            <div class="more-body">A risk-management maturity score for the whole organisation (risk governance, appetite, assessment and monitoring, financial and funding risk, legal, regulatory and donor compliance, internal control, operations and partners, resilience), plus the working tools to act on it: a 100-row risk register scored before and after controls and compared with your Board&rsquo;s risk appetite, a library of 50 typical risks for social-sector organisations, a compliance obligations register, a 30-point key-controls check, an incident log, heat maps, a dashboard with your top 10 risks, an automatic Board summary and an action tracker. Educational self-assessment only; not an audit or professional advice.</div>
+            <div class="more-body">India's DPDP Act shifts data-protection accountability onto the board and management, not just IT — and most NGOs and small organisations have no structured way to demonstrate compliance if asked. This toolkit walks you through the Act's actual requirements as an automated Excel assessment: answer the questions, and it scores your current compliance position and flags the specific gaps to close, rather than leaving you to interpret the law yourself. A practical, low-friction way to establish a structured view of your current DPDP compliance position and identify the gaps that need attention.</div>
           </details>
         </div>
-        <div class="buy"><span class="price">$49</span><a href="https://sunilfca.gumroad.com/l/erm-toolkit?utm_source=website&amp;utm_medium=site&amp;utm_campaign=toolkits">Buy on Gumroad</a></div>
+        <div class="buy"><span class="price">$100</span><a href="https://sunilfca.gumroad.com/l/DPDPCompliance?utm_source=website&amp;utm_medium=site&amp;utm_campaign=toolkits">Buy on Gumroad</a><a class="alt-link" href="dpdp-compliance-ngos.html">Full details</a><a class="alt-link" href="/dpdp-sample-report.pdf">Sample report</a></div>
       </div>
 
     </div>
@@ -1497,12 +1505,13 @@ footer .disclaimer{margin:0; max-width:80ch;}
         <div class="info">
           <h4>FCRA and Data Protection Compliance Bundle <span class="flag">Best value</span></h4>
           <p>You hold FCRA registration and personal data, and both need checking before the next audit: check all three with the same method, for less than buying them separately.</p>
+          <p class="for"><b>Who this is for:</b> Indian NGOs with FCRA registration that also hold personal data of donors, beneficiaries or staff.</p>
           <details class="more">
             <summary>Who it's for</summary>
             <div class="more-body">For organisations that want to look at more than one compliance area with the same method, rather than a patchwork of separate checks. FCRA compliance, FCRA governance and data protection overlap — the same processes, controls, evidence and owners sit underneath all three — and assessing them together makes those connections visible. Useful for periodic compliance reviews, board-level assessments, audit preparation, and following up on gaps found earlier. Each toolkit is also available separately above. For a wider read on the whole institution, see the Institutional Governance Toolkit, Professional Edition.</div>
           </details>
         </div>
-        <div class="buy"><span class="price">$399</span><a href="https://sunilfca.gumroad.com/l/ComplianceToolkitsBundle?utm_source=website&amp;utm_medium=site&amp;utm_campaign=toolkits">Buy on Gumroad</a></div>
+        <div class="buy"><span class="price">$399</span><a href="https://sunilfca.gumroad.com/l/ComplianceToolkitsBundle?utm_source=website&amp;utm_medium=site&amp;utm_campaign=toolkits">Buy on Gumroad</a><a class="alt-link" href="/fcra-compliance-sample-report.pdf">Sample: FCRA Compliance</a><a class="alt-link" href="/fcra-governance-sample-report.pdf">Sample: Board Oversight</a><a class="alt-link" href="/dpdp-sample-report.pdf">Sample: DPDP</a></div>
       </div>
     </div>
     <div class="quote-block" style="margin-top:32px;">
@@ -1522,6 +1531,7 @@ footer .disclaimer{margin:0; max-width:80ch;}
         <div class="info">
           <h4>FC-4 Annual Return Readiness Pack (2025-26, 2026 Rules)</h4>
           <p>Your FC-4 is due by 31 December and the 2026 Rules have added disclosures nobody collected during the year: gather them, check them and get the return reviewed and filed in time.</p>
+          <p class="for"><b>Who this is for:</b> Finance heads and CFOs of Indian NGOs filing FC-4 for 2025-26, and the CAs who review it. India only.</p>
           <span class="pending">Format: web app (Chrome, Edge, Safari or Firefox). 12-month licence, one organisation, up to 3 devices.</span>
           <details class="more">
             <summary>What's inside</summary>
@@ -1535,6 +1545,7 @@ footer .disclaimer{margin:0; max-width:80ch;}
         <div class="info">
           <h4>Funding Shock Early-Warning Sheet</h4>
           <p>The audit is clean, then someone asks whether one donor funds more than 35% of this year's income and nobody knows: see donor dependency, reserve cover and cash runway on one page, every quarter.</p>
+          <p class="for"><b>Who this is for:</b> CEOs, CFOs and treasurers of donor-funded nonprofits in any country. One shock test (FCRA suspension) applies only in India.</p>
           <span class="pending">Format: web app (Chrome, Edge, Safari or Firefox). 12-month licence, one organisation, up to 3 devices.</span>
           <details class="more">
             <summary>What's inside</summary>

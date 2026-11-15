@@ -314,6 +314,15 @@ footer .disclaimer{margin:0; max-width:80ch;}
 .fe-terms dt{font-weight:600;margin-top:10px;} .fe-terms dd{margin:2px 0 0;}
 @media (max-width:700px){.fe-next{grid-template-columns:1fr;}.fe-tbl .hide-s{display:none;}}
 @media print{.fe-org,.fe-dates,.fe-actions,.fe-noprint{display:none!important;}.fe-rating,.fe-crit{-webkit-print-color-adjust:exact;print-color-adjust:exact;}.fe-tbl{font-size:.8rem;}}
+.ns-box{border:1px solid #C9A35A;border-left:4px solid #C9A35A;border-radius:6px;padding:18px 20px;margin:26px 0;background:#FBF8F1;}
+.ns-box .ns-k{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:#6E5527;margin:0 0 6px;font-weight:600;}
+.ns-box h3{margin:0 0 8px;font-size:1.1rem;}
+.ns-box p{margin:0 0 10px;}
+.ns-box .ns-for{font-size:.92rem;color:#3A4250;}
+.ns-box .ns-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:12px;}
+.ns-box .ns-row .btn small{opacity:.8;margin-left:6px;}
+.ns-box .ns-alt{font-size:.9rem;margin-top:12px;color:#3A4250;}
+@media print{.ns-box{display:none!important;}}
 </style>
 </head>
 <body>
@@ -367,9 +376,7 @@ footer .disclaimer{margin:0; max-width:80ch;}
       <p class="qa-extra">Every check answered No or Partly, critical ones first. Print it and add an owner and a target date for each.</p>
       <div id="fe-plan"></div>
       <div class="fe-actions"><button type="button" class="btn primary" id="fe-print">Print or save as PDF</button><button type="button" class="btn" id="fe-csv">Download action plan (CSV)</button><button type="button" class="btn" id="fe-edit">Change my answers</button></div>
-      <div class="qa-note fe-noprint"><p><b>Filing FC-4 by 31 December?</b> Turn the FC-4 gaps above into a dated plan with the FC-4 Annual Return Readiness Pack: 33 checks with owners, the activity table, the 20% test and a one-page Board summary.</p>
-        <p><a class="btn primary" href="https://sunilfca.gumroad.com/l/fc4-readiness-pack?utm_source=website&amp;utm_medium=site&amp;utm_campaign=fcra-essentials-results">Get the FC-4 Readiness Pack ($29)</a></p></div>
-      <div class="qa-note"><p><b>Want the full picture?</b> These 50 checks cover the essential compliance points. The full <a href="/fcra-compliance-toolkit.html">FCRA Compliance Assessment Toolkit</a> (180 questions, 1,800 evidence-based criteria, registers for FC-6F, key functionaries and ultimate donors, Board and assurance reports) and the <a href="/fcra-governance-assessment-toolkit.html">FCRA Governance Assessment Toolkit</a> (Board-level oversight) go deeper.</p></div>
+      <div class="ns-box fe-noprint" id="fe-next" hidden></div>
       <div class="qa-note fe-noprint role-ask" id="role-ask"><p><b>Your role, in one click?</b> Optional and anonymous. It only tells me who uses this check, so I can write the next guides for you.</p>
         <div class="role-chips"><button type="button" class="role-chip" data-role="board">Board or trustee</button><button type="button" class="role-chip" data-role="ceo">CEO</button><button type="button" class="role-chip" data-role="cfo">CFO or finance head</button><button type="button" class="role-chip" data-role="compliance">Compliance or accounts</button><button type="button" class="role-chip" data-role="adviser">CA or adviser</button><button type="button" class="role-chip" data-role="other">Other</button></div>
         <p class="qa-extra role-thanks" hidden>Thank you. Noted.</p></div>
@@ -523,6 +530,37 @@ var PTS={'Yes':1,'Partly':.5,'No':0};
 function band(p){return p>=.9?'g':p>=.7?'a':'r';}
 function pct(p){return Math.round(p*100)+'%';}
 function gaps(){return FE.checks.filter(function(c){var v=st.a[c.id];return v==='No'||v==='Partly';}).sort(function(x,y){return (y.c-x.c);});}
+function nextStep(){
+  var box=document.getElementById('fe-next'); if(!box)return;
+  var U='?utm_source=website&amp;utm_medium=site&amp;utm_campaign=fcra-essentials-next-step';
+  var by={},g=gaps(); g.forEach(function(c){by[c.a]=(by[c.a]||0)+1;});
+  var comp=0,gov=by.G||0; ['A','B','C','D','E','F'].forEach(function(k){comp+=by[k]||0;});
+  var nm={}; FE.areas.forEach(function(a){nm[a.k]=a.n;});
+  var top=Object.keys(by).sort(function(x,y){return by[y]-by[x];}).slice(0,2).map(function(k){return '<b>'+esc(nm[k])+'</b> ('+by[k]+')';});
+  var gc=function(n){return n+' gap'+(n===1?'':'s');};
+  var o;
+  if(!g.length){
+    o={k:'fcra-governance',h:'Your essentials are in place. The next question is Board oversight.',
+      why:'None of the checks you answered shows a gap. What a funder or inspector tests next is whether your Board can show it oversees FCRA: approvals, controls and evidence in the minutes.',
+      name:'FCRA Board Oversight Toolkit',price:'$99',page:'/fcra-governance-assessment-toolkit.html',sample:'/fcra-governance-sample-report.pdf',
+      who:'For Board members, CEOs and CFOs of FCRA-registered organisations who need to show, not just say, that the Board oversees foreign contribution.'};
+  } else if(gov>0 && gov/8>=comp/42){
+    o={k:'fcra-governance',h:'Your gaps are mostly in oversight.',
+      why:'Your result shows '+gc(g.length)+', most in '+top.join(' and ')+'. These 50 checks only touch Board oversight. The FCRA Board Oversight Toolkit tests it properly: 6 pillars, 40 questions and 411 evidence criteria, with a Board report.',
+      name:'FCRA Board Oversight Toolkit',price:'$99',page:'/fcra-governance-assessment-toolkit.html',sample:'/fcra-governance-sample-report.pdf',
+      who:'For Board members, CEOs and CFOs of FCRA-registered organisations who need to show, not just say, that the Board oversees foreign contribution.'};
+  } else {
+    o={k:'fcra-compliance',h:'Close the gaps this check found, with evidence behind each one.',
+      why:'Your result shows '+gc(g.length)+', most in '+top.join(' and ')+'. These 50 checks tell you where you stand. The FCRA Compliance Toolkit goes into each area in depth: 180 questions and 1,800 evidence criteria across every function, registers for FC-6F, key functionaries and ultimate donors, and Board and assurance reports.',
+      name:'FCRA Compliance Toolkit',price:'$300',page:'/fcra-compliance-toolkit.html',sample:'/fcra-compliance-sample-report.pdf',
+      who:'For CFOs, finance heads and compliance teams of Indian NGOs, trusts and foundations that receive foreign contribution.'};
+  }
+  var h='<p class="ns-k">Your next step</p><h3>'+o.h+'</h3><p>'+o.why+'</p><p class="ns-for">'+o.who+'</p>'+
+    '<div class="ns-row"><a class="btn primary" href="'+o.page+'">See the '+o.name+'<small>'+o.price+'</small></a><a href="'+o.sample+'">See a sample report first (free PDF)</a></div>';
+  if(comp>0&&gov>0)h+='<p class="ns-alt">Gaps in both compliance and oversight? The <a href="/toolkits.html#bundle">FCRA and Data Protection Compliance Bundle</a> has the Compliance Toolkit, the Board Oversight Toolkit and the DPDP Toolkit for $399.</p>';
+  box.innerHTML=h; box.hidden=false;
+  track('next_step_shown',{check:'fcra-essentials',offer:o.k,gaps:g.length});
+}
 function results(){
   var tp=0,tn=0,ans=0;
   FE.checks.forEach(function(c){var v=st.a[c.id];if(v)ans++;if(v in PTS){tp+=PTS[v];tn++;}});
@@ -554,6 +592,7 @@ function results(){
   }
   document.getElementById('fe-critical').innerHTML=tbl(crit,false);
   document.getElementById('fe-plan').innerHTML=tbl(gaps(),true);
+  nextStep();
   document.getElementById('fe-porg').textContent=st.org||'Organisation';
   document.getElementById('qa-date').textContent=today.toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
   document.getElementById('qa').hidden=true;
