@@ -24,7 +24,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/site.css">
+<link rel="stylesheet" href="site.css">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebApplication","name":"Return on Effort Practice Tool","applicationCategory":"LifestyleApplication","operatingSystem":"Any (web browser)","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Person","name":"CA Sunil Kumar, FCA","url":"https://sunilkumarfca.com/about.html"},"url":"https://sunilkumarfca.com/return-on-effort-tool.html","description":"Free practice tool based on the book Optimise Your Return on Effort: priorities, SROE decision test, effort audit and 10-Year Adequacy Test."}
 </script>
@@ -113,9 +113,10 @@ details.settings input{width:80px;}
 
 <section class="page-head">
   <div class="wrap">
-    <span class="eyebrow">Free practice tool · From the book Optimise Your Return on Effort</span>
+    <span class="eyebrow">Free practice tool for individuals · From the book Optimise Your Return on Effort</span>
     <h1>Where should your effort go?</h1>
     <p>Ideas are of little value unless we can use them in practical life. This free tool turns the book's SROE (Strategic Return on Effort) framework into five simple steps. You answer; the tool scores, flags and summarises. About 30 minutes the first time, 15 minutes for a later review.</p>
+    <p class="note" style="margin-top:10px;">Use it for a life or career decision, for your spare time, or for spending and saving choices. Deciding for an NGO or organisation? Use the <a href="/return-on-effort-tool-organisations.html">organisation version</a>.</p>
     <p class="note" style="margin-top:10px;"><strong>Return on Effort = Value Created ÷ Total Effort Invested.</strong> Your answers stay in this browser on your device. Nothing is sent anywhere.</p>
   </div>
 </section>
@@ -154,12 +155,25 @@ details.settings input{width:80px;}
     <div class="roe-step" id="s2">
       <h2>Step 2: SROE decision test</h2>
       <p class="sub">Does the complete exchange make sense? Not whether an option looks attractive, but what it creates, what it costs and what it displaces. Always include "do nothing" or "delay" as one option.</p>
+      <label class="q" for="f_mode">What kind of decision is this?</label>
+      <select id="f_mode" data-k="mode">
+        <option value="life">A life or career decision</option>
+        <option value="time">Where to put my spare time</option>
+        <option value="money">How to use my money (spending and saving choices)</option>
+      </select>
+      <p class="note" id="modeNote"></p>
       <div id="decTop"></div>
       <h3>Compare up to three options</h3>
       <p class="swipe">Swipe the table sideways to see all three options.</p>
       <div class="scroll"><table class="grid-t" id="decT"></table></div>
       <h3>Result</h3>
       <div class="cards" id="decRes"></div>
+      <div id="allocBox" hidden>
+        <h3>Allocation check: is my <span id="unitWord">time</span> going where the value is?</h3>
+        <p class="sub">Enter what you put into each option today. The tool compares your share of <span class="unitWord2">time</span> with each option's share of value.</p>
+        <div class="scroll"><table class="grid-t" id="allocT"></table></div>
+        <p class="note">Give it more = its share of value is at least 10 points higher than its share of your <span class="unitWord2">time</span>. Give it less = 10 points lower, or its SROE profile is Low. These are prompts to think, not rules.</p>
+      </div>
       <details class="settings"><summary>Scoring settings (you may change)</summary>
         <p>Value = Return × <input type="number" step="0.05" min="0" max="1" id="w_r"> + Strategic fit × <input type="number" step="0.05" min="0" max="1" id="w_f"> + Optionality × <input type="number" step="0.05" min="0" max="1" id="w_o"></p>
         <p>Cost = Effort × <input type="number" step="0.05" min="0" max="1" id="w_e"> + Risk × <input type="number" step="0.05" min="0" max="1" id="w_k"></p>
@@ -265,7 +279,8 @@ details.settings input{width:80px;}
     </div>
     <div class="footer-links">
       <h4>Free tools</h4>
-      <a href="/return-on-effort-tool.html">Return on Effort tool</a>
+      <a href="/return-on-effort-tool.html">Return on Effort tool (individuals)</a>
+      <a href="/return-on-effort-tool-organisations.html">Return on Effort tool (organisations)</a>
       <a href="/governance-quick-assessment.html">Governance quick assessment</a>
     </div>
   </div>
@@ -281,6 +296,18 @@ var KEY='sroe-tool-v1';
 var AREAS=['Health','Financial security','Career','Family','Relationships','Learning','Freedom','Happiness','Purpose','Contribution','Personal growth','Time'];
 var PROFILE=[['p1','What matters most to me now?'],['p2','What gives me energy?'],['p3','What drains me?'],['p4','What am I good at?'],['p5','What do I need to improve?'],['p6','What am I unwilling to sacrifice?'],['p7','What would "enough" look like for me?']];
 var DEC=[['d_q','What decision am I actually making?','text'],['d_h','Time horizon','text'],['d_f','What I know (facts)','area'],['d_a','What I am assuming','area'],['d_r','What would make me review or reverse this?','area'],['d_date','Review date','date']];
+var MODES={
+ life:{note:'For a career move, a big commitment or any choice between paths.',unit:null,w:{w_r:0.5,w_f:0.3,w_o:0.2,w_e:0.6,w_k:0.4},ph:['e.g. Take the new job','e.g. Do an MBA','e.g. Do nothing / delay'],
+  ret:['Money (income, savings, wealth)','Career (experience, reputation, growth)','Health (physical and mental)','Relationships (family, friends, network)','Time and freedom','Learning and capability','Meaning and contribution','Future options it opens'],
+  eff:['Time it needs','Energy it needs','Attention it needs','Money it needs','Emotional strain','What it displaces (the best thing I give up)']},
+ time:{note:'For choices about evenings, weekends and spare hours: a course, a side project, fitness, family, community work.',unit:'Hours per week',unitWord:'time',w:{w_r:0.5,w_f:0.3,w_o:0.2,w_e:0.7,w_k:0.3},ph:['e.g. Evening course','e.g. Side project','e.g. Fitness and family time'],
+  ret:['Money (income now or later)','Career (experience, reputation, growth)','Health (physical and mental)','Relationships (family, friends, network)','Rest, joy and freedom','Learning and capability','Meaning and contribution','Future options it opens'],
+  eff:['Hours it needs each week','Energy it needs','Attention it needs','Money it needs','Emotional strain','What it displaces (the best thing I give up)']},
+ money:{note:'For spending and saving choices, such as an emergency fund, a course, a family need or a home upgrade. This is general thinking about allocation, not investment advice. Speak to a qualified adviser before you invest.',unit:'Amount per month',unitWord:'money',w:{w_r:0.4,w_f:0.3,w_o:0.3,w_e:0.4,w_k:0.6},ph:['e.g. Emergency fund','e.g. Upskilling course','e.g. Family holiday'],
+  ret:['Financial security (safety net)','Future financial strength','Health (physical and mental)','Family and relationships','Time and freedom it buys','Learning and capability','Meaning and giving','Future options it opens'],
+  eff:['Amount it needs','Recurring commitment (EMIs, subscriptions)','Effort to manage it','Worry or emotional strain','Lock-in (hard to get the money back)','What it displaces (the best other use of this money)']}
+};
+function MODE(){return MODES[S.mode]||MODES.life;}
 var RET=['Money (income, savings, wealth)','Career (experience, reputation, growth)','Health (physical and mental)','Relationships (family, friends, network)','Time and freedom','Learning and capability','Meaning and contribution','Future options it opens'];
 var EFF=['Time it needs','Energy it needs','Attention it needs','Money it needs','Emotional strain','What it displaces (the best thing I give up)'];
 var CC=['Skills: are they current and valued?','Experience: varied, not the same year repeated','Reputation: what people say when I am not in the room','Relationships inside and outside my organisation','Adaptability: can I change when things change?','Low dependence on one employer','Transferability: do my skills travel to other roles and sectors?','Future options I could move to'];
@@ -293,7 +320,7 @@ var MOVES={'Stop':'Low value. Stop it; if you cannot, redesign it (for example, 
 var DEF_SET={w_r:0.5,w_f:0.3,w_o:0.2,w_e:0.6,w_k:0.4,t_hi:1.3,t_lo:0.9};
 
 var S={}; // state: flat key -> value; acts array
-function load(){try{S=JSON.parse(localStorage.getItem(KEY)||'{}')||{};}catch(e){S={};} if(!S.acts)S.acts=[{},{},{}];}
+function load(){try{S=JSON.parse(localStorage.getItem(KEY)||'{}')||{};}catch(e){S={};} if(!S.acts)S.acts=[{},{},{}];if(!S.mode)S.mode='life';}
 var tracked=false;
 function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){} if(!tracked){tracked=true;if(typeof gtag==='function')gtag('event','roe_tool_used',{tool:'return_on_effort'});}}
 function num(v){return (v===''||v===undefined||v===null||isNaN(+v))?null:+v;}
@@ -302,7 +329,7 @@ function sel(k,opts,blank){var s=el('select',k?{'data-k':k,'aria-label':k}:null)
 function rng(a,b){var r=[];for(var i=a;i<=b;i++)r.push(String(i));return r;}
 function textArea(k,label,parent){var id='f_'+k;parent.appendChild(el('label',{'class':'q','for':id},label));var t=el('textarea',{id:id,'data-k':k});parent.appendChild(t);}
 function tag(txt,cls){var s=el('span',{'class':'tag '+(cls||'')},txt);return s;}
-function cls(v){return {'High':'good','Medium':'mid','Low':'bad','Adequate':'good','At risk':'mid','Inadequate':'bad','Strong':'good','Fair':'mid','Fragile':'mid','Weak':'bad','Protect':'good','Strengthen':'mid','Change':'bad','Underfunded: act now':'bad','Strong: protect it':'good','Needs some attention':'mid','Under-invested':'bad','Over-invested':'mid','In line':'good'}[v]||'';}
+function cls(v){return {'High':'good','Medium':'mid','Low':'bad','Adequate':'good','At risk':'mid','Inadequate':'bad','Strong':'good','Fair':'mid','Fragile':'mid','Weak':'bad','Protect':'good','Strengthen':'mid','Change':'bad','Underfunded: act now':'bad','Strong: protect it':'good','Needs some attention':'mid','Under-invested':'bad','Over-invested':'mid','In line':'good','Give it more':'good','About right':'mid','Give it less':'bad'}[v]||'';}
 
 // ---------- build static UI
 function build(){
@@ -318,13 +345,13 @@ function build(){
   var T=document.getElementById('decT');
   var hr=el('tr');hr.appendChild(el('th',null,''));[1,2,3].forEach(function(n){hr.appendChild(el('th',{'class':'c'},'Option '+n));});T.appendChild(el('thead')).appendChild(hr);
   var body=el('tbody');T.appendChild(body);
-  function row(label,maker,clsn){var tr=el('tr',clsn?{'class':clsn}:null);tr.appendChild(el('td',null,label));[0,1,2].forEach(function(j){var td=el('td',{'class':'c'});if(maker)td.appendChild(maker(j));tr.appendChild(td);});body.appendChild(tr);return tr;}
+  function row(label,maker,clsn,lid){var tr=el('tr',clsn?{'class':clsn}:null);tr.appendChild(el('td',lid?{id:lid}:null,label));[0,1,2].forEach(function(j){var td=el('td',{'class':'c'});if(maker)td.appendChild(maker(j));tr.appendChild(td);});body.appendChild(tr);return tr;}
   row('Option name',function(j){return el('input',{type:'text','data-k':'o'+j+'_name',placeholder:j===2?'e.g. Do nothing / delay':'Option '+(j+1),'aria-label':'Option '+(j+1)+' name'});});
   row('What will it create? (0 = nothing, 5 = a lot)',null,'band');
-  RET.forEach(function(r,i){row(r,function(j){return sel('o'+j+'_r'+i,rng(0,5));});});
+  RET.forEach(function(r,i){row(r,function(j){return sel('o'+j+'_r'+i,rng(0,5));},null,'lbl_r'+i);});
   row('Return score',function(j){return el('span',{id:'o'+j+'_ret'});},'total');
   row('What will it cost me? (1 = very light, 5 = very heavy)',null,'band');
-  EFF.forEach(function(r,i){row(r,function(j){return sel('o'+j+'_e'+i,rng(1,5));});});
+  EFF.forEach(function(r,i){row(r,function(j){return sel('o'+j+'_e'+i,rng(1,5));},null,'lbl_e'+i);});
   row('Effort score',function(j){return el('span',{id:'o'+j+'_eff'});},'total');
   row('Risk and reversibility',null,'band');
   row('How bad is the downside if it goes wrong? (1-5)',function(j){return sel('o'+j+'_down',rng(1,5));});
@@ -401,7 +428,8 @@ function calc(){
   R.top=ranked.slice(0,3).map(function(r){return r.a;});R.under=rows.filter(function(r){return r.sig==='Underfunded: act now';}).length;R.rows=rows;
   var t3=document.getElementById('top3');t3.innerHTML='';[0,1,2].forEach(function(i){card(t3,'Priority '+(i+1),R.top[i]||'');});card(t3,'Areas flagged underfunded',ranked.length?String(R.under):'');
   // step 2
-  var st={};Object.keys(DEF_SET).forEach(function(k){var v=num(S[k]);st[k]=v===null?DEF_SET[k]:v;});
+  var md=MODE(),dflt=Object.assign({},DEF_SET,md.w);var st={};Object.keys(DEF_SET).forEach(function(k){var v=num(S[k]);st[k]=v===null?dflt[k]:v;});
+  applyMode(md,dflt);
   var wok=Math.abs(st.w_r+st.w_f+st.w_o-1)<1e-6&&Math.abs(st.w_e+st.w_k-1)<1e-6;
   document.getElementById('wcheck').textContent=wok?'Weights OK.':'Check: value weights and cost weights must each add to 1.';
   R.opts=[0,1,2].map(function(j){
@@ -427,6 +455,16 @@ function calc(){
   R.opts.forEach(function(o){if(!o.prof)return;var d=el('div',{'class':'card'});d.appendChild(el('span',{'class':'k'},o.name));var v=el('span',{'class':'v sm'});v.appendChild(tag(o.prof,cls(o.prof)));v.appendChild(document.createTextNode(' ratio '+fmt(o.ratio,2)));d.appendChild(v);d.appendChild(el('p',{style:'margin:8px 0 0;font-size:.9rem'},o.next));if(o.caution)d.appendChild(el('p',{style:'margin:6px 0 0;font-size:.85rem;color:#7A2614'},o.caution));dr.appendChild(d);});
   if(best)card(dr,'Option with the best SROE profile',best.name,null,true);
   if(!dr.children.length)dr.appendChild(el('p',{'class':'note'},'Fill in at least three "create" scores, the cost, risk and fit rows for an option to see its result.'));
+  var ab=document.getElementById('allocBox');ab.hidden=!md.unit;
+  if(md.unit){
+    var amts=[0,1,2].map(function(j){return num(S['o'+j+'_amt']);});
+    var totA=amts.reduce(function(a,b){return a+(b||0);},0);
+    var totV=R.opts.reduce(function(a,o){return a+(o.val||0);},0);
+    [0,1,2].forEach(function(j){var o=R.opts[j];var a=amts[j];
+      var sa=(totA&&a!==null)?a/totA:null, sv2=(totV&&o.val!==null)?o.val/totV:null;
+      var sig='';if(sa!==null&&sv2!==null){sig=(o.prof==='Low'&&a>0)?'Give it less':(sv2-sa>=0.10)?'Give it more':(sa-sv2>=0.10)?'Give it less':'About right';}
+      setv('al_n'+j,o.name);setv('al_sa'+j,sa===null?'–':pct(sa));setv('al_sv'+j,sv2===null?'–':pct(sv2));setv('al_s'+j,sig,true);});
+  }
   // step 3
   var tot=0,free=0,hand=0,drain=0,sv=0,mix={Maintenance:0,Growth:0,Exploration:0,Recovery:0},byArea={};
   S.acts.forEach(function(a,i){var h=num(a.h)||0;var m=move(a);var out=document.getElementById('actout'+i);
@@ -467,11 +505,24 @@ function calc(){
   var bars=document.getElementById('bars');bars.innerHTML='';rows.forEach(function(r){var b=el('div',{'class':'b'});b.appendChild(el('span',null,r.a));var tr=el('div',{'class':'track'});var i1=el('div',{'class':'imp'});i1.style.width=((r.imp||0)*20)+'%';var i2=el('div',{'class':'now'});i2.style.width=((r.now||0)*20)+'%';tr.appendChild(i1);tr.appendChild(i2);b.appendChild(tr);bars.appendChild(b);});
 }
 
+function applyMode(md,dflt){
+  md.ret.forEach(function(t,i){var n=document.getElementById('lbl_r'+i);if(n&&n.textContent!==t)n.textContent=t;});
+  md.eff.forEach(function(t,i){var n=document.getElementById('lbl_e'+i);if(n&&n.textContent!==t)n.textContent=t;});
+  document.getElementById('modeNote').textContent=md.note;
+  [0,1,2].forEach(function(j){var n=document.querySelector('[data-k="o'+j+'_name"]');if(n)n.placeholder=md.ph[j];});
+  Object.keys(DEF_SET).forEach(function(k){var n=document.getElementById(k);if(n&&(S[k]===undefined||S[k]===''))n.value=dflt[k];});
+  if(md.unit){document.getElementById('unitWord').textContent=md.unitWord;document.querySelectorAll('.unitWord2').forEach(function(x){x.textContent=md.unitWord;});
+    var h=document.getElementById('al_h');if(h)h.textContent=md.unit;}
+}
+function buildAlloc(){var t=document.getElementById('allocT');
+  t.innerHTML='<thead><tr><th>Option</th><th class="c" id="al_h">Amount</th><th class="c">Share of my resource</th><th class="c">Share of value</th><th>Signal</th></tr></thead>';
+  var b=el('tbody');[0,1,2].forEach(function(j){var tr=el('tr');tr.appendChild(el('td',{id:'al_n'+j}));var td=el('td',{'class':'c'});td.appendChild(el('input',{type:'number',min:'0',step:'any','data-k':'o'+j+'_amt','aria-label':'Current amount for option '+(j+1),style:'width:110px'}));tr.appendChild(td);
+    tr.appendChild(el('td',{'class':'c',id:'al_sa'+j}));tr.appendChild(el('td',{'class':'c',id:'al_sv'+j}));tr.appendChild(el('td',{id:'al_s'+j}));b.appendChild(tr);});t.appendChild(b);}
 // ---------- binding
 function bindAll(){
   document.querySelectorAll('[data-k]').forEach(function(n){var k=n.getAttribute('data-k');
     if(DEF_SET.hasOwnProperty(k)&&(S[k]===undefined||S[k]===''))n.value=DEF_SET[k];else n.value=S[k]===undefined?'':S[k];
-    n.addEventListener(n.tagName==='SELECT'||n.type==='date'?'change':'input',function(){S[k]=n.value;save();calc();});});
+    n.addEventListener(n.tagName==='SELECT'||n.type==='date'?'change':'input',function(){S[k]=n.value;if(k==='mode'){Object.keys(DEF_SET).forEach(function(w){delete S[w];});}save();calc();});});
 }
 function refill(){document.querySelectorAll('[data-k]').forEach(function(n){var k=n.getAttribute('data-k');n.value=(DEF_SET.hasOwnProperty(k)&&(S[k]===undefined||S[k]===''))?DEF_SET[k]:(S[k]===undefined?'':S[k]);});buildActs();calc();}
 
@@ -506,13 +557,13 @@ document.getElementById('prevBtn').addEventListener('click',function(){if(cur>1)
 document.getElementById('nextBtn').addEventListener('click',function(){if(cur<5)go(cur+1);});
 function doPrint(){if(typeof gtag==='function')gtag('event','roe_tool_print',{tool:'return_on_effort'});window.print();}
 document.getElementById('printBtn').addEventListener('click',doPrint);document.getElementById('printBtn2').addEventListener('click',doPrint);
-document.getElementById('loadEx').addEventListener('click',function(){var has=Object.keys(S).some(function(k){return k!=='acts'&&S[k]!=='';})||S.acts.some(function(a){return a.n;});if(has&&!confirm('Replace your answers with the worked example?'))return;S=example();save();refill();if(typeof gtag==='function')gtag('event','roe_tool_example',{tool:'return_on_effort'});});
-document.getElementById('clearBtn').addEventListener('click',function(){if(!confirm('Clear all your answers?'))return;S={acts:[{},{},{}]};try{localStorage.removeItem(KEY);}catch(e){}refill();});
+document.getElementById('loadEx').addEventListener('click',function(){var has=Object.keys(S).some(function(k){return k!=='acts'&&S[k]!=='';})||S.acts.some(function(a){return a.n;});if(has&&!confirm('Replace your answers with the worked example?'))return;S=example();S.mode='life';save();refill();if(typeof gtag==='function')gtag('event','roe_tool_example',{tool:'return_on_effort'});});
+document.getElementById('clearBtn').addEventListener('click',function(){if(!confirm('Clear all your answers?'))return;S={acts:[{},{},{}],mode:'life'};try{localStorage.removeItem(KEY);}catch(e){}refill();});
 document.getElementById('addAct').addEventListener('click',function(){if(S.acts.length>=25)return;S.acts.push({});save();buildActs();calc();var a=document.querySelectorAll('#acts .act');var last=a[a.length-1];if(last)last.querySelector('input').focus();});
 window.addEventListener('beforeprint',function(){document.querySelectorAll('.roe-step').forEach(function(s){s.classList.add('on');});});
 window.addEventListener('afterprint',function(){show(cur);});
 
-load();build();bindAll();buildActs();calc();show(1);
+load();build();buildAlloc();bindAll();buildActs();calc();show(1);
 })();
 </script>
 </body>
