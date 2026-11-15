@@ -40,6 +40,10 @@
 .roe .sub{color:var(--slate); max-width:66ch; margin:0 0 18px;}
 .roe label.q{display:block; font-weight:500; font-size:.95rem; margin:14px 0 5px;}
 .roe textarea, .roe input[type=text], .roe input[type=number], .roe input[type=date], .roe select{font:inherit; font-size:.95rem; color:var(--ink); background:#fff; border:1px solid var(--line); border-radius:2px; padding:7px 9px; max-width:100%;}
+.roe .hint{margin:-2px 0 6px; font-size:.86rem; color:var(--slate); max-width:66ch;}
+.roe select[id^="f_"]{width:100%; max-width:520px;}
+.roe textarea[data-other]{margin-top:6px;}
+.roe textarea.need{border-color:#B5532F; background:#FFF8F5;}
 .roe textarea{width:100%; min-height:54px; resize:vertical;}
 .roe input[type=text]{width:100%;}
 .roe select{padding:6px 4px;}
@@ -61,8 +65,8 @@
 .card .v{font-family:'Newsreader',Georgia,serif; font-size:1.3rem; display:block; margin-top:2px;}
 .card .v.sm{font-size:1.05rem;}
 .act{border:1px solid var(--line); background:#fff; padding:12px 14px; margin-bottom:10px;}
-.act .row1{display:grid; grid-template-columns:1fr 150px 90px; gap:8px;}
-.act .row2{display:grid; grid-template-columns:repeat(5,1fr); gap:8px; margin-top:8px;}
+.act .row1{display:grid; grid-template-columns:1fr 110px; gap:8px;}
+.act .row2{display:grid; grid-template-columns:repeat(2,1fr); gap:8px; margin-top:8px;}
 .act .row2 label, .act .row1 label{font-size:.75rem; color:var(--slate); display:block;}
 .act select, .act input{width:100%;}
 .act .out{margin-top:8px; font-size:.9rem;}
@@ -72,6 +76,25 @@
 .bars .imp, .bars .now{position:absolute; left:0; height:7px; border-radius:2px;}
 .bars .imp{top:0; background:var(--ink);} .bars .now{top:8px; background:var(--brass);}
 .legend{font-size:.8rem; color:var(--slate);}
+.view-switch{display:flex; gap:10px; flex-wrap:wrap; margin:0 0 26px;}
+.view-switch button{flex:1 1 240px; text-align:left; padding:12px 14px; border:1px solid var(--line); border-radius:2px; background:#fff; cursor:pointer; font:inherit; color:var(--ink);}
+.view-switch button[aria-pressed="true"]{border-color:var(--ink); box-shadow:inset 0 0 0 1px var(--ink); background:var(--paper-raised);}
+.view-switch b{display:block; font-size:1rem; font-weight:600;}
+.view-switch span{display:block; font-size:.85rem; color:var(--slate); margin-top:2px;}
+.qgrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(270px,1fr)); gap:14px; margin-top:16px;}
+.qopt{border:1px solid var(--line); background:#fff; padding:14px 16px;}
+.qq{margin:14px 0 6px; font-size:.92rem; font-weight:500;}
+.chips{display:flex; gap:6px; flex-wrap:wrap;}
+.chips button{min-height:38px; padding:6px 10px; border:1px solid var(--line); border-radius:2px; background:var(--paper); font:inherit; font-size:.86rem; cursor:pointer; color:var(--ink);}
+.chips button[aria-pressed="true"]{background:var(--ink); color:var(--paper); border-color:var(--ink);}
+.qnums{font-size:.85rem; color:var(--slate); margin:6px 0 0;}
+.qinsight{font-size:1.02rem; max-width:66ch;}
+.nf{font-family:inherit; font-size:.9rem; font-style:italic; color:var(--slate);}
+.deepnote{border-left:3px solid var(--brass); background:var(--paper-raised); padding:12px 16px; margin:22px 0;}
+.act details{margin-top:8px; font-size:.9rem;}
+.act details summary{cursor:pointer; color:var(--slate);}
+.act .row3{display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:8px; margin-top:8px;}
+.act .row3 label{font-size:.75rem; color:var(--slate); display:block;}
 .legend i{display:inline-block; width:12px; height:7px; margin:0 5px 0 12px; vertical-align:middle;}
 .btns{display:flex; gap:10px; flex-wrap:wrap; margin:20px 0;}
 .btn.sm{padding:9px 16px; font-size:.9rem; cursor:pointer; background:var(--paper); font-family:inherit;}
@@ -115,7 +138,7 @@ details.settings input{width:80px;}
   <div class="wrap">
     <span class="eyebrow">Free practice tool for individuals · From the book Optimise Your Return on Effort</span>
     <h1>Where should your effort go?</h1>
-    <p>Ideas are of little value unless we can use them in practical life. This free tool turns the book's SROE (Strategic Return on Effort) framework into five simple steps. You answer; the tool scores, flags and summarises. About 30 minutes the first time, 15 minutes for a later review.</p>
+    <p>Ideas are of little value unless we can use them in practical life. This free tool turns the book's SROE (Strategic Return on Effort) framework into practical steps. Start with a 2-minute quick check that gives you a result straight away. When you want the full picture, the deep dive takes about 30 minutes the first time and 15 minutes for a later review.</p>
     <p class="note" style="margin-top:10px;">Use it for a life or career decision, for your spare time, or for spending and saving choices. Deciding for an NGO or organisation? Use the <a href="/return-on-effort-tool-organisations.html">organisation version</a>.</p>
     <p class="note" style="margin-top:10px;"><strong>Return on Effort = Value Created ÷ Total Effort Invested.</strong> Your answers stay in this browser on your device. Nothing is sent anywhere.</p>
   </div>
@@ -129,10 +152,34 @@ details.settings input{width:80px;}
       <button class="btn sm" id="clearBtn" type="button">Clear my answers</button>
     </div>
 
+    <div class="view-switch noprint" role="group" aria-label="How much time do you have?">
+      <button type="button" data-view="quick" aria-pressed="true"><b>Quick check · 2 minutes</b><span>Compare two options with four quick questions each and see your result straight away.</span></button>
+      <button type="button" data-view="deep" aria-pressed="false"><b>Deep dive · 20 to 40 minutes</b><span>The full tool: what matters now, a detailed decision test, where your week goes, future readiness and a one-page summary.</span></button>
+    </div>
+
+    <!-- QUICK CHECK -->
+    <section id="quick">
+      <h2>Quick check: is it worth the effort?</h2>
+      <p class="sub">Think of a choice you are facing and two options. If waiting or doing nothing is a real option, use it as one of them. Tap one answer for each question.</p>
+      <label class="q" for="f_q_dec">The choice I am facing (optional)</label>
+      <input type="text" id="f_q_dec" data-k="q_dec" placeholder="e.g. Should I take the new job?">
+      <div class="qgrid" id="qOpts"></div>
+      <div class="btns noprint"><button class="btn sm" id="qAdd" type="button">+ Add a third option</button></div>
+      <h3>My result</h3>
+      <div class="cards" id="qRes"></div>
+      <p class="qinsight" id="qInsight"></p>
+      <div class="deepnote">
+        <p style="margin:0 0 8px;"><strong>What a 2-minute check cannot see.</strong> It does not weigh each kind of return separately (money, health, family, learning), the hidden costs, what you would give up, how sure you are, or whether you can undo it. The deep dive does, and it also looks at where your week actually goes.</p>
+        <button class="btn sm primary noprint" id="qDeep" type="button">Go deeper: continue in the full tool →</button>
+      </div>
+      <p class="note">How it works: value = good it does × 0.5 + fit × 0.3 + 3 × 0.2 (future choices taken as neutral); effort and risk = what it takes × 0.6 + downside × 0.4. High = ratio 1.3 or more with at least a partial fit; Low = below 0.9, or a downside you could not cope with.</p>
+    </section>
+
+    <div id="deep" hidden>
     <div class="roe-tabs" role="tablist" aria-label="Steps">
       <button role="tab" data-s="1" aria-selected="true">1 What matters</button>
       <button role="tab" data-s="2" aria-selected="false">2 Decision test</button>
-      <button role="tab" data-s="3" aria-selected="false">3 Effort audit</button>
+      <button role="tab" data-s="3" aria-selected="false">3 My week</button>
       <button role="tab" data-s="4" aria-selected="false">4 Future ready</button>
       <button role="tab" data-s="5" aria-selected="false">5 My summary</button>
     </div>
@@ -144,7 +191,7 @@ details.settings input{width:80px;}
       <h3>A. My personal operating profile</h3>
       <div id="profile"></div>
       <h3>B. My life areas</h3>
-      <p class="sub">Importance now: 1 = not important at this stage, 5 = very important. How it is going: 1 = poorly, 5 = very well.</p>
+      <p class="sub">For each part of life, pick how important it is to you now and how well it is going. Skip any that do not apply. Results appear as you go.</p>
       <div class="scroll"><table class="grid-t" id="areasT"><thead><tr><th>Life area</th><th class="c">Importance now</th><th class="c">How it is going</th><th class="c">Rank</th><th>Signal</th></tr></thead><tbody></tbody></table></div>
       <h3>C. My top three priorities now</h3>
       <div class="cards" id="top3"></div>
@@ -185,15 +232,15 @@ details.settings input{width:80px;}
 
     <!-- STEP 3 -->
     <div class="roe-step" id="s3">
-      <h2>Step 3: Effort audit</h2>
-      <p class="sub">Your calendar is like an investment statement. List the main activities of a normal week: work, home, health, learning, screen time, commuting. Hours are per week. Value: 1 = very little, 5 = very high.</p>
+      <h2>Step 3: Where my week goes</h2>
+      <p class="sub">Your calendar is like an investment statement. List the main things you do in a normal week, such as work, family, exercise, commuting and screen time. For each, give the hours, how useful it is and how it leaves you. That is enough for a suggestion. Add more detail only if you want sharper suggestions.</p>
       <div id="acts"></div>
       <div class="btns"><button class="btn sm" id="addAct" type="button">+ Add an activity</button></div>
       <h3>Summary</h3>
       <div class="cards" id="effSum"></div>
       <h3>Effort mix</h3>
       <div class="scroll"><table class="grid-t" id="mixT"></table></div>
-      <p class="note">Maintenance keeps things working; Growth builds future value; Exploration finds new options; Recovery restores capacity. All four are needed.</p>
+      <p class="note">Keeping things running, building your future, trying new things, and rest: all four are needed. This table uses the "What kind of time is it?" detail.</p>
       <h3>Priority-effort gap: are my hours going where my priorities are?</h3>
       <div class="scroll"><table class="grid-t" id="gapT"></table></div>
       <p class="note">Under-invested = importance 4+ but under 5% of your hours. Over-invested = importance 2 or less but 15%+ of your hours. Some areas, such as purpose, need little time but steady attention: treat the signal as a prompt to think, not a rule.</p>
@@ -204,7 +251,7 @@ details.settings input{width:80px;}
     <!-- STEP 4 -->
     <div class="roe-step" id="s4">
       <h2>Step 4: Future ready</h2>
-      <p class="sub">Don't predict the future. Prepare for it. Build options before you need them. Score each item 1 (weak) to 5 (strong).</p>
+      <p class="sub">Don't predict the future. Prepare for it. Build options before you need them. Pick how strong you are on each item, from Weak to Strong.</p>
       <h3>A. Career capital review</h3>
       <div class="scroll"><table class="grid-t" id="ccT"></table></div>
       <h3>B. Future readiness review</h3>
@@ -223,6 +270,7 @@ details.settings input{width:80px;}
     <div class="roe-step" id="s5">
       <h2>Step 5: My summary</h2>
       <p class="sub">Everything on one page. Decide → Allocate → Execute → Review → Adapt. Repeat every quarter, or at least once a year.</p>
+      <p class="note" id="cover"></p>
       <div class="cards" id="dash"></div>
       <h3>My life areas at a glance</h3>
       <p class="legend"><i style="background:var(--ink)"></i>Importance now <i style="background:var(--brass)"></i>How it is going</p>
@@ -240,6 +288,7 @@ details.settings input{width:80px;}
       <button class="btn sm" id="prevBtn" type="button">← Previous step</button>
       <button class="btn sm primary" id="nextBtn" type="button">Next step →</button>
     </div>
+    </div><!-- /deep -->
 
     <p class="disc"><strong>Important note.</strong> This tool is for personal reflection and better decision-making. It is not financial, investment, legal, medical, career or other professional advice. The scores and labels are decision prompts based on your own inputs, not predictions or universal thresholds. Please take qualified advice for decisions that need it. Based on <em>Optimise Your Return on Effort</em> by CA Sunil Kumar, FCA. <a href="https://sunilfca.gumroad.com/l/optimise-your-return-on-effort?utm_source=website&amp;utm_medium=site&amp;utm_campaign=roe-tool">Read the book free</a>.</p>
   </div>
@@ -294,8 +343,17 @@ details.settings input{width:80px;}
 (function(){
 var KEY='sroe-tool-v1';
 var AREAS=['Health','Financial security','Career','Family','Relationships','Learning','Freedom','Happiness','Purpose','Contribution','Personal growth','Time'];
-var PROFILE=[['p1','What matters most to me now?'],['p2','What gives me energy?'],['p3','What drains me?'],['p4','What am I good at?'],['p5','What do I need to improve?'],['p6','What am I unwilling to sacrifice?'],['p7','What would "enough" look like for me?']];
-var DEC=[['d_q','What decision am I actually making?','text'],['d_h','Time horizon','text'],['d_f','What I know (facts)','area'],['d_a','What I am assuming','area'],['d_r','What would make me review or reverse this?','area'],['d_date','Review date','date']];
+var PROFILE=[['p1','What matters most to me now?','the one or two parts of life I most want to protect or improve at this stage',AREAS],
+ ['p2','What gives me energy?','things after which I feel more alive, not more tired',['Solving problems','Learning something new','Time with people I love','Exercise and the outdoors','Creating or building something','Helping others','Quiet time alone']],
+ ['p3','What drains me?','things that leave me tired or low, even when they are short',['A long commute','Low-value meetings','Conflict at work or at home','Too much screen time','Admin and paperwork','Worry about money']],
+ ['p4','What am I good at?','what people come to me for',['Analysis and numbers','Planning and organising','Explaining and teaching','Leading people','Building relationships','Creative work','Technical skills']],
+ ['p5','What do I need to improve?','the skill or habit that holds me back the most',['Saying no','Delegating','Regular exercise','Managing money','Focus and screen habits','Sleep','A skill for my next role']],
+ ['p6','What am I unwilling to sacrifice?','my non-negotiables, even for more money or status',['My health','Time with my family','My integrity','Financial security','My freedom']],
+ ['p7','What would "enough" look like for me?','the point where more money or status adds little to my life; write a line or two',null]];
+var DEC=[['d_q','What decision am I actually making?','the real choice, in one line',null,'line'],['d_h','Over what time?','how far ahead this decision matters',['Under 1 year','1 to 3 years','3 to 5 years','5 years or more']],
+ ['d_f','What I know (facts)','things I can check, such as pay, costs, travel time or dates',null],['d_a','What I am assuming','things I believe but have not checked',null],
+ ['d_r','What would make me review or reverse this?','the warning signs that should make me think again',['My health getting worse','Money falling short','The expected growth not happening','Family needs changing','A better option appearing']],
+ ['d_date','Review date','when I will look at this decision again',null,'date']];
 var MODES={
  life:{note:'For a career move, a big commitment or any choice between paths.',unit:null,w:{w_r:0.5,w_f:0.3,w_o:0.2,w_e:0.6,w_k:0.4},ph:['e.g. Take the new job','e.g. Do an MBA','e.g. Do nothing / delay'],
   ret:['Money (income, savings, wealth)','Career (experience, reputation, growth)','Health (physical and mental)','Relationships (family, friends, network)','Time and freedom','Learning and capability','Meaning and contribution','Future options it opens'],
@@ -313,66 +371,90 @@ var EFF=['Time it needs','Energy it needs','Attention it needs','Money it needs'
 var CC=['Skills: are they current and valued?','Experience: varied, not the same year repeated','Reputation: what people say when I am not in the room','Relationships inside and outside my organisation','Adaptability: can I change when things change?','Low dependence on one employer','Transferability: do my skills travel to other roles and sectors?','Future options I could move to'];
 var FR=['Health','Financial resilience (savings, low debt, insurance)','Skills','Relationships','Adaptability','Optionality (choices I can make if needed)'];
 var TY=['Health','Financial resilience','Career','Relationships','Personal growth','Life quality'];
-var THINK=[['t1','What could compound positively?'],['t2','What could compound negatively?'],['t3','What happens if something changes (income falls, skills date, health changes)?'],['t4','What needs strengthening now?']];
-var MLSS=[['m1','What should I do more of?'],['m2','What should I do less of?'],['m3','What should I stop?'],['m4','What should I start?']];
-var REV=[['r1','What created the most value?'],['r2','What consumed disproportionate effort?'],['r3','What should I stop?'],['r4','What should I start?'],['r5','What has become less important?'],['r6','What has become more important?'],['r7','What decision should I make next?']];
+var THINK=[['t1','What could compound positively?','small things that grow in value over the years if I keep doing them',['Saving and investing regularly','Skills and learning','Health habits','Relationships and network','Reputation']],
+ ['t2','What could compound negatively?','small things that quietly add up to harm over the years',['Poor health habits','Debt','Shrinking time with family','Skills going out of date','Stress and burnout']],
+ ['t3','What happens if something changes?','for example income falls, skills date or health changes: how long could I cope, and what would I do?',null],
+ ['t4','What needs strengthening now?','the one area to act on first',['Health','Financial resilience','Skills','Relationships','Adaptability','Choices I could make if needed']]];
+var MLSS=[['m1','What should I do more of?','things that give high value for the effort; give them more of my time',['Exercise and health','Time with family','Learning that I actually use','Focused, deep work','Rest and sleep','Saving and planning money']],
+ ['m2','What should I do less of?','things that take more than they give but cannot be dropped completely',['Low-value meetings','Screen time and scrolling','Commuting','Routine admin','Saying yes to everything']],
+ ['m3','What should I stop?','things with little or no value that I can drop now',['Accepting every meeting by default','Late-night screen time','Unplanned spending','Doing work that others should do']],
+ ['m4','What should I start?','a new habit or action that will pay back over time',['A weekly exercise routine','A learning plan','Automating a task that repeats','A monthly money review','A weekly planning hour']]];
+var REV=[['r1','What created the most value?','what gave the best return on my time and effort this year',null],['r2','What took far more effort than it was worth?','what took much more than it gave back',null],
+ ['r3','What should I stop?','from this review, what will I drop?',['Accepting every meeting by default','Late-night screen time','Unplanned spending','Doing work that others should do']],
+ ['r4','What should I start?','from this review, what new habit or action?',['A weekly exercise routine','A learning plan','Automating a task that repeats','A monthly money review','A weekly planning hour']],
+ ['r5','What has become less important?','goals or activities that matter less at this stage of life',AREAS],['r6','What has become more important?','goals or activities that matter more now',AREAS],
+ ['r7','What decision should I make next?','the most important choice to make in the coming months',null]];
 var MOVES={'Stop':'Low value. Stop it; if you cannot, redesign it (for example, use commute time to learn).','Simplify':'Some value but too costly. Remove steps, approvals, meetings and complexity.','Delegate':'Useful but does not need you. Hand over the outcome with clear authority.','Automate / systemise':'Useful, repeats, does not need you. Build a template, system or tool once.','Grow':'High value and builds the future. Give it more of your best hours.','Protect':'High value. Guard this time from interruptions and new demands.','Maintain':'Keep it going at the present level. Review it next time.','Improve recovery':'Meant to restore you but adds little. Replace it with real rest that works.'};
 var DEF_SET={w_r:0.5,w_f:0.3,w_o:0.2,w_e:0.6,w_k:0.4,t_hi:1.3,t_lo:0.9};
+function W(a,from){return a.map(function(t,i){return [String(i+(from||0)),t];});}
+var L={imp:W(['Not important now','Slightly important','Fairly important','Very important','Critical'],1),going:W(['Badly','Not well','OK','Well','Very well'],1),create:W(['Nothing','Very little','A little','Some','A lot','A great deal'],0),cost:W(['Very light','Light','Moderate','Heavy','Very heavy'],1),down:W(['Minor','Small','Moderate','Serious','Severe'],1),unc:W(['Very sure','Fairly sure','Unsure','Quite unsure','Just guessing'],1),fit:W(['Poor fit','Weak fit','Partly fits','Good fit','Perfect fit'],1),opt:W(['Closes doors','Narrows choices','Neutral','Opens some doors','Opens many doors'],1),str:W(['Weak','Below par','OK','Good','Strong'],1),useful:W(['Not useful','A little useful','Useful','Very useful','Essential'],1)};
+var QW={r:0.5,f:0.3,o:0.2,e:0.6,k:0.4},QSTEP=2;
+var QPH=['e.g. Take the new job','e.g. Stay where I am','e.g. Study part-time'];
+var QQ=[['v','How much good will it do for me?',['Very little','A little','Some','A lot','A great deal']],['f','How well does it fit what matters to me now?',['Poorly','Not well','Partly','Well','Perfectly']],['c','How much will it take from me (time, energy, money)?',['Very little','A little','Some','A lot','A great deal']],['d','If it goes badly, how bad would that be?',['Minor','Small','Moderate','Serious','Severe']],['s','Could I cope if it goes badly?',['Yes','No']]];
+var QN={High:'Worth doing. Commit to it and set a date to review it.',Medium:'Promising but uncertain. Try a small first step, then review.',Low:'Value looks low for what it takes. Drop it, delay it or redesign it.',no:'You could not cope with the downside. Redesign it or drop it.'};
 
 var S={}; // state: flat key -> value; acts array
-function load(){try{S=JSON.parse(localStorage.getItem(KEY)||'{}')||{};}catch(e){S={};} if(!S.acts)S.acts=[{},{},{}];if(!S.mode)S.mode='life';}
+function load(){try{S=JSON.parse(localStorage.getItem(KEY)||'{}')||{};}catch(e){S={};} if(!S.acts)S.acts=[{},{},{}];if(!S.mode)S.mode='life';if(!S.view)S.view='quick';}
 var tracked=false;
 function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){} if(!tracked){tracked=true;if(typeof gtag==='function')gtag('event','roe_tool_used',{tool:'return_on_effort'});}}
 function num(v){return (v===''||v===undefined||v===null||isNaN(+v))?null:+v;}
 function el(t,a,txt){var e=document.createElement(t);if(a)for(var k in a)e.setAttribute(k,a[k]);if(txt!==undefined)e.textContent=txt;return e;}
-function sel(k,opts,blank){var s=el('select',k?{'data-k':k,'aria-label':k}:null);if(blank!==false)s.appendChild(el('option',{value:''},'–'));opts.forEach(function(o){s.appendChild(el('option',{value:o},o));});return s;}
+function sel(k,opts,blank){var s=el('select',k?{'data-k':k,'aria-label':k}:null);if(blank!==false)s.appendChild(el('option',{value:''},'–'));opts.forEach(function(o){var v=Array.isArray(o)?o[0]:o,t=Array.isArray(o)?o[1]:o;s.appendChild(el('option',{value:v},t));});return s;}
 function rng(a,b){var r=[];for(var i=a;i<=b;i++)r.push(String(i));return r;}
-function textArea(k,label,parent){var id='f_'+k;parent.appendChild(el('label',{'class':'q','for':id},label));var t=el('textarea',{id:id,'data-k':k});parent.appendChild(t);}
+var CHOICE=[];
+function ask(q,parent){var k=q[0],id='f_'+k;parent.appendChild(el('label',{'class':'q','for':id},q[1]));
+  if(q[2])parent.appendChild(el('p',{'class':'hint'},'('+q[2]+')'));
+  if(q[3]){CHOICE.push(k);var s=sel(k+'_c',q[3].concat([['Other','Other (I will write my own)']]));s.id=id;s.setAttribute('aria-label',q[1]);parent.appendChild(s);
+    parent.appendChild(el('textarea',{id:id+'_t','data-k':k,'data-other':k+'_c','aria-label':q[1]+': my own answer',placeholder:'Please write your answer here'}));}
+  else if(q[4]==='date')parent.appendChild(el('input',{id:id,type:'date','data-k':k}));
+  else if(q[4]==='line')parent.appendChild(el('input',{id:id,type:'text','data-k':k}));
+  else parent.appendChild(el('textarea',{id:id,'data-k':k}));}
+function syncOther(){document.querySelectorAll('[data-other]').forEach(function(t){var c=S[t.getAttribute('data-other')]==='Other';t.hidden=!c;t.classList.toggle('need',c&&!S[t.getAttribute('data-k')]);});}
+function fixChoices(o){CHOICE.forEach(function(k){if(o[k]&&!o[k+'_c'])o[k+'_c']='Other';});return o;}
 function tag(txt,cls){var s=el('span',{'class':'tag '+(cls||'')},txt);return s;}
 function cls(v){return {'High':'good','Medium':'mid','Low':'bad','Adequate':'good','At risk':'mid','Inadequate':'bad','Strong':'good','Fair':'mid','Fragile':'mid','Weak':'bad','Protect':'good','Strengthen':'mid','Change':'bad','Underfunded: act now':'bad','Strong: protect it':'good','Needs some attention':'mid','Under-invested':'bad','Over-invested':'mid','In line':'good','Give it more':'good','About right':'mid','Give it less':'bad'}[v]||'';}
 
 // ---------- build static UI
 function build(){
-  var p=document.getElementById('profile');PROFILE.forEach(function(q){textArea(q[0],q[1],p);});
+  var p=document.getElementById('profile');PROFILE.forEach(function(q){ask(q,p);});
   var tb=document.querySelector('#areasT tbody');
   AREAS.forEach(function(a,i){var tr=el('tr');tr.appendChild(el('td',null,a));
-    var t1=el('td',{'class':'c'});t1.appendChild(sel('ai'+i,rng(1,5)));tr.appendChild(t1);
-    var t2=el('td',{'class':'c'});t2.appendChild(sel('an'+i,rng(1,5)));tr.appendChild(t2);
+    var t1=el('td',{'class':'c'});t1.appendChild(sel('ai'+i,L.imp));tr.appendChild(t1);
+    var t2=el('td',{'class':'c'});t2.appendChild(sel('an'+i,L.going));tr.appendChild(t2);
     tr.appendChild(el('td',{'class':'c','id':'rank'+i}));tr.appendChild(el('td',{'id':'sig'+i}));tb.appendChild(tr);});
   var dt=document.getElementById('decTop');
-  DEC.forEach(function(d){var id='f_'+d[0];dt.appendChild(el('label',{'class':'q','for':id},d[1]));
-    var f=d[2]==='area'?el('textarea',{id:id,'data-k':d[0]}):el('input',{id:id,type:d[2],'data-k':d[0]});dt.appendChild(f);});
+  DEC.forEach(function(d){ask(d,dt);});
   var T=document.getElementById('decT');
   var hr=el('tr');hr.appendChild(el('th',null,''));[1,2,3].forEach(function(n){hr.appendChild(el('th',{'class':'c'},'Option '+n));});T.appendChild(el('thead')).appendChild(hr);
   var body=el('tbody');T.appendChild(body);
   function row(label,maker,clsn,lid){var tr=el('tr',clsn?{'class':clsn}:null);tr.appendChild(el('td',lid?{id:lid}:null,label));[0,1,2].forEach(function(j){var td=el('td',{'class':'c'});if(maker)td.appendChild(maker(j));tr.appendChild(td);});body.appendChild(tr);return tr;}
   row('Option name',function(j){return el('input',{type:'text','data-k':'o'+j+'_name',placeholder:j===2?'e.g. Do nothing / delay':'Option '+(j+1),'aria-label':'Option '+(j+1)+' name'});});
-  row('What will it create? (0 = nothing, 5 = a lot)',null,'band');
-  RET.forEach(function(r,i){row(r,function(j){return sel('o'+j+'_r'+i,rng(0,5));},null,'lbl_r'+i);});
+  row('What good will it do?',null,'band');
+  RET.forEach(function(r,i){row(r,function(j){return sel('o'+j+'_r'+i,L.create);},null,'lbl_r'+i);});
   row('Return score',function(j){return el('span',{id:'o'+j+'_ret'});},'total');
-  row('What will it cost me? (1 = very light, 5 = very heavy)',null,'band');
-  EFF.forEach(function(r,i){row(r,function(j){return sel('o'+j+'_e'+i,rng(1,5));},null,'lbl_e'+i);});
+  row('What will it take from me?',null,'band');
+  EFF.forEach(function(r,i){row(r,function(j){return sel('o'+j+'_e'+i,L.cost);},null,'lbl_e'+i);});
   row('Effort score',function(j){return el('span',{id:'o'+j+'_eff'});},'total');
-  row('Risk and reversibility',null,'band');
-  row('How bad is the downside if it goes wrong? (1-5)',function(j){return sel('o'+j+'_down',rng(1,5));});
-  row('How uncertain are my assumptions? (1-5)',function(j){return sel('o'+j+'_unc',rng(1,5));});
-  row('Can it be reversed?',function(j){return sel('o'+j+'_rev',['Easily','With some cost','Not reversible']);});
-  row('Could I survive the downside?',function(j){return sel('o'+j+'_surv',['Yes','No']);});
+  row('Risk and undoing it',null,'band');
+  row('If it goes wrong, how bad would that be?',function(j){return sel('o'+j+'_down',L.down);});
+  row('How sure am I about my facts and assumptions?',function(j){return sel('o'+j+'_unc',L.unc);});
+  row('Can I undo it later?',function(j){return sel('o'+j+'_rev',[['Easily','Yes, easily'],['With some cost','Yes, at some cost'],['Not reversible','No']]);});
+  row('If it goes badly, could I cope?',function(j){return sel('o'+j+'_surv',[['Yes','Yes'],['No','No, it would be very damaging']]);});
   row('Risk score',function(j){return el('span',{id:'o'+j+'_risk'});},'total');
   row('Fit and future',null,'band');
-  row('Strategic fit: does it support what matters now? (1-5)',function(j){return sel('o'+j+'_fit',rng(1,5));});
-  row('Optionality: does it create or keep future choices? (1-5)',function(j){return sel('o'+j+'_opt',rng(1,5));});
-  row('SROE ratio (value ÷ cost)',function(j){return el('span',{id:'o'+j+'_ratio'});},'total');
+  row('Does it fit what matters to me now?',function(j){return sel('o'+j+'_fit',L.fit);});
+  row('Does it open or close future choices?',function(j){return sel('o'+j+'_opt',L.opt);});
+  row('Value for effort (value ÷ cost)',function(j){return el('span',{id:'o'+j+'_ratio'});},'total');
   row('SROE profile',function(j){return el('span',{id:'o'+j+'_prof'});},'total');
   Object.keys(DEF_SET).forEach(function(k){document.getElementById(k).setAttribute('data-k',k);});
-  var ml=document.getElementById('mlss');MLSS.forEach(function(q){textArea(q[0],q[1],ml);});
-  function scoreTable(id,items,pre){var t=document.getElementById(id);var h=el('tr');h.appendChild(el('th',null,'Item'));h.appendChild(el('th',{'class':'c'},'Score (1-5)'));t.appendChild(el('thead')).appendChild(h);var b=el('tbody');items.forEach(function(it,i){var tr=el('tr');tr.appendChild(el('td',null,it));var td=el('td',{'class':'c'});td.appendChild(sel(pre+i,rng(1,5)));tr.appendChild(td);b.appendChild(tr);});t.appendChild(b);}
+  var ml=document.getElementById('mlss');MLSS.forEach(function(q){ask(q,ml);});
+  function scoreTable(id,items,pre){var t=document.getElementById(id);var h=el('tr');h.appendChild(el('th',null,'Item'));h.appendChild(el('th',{'class':'c'},'How strong?'));t.appendChild(el('thead')).appendChild(h);var b=el('tbody');items.forEach(function(it,i){var tr=el('tr');tr.appendChild(el('td',null,it));var td=el('td',{'class':'c'});td.appendChild(sel(pre+i,L.str));tr.appendChild(td);b.appendChild(tr);});t.appendChild(b);}
   scoreTable('ccT',CC,'cc');scoreTable('frT',FR,'fr');
-  var ty=document.getElementById('tyT');var h=el('tr');['Area','Today (1-5)','If I continue as I am, it will be','Likely in 10 years','Verdict','What to do'].forEach(function(x,i){h.appendChild(el('th',i?{'class':'c'}:null,x));});ty.appendChild(el('thead')).appendChild(h);
-  var tb2=el('tbody');TY.forEach(function(a,i){var tr=el('tr');tr.appendChild(el('td',null,a));var t1=el('td',{'class':'c'});t1.appendChild(sel('ty'+i,rng(1,5)));tr.appendChild(t1);var t2=el('td',{'class':'c'});t2.appendChild(sel('td'+i,['Improving','Stable','Declining']));tr.appendChild(t2);
+  var ty=document.getElementById('tyT');var h=el('tr');['Area','How it is today','If I carry on as I am, it will be','Likely in 10 years','Verdict','What to do'].forEach(function(x,i){h.appendChild(el('th',i?{'class':'c'}:null,x));});ty.appendChild(el('thead')).appendChild(h);
+  var tb2=el('tbody');TY.forEach(function(a,i){var tr=el('tr');tr.appendChild(el('td',null,a));var t1=el('td',{'class':'c'});t1.appendChild(sel('ty'+i,L.going));tr.appendChild(t1);var t2=el('td',{'class':'c'});t2.appendChild(sel('td'+i,[['Improving','Getting better'],['Stable','Staying the same'],['Declining','Getting worse']]));tr.appendChild(t2);
     tr.appendChild(el('td',{'class':'c',id:'tyl'+i}));tr.appendChild(el('td',{'class':'c',id:'tyv'+i}));tr.appendChild(el('td',{'class':'c',id:'tya'+i}));tb2.appendChild(tr);});ty.appendChild(tb2);
-  var th=document.getElementById('think');THINK.forEach(function(q){textArea(q[0],q[1],th);});
-  var rv=document.getElementById('review');REV.forEach(function(q){textArea(q[0],q[1],rv);});
+  var th=document.getElementById('think');THINK.forEach(function(q){ask(q,th);});
+  var rv=document.getElementById('review');REV.forEach(function(q){ask(q,rv);});
   var mv=document.getElementById('moves');[1,2,3].forEach(function(n){var d=el('div',{'class':'act'});d.appendChild(el('label',{'class':'q','for':'f_mv'+n,style:'margin-top:0'},'Move '+n+': what exactly will I do?'));d.appendChild(el('input',{type:'text',id:'f_mv'+n,'data-k':'mv'+n}));d.appendChild(el('label',{'class':'q','for':'f_mvd'+n},'By when'));d.appendChild(el('input',{type:'date',id:'f_mvd'+n,'data-k':'mvd'+n}));mv.appendChild(d);});
 }
 
@@ -385,17 +467,20 @@ function buildActs(){
     var r1=el('div',{'class':'row1'});
     function fld(parent,label,node){var w=el('div');w.appendChild(el('label',null,label));w.appendChild(node);parent.appendChild(w);}
     function aset(node,f){node.setAttribute('data-a',i+'.'+f);node.value=a[f]||'';return node;}
-    fld(r1,'Activity',aset(el('input',{type:'text',placeholder:'e.g. Commuting'}),'n'));
-    fld(r1,'Life area',aset(sel('',AREAS),'area'));
-    fld(r1,'Hours per week',aset(el('input',{type:'number',min:'0',max:'168',step:'0.5'}),'h'));
+    fld(r1,'What I do',aset(el('input',{type:'text',placeholder:'e.g. Commuting'}),'n'));
+    fld(r1,'Hours a week',aset(el('input',{type:'number',min:'0',max:'168',step:'0.5'}),'h'));
     d.appendChild(r1);
     var r2=el('div',{'class':'row2'});
-    fld(r2,'Value it creates (1-5)',aset(sel('',rng(1,5)),'v'));
-    fld(r2,'Energy effect',aset(sel('',['Gives energy','Neutral','Drains']),'en'));
-    fld(r2,'Needs me personally?',aset(sel('',['Yes','No']),'me'));
-    fld(r2,'Repeats regularly?',aset(sel('',['Yes','No']),'rep'));
-    fld(r2,'Effort type',aset(sel('',['Maintenance','Growth','Exploration','Recovery']),'ty'));
+    fld(r2,'How useful is it?',aset(sel('',L.useful),'v'));
+    fld(r2,'How does it leave me?',aset(sel('',[['Gives energy','Energised'],['Neutral','Neither'],['Drains','Drained']]),'en'));
     d.appendChild(r2);
+    var dd=el('details');if(a.area||a.me||a.rep||a.ty)dd.setAttribute('open','');dd.appendChild(el('summary',null,'More detail for sharper suggestions (optional)'));
+    var r3=el('div',{'class':'row3'});
+    fld(r3,'Which part of life is it for?',aset(sel('',AREAS),'area'));
+    fld(r3,'Could someone else do it, or could it be automated?',aset(sel('',[['No','Yes, it could be handed over'],['Yes','No, it needs me']]),'me'));
+    fld(r3,'How often does it happen?',aset(sel('',[['Yes','Every week or more'],['No','Now and then']]),'rep'));
+    fld(r3,'What kind of time is it?',aset(sel('',[['Maintenance','Keeping things running'],['Growth','Building my future'],['Exploration','Trying something new'],['Recovery','Rest and recharge']]),'ty'));
+    dd.appendChild(r3);d.appendChild(dd);
     d.appendChild(el('div',{'class':'out',id:'actout'+i}));
     box.appendChild(d);
   });
@@ -415,15 +500,16 @@ function move(a){
 // ---------- calculations
 function fmt(x,d){return x===null||x===undefined||x===''?'–':(+x).toFixed(d===undefined?1:d);}
 function pct(x){return x===null?'–':Math.round(x*100)+'%';}
-function card(parent,k,v,c,small){var d=el('div',{'class':'card'});d.appendChild(el('span',{'class':'k'},k));var s=el('span',{'class':'v'+(small?' sm':'')});if(c!==undefined&&c!==null&&cls(v)){s.appendChild(tag(v,cls(v)));}else s.textContent=(v===''||v===null||v===undefined)?'–':v;d.appendChild(s);parent.appendChild(d);}
+function card(parent,k,v,c,small){var d=el('div',{'class':'card'});d.appendChild(el('span',{'class':'k'},k));var s=el('span',{'class':'v'+(small?' sm':'')});if(c!==undefined&&c!==null&&cls(v)){s.appendChild(tag(v,cls(v)));}else if(v===''||v===null||v===undefined)s.appendChild(el('span',{'class':'nf'},'Not yet filled'));else s.textContent=v;d.appendChild(s);parent.appendChild(d);}
 function setv(id,txt,useTag){var n=document.getElementById(id);if(!n)return;n.innerHTML='';if(txt===''||txt===null||txt===undefined)return;if(useTag&&cls(txt))n.appendChild(tag(txt,cls(txt)));else n.textContent=txt;}
 var R={};
 function calc(){
+  syncOther();
   // step 1
-  var rows=AREAS.map(function(a,i){var imp=num(S['ai'+i]),now=num(S['an'+i]);var ok=imp!==null&&now!==null;return {a:a,i:i,imp:imp,now:now,ok:ok,gap:ok?imp-now:null,score:ok?imp*(6-now):null};});
+  var rows=AREAS.map(function(a,i){var imp=num(S['ai'+i]),now=num(S['an'+i]);var ok=imp!==null;var nE=now===null?3:now;return {a:a,i:i,imp:imp,now:now,ok:ok,gap:ok?imp-nE:null,score:ok?imp*(6-nE):null};});
   var ranked=rows.filter(function(r){return r.ok;}).sort(function(x,y){return (y.score-x.score)||(y.imp-x.imp)||(x.i-y.i);});
   rows.forEach(function(r){r.rank=r.ok?ranked.indexOf(r)+1:'';
-    r.sig=!r.ok?'':(r.imp>=4&&r.gap>=2)?'Underfunded: act now':(r.imp>=4&&r.now>=4)?'Strong: protect it':(r.imp<=2&&r.now>=4)?'Possibly over-invested':(r.gap>=1)?'Needs some attention':'Maintain';
+    r.sig=!r.ok?'':r.now===null?'Add how it is going':(r.imp>=4&&r.gap>=2)?'Underfunded: act now':(r.imp>=4&&r.now>=4)?'Strong: protect it':(r.imp<=2&&r.now>=4)?'Possibly over-invested':(r.gap>=1)?'Needs some attention':'Maintain';
     setv('rank'+r.i,r.rank?String(r.rank):'');setv('sig'+r.i,r.sig,true);});
   R.top=ranked.slice(0,3).map(function(r){return r.a;});R.under=rows.filter(function(r){return r.sig==='Underfunded: act now';}).length;R.rows=rows;
   var t3=document.getElementById('top3');t3.innerHTML='';[0,1,2].forEach(function(i){card(t3,'Priority '+(i+1),R.top[i]||'');});card(t3,'Areas flagged underfunded',ranked.length?String(R.under):'');
@@ -435,17 +521,20 @@ function calc(){
   R.opts=[0,1,2].map(function(j){
     var p='o'+j+'_',o={name:S[p+'name']||('Option '+(j+1))};
     var r=RET.map(function(_,i){return num(S[p+'r'+i]);}).filter(function(x){return x!==null;}).sort(function(a,b){return b-a;});
-    o.ret=r.length>=3?(r[0]+r[1]+r[2])/3:null;
+    o.ret=r.length?r.slice(0,3).reduce(function(a,b){return a+b;},0)/Math.min(3,r.length):null;
     var e=EFF.map(function(_,i){return num(S[p+'e'+i]);}).filter(function(x){return x!==null;});
     o.eff=e.length?e.reduce(function(a,b){return a+b;},0)/e.length:null;
     var dn=num(S[p+'down']),un=num(S[p+'unc']),rev=S[p+'rev']||'',surv=S[p+'surv']||'';
-    o.risk=(dn!==null&&un!==null)?Math.min(5,(dn+un)/2+(rev==='Not reversible'?1:rev==='With some cost'?0.5:0)):null;
-    var fit=num(S[p+'fit']),opt=num(S[p+'opt']);
-    o.val=(o.ret!==null&&fit!==null&&opt!==null)?o.ret*st.w_r+fit*st.w_f+opt*st.w_o:null;
-    o.cost=(o.eff!==null&&o.risk!==null)?o.eff*st.w_e+o.risk*st.w_k:null;
+    var rk=[dn,un].filter(function(x){return x!==null;});
+    o.risk=(o.ret!==null||o.eff!==null||rk.length)?Math.min(5,(rk.length?(rk[0]+(rk[1]===undefined?rk[0]:rk[1]))/2:3)+(rev==='Not reversible'?1:rev==='With some cost'?0.5:0)):null;
+    var fit=num(S[p+'fit']),opt=num(S[p+'opt']),fitE=fit===null?3:fit,optE=opt===null?3:opt;
+    o.val=o.ret!==null?o.ret*st.w_r+fitE*st.w_f+optE*st.w_o:null;
+    o.cost=o.eff!==null?o.eff*st.w_e+o.risk*st.w_k:null;
+    o.est=r.length<3||fit===null||opt===null||rk.length<2;
     o.ratio=(o.val!==null&&o.cost)?o.val/o.cost:null;
-    o.prof=o.ratio===null?'':surv==='No'?'Low':(o.ratio>=st.t_hi&&fit>=3)?'High':o.ratio<st.t_lo?'Low':'Medium';
+    o.prof=o.ratio===null?'':surv==='No'?'Low':(o.ratio>=st.t_hi&&fitE>=3)?'High':o.ratio<st.t_lo?'Low':'Medium';
     o.next=!o.prof?'':surv==='No'?'The downside is not survivable. Redesign the option or drop it.':o.prof==='High'?'Worth doing. Commit, put time and energy behind it, and set a review date.':o.prof==='Medium'?'Promising but uncertain. Try the smallest sensible step first, then review.':'Value looks low for the effort and risk. Drop, delay or redesign it.';
+    if(o.prof&&o.est)o.next+=' Provisional: some rows are still blank and count as middle answers.';
     o.caution=(rev==='Not reversible'&&un!==null&&un>=4)?'Not reversible and very uncertain: get more facts first.':(fit!==null&&fit<=2&&o.prof)?'Weak fit with what matters now.':'';
     o.surv=surv;
     setv(p+'ret',fmt(o.ret));setv(p+'eff',fmt(o.eff));setv(p+'risk',fmt(o.risk));setv(p+'ratio',fmt(o.ratio,2));setv(p+'prof',o.prof,true);
@@ -454,7 +543,7 @@ function calc(){
   var dr=document.getElementById('decRes');dr.innerHTML='';
   R.opts.forEach(function(o){if(!o.prof)return;var d=el('div',{'class':'card'});d.appendChild(el('span',{'class':'k'},o.name));var v=el('span',{'class':'v sm'});v.appendChild(tag(o.prof,cls(o.prof)));v.appendChild(document.createTextNode(' ratio '+fmt(o.ratio,2)));d.appendChild(v);d.appendChild(el('p',{style:'margin:8px 0 0;font-size:.9rem'},o.next));if(o.caution)d.appendChild(el('p',{style:'margin:6px 0 0;font-size:.85rem;color:#7A2614'},o.caution));dr.appendChild(d);});
   if(best)card(dr,'Option with the best SROE profile',best.name,null,true);
-  if(!dr.children.length)dr.appendChild(el('p',{'class':'note'},'Fill in at least three "create" scores, the cost, risk and fit rows for an option to see its result.'));
+  if(!dr.children.length)dr.appendChild(el('p',{'class':'note'},'Answer at least one "What good will it do?" row and one "What will it take from me?" row for an option to see its result. Blank rows count as middle answers until you fill them.'));
   var ab=document.getElementById('allocBox');ab.hidden=!md.unit;
   if(md.unit){
     var amts=[0,1,2].map(function(j){return num(S['o'+j+'_amt']);});
@@ -474,7 +563,7 @@ function calc(){
     if(mix[a.ty]!==undefined)mix[a.ty]+=h;if(a.area)byArea[a.area]=(byArea[a.area]||0)+h;});
   R.tot=tot;R.free=free;R.hand=hand;
   var es=document.getElementById('effSum');es.innerHTML='';card(es,'Hours listed per week',fmt(tot));card(es,'Hours you could free (Stop, Simplify, Improve recovery)',fmt(free));card(es,'Hours you could hand over (Delegate, Automate)',fmt(hand));card(es,'Average value per hour (1-5)',tot?fmt(sv/tot):'–');card(es,'Hours that drain you',fmt(drain));
-  var mt=document.getElementById('mixT');mt.innerHTML='<thead><tr><th>Effort type</th><th class="c">Hours</th><th class="c">Share</th></tr></thead>';var mb=el('tbody');Object.keys(mix).forEach(function(k){var tr=el('tr');tr.appendChild(el('td',null,k));tr.appendChild(el('td',{'class':'c'},fmt(mix[k])));tr.appendChild(el('td',{'class':'c'},tot?pct(mix[k]/tot):'–'));mb.appendChild(tr);});mt.appendChild(mb);
+  var mt=document.getElementById('mixT');mt.innerHTML='<thead><tr><th>Kind of time</th><th class="c">Hours</th><th class="c">Share</th></tr></thead>';var MIXN={Maintenance:'Keeping things running',Growth:'Building my future',Exploration:'Trying something new',Recovery:'Rest and recharge'};var mb=el('tbody');Object.keys(mix).forEach(function(k){var tr=el('tr');tr.appendChild(el('td',null,MIXN[k]));tr.appendChild(el('td',{'class':'c'},fmt(mix[k])));tr.appendChild(el('td',{'class':'c'},tot?pct(mix[k]/tot):'–'));mb.appendChild(tr);});mt.appendChild(mb);
   var gt=document.getElementById('gapT');gt.innerHTML='<thead><tr><th>Life area</th><th class="c">Importance now</th><th class="c">Hours per week</th><th class="c">Share of hours</th><th>Signal</th></tr></thead>';var gb=el('tbody');R.underInv=null;
   rows.forEach(function(r){var h=byArea[r.a]||0,sh=tot?h/tot:null;var sig=r.imp===null||sh===null?'':(r.imp>=4&&sh<0.05)?'Under-invested':(r.imp<=2&&sh>=0.15)?'Over-invested':'In line';if(sig==='Under-invested'&&!R.underInv)R.underInv=r.a;
     var tr=el('tr');tr.appendChild(el('td',null,r.a));tr.appendChild(el('td',{'class':'c'},r.imp===null?'–':String(r.imp)));tr.appendChild(el('td',{'class':'c'},fmt(h)));tr.appendChild(el('td',{'class':'c'},sh===null?'–':pct(sh)));var td=el('td');if(sig)td.appendChild(tag(sig,cls(sig)));tr.appendChild(td);gb.appendChild(tr);});gt.appendChild(gb);
@@ -490,11 +579,15 @@ function calc(){
     setv('tyl'+i,l===null?'':fmt(l));setv('tyv'+i,v,true);setv('tya'+i,ac,true);});
   R.any10=any10;
   // step 5
+  calcQuick();
   var ds=document.getElementById('dash');ds.innerHTML='';
+  var qd=el('div',{'class':'card'});qd.appendChild(el('span',{'class':'k'},'2-minute quick check'));var qv=el('span',{'class':'v sm'});if(R.qbest){qv.appendChild(document.createTextNode(R.qbest.name+' '));qv.appendChild(tag(R.qbest.prof,cls(R.qbest.prof)));}else qv.appendChild(el('span',{'class':'nf'},'Not yet filled'));qd.appendChild(qv);ds.appendChild(qd);
+  var nA=rows.filter(function(r){return r.ok;}).length,nO=R.opts.filter(function(o){return o.prof;}).length,nT=S.acts.filter(function(a){return a.n;}).length,n4=0;['cc','fr','ty'].forEach(function(pf){var L2={cc:CC.length,fr:FR.length,ty:TY.length}[pf];for(var i=0;i<L2;i++)if(num(S[pf+i])!==null)n4++;});
+  document.getElementById('cover').textContent='This summary uses whatever you have filled in so far: '+nA+' of '+AREAS.length+' life areas, '+nO+' option'+(nO===1?'':'s')+' in the decision test, '+nT+' activit'+(nT===1?'y':'ies')+' in your week and '+n4+' of '+(CC.length+FR.length+TY.length)+' future-ready items. Anything blank shows "Not yet filled". Results sharpen as you add more.';
   card(ds,'My top three priorities now',R.top.join(', '),null,true);
   card(ds,'Life areas flagged underfunded',R.top.length?String(R.under):'',null,true);
-  card(ds,'Decision I am testing',S.d_q||'',null,true);
-  var bd=document.createElement('div');bd.className='card';bd.appendChild(el('span',{'class':'k'},'Best option in my decision test'));var bv=el('span',{'class':'v sm'});if(R.best){bv.appendChild(document.createTextNode(R.best.name+' '));bv.appendChild(tag(R.best.prof,cls(R.best.prof)));}else bv.textContent='–';bd.appendChild(bv);ds.appendChild(bd);
+  card(ds,'Decision I am testing',S.d_q||S.q_dec||'',null,true);
+  var bd=document.createElement('div');bd.className='card';bd.appendChild(el('span',{'class':'k'},'Best option in my decision test'));var bv=el('span',{'class':'v sm'});if(R.best){bv.appendChild(document.createTextNode(R.best.name+' '));bv.appendChild(tag(R.best.prof,cls(R.best.prof)));}else bv.appendChild(el('span',{'class':'nf'},'Not yet filled'));bd.appendChild(bv);ds.appendChild(bd);
   card(ds,'Hours I could free each week',tot?fmt(free):'',null,true);
   card(ds,'Hours I could hand over each week',tot?fmt(hand):'',null,true);
   card(ds,'Most under-invested priority',tot?(R.underInv||'None'):'',null,true);
@@ -524,17 +617,18 @@ function bindAll(){
     if(DEF_SET.hasOwnProperty(k)&&(S[k]===undefined||S[k]===''))n.value=DEF_SET[k];else n.value=S[k]===undefined?'':S[k];
     n.addEventListener(n.tagName==='SELECT'||n.type==='date'?'change':'input',function(){S[k]=n.value;if(k==='mode'){Object.keys(DEF_SET).forEach(function(w){delete S[w];});}save();calc();});});
 }
-function refill(){document.querySelectorAll('[data-k]').forEach(function(n){var k=n.getAttribute('data-k');n.value=(DEF_SET.hasOwnProperty(k)&&(S[k]===undefined||S[k]===''))?DEF_SET[k]:(S[k]===undefined?'':S[k]);});buildActs();calc();}
+function refill(){buildQuick();document.querySelectorAll('[data-k]').forEach(function(n){var k=n.getAttribute('data-k');n.value=(DEF_SET.hasOwnProperty(k)&&(S[k]===undefined||S[k]===''))?DEF_SET[k]:(S[k]===undefined?'':S[k]);});buildActs();calc();}
 
 // ---------- worked example (same as the Excel version)
 function example(){
   var E={p1:'Health and time with family, while still growing my career.',p2:'Solving real problems, learning, a morning walk.',p3:'Long commute, too many low-value meetings.',p4:'Analysis, planning, explaining things simply.',p5:'Saying no; delegating; regular exercise.',p6:"My health and my family's security.",p7:'Secure family, good health, work I respect, time for people I care about.',
-    d_q:'Which job should I take over the next 3 to 5 years?',d_h:'3 to 5 years',d_f:'Role A pays about 30% more. Role A adds about 2 hours of commuting a day. Role B allows 2 days a week from home.',d_a:"Role A's growth path is real. My health will cope with the extra hours. Role B's employer is stable.",d_r:'Health getting worse; growth not happening within 18 months; family needs changing.',d_date:'2027-06-30',
+    d_q:'Which job should I take over the next 3 to 5 years?',d_h_c:'3 to 5 years',d_f:'Role A pays about 30% more. Role A adds about 2 hours of commuting a day. Role B allows 2 days a week from home.',d_a:"Role A's growth path is real. My health will cope with the extra hours. Role B's employer is stable.",d_r:'Health getting worse; growth not happening within 18 months; family needs changing.',d_date:'2027-06-30',
     o0_name:'Role A: higher pay',o1_name:'Role B: flexible',o2_name:'Stay in current role',
     m1:'Exercise; learning that I actually apply.',m2:'Low-value meetings; scrolling.',m3:'Accepting every meeting invite by default.',m4:'A 30-minute walk on 5 days a week; automating the monthly report.',
     t1:'Career experience and savings, if I keep investing regularly.',t2:'Health, if long hours and no exercise continue; relationships, if time keeps shrinking.',t3:'Savings cover about 6 months. Health is the weak point.',t4:'Health first: a minimum weekly standard. Then one skill that travels outside my present employer.',
     r1:'Focused work on planning; family time; the few walks I did take.',r2:'Commuting, low-value meetings and scrolling (about 23 hours a week).',r3:'Default yes to meetings; late-night screen time.',r4:'Minimum health standard; automate the monthly report.',r5:'Title and visibility for their own sake.',r6:'Health, time and freedom.',r7:'Choose between Role A and Role B using Step 2, before the offer deadline.',
-    mv1:'Walk 30 minutes, 5 days a week',mvd1:'2026-12-31',mv2:'Decline or shorten 3 low-value meetings a week',mvd2:'2026-12-15',mv3:'Automate the monthly report with a template',mvd3:'2027-01-31',nextReview:'2027-02-15'};
+    mv1:'Walk 30 minutes, 5 days a week',mvd1:'2026-12-31',mv2:'Decline or shorten 3 low-value meetings a week',mvd2:'2026-12-15',mv3:'Automate the monthly report with a template',mvd3:'2027-01-31',nextReview:'2027-02-15',
+    q_dec:'Which job should I take?',q_n:2,q0_name:'Role A: higher pay',q0_v:'4',q0_f:'2',q0_c:'5',q0_d:'3',q0_s:'Yes',q1_name:'Role B: flexible',q1_v:'4',q1_f:'4',q1_c:'2',q1_d:'2',q1_s:'Yes'};
   var ai=[[5,2],[5,3],[4,3],[5,3],[3,3],[3,3],[4,2],[3,3],[3,4],[2,3],[3,3],[4,2]];ai.forEach(function(x,i){E['ai'+i]=String(x[0]);E['an'+i]=String(x[1]);});
   var ret=[[5,3,2],[4,3,2],[1,4,3],[1,4,3],[1,4,3],[4,3,1],[3,3,3],[4,3,1]],eff=[[5,4,2],[5,3,3],[4,3,3],[1,1,1],[4,2,3],[4,2,3]];
   [0,1,2].forEach(function(j){ret.forEach(function(r,i){E['o'+j+'_r'+i]=String(r[j]);});eff.forEach(function(r,i){E['o'+j+'_e'+i]=String(r[j]);});});
@@ -544,7 +638,8 @@ function example(){
   [4,3,4,3,3,2,3,2].forEach(function(v,i){E['cc'+i]=String(v);});[2,3,4,3,3,2].forEach(function(v,i){E['fr'+i]=String(v);});
   [[2,'Declining'],[3,'Improving'],[4,'Stable'],[3,'Declining'],[3,'Stable'],[3,'Declining']].forEach(function(v,i){E['ty'+i]=String(v[0]);E['td'+i]=v[1];});
   E.acts=[['Core job work (planning, analysis)','Career',30,5,'Gives energy','Yes','Yes','Growth'],['Routine reports and data entry','Career',6,3,'Drains','No','Yes','Maintenance'],['Low-value meetings','Career',5,1,'Drains','Yes','Yes','Maintenance'],['Commuting','Time',10,1,'Drains','Yes','Yes','Maintenance'],['Family time','Family',10,5,'Gives energy','Yes','Yes','Recovery'],['Exercise and walks','Health',2,5,'Gives energy','Yes','Yes','Recovery'],['Online course for a new skill','Learning',3,4,'Neutral','Yes','Yes','Growth'],['Random social media scrolling','Happiness',8,1,'Drains','Yes','Yes','Recovery'],['Household paperwork and bill payments','Financial security',2,3,'Neutral','No','Yes','Maintenance'],['Writing and sharing knowledge','Contribution',2,4,'Gives energy','Yes','No','Exploration']].map(function(a){return {n:a[0],area:a[1],h:String(a[2]),v:String(a[3]),en:a[4],me:a[5],rep:a[6],ty:a[7]};});
-  return E;
+  Object.assign(E,{"p1_c": "Health", "p2_c": "Solving problems", "p3_c": "A long commute", "p4_c": "Analysis and numbers", "p5_c": "Saying no", "p6_c": "My health", "d_r_c": "My health getting worse", "m1_c": "Exercise and health", "m2_c": "Low-value meetings", "m3_c": "Accepting every meeting by default", "m4_c": "A weekly exercise routine", "t1_c": "Skills and learning", "t2_c": "Poor health habits", "t4_c": "Health", "r3_c": "Accepting every meeting by default", "r4_c": "A weekly exercise routine"});
+  return fixChoices(E);
 }
 
 // ---------- tabs & buttons
@@ -557,13 +652,62 @@ document.getElementById('prevBtn').addEventListener('click',function(){if(cur>1)
 document.getElementById('nextBtn').addEventListener('click',function(){if(cur<5)go(cur+1);});
 function doPrint(){if(typeof gtag==='function')gtag('event','roe_tool_print',{tool:'return_on_effort'});window.print();}
 document.getElementById('printBtn').addEventListener('click',doPrint);document.getElementById('printBtn2').addEventListener('click',doPrint);
-document.getElementById('loadEx').addEventListener('click',function(){var has=Object.keys(S).some(function(k){return k!=='acts'&&S[k]!=='';})||S.acts.some(function(a){return a.n;});if(has&&!confirm('Replace your answers with the worked example?'))return;S=example();S.mode='life';save();refill();if(typeof gtag==='function')gtag('event','roe_tool_example',{tool:'return_on_effort'});});
-document.getElementById('clearBtn').addEventListener('click',function(){if(!confirm('Clear all your answers?'))return;S={acts:[{},{},{}],mode:'life'};try{localStorage.removeItem(KEY);}catch(e){}refill();});
+document.getElementById('loadEx').addEventListener('click',function(){var has=Object.keys(S).some(function(k){return k!=='acts'&&k!=='mode'&&k!=='view'&&S[k]!=='';})||S.acts.some(function(a){return a.n;});if(has&&!confirm('Replace your answers with the worked example?'))return;var vw=S.view;S=example();S.mode='life';S.view=vw;save();refill();if(typeof gtag==='function')gtag('event','roe_tool_example',{tool:'return_on_effort'});});
+document.getElementById('clearBtn').addEventListener('click',function(){if(!confirm('Clear all your answers?'))return;S={acts:[{},{},{}],mode:'life',view:S.view};try{localStorage.removeItem(KEY);}catch(e){}refill();});
 document.getElementById('addAct').addEventListener('click',function(){if(S.acts.length>=25)return;S.acts.push({});save();buildActs();calc();var a=document.querySelectorAll('#acts .act');var last=a[a.length-1];if(last)last.querySelector('input').focus();});
 window.addEventListener('beforeprint',function(){document.querySelectorAll('.roe-step').forEach(function(s){s.classList.add('on');});});
 window.addEventListener('afterprint',function(){show(cur);});
 
-load();build();buildAlloc();bindAll();buildActs();calc();show(1);
+
+// ---------- 2-minute quick check (core)
+function quickRes(){var n=S.q_n===3?3:2;return [0,1,2].slice(0,n).map(function(j){var p='q'+j+'_';
+  var v=num(S[p+'v']),f=num(S[p+'f']),c=num(S[p+'c']),d=num(S[p+'d']);
+  var o={name:S[p+'name']||('Option '+(j+1)),left:[v,f,c,d].filter(function(x){return x===null;}).length,surv:S[p+'s']||'Yes'};
+  if(o.left)return o;
+  o.val=v*QW.r+f*QW.f+3*QW.o;o.cost=c*QW.e+d*QW.k;o.ratio=o.val/o.cost;
+  o.prof=o.surv==='No'?'Low':(o.ratio>=1.3&&f>=3)?'High':o.ratio<0.9?'Low':'Medium';
+  o.next=o.surv==='No'?QN.no:QN[o.prof];return o;});}
+function buildQuick(){var box=document.getElementById('qOpts');box.innerHTML='';var n=S.q_n===3?3:2;
+  for(var j=0;j<n;j++)(function(j){var c=el('div',{'class':'qopt'});var id='f_q'+j+'_name';
+    c.appendChild(el('label',{'class':'q','for':id,style:'margin-top:0'},'Option '+(j+1)));
+    var nm=el('input',{type:'text',id:id,placeholder:QPH[j]});nm.value=S['q'+j+'_name']||'';
+    nm.addEventListener('input',function(){S['q'+j+'_name']=nm.value;save();calc();});c.appendChild(nm);
+    QQ.forEach(function(q){var k='q'+j+'_'+q[0];c.appendChild(el('div',{'class':'qq'},q[1]));
+      var ch=el('div',{'class':'chips',role:'group','aria-label':'Option '+(j+1)+': '+q[1]});
+      q[2].forEach(function(t,i){var v=q[0]==='s'?(i?'No':'Yes'):String(i+1);
+        var b=el('button',{type:'button','aria-pressed':String(S[k]===v)},t);
+        b.addEventListener('click',function(){S[k]=(S[k]===v?'':v);save();
+          ch.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed','false');});
+          if(S[k])b.setAttribute('aria-pressed','true');calc();});ch.appendChild(b);});
+      c.appendChild(ch);});
+    box.appendChild(c);})(j);
+  document.getElementById('qAdd').hidden=n===3;}
+function calcQuick(){var Q=quickRes();var box=document.getElementById('qRes');box.innerHTML='';
+  Q.forEach(function(o){var d=el('div',{'class':'card'});d.appendChild(el('span',{'class':'k'},o.name));var v=el('span',{'class':'v sm'});
+    if(o.left){v.appendChild(el('span',{'class':'nf'},o.left===4?'Not started yet':'Answer '+o.left+' more question'+(o.left>1?'s':'')+' to see the result'));d.appendChild(v);}
+    else{v.appendChild(tag(o.prof,cls(o.prof)));v.appendChild(document.createTextNode(' value for effort '+fmt(o.ratio,2)));d.appendChild(v);
+      d.appendChild(el('p',{'class':'qnums'},'Value '+fmt(o.val)+' ÷ effort and risk '+fmt(o.cost)));
+      d.appendChild(el('p',{style:'margin:8px 0 0;font-size:.9rem'},o.next));}
+    box.appendChild(d);});
+  var done=Q.filter(function(o){return !o.left;}).sort(function(a,b){return b.ratio-a.ratio;});
+  var ok=done.filter(function(o){return o.surv!=='No';});R.qbest=ok[0]||null;
+  var ins=document.getElementById('qInsight'),msg='';
+  if(!done.length)msg='Tap one answer for each question. The result appears here as soon as an option is complete.';
+  else if(done.length===1)msg='Now answer the same four questions for another option to compare them.';
+  else if(!ok.length)msg='None of these options has a downside you could cope with. Look for a safer version of one of them.';
+  else{var a=ok[0],b=done.filter(function(o){return o!==a;})[0];var gap=Math.round((a.ratio/b.ratio-1)*100);
+    var x=a.ratio/b.ratio;msg=x>=1.95?a.name+' gives about '+(Math.round(x*2)/2)+' times as much value for each unit of effort and risk as '+b.name+'.':gap>=5?a.name+' gives about '+gap+'% more value for each unit of effort and risk than '+b.name+'.':a.name+' and '+b.name+' are close. The deep dive will show what really separates them.';}
+  ins.textContent=msg;}
+function goDeeper(){var map={v:null,f:'fit',d:'down',s:'surv'};
+  [0,1,2].forEach(function(j){var p='q'+j+'_',o='o'+j+'_';if(S[p+'name']&&!S[o+'name'])S[o+'name']=S[p+'name'];
+    ['f','d','s'].forEach(function(k){if(S[p+k]&&!S[o+map[k]])S[o+map[k]]=S[p+k];});});
+  if(S.q_dec&&!S.d_q)S.d_q=S.q_dec;save();setView('deep');refill();go(QSTEP);}
+function setView(v){S.view=v;document.getElementById('quick').hidden=v!=='quick';document.getElementById('deep').hidden=v!=='deep';
+  document.querySelectorAll('.view-switch button').forEach(function(b){b.setAttribute('aria-pressed',String(b.getAttribute('data-view')===v));});}
+document.querySelectorAll('.view-switch button').forEach(function(b){b.addEventListener('click',function(){setView(b.getAttribute('data-view'));try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}});});
+document.getElementById('qAdd').addEventListener('click',function(){S.q_n=3;save();buildQuick();calc();});
+document.getElementById('qDeep').addEventListener('click',goDeeper);
+load();build();fixChoices(S);buildAlloc();bindAll();buildActs();buildQuick();calc();show(1);setView(S.view);
 })();
 </script>
 </body>
