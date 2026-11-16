@@ -59,7 +59,7 @@
 .grid-t tr.band td{background:var(--paper-raised); font-weight:600; font-size:.88rem;}
 .grid-t tr.total td{font-weight:600; background:#F7F4EE;}
 .scroll{overflow-x:auto; -webkit-overflow-scrolling:touch;}
-#decT{min-width:600px;} #fundT{min-width:860px;} #decT td:first-child{width:38%;}
+#decT{min-width:600px;} #fundT{min-width:980px;} #decT td:first-child{width:38%;}
 .swipe{display:none; font-size:.82rem; color:var(--slate);}
 @media (max-width:700px){.swipe{display:block;}}
 .tag{display:inline-block; padding:2px 9px; border-radius:12px; font-size:.82rem; white-space:nowrap; background:var(--paper-raised); color:var(--ink);}
@@ -177,7 +177,22 @@ details.settings input{width:80px;}
         <p style="margin:0 0 8px;"><strong>What a 2-minute check cannot see.</strong> It does not separate the different returns (mission impact, quality, compliance, capability built), the full 3-year cost and management time, dependence on one vendor or person, how sure you are, or whether you can exit. The deep dive does, and it also shows which functions should get the next rupee.</p>
         <button class="btn sm primary noprint" id="qDeep" type="button">Go deeper: continue in the full tool →</button>
       </div>
-      <p class="note">How it works: value = good it does × 0.5 + fit × 0.3 + 3 × 0.2 (future choices taken as neutral); effort and risk = what it takes × 0.6 + downside × 0.4. High = ratio 1.3 or more with at least a partial fit; Low = below 0.9, or a downside you could not cope with.</p>
+<p class="note"><strong>This is an indicative result, not a recommendation.</strong> It turns your own answers into a simple comparison to help you think. It does not decide for you.</p>
+      <details class="settings"><summary>How the score works, and why</summary>
+        <p><strong>Value</strong> = good it does × 50% + fit × 30% + future choices × 20%. The good it does carries the most weight because it is the reason to act at all. Fit carries 30% because value that does not serve what matters now is often wasted. Future choices (whether an option opens or closes doors later) carry 20% because they matter but are harder to judge. In this quick check, future choices are fixed at the middle score (3) for every option, so the quick check does not compare them. The deep dive asks about them.</p>
+        <p><strong>Effort and risk</strong> = what it takes × 60% + how bad the downside would be × 40%. What it takes is certain; the downside may never happen, so it counts a little less.</p>
+        <p><strong>Value for effort</strong> = value ÷ effort and risk. A result of 1.0 means you get back about what you put in. <strong>High</strong> = 1.3 or more (at least 30% more value than effort and risk) with at least a partial fit. <strong>Low</strong> = below 0.9 (it takes more than it gives), or a downside the organisation could not cope with. In between is <strong>Medium</strong>: promising but uncertain.</p>
+        <p><strong>Total value matters too.</strong> Value for effort shows the return on each unit of effort. An option with a lower ratio can still create more value in total. The result tells you when this happens.</p>
+      </details>
+      <details class="settings"><summary>What the answers mean</summary>
+        <ul style="margin:6px 0 0 18px; padding:0;">
+          <li><strong>Good it does and what it takes:</strong> Very little = hardly noticeable; A little = a small difference; Some = a clear difference; A lot = a big difference; A great deal = a major change.</li>
+          <li><strong>Fit:</strong> Poorly = works against what matters now; Partly = helps one priority and is neutral for the rest; Perfectly = directly serves the top priority.</li>
+          <li><strong>How bad the downside would be:</strong> Minor = easily absorbed; Moderate = a setback that takes months to recover from; Severe = lasting damage to health, money, reputation or relationships. Think of how likely it is and how much it would hurt together.</li>
+          <li><strong>Could the organisation cope?</strong> Yes means the worst case could be absorbed without lasting damage.</li>
+        </ul>
+      </details>
+      <p class="note"><strong>When to take the deep dive:</strong> if the options are close (within about 20%), if the result is Medium, if the decision is large or hard to reverse, or if it needs Board or donor approval. The deep dive separates each kind of return and cost, checks exit and dependence, and shows where the next rupee should go.</p>
     </section>
 
     <div id="deep" hidden>
@@ -218,6 +233,14 @@ details.settings input{width:80px;}
       <h3>Compare up to three options</h3>
       <p class="swipe">Swipe the table sideways to see all three options.</p>
       <div class="scroll"><table class="grid-t" id="decT"></table></div>
+      <details class="settings"><summary>How to rate returns, costs and risk</summary>
+        <p><strong>Financial returns</strong> (cost saving, income, cost avoided): estimate the money over three years and compare it with the option's full cost. Some = it roughly pays for itself; A lot = it returns clearly more than it costs; A great deal = several times its cost.</p>
+        <p><strong>Non-financial returns</strong> (mission impact, quality, compliance, capability, donor confidence): use evidence where you have it, such as MEL data on people reached, audit findings, donor feedback and staff time saved. Some = a clear, visible improvement; A lot = a change the Board and donors would notice; A great deal = a step change in that area. Count returns that come later, such as capability built inside the organisation, at their value over time.</p>
+        <p><strong>Costs:</strong> include the full cost over the period: fees or salaries, management time, setup, training and disruption, not only the price.</p>
+        <p><strong>How bad the downside would be:</strong> think of how likely it is and how much it would hurt: money lost, compliance breaches, damage to beneficiaries, donors or reputation. Something likely and painful is Serious or Severe.</p>
+        <p><strong>Can we get out of it later:</strong> check notice periods, contract exit terms, data ownership and handover.</p>
+        <p><strong>Could the organisation cope:</strong> could reserves, other funding or a fallback plan absorb the worst case without harming programmes or compliance?</p>
+      </details>
       <h3>Result</h3>
       <div class="cards" id="decRes"></div>
       <details class="settings"><summary>Scoring settings (you may change)</summary>
@@ -225,6 +248,7 @@ details.settings input{width:80px;}
         <p>Cost = Effort × <input type="number" step="0.05" min="0" max="1" id="w_e"> + Risk × <input type="number" step="0.05" min="0" max="1" id="w_k"></p>
         <p>High profile if ratio at least <input type="number" step="0.1" id="t_hi"> (and fit 3+); Low if below <input type="number" step="0.1" id="t_lo">. <span id="wcheck"></span></p>
         <p>Return score = average of the option's three biggest returns. Risk score = average of downside and uncertainty, plus 0.5 if exit is possible only with some cost, or 1 if there is no practical exit (maximum 5). Any option whose downside the organisation could not survive is marked Low. Changing the decision type resets these to that type's suggested settings.</p>
+        <p>Why these weights: outsourcing, hiring and consultant choices weigh cost and risk equally (50/50) because each is a long commitment with real exit costs. Software and ERP choices give future options more weight (30%) because systems shape what the organisation can do for years. Other decisions use the general setting: value 50/30/20, cost 60/40. High needs a ratio of 1.3 or more (clearly more value than cost); Low is below 0.9 (it costs more than it gives). Change them if your context is different.</p>
       </details>
       <p class="note">This is a decision aid, not a mathematical answer. It makes the full exchange visible for management and the Board; the judgement stays with you.</p>
     </div>
@@ -235,6 +259,7 @@ details.settings input{width:80px;}
       <p class="sub">Where should the next rupee (or dollar) go? Importance and strength come from Step 1. Add this year's budget for each function, the value of extra funding there, and the risk if it is not funded. Use any one currency.</p>
       <div class="scroll"><table class="grid-t" id="fundT"></table></div>
       <div class="cards" id="fundSum"></div>
+      <p class="note"><strong>Extra funding needed</strong> = the additional amount next year, beyond this year's budget, that would close the gap in that function. Fund the "Strengthen first" functions first. Ask donors for the rest as specific, costed requests, or plan it over more than one year.</p>
       <p class="note">Funding priority = Importance × (6 − Strength) × (Value of extra funding + Risk if not funded) ÷ 2. Strengthen first = one of the top three by funding priority. Review spend = extra funding adds little value (2 or less) but the function already takes more than its average share of budget. Protect comes first: statutory compliance, safeguarding and donor obligations need their minimum funding whatever the score.</p>
       <h3>Our more / less / stop / start</h3>
       <div id="mlss"></div>
@@ -248,6 +273,9 @@ details.settings input{width:80px;}
       <div class="cards" id="dash"></div>
       <h3>Our recommendation</h3>
       <div id="review"></div>
+      <h3>Approval and accountability</h3>
+      <p class="sub">Link the decision to who approves it, who delivers it and how the Board will follow it.</p>
+      <div id="approval"></div>
       <label class="q" for="f_nextReview">Review date</label>
       <input type="date" id="f_nextReview" data-k="nextReview">
       <div class="btns"><button class="btn sm primary" id="printBtn2" type="button">Print or save as PDF</button></div>
@@ -259,7 +287,7 @@ details.settings input{width:80px;}
     </div>
     </div><!-- /deep -->
 
-    <p class="disc"><strong>Important note.</strong> This tool supports management and Board discussion. It is not legal, tax, procurement, HR, audit or other professional advice. The scores are decision prompts based on your own inputs, not predictions or universal thresholds. Follow your organisation's policies, donor conditions and applicable law, and take qualified advice where needed. Based on <em>Optimise Your Return on Effort</em> by CA Sunil Kumar, FCA. <a href="https://sunilfca.gumroad.com/l/optimise-your-return-on-effort?utm_source=website&amp;utm_medium=site&amp;utm_campaign=roe-org-tool">Read the book free</a>.</p>
+    <p class="disc"><strong>Important note.</strong> This tool supports management and Board discussion. It is not legal, tax, procurement, HR, audit or other professional advice. All numbers are indicative decision aids, not precise financial returns. The scores are decision prompts based on your own inputs, not predictions or universal thresholds. Follow your organisation's policies, donor conditions and applicable law, and take qualified advice where needed. Based on <em>Optimise Your Return on Effort</em> by CA Sunil Kumar, FCA. <a href="https://sunilfca.gumroad.com/l/optimise-your-return-on-effort?utm_source=website&amp;utm_medium=site&amp;utm_campaign=roe-org-tool">Read the book free</a>.</p>
   </div>
 </main>
 
@@ -338,6 +366,11 @@ var REV=[['r1','Our recommendation in one line','the option we propose, in plain
  ['r3','What we give up (the opportunity cost)','what else this money and time could have done',null],['r4','Main risks and how we will manage them','the two or three biggest risks and the step for each',null],
  ['r5','Who owns it, and what we will measure','one named owner and two or three simple measures',null],
  ['r6','What would make us change course','the warning signs that should bring this back to the Board',['Audit or compliance findings','Donor reports running late','Grant income falling','Costs running over budget','A key person leaving']]];
+var APPROVAL=[['ap_by','Who must approve this?','the level that has the authority for this amount and commitment under your delegation of authority',['CEO or Executive Director','Finance or Audit Committee','The Board','The Board, with donor approval']],
+ ['ap_date','Approval needed by','the meeting or date by which a decision is needed',null,'date'],
+ ['ap_owner','Who is accountable for delivering it?','one named person, not a team',null,'line'],
+ ['ap_report','How often will progress be reported, and to whom?','a regular report keeps the decision visible after approval',['Monthly to the CEO','Quarterly to the Finance Committee','Quarterly to the Board','Half-yearly to the Board']],
+ ['ap_measure','How will the Board know it worked?','one or two measures agreed at approval',['Donor reports on time','Clean audit with no major findings','Month-end close within 10 days','Cost per beneficiary down','Targets met on time and on budget']]];
 var MLSS=[['m1','What should we do more of?','work that gives high value for its cost; protect it and fund it',['Programme work that is working','Staff training','Donor reporting on time','Monitoring and learning','Planning and review']],
  ['m2','What should we do less of?','work that costs more than it gives but cannot stop completely',['Manual data entry','Long meetings','Reports nobody reads','Last-minute work']],
  ['m3','What should we stop?','low-value activities we can drop now',['Duplicate reporting','Spreadsheets passed around by email','Unnecessary approvals','Projects outside our mission']],
@@ -345,7 +378,7 @@ var MLSS=[['m1','What should we do more of?','work that gives high value for its
 var DEF_SET={w_r:0.5,w_f:0.3,w_o:0.2,w_e:0.6,w_k:0.4,t_hi:1.3,t_lo:0.9};
 function W(a,from){return a.map(function(t,i){return [String(i+(from||0)),t];});}
 var L={imp:W(['Not important now','Slightly important','Fairly important','Very important','Critical'],1),str:W(['Weak','Below par','OK','Good','Strong'],1),create:W(['Nothing','Very little','A little','Some','A lot','A great deal'],0),cost:W(['Very light','Light','Moderate','Heavy','Very heavy'],1),down:W(['Minor','Small','Moderate','Serious','Severe'],1),unc:W(['Very sure','Fairly sure','Unsure','Quite unsure','Just guessing'],1),fit:W(['Poor fit','Weak fit','Partly fits','Good fit','Perfect fit'],1),opt:W(['Closes doors','Narrows choices','Neutral','Opens some doors','Opens many doors'],1),gain:W(['Very little','A little','Some','A lot','A great deal'],1)};
-var QW={r:0.5,f:0.3,o:0.2,e:0.6,k:0.4},QSTEP=2;
+var QW={r:0.5,f:0.3,o:0.2,e:0.6,k:0.4},QSTEP=2,QLIM='money or staff time';
 var QPH=['e.g. Outsource to an agency','e.g. Hire staff','e.g. Use a consultant'];
 var QQ=[['v','How much will it do for our mission and the organisation?',['Very little','A little','Some','A lot','A great deal']],['f','How well does it fit this year\'s priorities?',['Poorly','Not well','Partly','Well','Perfectly']],['c','How much will it take: money, staff and management time?',['Very little','A little','Some','A lot','A great deal']],['d','If it goes badly, how bad would that be?',['Minor','Small','Moderate','Serious','Severe']],['s','Could the organisation cope if it goes badly?',['Yes','No']]];
 var QN={High:'Worth doing. Approve it, fund it properly, name an owner and set a review date.',Medium:'Promising but uncertain. Run a pilot or a time-bound trial first, then review.',Low:'Value looks low for the cost and risk. Drop it, delay it or redesign it.',no:'The organisation could not cope with the downside. Redesign it or drop it.'};
@@ -408,15 +441,17 @@ function build(){
   row('SROE profile',function(j){return el('span',{id:'o'+j+'_prof'});},'total');
   Object.keys(DEF_SET).forEach(function(k){document.getElementById(k).setAttribute('data-k',k);});
   var F=document.getElementById('fundT');
-  F.innerHTML='<thead><tr><th>Function</th><th class="c">Importance</th><th class="c">Strength</th><th class="c">Budget this year</th><th class="c">Share</th><th class="c">What would extra money achieve here?</th><th class="c">How bad if we do not fund it?</th><th class="c">Funding priority</th><th>Signal</th></tr></thead>';
+  F.innerHTML='<thead><tr><th>Function</th><th class="c">Importance</th><th class="c">Strength</th><th class="c">Budget this year</th><th class="c">Share</th><th class="c">What would extra money achieve here?</th><th class="c">How bad if we do not fund it?</th><th class="c">Extra funding needed next year</th><th class="c">Funding priority</th><th>Signal</th></tr></thead>';
   var fb=el('tbody');AREAS.forEach(function(a,i){var tr=el('tr');tr.appendChild(el('td',null,a));tr.appendChild(el('td',{'class':'c',id:'fi'+i}));tr.appendChild(el('td',{'class':'c',id:'fs'+i}));
     var td=el('td',{'class':'c'});td.appendChild(el('input',{type:'number',min:'0',step:'any','data-k':'fb'+i,'aria-label':a+' budget',style:'width:110px'}));tr.appendChild(td);
     tr.appendChild(el('td',{'class':'c',id:'fsh'+i}));
     var t1=el('td',{'class':'c'});t1.appendChild(sel('fv'+i,L.gain,a+' value of extra funding'));tr.appendChild(t1);
     var t2=el('td',{'class':'c'});t2.appendChild(sel('fr'+i,L.down,a+' risk if not funded'));tr.appendChild(t2);
+    var t3=el('td',{'class':'c'});t3.appendChild(el('input',{type:'number',min:'0',step:'any','data-k':'fx'+i,'aria-label':a+' extra funding needed',style:'width:110px'}));tr.appendChild(t3);
     tr.appendChild(el('td',{'class':'c',id:'fp'+i}));tr.appendChild(el('td',{id:'fg'+i}));fb.appendChild(tr);});F.appendChild(fb);
   var ml=document.getElementById('mlss');MLSS.forEach(function(q){ask(q,ml);});
   var rv=document.getElementById('review');REV.forEach(function(q){ask(q,rv);});
+  var apv=document.getElementById('approval');APPROVAL.forEach(function(q){ask(q,apv);});
 }
 
 var R={};
@@ -464,6 +499,7 @@ function calc(){
   var dr=document.getElementById('decRes');dr.innerHTML='';
   R.opts.forEach(function(o){if(!o.prof)return;var d=el('div',{'class':'card'});d.appendChild(el('span',{'class':'k'},o.name));var v=el('span',{'class':'v sm'});v.appendChild(tag(o.prof,cls(o.prof)));v.appendChild(document.createTextNode(' ratio '+fmt(o.ratio,2)));d.appendChild(v);d.appendChild(el('p',{style:'margin:8px 0 0;font-size:.9rem'},o.next));if(o.caution)d.appendChild(el('p',{style:'margin:6px 0 0;font-size:.85rem;color:#7A2614'},o.caution));dr.appendChild(d);});
   if(best)card(dr,'Option with the best SROE profile',best.name,true);
+  var tvo=R.opts.filter(function(o){return o.prof&&o.surv!=='No';}).sort(function(p,q){return q.val-p.val;})[0];if(best&&tvo&&tvo!==best&&tvo.val-best.val>=0.2){var td2=el('div',{'class':'card'});td2.appendChild(el('span',{'class':'k'},'Option with the most total value'));td2.appendChild(el('span',{'class':'v sm'},tvo.name+' (value '+fmt(tvo.val)+' against '+fmt(best.val)+')'));td2.appendChild(el('p',{style:'margin:8px 0 0;font-size:.9rem'},best.name+' gives more value for each unit of effort; '+tvo.name+' creates more value in total. Choose '+best.name+' if '+QLIM+' is the limit, and '+tvo.name+' if you can afford the extra effort and risk.'));dr.appendChild(td2);}
   if(!dr.children.length)dr.appendChild(el('p',{'class':'note'},'Answer at least one "What good will it do?" row and one "What will it take?" row for an option to see its result. Blank rows count as middle answers until you fill them.'));
   // step 3
   var tot=0,n=0;AREAS.forEach(function(_,i){var b=num(S['fb'+i]);if(b!==null){tot+=b;n++;}});
@@ -476,6 +512,8 @@ function calc(){
     x.sig=sig;setv('fg'+x.i,sig,true);});
   R.strengthen=order.slice(0,3).map(function(x){return x.a;});R.review=fr.filter(function(x){return x.sig==='Review spend';}).map(function(x){return x.a;});
   var fs=document.getElementById('fundSum');fs.innerHTML='';card(fs,'Total budget listed',tot?money(tot):'',true);card(fs,'Strengthen first',R.strengthen.join(', '),true);card(fs,'Review spend',order.length?(R.review.join(', ')||'None'):'',true);
+  var xT=0,xS=0,xn=0;fr.forEach(function(x){var e=num(S['fx'+x.i]);if(e!==null){xT+=e;xn++;if(R.strengthen.indexOf(x.a)>=0)xS+=e;}});R.xT=xn?xT:null;R.xS=xn?xS:null;
+  card(fs,'Extra funding needed in total',xn?money(xT):'',true);card(fs,'Extra funding for the Strengthen first functions',xn?money(xS):'',true);
   // step 4
   calcQuick();
   var ds=document.getElementById('dash');ds.innerHTML='';
@@ -488,6 +526,9 @@ function calc(){
   var bd=el('div',{'class':'card'});bd.appendChild(el('span',{'class':'k'},'Best option in the decision test'));var bv=el('span',{'class':'v sm'});if(best){bv.appendChild(document.createTextNode(best.name+' '));bv.appendChild(tag(best.prof,cls(best.prof)));}else bv.appendChild(el('span',{'class':'nf'},'Not yet filled'));bd.appendChild(bv);ds.appendChild(bd);
   card(ds,'Functions to strengthen first',R.strengthen.join(', '),true);
   card(ds,'Spend to review',order.length?(R.review.join(', ')||'None'):'',true);
+  card(ds,'Extra funding needed (Strengthen first)',R.xS===null?'':money(R.xS),true);
+  function apv2(k){var c=S[k+'_c'];return c==='Other'?(S[k]||''):(c||S[k]||'');}
+  card(ds,'Approval by',apv2('ap_by')+(S.ap_date?' · by '+S.ap_date:''),true);card(ds,'Accountable owner',S.ap_owner||'',true);card(ds,'Progress reported',apv2('ap_report'),true);card(ds,'Measure of success',apv2('ap_measure'),true);
 }
 
 function bindAll(){document.querySelectorAll('[data-k]').forEach(function(n){var k=n.getAttribute('data-k');
@@ -500,7 +541,7 @@ function example(){
     d_q:'How should we strengthen finance and donor reporting for the next 3 years?',d_h_c:'1 to 3 years',d_f:'Agency quote 14 lakh a year. Two staff cost about 16 lakh a year plus recruitment. A consultant costs about 6 lakh for 6 months.',d_a:'Grant volume grows 20% a year. An agency can meet donor formats. We can recruit within 3 months.',d_r:'Audit findings, late donor reports, or grant volume not growing.',d_date:'2027-09-30',
     o0_name:'Outsource to an agency',o1_name:'Hire two staff',o2_name:'Consultant for 6 months',
     r1:'Hire two staff, with a consultant for the first 3 months to fix month-end.',r2:'Builds capability we keep, better control, on-time donor reports.',r3:'About 2 lakh a year more than the agency; slower start.',r4:'Recruitment delay: consultant bridges the gap. Key-person risk: document processes.',r5:'CFO owns it. Measure month-end close days and on-time donor reports.',r6:'If grant volume falls by more than 25%, review headcount.',
-    m1:'Training for programme staff on budgets and documentation.',m2:'Manual data entry and spreadsheets passed by email.',m3:'Last-minute donor report preparation.',m4:'A monthly finance and programme review meeting.',nextReview:'2027-03-31',
+    m1:'Training for programme staff on budgets and documentation.',m2:'Manual data entry and spreadsheets passed by email.',m3:'Last-minute donor report preparation.',m4:'A monthly finance and programme review meeting.',nextReview:'2027-03-31',ap_by_c:'The Board',ap_date:'2026-12-15',ap_owner:'Chief Financial Officer',ap_report_c:'Quarterly to the Finance Committee',ap_measure_c:'Donor reports on time',
     q_dec:'How should we strengthen finance and donor reporting?',q_n:3,q0_name:'Outsource to an agency',q0_v:'3',q0_f:'3',q0_c:'3',q0_d:'3',q0_s:'Yes',q1_name:'Hire two staff',q1_v:'4',q1_f:'5',q1_c:'3',q1_d:'2',q1_s:'Yes',q2_name:'Consultant for 6 months',q2_v:'2',q2_f:'3',q2_c:'2',q2_d:'2',q2_s:'Yes'};
   [[5,3],[4,3],[3,3],[5,2],[3,3],[3,3],[4,2],[3,2],[3,4]].forEach(function(x,i){E['ai'+i]=String(x[0]);E['an'+i]=String(x[1]);});
   var ret=[[3,3,2],[3,4,3],[4,2,3],[3,4,3],[4,3,4],[1,5,2],[3,4,3],[3,3,2]],eff=[[3,4,2],[3,4,3],[2,4,2],[2,3,2],[5,2,3],[3,3,2]];
@@ -508,7 +549,7 @@ function example(){
   [3,2,3].forEach(function(v,j){E['o'+j+'_down']=String(v);});[3,2,3].forEach(function(v,j){E['o'+j+'_unc']=String(v);});
   ['With some cost','With some cost','Easily'].forEach(function(v,j){E['o'+j+'_rev']=v;E['o'+j+'_surv']='Yes';});
   [3,5,3].forEach(function(v,j){E['o'+j+'_fit']=String(v);});[3,4,2].forEach(function(v,j){E['o'+j+'_opt']=String(v);});
-  [[120,4,4],[15,4,3],[6,3,2],[12,5,5],[25,2,2],[5,3,3],[4,4,3],[5,4,3],[2,2,3]].forEach(function(x,i){E['fb'+i]=String(x[0]*100000);E['fv'+i]=String(x[1]);E['fr'+i]=String(x[2]);});
+  [[120,4,4],[15,4,3],[6,3,2],[12,5,5],[25,2,2],[5,3,3],[4,4,3],[5,4,3],[2,2,3]].forEach(function(x,i){E['fb'+i]=String(x[0]*100000);E['fx'+i]=String([10,2,0,6,0,1,3,2,0][i]*100000);E['fv'+i]=String(x[1]);E['fr'+i]=String(x[2]);});
   Object.assign(E,{"p2_c": "People and skills", "p3_c": "Statutory compliance (including FCRA)", "d_r_c": "Audit or compliance findings", "m1_c": "Staff training", "m2_c": "Manual data entry", "m3_c": "Spreadsheets passed around by email", "m4_c": "A monthly finance and programme review", "r6_c": "Grant income falling"});
   return fixChoices(E);
 }
@@ -573,7 +614,8 @@ function calcQuick(){var Q=quickRes();var box=document.getElementById('qRes');bo
   else if(done.length===1)msg='Now answer the same four questions for another option to compare them.';
   else if(!ok.length)msg='None of these options has a downside you could cope with. Look for a safer version of one of them.';
   else{var a=ok[0],b=done.filter(function(o){return o!==a;})[0];var gap=Math.round((a.ratio/b.ratio-1)*100);
-    var x=a.ratio/b.ratio;msg=x>=1.95?a.name+' gives about '+(Math.round(x*2)/2)+' times as much value for each unit of effort and risk as '+b.name+'.':gap>=5?a.name+' gives about '+gap+'% more value for each unit of effort and risk than '+b.name+'.':a.name+' and '+b.name+' are close. The deep dive will show what really separates them.';}
+    var x=a.ratio/b.ratio;msg=x>=1.95?a.name+' gives about '+(Math.round(x*2)/2)+' times as much value for each unit of effort and risk as '+b.name+'.':gap>=5?a.name+' gives about '+gap+'% more value for each unit of effort and risk than '+b.name+'.':a.name+' and '+b.name+' are close. The deep dive will show what really separates them.';
+    var tv=ok.slice().sort(function(p,q){return q.val-p.val;})[0];if(tv&&tv!==a&&tv.val-a.val>=0.2)msg+=' But '+tv.name+' creates more value in total ('+fmt(tv.val)+' against '+fmt(a.val)+'). Choose '+a.name+' if '+QLIM+' is the limit; choose '+tv.name+' if you can afford the extra effort and risk.';}
   ins.textContent=msg;}
 function goDeeper(){var map={v:null,f:'fit',d:'down',s:'surv'};
   [0,1,2].forEach(function(j){var p='q'+j+'_',o='o'+j+'_';if(S[p+'name']&&!S[o+'name'])S[o+'name']=S[p+'name'];
