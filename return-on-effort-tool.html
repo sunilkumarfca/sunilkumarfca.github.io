@@ -166,6 +166,7 @@ details.settings input{width:80px;}
     <section id="quick">
       <h2>Quick check: is it worth the effort?</h2>
       <p class="sub">Think of a choice you are facing and two options. If waiting or doing nothing is a real option, use it as one of them. Tap one answer for each question.</p>
+      <p class="samplenote"><strong>Answer from where you are today.</strong> The same effort returns more where you start from a weak position than where things already go well. As things improve, the answers change, so check again next month.</p>
       <label class="q" for="f_q_dec">The choice I am facing (optional)</label>
       <input type="text" id="f_q_dec" data-k="q_dec" placeholder="e.g. Should I take the new job?">
       <p class="samplenote">Grey text and dashed outlines show a sample answer. They are only a guide and do not count until you answer.</p>
@@ -214,10 +215,13 @@ details.settings input{width:80px;}
       <div id="profile"></div>
       <h3>B. My life areas</h3>
       <p class="sub">For each part of life, pick how important it is to you now and how well it is going. Skip any that do not apply. Results appear as you go.</p>
-      <div class="scroll"><table class="grid-t" id="areasT"><thead><tr><th>Life area</th><th class="c">Importance now</th><th class="c">How it is going</th><th class="c">Rank</th><th>Signal</th></tr></thead><tbody></tbody></table></div>
+      <div class="scroll"><table class="grid-t" id="areasT"><thead><tr><th>Life area</th><th class="c">Importance now</th><th class="c">How it is going</th><th class="c">Since last saved</th><th class="c">Rank</th><th>Signal</th></tr></thead><tbody></tbody></table></div>
       <h3>C. My top three priorities now</h3>
       <div class="cards" id="top3"></div>
       <p class="note">Priority score = Importance × (6 − How it is going). Underfunded = importance 4+ and a gap of 2+. Strong = importance 4+ and going 4+.</p>
+      <p class="note"><strong>Why weaker areas rank higher: incremental return.</strong> The return on extra effort depends on where you start. For example, a first hour of exercise after months of poor health usually returns far more than an extra hour once you are already fit. As an area gets stronger, the return on the next unit of effort falls, so the ranking moves. Re-rate every month.</p>
+      <div class="btns noprint"><button class="btn sm" id="saveBase" type="button">Save today's ratings as my starting point</button></div>
+      <p class="note" id="baseInfo"></p>
     </div>
 
     <!-- STEP 2 -->
@@ -453,7 +457,7 @@ function build(){
   AREAS.forEach(function(a,i){var tr=el('tr');tr.appendChild(el('td',null,a));
     var t1=el('td',{'class':'c'});t1.appendChild(sel('ai'+i,L.imp));tr.appendChild(t1);
     var t2=el('td',{'class':'c'});t2.appendChild(sel('an'+i,L.going));tr.appendChild(t2);
-    tr.appendChild(el('td',{'class':'c','id':'rank'+i}));tr.appendChild(el('td',{'id':'sig'+i}));tb.appendChild(tr);});
+    tr.appendChild(el('td',{'class':'c',id:'chg'+i}));tr.appendChild(el('td',{'class':'c','id':'rank'+i}));tr.appendChild(el('td',{'id':'sig'+i}));tb.appendChild(tr);});
   var dt=document.getElementById('decTop');
   DEC.forEach(function(d){ask(d,dt);});
   var T=document.getElementById('decT');
@@ -544,7 +548,10 @@ function calc(){
   rows.forEach(function(r){r.rank=r.ok?ranked.indexOf(r)+1:'';
     r.sig=!r.ok?'':r.now===null?'Add how it is going':(r.imp>=4&&r.gap>=2)?'Underfunded: act now':(r.imp>=4&&r.now>=4)?'Strong: protect it':(r.imp<=2&&r.now>=4)?'Possibly over-invested':(r.gap>=1)?'Needs some attention':'Maintain';
     setv('rank'+r.i,r.rank?String(r.rank):'');setv('sig'+r.i,r.sig,true);});
-  R.top=ranked.slice(0,3).map(function(r){return r.a;});R.under=rows.filter(function(r){return r.sig==='Underfunded: act now';}).length;R.rows=rows;
+  R.top=ranked.slice(0,3).map(function(r){return r.a;});
+  var B=S.base;rows.forEach(function(r){var t='';if(B&&B.an&&B.an[r.i]!==null&&B.an[r.i]!==undefined&&r.now!==null){var d=r.now-B.an[r.i];t=d>0?'Better (+'+d+')':d<0?'Worse ('+d+')':'Same';}setv('chg'+r.i,t);});
+  var bi=document.getElementById('baseInfo');if(bi){if(!B)bi.textContent='Save your ratings once a month. Next time you will see what changed and how your priorities moved.';
+    else{var nd=Math.floor((Date.now()-new Date(B.d+'T00:00:00').getTime())/864e5);bi.textContent='Starting point saved on '+B.d+(nd>0?' ('+nd+' day'+(nd===1?'':'s')+' ago)':' (today)')+'. Top priorities then: '+((B.top||[]).join(', ')||'none')+'. Top priorities now: '+(R.top.join(', ')||'none')+'.'+(nd>=30?' Time to re-rate: things have moved, so the return on the next unit of effort has moved too. Update the ratings above, then save again.':'');}}R.under=rows.filter(function(r){return r.sig==='Underfunded: act now';}).length;R.rows=rows;
   var t3=document.getElementById('top3');t3.innerHTML='';[0,1,2].forEach(function(i){card(t3,'Priority '+(i+1),R.top[i]||'');});card(t3,'Areas flagged underfunded',ranked.length?String(R.under):'');
   // step 2
   var md=MODE(),dflt=Object.assign({},DEF_SET,md.w);var st={};Object.keys(DEF_SET).forEach(function(k){var v=num(S[k]);st[k]=v===null?dflt[k]:v;});
@@ -749,6 +756,7 @@ function goDeeper(){var map={v:null,f:'fit',d:'down',s:'surv'};
 function setView(v){S.view=v;document.getElementById('quick').hidden=v!=='quick';document.getElementById('deep').hidden=v!=='deep';
   document.querySelectorAll('.view-switch button').forEach(function(b){b.setAttribute('aria-pressed',String(b.getAttribute('data-view')===v));});}
 document.querySelectorAll('.view-switch button').forEach(function(b){b.addEventListener('click',function(){setView(b.getAttribute('data-view'));try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}});});
+document.getElementById('saveBase').addEventListener('click',function(){var t=new Date();var d=t.getFullYear()+'-'+String(t.getMonth()+1).padStart(2,'0')+'-'+String(t.getDate()).padStart(2,'0');S.base={d:d,an:AREAS.map(function(_,i){return num(S['an'+i]);}),top:R.top.slice()};save();calc();});
 document.getElementById('qAdd').addEventListener('click',function(){S.q_n=3;save();buildQuick();calc();});
 document.getElementById('qDeep').addEventListener('click',goDeeper);
 load();build();fixChoices(S);buildAlloc();bindAll();buildActs();buildQuick();applySamples();calc();show(1);setView(S.view);
