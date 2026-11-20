@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><!-- Google tag (gtag.js) -->
+<head><script>(function(){var m=location.pathname.match(/^\/igma-(.+)$/);if(m)location.replace("/"+m[1]+location.search+location.hash);})();</script><!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z1RR9B34D3"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -302,8 +302,8 @@ footer .disclaimer{margin:0; max-width:80ch;}
     else if (href.indexOf('flipkart.com') > -1) track('flipkart_click', {link_url: href, link_text: label});
     else if (href.indexOf('pothi.com') > -1) track('pothi_click', {link_url: href, link_text: label});
     else if (href.indexOf('mailto:') === 0) track('contact_click', {link_url: href, link_text: label});
-    if ((href.indexOf('igma') > -1 || href.indexOf('toolkits') > -1 || href.indexOf('quick-assessment') > -1) || href.indexOf('fcra') > -1 || href.indexOf('dpdp') > -1 || href.indexOf('DPDP') > -1) {
-      track('igma_click', {link_url: href, link_text: label});
+    if ((href.indexOf('toolkits') > -1 || href.indexOf('quick-assessment') > -1) || href.indexOf('fcra') > -1 || href.indexOf('dpdp') > -1 || href.indexOf('DPDP') > -1) {
+      track('toolkit_click', {link_url: href, link_text: label});
     }
   });
 })();
