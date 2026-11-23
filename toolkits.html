@@ -1412,7 +1412,7 @@ footer .disclaimer{margin:0; max-width:80ch;}
         <div class="info">
           <h4>Professional Edition — Institutional Governance Toolkit</h4>
           <p>A funder’s due diligence is coming and your Board assumes its governance is fine: get an evidence-based score on a five-level scale and a list of what to fix first.</p>
-          <p class="for"><b>Who this is for:</b> Boards, CEOs and CFOs of NGOs, charities, foundations and trusts in any country (India, Africa, the UK, Europe, the US and beyond) preparing for funder due diligence, an audit or a Board review.</p>
+          <p class="for"><b>Who this is for:</b> Boards, CEOs and CFOs of growing organisations in any country (India, Africa, the UK, Europe, the US and beyond): family businesses, private companies, NGOs and foundations, preparing for investor or funder due diligence, an audit or a Board review. Built from 30 years of governance practice; most questions apply to any organisation with a Board, and a few on donors and grants will matter less to a company.</p>
           <span class="pending">Format: 60 questions across 8 pillars, 646 evidence-based criteria, Board-ready outputs; 14-tab Excel workbook (Excel 2016+, no macros). <a href="#faq">Read the FAQ</a>.</span>
           <details class="more">
             <summary>What's inside</summary>
@@ -1426,7 +1426,7 @@ footer .disclaimer{margin:0; max-width:80ch;}
         <div class="info">
           <h4>Institutional Governance Toolkit — Executive Edition</h4>
           <p>Your Board wants to know where governance stands, but nobody has three hours for hundreds of criteria: score 61 questions in about an hour and get the same pillar results, peer benchmark and Board report.</p>
-          <p class="for"><b>Who this is for:</b> CEOs, CFOs and Board members of NGOs, charities and foundations in any country who want a Board-ready governance score this month.</p>
+          <p class="for"><b>Who this is for:</b> CEOs, CFOs and Board members of growing organisations in any country (family businesses, private companies, NGOs and foundations) who want a Board-ready governance score this month.</p>
           <span class="pending">Format: 61 questions across 8 pillars, each scored 1 to 5 against level statements; opens in your browser, with nothing to install. One price worldwide.</span>
           <details class="more">
             <summary>What's inside</summary>
@@ -1440,7 +1440,7 @@ footer .disclaimer{margin:0; max-width:80ch;}
         <div class="info">
           <h4>Enterprise Risk Management Assessment Toolkit</h4>
           <p>Your Board asks which risks could stop the organisation, and the answer sits in people's heads: score how well you manage risk and build a working register the Board can review.</p>
-          <p class="for"><b>Who this is for:</b> CEOs, CFOs, risk owners and Boards of NGOs, charities, foundations and social enterprises in any country.</p>
+          <p class="for"><b>Who this is for:</b> CEOs, CFOs, risk owners and Boards of growing organisations in any country: private and family companies, NGOs, foundations and social enterprises. The eight pillars apply to any organisation with a Board; the ready library of 51 risks is drawn from the social sector, and you add the risks of your own business.</p>
           <span class="pending">Format: 42 questions across 8 pillars, scored 1&ndash;5 in about 45 minutes (462 optional evidence criteria); 18-tab Excel workbook (Excel 2016+, no macros). For organisations in any country. 2026&ndash;27 edition, updated every year.</span>
           <details class="more">
             <summary>What's inside</summary>
@@ -1482,7 +1482,7 @@ footer .disclaimer{margin:0; max-width:80ch;}
         <div class="info">
           <h4>DPDP Act Toolkit for NGOs</h4>
           <p>Your donor and beneficiary lists hold personal data and nobody can say what the DPDP Act asks of you: find the gaps to close before the duties apply.</p>
-          <p class="for"><b>Who this is for:</b> Indian NGOs, trusts and foundations that hold donor, beneficiary or staff data. India only (DPDP Act 2023).</p>
+          <p class="for"><b>Who this is for:</b> Small and mid-size companies, IT and service firms, NGOs and trusts in India that hold personal data of customers, staff, donors or beneficiaries. The duties under the Act are the same for all of them; the worked examples come from the social sector. India only (DPDP Act 2023).</p>
           <span class="pending">Format: Excel workbook, automated scoring.</span>
           <details class="more">
             <summary>What's inside</summary>
@@ -1721,8 +1721,8 @@ footer .disclaimer{margin:0; max-width:80ch;}
     else if (href.indexOf('flipkart.com') > -1) track('flipkart_click', {link_url: href, link_text: label});
     else if (href.indexOf('pothi.com') > -1) track('pothi_click', {link_url: href, link_text: label});
     else if (href.indexOf('mailto:') === 0) track('contact_click', {link_url: href, link_text: label});
-    if (h.indexOf('igma') > -1 || h.indexOf('fcra') > -1 || h.indexOf('dpdp') > -1) {
-      track('igma_click', {link_url: href, link_text: label});
+    if (h.indexOf('fcra') > -1 || h.indexOf('dpdp') > -1) {
+      track('toolkit_click', {link_url: href, link_text: label});
     }
   });
 })();

@@ -504,7 +504,7 @@ footer .disclaimer{margin:0; max-width:80ch;}
       </div>
       <div class="col paid">
         <h3>Toolkits</h3>
-        <p class="col-sub">One-time payment, instant download. Prices in USD, converted at checkout.</p>
+        <p class="col-sub">One-time payment, instant access. Prices in USD, converted at checkout.</p>
         <ul>
           <li><span class="price">$149</span><span class="k">Governance, any country</span><a href="ngo-governance-assessment-tool.html">Institutional Governance Toolkit, Professional Edition</a></li>
           <li><span class="price">$99</span><span class="k">FCRA Board oversight, India</span><a href="fcra-governance-assessment-toolkit.html">FCRA Board Oversight Toolkit, Professional Edition</a></li>
@@ -630,7 +630,7 @@ footer .disclaimer{margin:0; max-width:80ch;}
       <div>
         <span class="kicker">Toolkits</span>
         <h2>Assess your organisation this week.</h2>
-        <p>Self-assessments your own team can run, in Excel or in your browser. One-time payment, single-organisation licence, free v1.x updates, instant download.</p>
+        <p>Self-assessments your own team can run, in your browser. One-time payment, single-organisation licence, free v1.x updates, instant access.</p>
       </div>
     </div>
     <div class="tk-grid">
@@ -765,7 +765,7 @@ footer .disclaimer{margin:0; max-width:80ch;}
       <div class="step">
         <div class="n">04 — Implement</div>
         <h3><a href="toolkits.html" style="color:inherit; text-decoration:none; border-bottom:1px solid var(--brass);">Professional toolkits</a></h3>
-        <p>The full automated Excel toolkits, Institutional and FCRA Professional Editions, with built-in scoring for board-ready results.</p>
+        <p>The full automated web toolkits, Institutional and FCRA Professional Editions, with built-in scoring for board-ready results.</p>
       </div>
     </div>
   </div>
@@ -916,8 +916,8 @@ footer .disclaimer{margin:0; max-width:80ch;}
     else if (href.indexOf('flipkart.com') > -1) track('flipkart_click', {link_url: href, link_text: label});
     else if (href.indexOf('pothi.com') > -1) track('pothi_click', {link_url: href, link_text: label});
     else if (href.indexOf('mailto:') === 0) track('contact_click', {link_url: href, link_text: label});
-    if ((href.indexOf('igma') > -1 || href.indexOf('toolkits') > -1 || href.indexOf('quick-assessment') > -1) || href.indexOf('fcra') > -1 || href.indexOf('dpdp') > -1 || href.indexOf('DPDP') > -1) {
-      track('igma_click', {link_url: href, link_text: label});
+    if ((href.indexOf('toolkits') > -1 || href.indexOf('quick-assessment') > -1) || href.indexOf('fcra') > -1 || href.indexOf('dpdp') > -1 || href.indexOf('DPDP') > -1) {
+      track('toolkit_click', {link_url: href, link_text: label});
     }
   });
 })();

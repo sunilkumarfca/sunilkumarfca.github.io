@@ -487,8 +487,8 @@ footer .disclaimer{margin:0; max-width:80ch;}
     else if (href.indexOf('flipkart.com') > -1) track('flipkart_click', {link_url: href, link_text: label});
     else if (href.indexOf('pothi.com') > -1) track('pothi_click', {link_url: href, link_text: label});
     else if (href.indexOf('mailto:') === 0) track('contact_click', {link_url: href, link_text: label});
-    if ((href.indexOf('igma') > -1 || href.indexOf('toolkits') > -1 || href.indexOf('quick-assessment') > -1) || href.indexOf('fcra') > -1 || href.indexOf('dpdp') > -1 || href.indexOf('DPDP') > -1) {
-      track('igma_click', {link_url: href, link_text: label});
+    if ((href.indexOf('toolkits') > -1 || href.indexOf('quick-assessment') > -1) || href.indexOf('fcra') > -1 || href.indexOf('dpdp') > -1 || href.indexOf('DPDP') > -1) {
+      track('toolkit_click', {link_url: href, link_text: label});
     }
   });
 })();
@@ -620,7 +620,7 @@ if(n>=1)d.textContent=' ('+n+(n===1?' day':' days')+' left)';})();
 </script>
 <script src="https://gumroad.com/js/gumroad.js"></script>
 <script>
-(function(){var box=document.getElementById('role-ask');if(!box)return;var K='igma_role_sent';
+(function(){var box=document.getElementById('role-ask');if(!box)return;var K='qa_role_sent';
   function mark(r){box.querySelectorAll('.role-chip').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.role===r?'true':'false');});box.querySelector('.role-thanks').hidden=!r;}
   try{mark(localStorage.getItem(K)||'');}catch(e){}
   box.addEventListener('click',function(e){var b=e.target.closest('.role-chip');if(!b)return;var r=b.dataset.role,prev='';

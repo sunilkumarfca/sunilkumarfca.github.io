@@ -621,6 +621,12 @@ life healthier, wealthier and more resilient?”</em></p>
     <p class="art-foot">About the author: <a href="/about.html">CA Sunil Kumar, FCA</a> is a Chartered Accountant with 30+ years in NGO and development-sector finance, audit and governance, and the creator of the governance maturity toolkits. This article is general information, not professional advice.</p>
   </div>
 </section>
+<!-- Free tool box (pull: lets readers test what they just read) -->
+<section style="padding:0 0 8px;"><div class="wrap"><aside style="max-width:68ch;margin:36px auto 0;padding:22px 24px;background:#F2EEE4;border-left:3px solid #C9A35A;">
+<p style="margin:0 0 6px;font-weight:600;color:#1C2530;">Where is your effort best spent?</p>
+<p style="margin:0 0 12px;color:#2c3642;">The free Return on Effort tool helps you find your priorities, test a decision and audit your weekly hours. It runs in your browser; nothing is sent anywhere.</p>
+<p style="margin:0;"><a href="/return-on-effort-tool.html" style="color:#6E5527;text-decoration:underline;font-weight:600;">Try the free Return on Effort tool</a> &middot; <a href="/free-tools.html" style="color:#6E5527;text-decoration:underline;">All free tools</a></p>
+</aside></div></section>
 <footer>
   <div class="wrap footer-grid">
     <div class="footer-about">
@@ -687,8 +693,8 @@ life healthier, wealthier and more resilient?”</em></p>
     else if (href.indexOf('flipkart.com') > -1) track('flipkart_click', {link_url: href, link_text: label});
     else if (href.indexOf('pothi.com') > -1) track('pothi_click', {link_url: href, link_text: label});
     else if (href.indexOf('mailto:') === 0) track('contact_click', {link_url: href, link_text: label});
-    if ((href.indexOf('igma') > -1 || href.indexOf('toolkits') > -1 || href.indexOf('quick-assessment') > -1) || href.indexOf('fcra') > -1 || href.indexOf('dpdp') > -1 || href.indexOf('DPDP') > -1) {
-      track('igma_click', {link_url: href, link_text: label});
+    if ((href.indexOf('toolkits') > -1 || href.indexOf('quick-assessment') > -1) || href.indexOf('fcra') > -1 || href.indexOf('dpdp') > -1 || href.indexOf('DPDP') > -1) {
+      track('toolkit_click', {link_url: href, link_text: label});
     }
   });
 })();

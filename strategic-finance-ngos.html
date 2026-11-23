@@ -485,6 +485,12 @@ footer .disclaimer{margin:0; max-width:80ch;}
     <div class="hub-grid"><a class="hub-card" href="ngo-governance.html"><strong>Institutional Governance &amp; Resilience</strong><span>NGO governance, Board oversight, resilience and governance maturity</span></a><a class="hub-card" href="fcra-governance.html"><strong>FCRA Governance</strong><span>FCRA compliance as an institutional governance responsibility</span></a><a class="hub-card" href="notes.html"><strong>Knowledge Hub</strong><span>All topics in one place</span></a></div>
   </div>
 </section>
+<!-- Free tool box (pull: lets readers test what they just read) -->
+<section style="padding:0 0 8px;"><div class="wrap"><aside style="max-width:68ch;margin:36px auto 0;padding:22px 24px;background:#F2EEE4;border-left:3px solid #C9A35A;">
+<p style="margin:0 0 6px;font-weight:600;color:#1C2530;">How does your organisation measure up?</p>
+<p style="margin:0 0 12px;color:#2c3642;">The free Governance and Risk Quick Assessment scores your organisation across eight pillars (Board oversight, risk, finance, compliance, people, operations, digital and stakeholder trust) in about 15 minutes. It runs in your browser; nothing is sent anywhere.</p>
+<p style="margin:0;"><a href="/governance-quick-assessment.html" style="color:#6E5527;text-decoration:underline;font-weight:600;">Take the free governance check</a> &middot; <a href="/free-tools.html" style="color:#6E5527;text-decoration:underline;">All free tools</a></p>
+</aside></div></section>
 <footer>
   <div class="wrap footer-grid">
     <div class="footer-about">
@@ -551,8 +557,8 @@ footer .disclaimer{margin:0; max-width:80ch;}
     else if (href.indexOf('flipkart.com') > -1) track('flipkart_click', {link_url: href, link_text: label});
     else if (href.indexOf('pothi.com') > -1) track('pothi_click', {link_url: href, link_text: label});
     else if (href.indexOf('mailto:') === 0) track('contact_click', {link_url: href, link_text: label});
-    if ((href.indexOf('igma') > -1 || href.indexOf('toolkits') > -1 || href.indexOf('quick-assessment') > -1) || href.indexOf('fcra') > -1 || href.indexOf('dpdp') > -1 || href.indexOf('DPDP') > -1) {
-      track('igma_click', {link_url: href, link_text: label});
+    if ((href.indexOf('toolkits') > -1 || href.indexOf('quick-assessment') > -1) || href.indexOf('fcra') > -1 || href.indexOf('dpdp') > -1 || href.indexOf('DPDP') > -1) {
+      track('toolkit_click', {link_url: href, link_text: label});
     }
   });
 })();
