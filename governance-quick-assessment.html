@@ -526,7 +526,8 @@ footer .disclaimer{margin:0; max-width:80ch;}
       else if(ri===1&&pav[1][1]<3.5){h.alt+=' Risk is also one of your weakest areas: the <a href="/toolkits.html#erm">Enterprise Risk Management Assessment Toolkit</a> ($49) builds a working risk register for your Board.';}
       o.innerHTML='<p class="ns-k">Your next step</p><h3>'+h.lead+'</h3><p>'+why+'</p><p>'+h.what+'</p><p class="ns-for">'+h.who+'</p>'+
         '<div class="ns-row"><a class="btn primary" href="'+h.page+'">See the '+h.name+'<small>'+h.price+'</small></a>'+sampleLink+'</div>'+
-        '<p class="ns-alt">'+h.alt+'</p>';
+        '<p class="ns-alt">'+h.alt+'</p>'+
+        '<p class="ns-alt" style="margin-top:14px; border-top:1px solid var(--line); padding-top:12px;"><b>Free for the first 5 organisations:</b> write two or three lines to <a href="mailto:sunil@sunilkumarfca.com?subject=Feedback%20on%20the%20free%20governance%20check" onclick="if(typeof gtag===\'function\')gtag(\'event\',\'proof_offer_click\',{check:\'governance-check\'})">sunil@sunilkumarfca.com</a> on what this check showed you and whether it helped. The first five get the full '+h.name+' free, in return for a short quote. Quotes are shown by role only (for example, &ldquo;Finance head, NGO in India&rdquo;), never with your name or organisation unless you say so.</p>';
       if(typeof gtag==='function')gtag('event','qa_offer_shown',{assessment:QA.ga,offer:h.price});})();
     document.getElementById('qa-date').textContent=new Date().toLocaleDateString(undefined,{day:'numeric',month:'long',year:'numeric'});
     var r=document.getElementById('qa-result');form.hidden=true;r.hidden=false;window.scrollTo(0,r.offsetTop-20);
